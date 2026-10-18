@@ -1,0 +1,101 @@
+{
+  "slug": "networks",
+  "titleHe": "רשתות תקשורת מחשבים",
+  "descriptionHe": "תרגול מבחנים - רשתות תקשורת מחשבים",
+  "accent": "#67e8f9",
+  "accent2": "#7c3aed",
+  "sourceFolder": "C:/Users/Adir/Desktop/BSC/שנה ב/סמסטר א/רשתות",
+  "topics": [
+    [
+      "intro_layers",
+      "מבוא ומודל חמש השכבות"
+    ],
+    [
+      "delays",
+      "השהיות, תפוקה ועוצמת תעבורה"
+    ],
+    [
+      "http",
+      "HTTP, עוגיות, מטמון ו-CDN"
+    ],
+    [
+      "dns_dhcp",
+      "DNS, DHCP ו-ARP"
+    ],
+    [
+      "sockets_email",
+      "Sockets ודואר: SMTP, POP ו-IMAP"
+    ],
+    [
+      "udp_checksum",
+      "UDP ו-checksum"
+    ],
+    [
+      "reliable_transfer",
+      "העברה אמינה: Go-Back-N ו-Selective Repeat"
+    ],
+    [
+      "tcp",
+      "TCP: לחיצת יד, ACK, בקרת זרימה ועומס"
+    ],
+    [
+      "ip_cidr",
+      "IP, CIDR, רשתות משנה ו-Longest Prefix"
+    ],
+    [
+      "nat_ipv6_icmp",
+      "NAT, IPv6 ו-ICMP"
+    ],
+    [
+      "routing",
+      "ניתוב: Dijkstra, Distance Vector ו-BGP"
+    ],
+    [
+      "link_layer",
+      "שכבת הקו: CRC, זוגיות ו-Ethernet"
+    ],
+    [
+      "physical_misc",
+      "שכבה פיזית ומיתוג"
+    ]
+  ],
+  "briefs": [],
+  "needHelp": [
+    {
+      "id": "delays",
+      "titleHe": "חישובי השהיה ועומס",
+      "icon": "⏱️",
+      "topic": "delays",
+      "entryLabelHe": "צריך עזרה בחישובי השהיה?"
+    },
+    {
+      "id": "tcp",
+      "titleHe": "TCP: ACK, חלון ובקרת עומס",
+      "icon": "📈",
+      "topic": "tcp",
+      "entryLabelHe": "צריך עזרה ב-TCP?"
+    },
+    {
+      "id": "ip",
+      "titleHe": "כתובות, CIDR ו-Longest Prefix",
+      "icon": "🌐",
+      "topic": "ip_cidr",
+      "entryLabelHe": "צריך עזרה בכתובות IP?"
+    },
+    {
+      "id": "link",
+      "titleHe": "שכבת הקו: CRC, זוגיות ו-ARP",
+      "icon": "🔗",
+      "topic": "link_layer",
+      "entryLabelHe": "צריך עזרה בשכבת הקו?"
+    },
+    {
+      "id": "app",
+      "titleHe": "DNS ו-HTTP: מטמון, חיבורים ו-TTL",
+      "icon": "🗂️",
+      "topic": "http",
+      "entryLabelHe": "צריך עזרה ב-DNS וב-HTTP?"
+    }
+  ],
+  "storePrefix": "networks"
+}
