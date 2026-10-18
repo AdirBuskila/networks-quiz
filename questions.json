@@ -1,0 +1,810 @@
+{
+ "meta": {
+  "generated": "tools/build_questions.py",
+  "exams": [
+   {
+    "examCode": "26A-A",
+    "examLabel": "2026 סמסטר א מועד א",
+    "year": 2026,
+    "source": "exam",
+    "examDate": "18.02.2026"
+   }
+  ],
+  "topics": [
+   {
+    "key": "intro_layers",
+    "label": "מבוא ומודל חמש השכבות"
+   },
+   {
+    "key": "delays",
+    "label": "השהיות, תפוקה ועוצמת תעבורה"
+   },
+   {
+    "key": "http",
+    "label": "HTTP, עוגיות, מטמון ו-CDN"
+   },
+   {
+    "key": "dns_dhcp",
+    "label": "DNS, DHCP ו-ARP"
+   },
+   {
+    "key": "sockets_email",
+    "label": "Sockets ודואר: SMTP, POP ו-IMAP"
+   },
+   {
+    "key": "udp_checksum",
+    "label": "UDP ו-checksum"
+   },
+   {
+    "key": "reliable_transfer",
+    "label": "העברה אמינה: Go-Back-N ו-Selective Repeat"
+   },
+   {
+    "key": "tcp",
+    "label": "TCP: לחיצת יד, ACK, בקרת זרימה ועומס"
+   },
+   {
+    "key": "ip_cidr",
+    "label": "IP, CIDR, רשתות משנה ו-Longest Prefix"
+   },
+   {
+    "key": "nat_ipv6_icmp",
+    "label": "NAT, IPv6 ו-ICMP"
+   },
+   {
+    "key": "routing",
+    "label": "ניתוב: Dijkstra, Distance Vector ו-BGP"
+   },
+   {
+    "key": "link_layer",
+    "label": "שכבת הקו: CRC, זוגיות ו-Ethernet"
+   },
+   {
+    "key": "physical_misc",
+    "label": "שכבה פיזית ומיתוג"
+   }
+  ],
+  "title": "רשתות תקשורת מחשבים",
+  "accent": "#67e8f9",
+  "accent2": "#7c3aed",
+  "storePrefix": "networks",
+  "needHelp": [
+   {
+    "id": "delays",
+    "titleHe": "חישובי השהיה ועומס",
+    "icon": "⏱️",
+    "topic": "delays",
+    "entryLabelHe": "צריך עזרה בחישובי השהיה?"
+   },
+   {
+    "id": "tcp",
+    "titleHe": "TCP: ACK, חלון ובקרת עומס",
+    "icon": "📈",
+    "topic": "tcp",
+    "entryLabelHe": "צריך עזרה ב-TCP?"
+   },
+   {
+    "id": "ip",
+    "titleHe": "כתובות, CIDR ו-Longest Prefix",
+    "icon": "🌐",
+    "topic": "ip_cidr",
+    "entryLabelHe": "צריך עזרה בכתובות IP?"
+   },
+   {
+    "id": "link",
+    "titleHe": "שכבת הקו: CRC, זוגיות ו-ARP",
+    "icon": "🔗",
+    "topic": "link_layer",
+    "entryLabelHe": "צריך עזרה בשכבת הקו?"
+   },
+   {
+    "id": "app",
+    "titleHe": "DNS ו-HTTP: מטמון, חיבורים ו-TTL",
+    "icon": "🗂️",
+    "topic": "http",
+    "entryLabelHe": "צריך עזרה ב-DNS וב-HTTP?"
+   }
+  ],
+  "counts": {
+   "total": 15,
+   "unique": 15,
+   "contexts": 0,
+   "math": 33
+  }
+ },
+ "contexts": {},
+ "questions": [
+  {
+   "num": 1,
+   "topic": "dns_dhcp",
+   "question": "לקוח מבצע שאילתת DNS עבור `www.shop.example.com`. ה-Resolver מקבל מה-Authoritative של `example.com` את הרשומות הבאות:\n`www.shop.example.com → A 192.0.2.10`\n`shop.example.com → NS ns1.shop.example.com`\n`ns1.shop.example.com → A 203.0.113.53`\nTTL של ה-NS: 86400\nTTL של ה-A של ה-nameserver: 300\nאיזו מהאפשרויות הבאות היא הכי נכונה לגבי התנהגות ה-Resolver?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "ה-Resolver רשאי לשמור את ה-A של ה-nameserver במטמון, רק עד TTL שלו עצמו (300)",
+     "html": "ה-Resolver רשאי לשמור את ה-A של ה-nameserver במטמון, רק עד TTL שלו עצמו (300)"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "ה-Resolver חייב לשמור את ה-A של ה-nameserver במטמון לפי TTL של ה-NS - (86400)",
+     "html": "ה-Resolver חייב לשמור את ה-A של ה-nameserver במטמון לפי TTL של ה-NS - (86400)"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "ה-Resolver חייב להתעלם מה-A של ה-nameserver ולבצע שאילתה חדשה בכל פעם",
+     "html": "ה-Resolver חייב להתעלם מה-A של ה-nameserver ולבצע שאילתה חדשה בכל פעם"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "ה-Resolver אסור לו לשמור את ה-A של ה-nameserver במטמון בכלל",
+     "html": "ה-Resolver אסור לו לשמור את ה-A של ה-nameserver במטמון בכלל"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "לכל רשומה ב-DNS יש TTL משלה, והמטמון מכבד את ה-TTL של כל רשומה בנפרד.\nא: נכון - ה-A של ה-nameserver נשמרת במטמון לכל היותר 300 שניות, ואחר כך פגה (גם אם ה-NS עדיין תקפה).\nב: שגוי - ה-TTL של ה-NS חל על רשומת ה-NS בלבד ואינו מאריך את חיי ה-A, וגם \"חייב\" אינו נכון: המטמון רשאי, לא חייב.\nג: שגוי - אין חובה להתעלם מהרשומה; שמירה במטמון היא בדיוק מטרת ה-TTL.\nד: שגוי - אין איסור על שמירה במטמון.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees.",
+   "id": "26A-A-Q1",
+   "examCode": "26A-A",
+   "examLabel": "2026 סמסטר א מועד א",
+   "year": 2026,
+   "source": "exam",
+   "topicLabel": "DNS, DHCP ו-ARP",
+   "questionHtml": "לקוח מבצע שאילתת DNS עבור <code class=\"tok\" dir=\"ltr\">www.shop.example.com</code>. ה-Resolver מקבל מה-Authoritative של <code class=\"tok\" dir=\"ltr\">example.com</code> את הרשומות הבאות:<br><code class=\"tok\" dir=\"ltr\">www.shop.example.com → A 192.0.2.10</code><br><code class=\"tok\" dir=\"ltr\">shop.example.com → NS ns1.shop.example.com</code><br><code class=\"tok\" dir=\"ltr\">ns1.shop.example.com → A 203.0.113.53</code><br>TTL של ה-NS: 86400<br>TTL של ה-A של ה-nameserver: 300<br>איזו מהאפשרויות הבאות היא הכי נכונה לגבי התנהגות ה-Resolver?",
+   "explanationHtml": "לכל רשומה ב-DNS יש TTL משלה, והמטמון מכבד את ה-TTL של כל רשומה בנפרד.<br>א: נכון - ה-A של ה-nameserver נשמרת במטמון לכל היותר 300 שניות, ואחר כך פגה (גם אם ה-NS עדיין תקפה).<br>ב: שגוי - ה-TTL של ה-NS חל על רשומת ה-NS בלבד ואינו מאריך את חיי ה-A, וגם \"חייב\" אינו נכון: המטמון רשאי, לא חייב.<br>ג: שגוי - אין חובה להתעלם מהרשומה; שמירה במטמון היא בדיוק מטרת ה-TTL.<br>ד: שגוי - אין איסור על שמירה במטמון.",
+   "dedupKey": "2d98d2b2ee9bb22e"
+  },
+  {
+   "num": 2,
+   "topic": "http",
+   "question": "מהי הדרך להקטין זמן טעינת דף בפרוטוקול HTTP?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "כל התשובות נכונות",
+     "html": "כל התשובות נכונות"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "שימוש בזיכרון local cache",
+     "html": "שימוש בזיכרון local cache"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "שימוש בשרתי web cache",
+     "html": "שימוש בשרתי web cache"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "שימוש ב-CDN",
+     "html": "שימוש ב-CDN"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "כל שלושת המנגנונים מקצרים את זמן הטעינה: מטמון מקומי בדפדפן (אין פנייה לרשת כלל), שרת Web cache / proxy (עונה במקום השרת המקורי, קרוב ללקוח) ו-CDN (תוכן משוכפל בשרתים קרובים ללקוח, RTT קטן יותר).\nלכן \"כל התשובות נכונות\".",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees.",
+   "id": "26A-A-Q2",
+   "examCode": "26A-A",
+   "examLabel": "2026 סמסטר א מועד א",
+   "year": 2026,
+   "source": "exam",
+   "topicLabel": "HTTP, עוגיות, מטמון ו-CDN",
+   "questionHtml": "מהי הדרך להקטין זמן טעינת דף בפרוטוקול HTTP?",
+   "explanationHtml": "כל שלושת המנגנונים מקצרים את זמן הטעינה: מטמון מקומי בדפדפן (אין פנייה לרשת כלל), שרת Web cache / proxy (עונה במקום השרת המקורי, קרוב ללקוח) ו-CDN (תוכן משוכפל בשרתים קרובים ללקוח, RTT קטן יותר).<br>לכן \"כל התשובות נכונות\".",
+   "dedupKey": "b4188563e8d6c817"
+  },
+  {
+   "num": 3,
+   "topic": "intro_layers",
+   "question": "מהו תפקיד של שכבת התעבורה?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "לספק שירותי תקשורת בין תהליכים הרצים בתחנות קצה שונות",
+     "html": "לספק שירותי תקשורת בין תהליכים הרצים בתחנות קצה שונות"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "לספק חיבור אמין בשני תהליכים הרצים בתחנות קצה שונות",
+     "html": "לספק חיבור אמין בשני תהליכים הרצים בתחנות קצה שונות"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "לספק שירותי ניתוב לשכבת היישום",
+     "html": "לספק שירותי ניתוב לשכבת היישום"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "אף תשובה לא נכונה",
+     "html": "אף תשובה לא נכונה"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "שכבת התעבורה מספקת תקשורת לוגית בין תהליכים (דרך מספרי פורטים) בתחנות קצה שונות.\nב: אמינות היא שירות של TCP בלבד, לא של שכבת התעבורה בכלל (UDP אינו אמין), ולכן ההגדרה צרה מדי.\nג: ניתוב הוא תפקיד שכבת הרשת.\nד: שגוי, כי א נכונה.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees.",
+   "id": "26A-A-Q3",
+   "examCode": "26A-A",
+   "examLabel": "2026 סמסטר א מועד א",
+   "year": 2026,
+   "source": "exam",
+   "topicLabel": "מבוא ומודל חמש השכבות",
+   "questionHtml": "מהו תפקיד של שכבת התעבורה?",
+   "explanationHtml": "שכבת התעבורה מספקת תקשורת לוגית בין תהליכים (דרך מספרי פורטים) בתחנות קצה שונות.<br>ב: אמינות היא שירות של TCP בלבד, לא של שכבת התעבורה בכלל (UDP אינו אמין), ולכן ההגדרה צרה מדי.<br>ג: ניתוב הוא תפקיד שכבת הרשת.<br>ד: שגוי, כי א נכונה.",
+   "dedupKey": "e08a239a8a07bfc7"
+  },
+  {
+   "num": 4,
+   "topic": "dns_dhcp",
+   "question": "האם ניתן להשתמש בפרוטוקול ARP במקום DHCP?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "לא ניתן להשתמש ב-ARP במקום DHCP",
+     "html": "לא ניתן להשתמש ב-ARP במקום DHCP"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "כן, ניתן להשתמש ב-ARP במקום DHCP להגדרת כתובות רשת לתחנות קצה",
+     "html": "כן, ניתן להשתמש ב-ARP במקום DHCP להגדרת כתובות רשת לתחנות קצה"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "כן, אפשר להשתמש ב-broadcast של ARP כדי לשלוח הגדרות רשת לתחנות קצה",
+     "html": "כן, אפשר להשתמש ב-broadcast של ARP כדי לשלוח הגדרות רשת לתחנות קצה"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "אף תשובה לא נכונה",
+     "html": "אף תשובה לא נכונה"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "ARP מתרגם כתובת IP ידועה לכתובת MAC ברשת המקומית; הוא אינו מקצה כתובות ואינו מעביר הגדרות (מסכה, Gateway, DNS).\nDHCP הוא הפרוטוקול שמקצה כתובת IP והגדרות רשת. לכן אי אפשר להחליף את DHCP ב-ARP; ב ו-ג שגויות, ו-ד שגויה כי א נכונה.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees.",
+   "id": "26A-A-Q4",
+   "examCode": "26A-A",
+   "examLabel": "2026 סמסטר א מועד א",
+   "year": 2026,
+   "source": "exam",
+   "topicLabel": "DNS, DHCP ו-ARP",
+   "questionHtml": "האם ניתן להשתמש בפרוטוקול ARP במקום DHCP?",
+   "explanationHtml": "ARP מתרגם כתובת IP ידועה לכתובת MAC ברשת המקומית; הוא אינו מקצה כתובות ואינו מעביר הגדרות (מסכה, Gateway, DNS).<br>DHCP הוא הפרוטוקול שמקצה כתובת IP והגדרות רשת. לכן אי אפשר להחליף את DHCP ב-ARP; ב ו-ג שגויות, ו-ד שגויה כי א נכונה.",
+   "dedupKey": "7b829e8415a59101"
+  },
+  {
+   "num": 5,
+   "topic": "dns_dhcp",
+   "question": "קבלת כתובת IP באופן דינמי משרת DHCP בעת הצטרפות לרשת מתבצעת בסדר הבא:",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "`DHCP Discover -> DHCP Offer -> DHCP Request -> DHCP ACK`",
+     "html": "<code class=\"tok\" dir=\"ltr\">DHCP Discover -&gt; DHCP Offer -&gt; DHCP Request -&gt; DHCP ACK</code>"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "`DHCP Request -> DHCP Offer -> DHCP ACK`",
+     "html": "<code class=\"tok\" dir=\"ltr\">DHCP Request -&gt; DHCP Offer -&gt; DHCP ACK</code>"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "`DHCP Request -> DHCP ACK -> DHCP Discover -> DHCP Offer`",
+     "html": "<code class=\"tok\" dir=\"ltr\">DHCP Request -&gt; DHCP ACK -&gt; DHCP Discover -&gt; DHCP Offer</code>"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "`DHCP Discover -> DHCP Request -> DHCP ACK`",
+     "html": "<code class=\"tok\" dir=\"ltr\">DHCP Discover -&gt; DHCP Request -&gt; DHCP ACK</code>"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "הסדר התקני (DORA): הלקוח משדר Discover, השרת עונה Offer, הלקוח מבקש Request את ההצעה והשרת מאשר ב-ACK.\nב, ג: מתחילות ב-Request או משלבות הודעות בסדר הפוך; ד: חסר שלב ה-Offer.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees.",
+   "id": "26A-A-Q5",
+   "examCode": "26A-A",
+   "examLabel": "2026 סמסטר א מועד א",
+   "year": 2026,
+   "source": "exam",
+   "topicLabel": "DNS, DHCP ו-ARP",
+   "questionHtml": "קבלת כתובת IP באופן דינמי משרת DHCP בעת הצטרפות לרשת מתבצעת בסדר הבא:",
+   "explanationHtml": "הסדר התקני (DORA): הלקוח משדר Discover, השרת עונה Offer, הלקוח מבקש Request את ההצעה והשרת מאשר ב-ACK.<br>ב, ג: מתחילות ב-Request או משלבות הודעות בסדר הפוך; ד: חסר שלב ה-Offer.",
+   "dedupKey": "77d665f07edc9618"
+  },
+  {
+   "num": 6,
+   "topic": "tcp",
+   "question": "הגרף מייצג התפתחות תהליך בקרת עומסים של TCP לאורך הזמן. באילו נקודות זמן הפרוטוקול נכנס ל-Congestion Avoidance?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "4, 29, 35",
+     "html": "4, 29, 35"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "24, 30",
+     "html": "24, 30"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "1, 25, 31",
+     "html": "1, 25, 31"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "אף תשובה לא נכונה",
+     "html": "אף תשובה לא נכונה"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "ב-Slow Start החלון מוכפל בכל RTT, ובתחילת Congestion Avoidance הוא גדל ב-1 בכל RTT (עד ה-ssthresh).\nבגרף: נקודות 1-4 הן $1,2,4,8$ ואחריהן $9,10,\\ldots$ (קו ישר) - כניסה ל-CA ב-4. אחרי ההפסד ב-24 (החלון חוזר ל-1): $1,2,4,8,16$ ואז $17$ - כניסה ב-29. אחרי ההפסד ב-30: $1,2,4,8,16$ ואז $17,18,\\ldots$ - כניסה ב-35.\n24 ו-30 הן נקודות ההפסד (שיא ואז צניחה), ו-1, 25, 31 הן תחילת Slow Start - לא CA.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees.",
+   "image": "images/exams/26A-A-Q6.png",
+   "id": "26A-A-Q6",
+   "examCode": "26A-A",
+   "examLabel": "2026 סמסטר א מועד א",
+   "year": 2026,
+   "source": "exam",
+   "topicLabel": "TCP: לחיצת יד, ACK, בקרת זרימה ועומס",
+   "questionHtml": "הגרף מייצג התפתחות תהליך בקרת עומסים של TCP לאורך הזמן. באילו נקודות זמן הפרוטוקול נכנס ל-Congestion Avoidance?",
+   "explanationHtml": "ב-Slow Start החלון מוכפל בכל RTT, ובתחילת Congestion Avoidance הוא גדל ב-1 בכל RTT (עד ה-ssthresh).<br>בגרף: נקודות 1-4 הן <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>1</mn><mo separator=\"true\">,</mo><mn>2</mn><mo separator=\"true\">,</mo><mn>4</mn><mo separator=\"true\">,</mo><mn>8</mn></mrow><annotation encoding=\"application/x-tex\">1,2,4,8</annotation></semantics></math></span> ואחריהן <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>9</mn><mo separator=\"true\">,</mo><mn>10</mn><mo separator=\"true\">,</mo><mo>…</mo></mrow><annotation encoding=\"application/x-tex\">9,10,\\ldots</annotation></semantics></math></span> (קו ישר) - כניסה ל-CA ב-4. אחרי ההפסד ב-24 (החלון חוזר ל-1): <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>1</mn><mo separator=\"true\">,</mo><mn>2</mn><mo separator=\"true\">,</mo><mn>4</mn><mo separator=\"true\">,</mo><mn>8</mn><mo separator=\"true\">,</mo><mn>16</mn></mrow><annotation encoding=\"application/x-tex\">1,2,4,8,16</annotation></semantics></math></span> ואז <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>17</mn></mrow><annotation encoding=\"application/x-tex\">17</annotation></semantics></math></span> - כניסה ב-29. אחרי ההפסד ב-30: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>1</mn><mo separator=\"true\">,</mo><mn>2</mn><mo separator=\"true\">,</mo><mn>4</mn><mo separator=\"true\">,</mo><mn>8</mn><mo separator=\"true\">,</mo><mn>16</mn></mrow><annotation encoding=\"application/x-tex\">1,2,4,8,16</annotation></semantics></math></span> ואז <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>17</mn><mo separator=\"true\">,</mo><mn>18</mn><mo separator=\"true\">,</mo><mo>…</mo></mrow><annotation encoding=\"application/x-tex\">17,18,\\ldots</annotation></semantics></math></span> - כניסה ב-35.<br>24 ו-30 הן נקודות ההפסד (שיא ואז צניחה), ו-1, 25, 31 הן תחילת Slow Start - לא CA.",
+   "dedupKey": "732481dcdc07c60e"
+  },
+  {
+   "num": 7,
+   "topic": "ip_cidr",
+   "question": "חבילה בגודל 2000 Bytes עברה fragmentation ל-5 חבילות. נתון כי $MTU=500\\,\\text{B}$, גודל ה-header הוא $20\\,\\text{B}$. מה נכון לגבי חבילה מספר 4 מתוך 5?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "Offset=180",
+     "html": "Offset=180"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "Offset=200",
+     "html": "Offset=200"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "Offset=400",
+     "html": "Offset=400"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "Offset=1600",
+     "html": "Offset=1600"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "בכל פרגמנט נשאר מקום ל-$500-20=480$ בתים של נתונים (כפולה של 8, כנדרש).\nהפרגמנט הרביעי מתחיל אחרי 3 פרגמנטים מלאים: $3\\cdot 480=1440$ בתים, ושדה ה-Offset נמדד ביחידות של 8 בתים: $1440/8=180$.\n(בסך הכול 5 פרגמנטים: 4 מלאים של 480 בתים ופרגמנט אחרון קטן.) 200 היה מתקבל אילו הנתונים בפרגמנט היו 500 בתים (ללא header), ו-400 ו-1600 אינם ה-Offset של הפרגמנט הרביעי.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees.",
+   "id": "26A-A-Q7",
+   "examCode": "26A-A",
+   "examLabel": "2026 סמסטר א מועד א",
+   "year": 2026,
+   "source": "exam",
+   "topicLabel": "IP, CIDR, רשתות משנה ו-Longest Prefix",
+   "questionHtml": "חבילה בגודל 2000 Bytes עברה fragmentation ל-5 חבילות. נתון כי <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>M</mi><mi>T</mi><mi>U</mi><mo>=</mo><mn>500</mn><mtext> </mtext><mtext>B</mtext></mrow><annotation encoding=\"application/x-tex\">MTU=500\\,\\text{B}</annotation></semantics></math></span>, גודל ה-header הוא <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>20</mn><mtext> </mtext><mtext>B</mtext></mrow><annotation encoding=\"application/x-tex\">20\\,\\text{B}</annotation></semantics></math></span>. מה נכון לגבי חבילה מספר 4 מתוך 5?",
+   "explanationHtml": "בכל פרגמנט נשאר מקום ל-<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>500</mn><mo>−</mo><mn>20</mn><mo>=</mo><mn>480</mn></mrow><annotation encoding=\"application/x-tex\">500-20=480</annotation></semantics></math></span> בתים של נתונים (כפולה של 8, כנדרש).<br>הפרגמנט הרביעי מתחיל אחרי 3 פרגמנטים מלאים: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>3</mn><mo>⋅</mo><mn>480</mn><mo>=</mo><mn>1440</mn></mrow><annotation encoding=\"application/x-tex\">3\\cdot 480=1440</annotation></semantics></math></span> בתים, ושדה ה-Offset נמדד ביחידות של 8 בתים: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>1440</mn><mi mathvariant=\"normal\">/</mi><mn>8</mn><mo>=</mo><mn>180</mn></mrow><annotation encoding=\"application/x-tex\">1440/8=180</annotation></semantics></math></span>.<br>(בסך הכול 5 פרגמנטים: 4 מלאים של 480 בתים ופרגמנט אחרון קטן.) 200 היה מתקבל אילו הנתונים בפרגמנט היו 500 בתים (ללא header), ו-400 ו-1600 אינם ה-Offset של הפרגמנט הרביעי.",
+   "dedupKey": "3b61ae78fb91bf07"
+  },
+  {
+   "num": 8,
+   "topic": "dns_dhcp",
+   "question": "מהם הנתונים שמספק שרת ה-DHCP לתחנה שפונה אליו?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "IP, Subnet, Local DNS, Default Gateway IP",
+     "html": "IP, Subnet, Local DNS, Default Gateway IP"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "IP, Router IP, Subnet, Root DNS",
+     "html": "IP, Router IP, Subnet, Root DNS"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "IP, Router IP, Root DNS, Default Gateway",
+     "html": "IP, Router IP, Root DNS, Default Gateway"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "IP, Default Gateway MAC address, Subnet, Local DNS",
+     "html": "IP, Default Gateway MAC address, Subnet, Local DNS"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "שרת DHCP מספק כתובת IP, מסכת רשת (Subnet), כתובת ה-IP של ה-Default Gateway וכתובת שרת ה-DNS המקומי.\nב, ג: שרת DNS \"Root\" אינו מה שה-DHCP נותן (נותנים Resolver מקומי); ד: כתובת MAC של ה-Gateway מתקבלת מ-ARP, לא מ-DHCP.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees.",
+   "id": "26A-A-Q8",
+   "examCode": "26A-A",
+   "examLabel": "2026 סמסטר א מועד א",
+   "year": 2026,
+   "source": "exam",
+   "topicLabel": "DNS, DHCP ו-ARP",
+   "questionHtml": "מהם הנתונים שמספק שרת ה-DHCP לתחנה שפונה אליו?",
+   "explanationHtml": "שרת DHCP מספק כתובת IP, מסכת רשת (Subnet), כתובת ה-IP של ה-Default Gateway וכתובת שרת ה-DNS המקומי.<br>ב, ג: שרת DNS \"Root\" אינו מה שה-DHCP נותן (נותנים Resolver מקומי); ד: כתובת MAC של ה-Gateway מתקבלת מ-ARP, לא מ-DHCP.",
+   "dedupKey": "fc205b344b4d1ced"
+  },
+  {
+   "num": 9,
+   "topic": "ip_cidr",
+   "question": "לאיזה מסלול תנותב החבילה אם כתובת היעד $25.36.67.5$ לפי טבלת הניתוב הבאה?\n`A: 25.36.0.0/16`\n`B: 25.36.128.0/20`\n`C: 25.36.64.0/20`\n`D: 20.0.0.0/8`",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "C",
+     "html": "C"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "A",
+     "html": "A"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "D",
+     "html": "D"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "B",
+     "html": "B"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "Longest Prefix Match: נבדוק אילו כניסות מתאימות לכתובת $25.36.67.5$.\nA: $25.36.0.0/16$ - מתאימה (שני הבתים הראשונים זהים). B: $25.36.128.0/20$ מכסה $25.36.128.0-25.36.143.255$ - לא כוללת 67. C: $25.36.64.0/20$ מכסה $25.36.64.0-25.36.79.255$ - כוללת את 67, והמסכה ארוכה יותר ($/20>/16$). D: $20.0.0.0/8$ - לא מתאימה.\nכלומר A ו-C מתאימות, והארוכה ביותר היא C.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees.",
+   "id": "26A-A-Q9",
+   "examCode": "26A-A",
+   "examLabel": "2026 סמסטר א מועד א",
+   "year": 2026,
+   "source": "exam",
+   "topicLabel": "IP, CIDR, רשתות משנה ו-Longest Prefix",
+   "questionHtml": "לאיזה מסלול תנותב החבילה אם כתובת היעד <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>25.36.67.5</mn></mrow><annotation encoding=\"application/x-tex\">25.36.67.5</annotation></semantics></math></span> לפי טבלת הניתוב הבאה?<br><code class=\"tok\" dir=\"ltr\">A: 25.36.0.0/16</code><br><code class=\"tok\" dir=\"ltr\">B: 25.36.128.0/20</code><br><code class=\"tok\" dir=\"ltr\">C: 25.36.64.0/20</code><br><code class=\"tok\" dir=\"ltr\">D: 20.0.0.0/8</code>",
+   "explanationHtml": "Longest Prefix Match: נבדוק אילו כניסות מתאימות לכתובת <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>25.36.67.5</mn></mrow><annotation encoding=\"application/x-tex\">25.36.67.5</annotation></semantics></math></span>.<br>A: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>25.36.0.0</mn><mi mathvariant=\"normal\">/</mi><mn>16</mn></mrow><annotation encoding=\"application/x-tex\">25.36.0.0/16</annotation></semantics></math></span> - מתאימה (שני הבתים הראשונים זהים). B: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>25.36.128.0</mn><mi mathvariant=\"normal\">/</mi><mn>20</mn></mrow><annotation encoding=\"application/x-tex\">25.36.128.0/20</annotation></semantics></math></span> מכסה <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>25.36.128.0</mn><mo>−</mo><mn>25.36.143.255</mn></mrow><annotation encoding=\"application/x-tex\">25.36.128.0-25.36.143.255</annotation></semantics></math></span> - לא כוללת 67. C: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>25.36.64.0</mn><mi mathvariant=\"normal\">/</mi><mn>20</mn></mrow><annotation encoding=\"application/x-tex\">25.36.64.0/20</annotation></semantics></math></span> מכסה <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>25.36.64.0</mn><mo>−</mo><mn>25.36.79.255</mn></mrow><annotation encoding=\"application/x-tex\">25.36.64.0-25.36.79.255</annotation></semantics></math></span> - כוללת את 67, והמסכה ארוכה יותר (<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi mathvariant=\"normal\">/</mi><mn>20</mn><mo>&gt;</mo><mi mathvariant=\"normal\">/</mi><mn>16</mn></mrow><annotation encoding=\"application/x-tex\">/20&gt;/16</annotation></semantics></math></span>). D: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>20.0.0.0</mn><mi mathvariant=\"normal\">/</mi><mn>8</mn></mrow><annotation encoding=\"application/x-tex\">20.0.0.0/8</annotation></semantics></math></span> - לא מתאימה.<br>כלומר A ו-C מתאימות, והארוכה ביותר היא C.",
+   "dedupKey": "63959b0f76bf8652"
+  },
+  {
+   "num": 10,
+   "topic": "link_layer",
+   "question": "איזו מהטענות הבאות מתארת נכונה את ההבדל בין Ethernet Switch לבין IP Router?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "סוויץ' מעביר מסגרות (frame) וראוטר מעביר חבילות (datagrams)",
+     "html": "סוויץ' מעביר מסגרות (frame) וראוטר מעביר חבילות (datagrams)"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "נתב מהיר יותר מסוויץ' כי הוא משתמש בכתובות לוגיות",
+     "html": "נתב מהיר יותר מסוויץ' כי הוא משתמש בכתובות לוגיות"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "נתבים מסוגלים לבדוק שגיאות על נתוני החבילה (datagram)",
+     "html": "נתבים מסוגלים לבדוק שגיאות על נתוני החבילה (datagram)"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "לסוויץ' יש טבלת ניתוב כתובות (switch table)",
+     "html": "לסוויץ' יש טבלת ניתוב כתובות (switch table)"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "סוויץ' פועל בשכבת הקו ומעביר מסגרות לפי כתובות MAC; נתב פועל בשכבת הרשת ומעביר datagrams לפי כתובות IP.\nב: אין קשר בין \"כתובות לוגיות\" למהירות, ובדרך כלל סוויץ' מהיר יותר. ג: גם סוויץ' בודק שגיאות במסגרת (FCS) - ואין זה ההבדל בין השניים.\nד: ל-switch יש \"switch table\" - אך זו טבלת העברה (למידה) ולא טבלת ניתוב, ולכן הניסוח שגוי ואינו ההבדל העיקרי.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees.",
+   "id": "26A-A-Q10",
+   "examCode": "26A-A",
+   "examLabel": "2026 סמסטר א מועד א",
+   "year": 2026,
+   "source": "exam",
+   "topicLabel": "שכבת הקו: CRC, זוגיות ו-Ethernet",
+   "questionHtml": "איזו מהטענות הבאות מתארת נכונה את ההבדל בין Ethernet Switch לבין IP Router?",
+   "explanationHtml": "סוויץ' פועל בשכבת הקו ומעביר מסגרות לפי כתובות MAC; נתב פועל בשכבת הרשת ומעביר datagrams לפי כתובות IP.<br>ב: אין קשר בין \"כתובות לוגיות\" למהירות, ובדרך כלל סוויץ' מהיר יותר. ג: גם סוויץ' בודק שגיאות במסגרת (FCS) - ואין זה ההבדל בין השניים.<br>ד: ל-switch יש \"switch table\" - אך זו טבלת העברה (למידה) ולא טבלת ניתוב, ולכן הניסוח שגוי ואינו ההבדל העיקרי.",
+   "dedupKey": "39c07b0adc2d260d"
+  },
+  {
+   "num": 11,
+   "topic": "delays",
+   "question": "מהו זמן ההשהיה הכולל ברשת, אם ההשהיות בתוך הנתבים זניחות? מהירות ההתפשטות: $3\\cdot10^{8}$ m/s. גודל החבילה: 12000 ביט.",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "18 מילישניות",
+     "html": "18 מילישניות"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "36 מילישניות",
+     "html": "36 מילישניות"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "100 מילישניות",
+     "html": "100 מילישניות"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "1 מילישניות",
+     "html": "1 מילישניות"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "לפי האיור, שלושה קישורים ברצף (Store-and-forward), ובכל קישור: $d=\\frac{L}{R}+\\frac{\\text{length}}{3\\cdot 10^{8}}$.\nקישור 1: $\\frac{12000}{10^{9}}=12\\,\\mu s$, התפשטות $\\frac{2000}{3\\cdot10^{8}}\\approx 6.7\\,\\mu s$.\nקישור 2: $\\frac{12000}{10^{7}}=1.2\\,ms$, התפשטות $\\frac{5\\cdot10^{6}}{3\\cdot10^{8}}\\approx 16.67\\,ms$.\nקישור 3: $\\frac{12000}{10^{8}}=0.12\\,ms$, התפשטות $\\frac{3000}{3\\cdot10^{8}}=10\\,\\mu s$.\nסך הכול $\\approx 18.02\\,ms\\approx 18\\,ms$. האפשרויות 36, 100 ו-1 רחוקות מהערך שחושב.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees. Propagation speed printed as '3*108' (superscript lost in the text layer); 3*10^8 m/s reproduces the 18 ms option.",
+   "image": "images/exams/26A-A-Q11.png",
+   "id": "26A-A-Q11",
+   "examCode": "26A-A",
+   "examLabel": "2026 סמסטר א מועד א",
+   "year": 2026,
+   "source": "exam",
+   "topicLabel": "השהיות, תפוקה ועוצמת תעבורה",
+   "questionHtml": "מהו זמן ההשהיה הכולל ברשת, אם ההשהיות בתוך הנתבים זניחות? מהירות ההתפשטות: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>3</mn><mo>⋅</mo><msup><mn>10</mn><mn>8</mn></msup></mrow><annotation encoding=\"application/x-tex\">3\\cdot10^{8}</annotation></semantics></math></span> m/s. גודל החבילה: 12000 ביט.",
+   "explanationHtml": "לפי האיור, שלושה קישורים ברצף (Store-and-forward), ובכל קישור: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>d</mi><mo>=</mo><mfrac><mi>L</mi><mi>R</mi></mfrac><mo>+</mo><mfrac><mtext>length</mtext><mrow><mn>3</mn><mo>⋅</mo><msup><mn>10</mn><mn>8</mn></msup></mrow></mfrac></mrow><annotation encoding=\"application/x-tex\">d=\\frac{L}{R}+\\frac{\\text{length}}{3\\cdot 10^{8}}</annotation></semantics></math></span>.<br>קישור 1: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mfrac><mn>12000</mn><msup><mn>10</mn><mn>9</mn></msup></mfrac><mo>=</mo><mn>12</mn><mtext> </mtext><mi>μ</mi><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">\\frac{12000}{10^{9}}=12\\,\\mu s</annotation></semantics></math></span>, התפשטות <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mfrac><mn>2000</mn><mrow><mn>3</mn><mo>⋅</mo><msup><mn>10</mn><mn>8</mn></msup></mrow></mfrac><mo>≈</mo><mn>6.7</mn><mtext> </mtext><mi>μ</mi><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">\\frac{2000}{3\\cdot10^{8}}\\approx 6.7\\,\\mu s</annotation></semantics></math></span>.<br>קישור 2: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mfrac><mn>12000</mn><msup><mn>10</mn><mn>7</mn></msup></mfrac><mo>=</mo><mn>1.2</mn><mtext> </mtext><mi>m</mi><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">\\frac{12000}{10^{7}}=1.2\\,ms</annotation></semantics></math></span>, התפשטות <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mfrac><mrow><mn>5</mn><mo>⋅</mo><msup><mn>10</mn><mn>6</mn></msup></mrow><mrow><mn>3</mn><mo>⋅</mo><msup><mn>10</mn><mn>8</mn></msup></mrow></mfrac><mo>≈</mo><mn>16.67</mn><mtext> </mtext><mi>m</mi><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">\\frac{5\\cdot10^{6}}{3\\cdot10^{8}}\\approx 16.67\\,ms</annotation></semantics></math></span>.<br>קישור 3: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mfrac><mn>12000</mn><msup><mn>10</mn><mn>8</mn></msup></mfrac><mo>=</mo><mn>0.12</mn><mtext> </mtext><mi>m</mi><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">\\frac{12000}{10^{8}}=0.12\\,ms</annotation></semantics></math></span>, התפשטות <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mfrac><mn>3000</mn><mrow><mn>3</mn><mo>⋅</mo><msup><mn>10</mn><mn>8</mn></msup></mrow></mfrac><mo>=</mo><mn>10</mn><mtext> </mtext><mi>μ</mi><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">\\frac{3000}{3\\cdot10^{8}}=10\\,\\mu s</annotation></semantics></math></span>.<br>סך הכול <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo>≈</mo><mn>18.02</mn><mtext> </mtext><mi>m</mi><mi>s</mi><mo>≈</mo><mn>18</mn><mtext> </mtext><mi>m</mi><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">\\approx 18.02\\,ms\\approx 18\\,ms</annotation></semantics></math></span>. האפשרויות 36, 100 ו-1 רחוקות מהערך שחושב.",
+   "dedupKey": "8044afbc4fac0084"
+  },
+  {
+   "num": 12,
+   "topic": "routing",
+   "question": "מהו השיקול המרכזי שמנחה את BGP בבחירת נתיב?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "מדיניות",
+     "html": "מדיניות"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "רוחב פס מקסימלי",
+     "html": "רוחב פס מקסימלי"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "מינימום השהיה",
+     "html": "מינימום השהיה"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "חיסכון בחשמל",
+     "html": "חיסכון בחשמל"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "BGP הוא פרוטוקול ניתוב בין מערכות אוטונומיות (AS), והבחירה בנתיב נקבעת בעיקר לפי מדיניות (Policy) של ה-AS: יחסים עסקיים בין ספקים ולקוחות, ערכי local-pref ועוד, ורק אחר כך אורך ה-AS-path.\nBGP אינו מנסה למקסם רוחב פס, להקטין השהיה או לחסוך בחשמל.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees.",
+   "id": "26A-A-Q12",
+   "examCode": "26A-A",
+   "examLabel": "2026 סמסטר א מועד א",
+   "year": 2026,
+   "source": "exam",
+   "topicLabel": "ניתוב: Dijkstra, Distance Vector ו-BGP",
+   "questionHtml": "מהו השיקול המרכזי שמנחה את BGP בבחירת נתיב?",
+   "explanationHtml": "BGP הוא פרוטוקול ניתוב בין מערכות אוטונומיות (AS), והבחירה בנתיב נקבעת בעיקר לפי מדיניות (Policy) של ה-AS: יחסים עסקיים בין ספקים ולקוחות, ערכי local-pref ועוד, ורק אחר כך אורך ה-AS-path.<br>BGP אינו מנסה למקסם רוחב פס, להקטין השהיה או לחסוך בחשמל.",
+   "dedupKey": "bcaf7522d339bb35"
+  },
+  {
+   "num": 13,
+   "topic": "routing",
+   "question": "בגרף רשת המשתמש באלגוריתם דייקסטרה (Dijkstra), נתונים המרחקים הבאים מצומת $U$: $D(V)=5$, $D(W)=10$. קיימת קשת ישירה בין $V$ ל-$W$ שמשקלה 3. מה יהיה המרחק המעודכן לצומת $W$ לאחר בחינת הצומת $V$?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "8",
+     "html": "8"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "13",
+     "html": "13"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "10",
+     "html": "10"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "3",
+     "html": "3"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "הצעד של דייקסטרה: $D(W)=\\min\\{D(W),\\,D(V)+c(V,W)\\}=\\min\\{10,\\,5+3\\}=8$.\n13 מתקבל מחיבור שגוי של 10 ו-3; 10 הוא הערך הישן; 3 הוא משקל הקשת בלבד.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees.",
+   "id": "26A-A-Q13",
+   "examCode": "26A-A",
+   "examLabel": "2026 סמסטר א מועד א",
+   "year": 2026,
+   "source": "exam",
+   "topicLabel": "ניתוב: Dijkstra, Distance Vector ו-BGP",
+   "questionHtml": "בגרף רשת המשתמש באלגוריתם דייקסטרה (Dijkstra), נתונים המרחקים הבאים מצומת <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>U</mi></mrow><annotation encoding=\"application/x-tex\">U</annotation></semantics></math></span>: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>D</mi><mo stretchy=\"false\">(</mo><mi>V</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mn>5</mn></mrow><annotation encoding=\"application/x-tex\">D(V)=5</annotation></semantics></math></span>, <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>D</mi><mo stretchy=\"false\">(</mo><mi>W</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mn>10</mn></mrow><annotation encoding=\"application/x-tex\">D(W)=10</annotation></semantics></math></span>. קיימת קשת ישירה בין <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>V</mi></mrow><annotation encoding=\"application/x-tex\">V</annotation></semantics></math></span> ל-<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>W</mi></mrow><annotation encoding=\"application/x-tex\">W</annotation></semantics></math></span> שמשקלה 3. מה יהיה המרחק המעודכן לצומת <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>W</mi></mrow><annotation encoding=\"application/x-tex\">W</annotation></semantics></math></span> לאחר בחינת הצומת <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>V</mi></mrow><annotation encoding=\"application/x-tex\">V</annotation></semantics></math></span>?",
+   "explanationHtml": "הצעד של דייקסטרה: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>D</mi><mo stretchy=\"false\">(</mo><mi>W</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mi>min</mi><mo>⁡</mo><mo stretchy=\"false\">{</mo><mi>D</mi><mo stretchy=\"false\">(</mo><mi>W</mi><mo stretchy=\"false\">)</mo><mo separator=\"true\">,</mo><mtext> </mtext><mi>D</mi><mo stretchy=\"false\">(</mo><mi>V</mi><mo stretchy=\"false\">)</mo><mo>+</mo><mi>c</mi><mo stretchy=\"false\">(</mo><mi>V</mi><mo separator=\"true\">,</mo><mi>W</mi><mo stretchy=\"false\">)</mo><mo stretchy=\"false\">}</mo><mo>=</mo><mi>min</mi><mo>⁡</mo><mo stretchy=\"false\">{</mo><mn>10</mn><mo separator=\"true\">,</mo><mtext> </mtext><mn>5</mn><mo>+</mo><mn>3</mn><mo stretchy=\"false\">}</mo><mo>=</mo><mn>8</mn></mrow><annotation encoding=\"application/x-tex\">D(W)=\\min\\{D(W),\\,D(V)+c(V,W)\\}=\\min\\{10,\\,5+3\\}=8</annotation></semantics></math></span>.<br>13 מתקבל מחיבור שגוי של 10 ו-3; 10 הוא הערך הישן; 3 הוא משקל הקשת בלבד.",
+   "dedupKey": "5dcf4c02df593642"
+  },
+  {
+   "num": 14,
+   "topic": "link_layer",
+   "question": "מחשב א (`192.168.1.5`) מעוניין לשלוח חבילה למחשב ב (`8.8.8.8`) הנמצא ברשת חיצונית. ה-Default Gateway הוא `192.168.1.1`. איזה מזהה יופיע בשדה 'כתובת יעד' של מסגרת ה-Ethernet (L2 Frame) שתצא ממחשב א?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "ה-MAC של ה-Default Gateway",
+     "html": "ה-MAC של ה-Default Gateway"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "ה-IP של מחשב ה-Default Gateway",
+     "html": "ה-IP של מחשב ה-Default Gateway"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "ה-MAC של מחשב א",
+     "html": "ה-MAC של מחשב א"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "ה-MAC של מחשב ב",
+     "html": "ה-MAC של מחשב ב"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "יעד ה-IP (`8.8.8.8`) מחוץ לרשת המקומית, לכן המחשב שולח את החבילה אל ה-Default Gateway: כתובת ה-IP בחבילה נשארת `8.8.8.8`, אבל כתובת היעד במסגרת ה-Ethernet היא ה-MAC של ה-Gateway (מתקבלת מ-ARP).\nב: כתובת IP לא מופיעה בכותרת Ethernet; ג: זו כתובת המקור; ד: ה-MAC של מחשב ב אינו ידוע ואינו נגיש בתוך הרשת המקומית.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees.",
+   "id": "26A-A-Q14",
+   "examCode": "26A-A",
+   "examLabel": "2026 סמסטר א מועד א",
+   "year": 2026,
+   "source": "exam",
+   "topicLabel": "שכבת הקו: CRC, זוגיות ו-Ethernet",
+   "questionHtml": "מחשב א (<code class=\"tok\" dir=\"ltr\">192.168.1.5</code>) מעוניין לשלוח חבילה למחשב ב (<code class=\"tok\" dir=\"ltr\">8.8.8.8</code>) הנמצא ברשת חיצונית. ה-Default Gateway הוא <code class=\"tok\" dir=\"ltr\">192.168.1.1</code>. איזה מזהה יופיע בשדה 'כתובת יעד' של מסגרת ה-Ethernet (L2 Frame) שתצא ממחשב א?",
+   "explanationHtml": "יעד ה-IP (<code class=\"tok\" dir=\"ltr\">8.8.8.8</code>) מחוץ לרשת המקומית, לכן המחשב שולח את החבילה אל ה-Default Gateway: כתובת ה-IP בחבילה נשארת <code class=\"tok\" dir=\"ltr\">8.8.8.8</code>, אבל כתובת היעד במסגרת ה-Ethernet היא ה-MAC של ה-Gateway (מתקבלת מ-ARP).<br>ב: כתובת IP לא מופיעה בכותרת Ethernet; ג: זו כתובת המקור; ד: ה-MAC של מחשב ב אינו ידוע ואינו נגיש בתוך הרשת המקומית.",
+   "dedupKey": "cbedd5a7abf3da1a"
+  },
+  {
+   "num": 15,
+   "topic": "nat_ipv6_icmp",
+   "question": "איזה פרוטוקול ואיזו הודעה מופעלים כאשר נתב (Router) מקבל חבילת IP שגודלה עולה על ה-MTU של ממשק היציאה, ושדה ה-Flags שלה מכיל את הערך DF (Don't Fragment)?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "ICMP: Destination Unreachable",
+     "html": "ICMP: Destination Unreachable"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "IP: Fragmentation denied",
+     "html": "IP: Fragmentation denied"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "TCP: timeout",
+     "html": "TCP: timeout"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "שום פרוטוקול לא יפעל",
+     "html": "שום פרוטוקול לא יפעל"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "כשיש DF והחבילה גדולה מה-MTU, הנתב אינו מפצל אותה: הוא זורק אותה ושולח למקור הודעת ICMP מסוג Destination Unreachable (קוד \"Fragmentation needed and DF set\").\nב: אין הודעה כזו ב-IP; ג: timeout של TCP הוא תוצאה אפשרית אצל המקור, לא הודעה שהנתב מפעיל; ד: שגוי, כי ICMP פועל.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees.",
+   "id": "26A-A-Q15",
+   "examCode": "26A-A",
+   "examLabel": "2026 סמסטר א מועד א",
+   "year": 2026,
+   "source": "exam",
+   "topicLabel": "NAT, IPv6 ו-ICMP",
+   "questionHtml": "איזה פרוטוקול ואיזו הודעה מופעלים כאשר נתב (Router) מקבל חבילת IP שגודלה עולה על ה-MTU של ממשק היציאה, ושדה ה-Flags שלה מכיל את הערך DF (Don't Fragment)?",
+   "explanationHtml": "כשיש DF והחבילה גדולה מה-MTU, הנתב אינו מפצל אותה: הוא זורק אותה ושולח למקור הודעת ICMP מסוג Destination Unreachable (קוד \"Fragmentation needed and DF set\").<br>ב: אין הודעה כזו ב-IP; ג: timeout של TCP הוא תוצאה אפשרית אצל המקור, לא הודעה שהנתב מפעיל; ד: שגוי, כי ICMP פועל.",
+   "dedupKey": "ef1ed7c2a6b33449"
+  }
+ ]
+}

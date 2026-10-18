@@ -1,0 +1,508 @@
+{
+ "examCode": "26A-A",
+ "examLabel": "2026 סמסטר א מועד א",
+ "year": 2026,
+ "examDate": "18.02.2026",
+ "sourceFile": "sitting 26A-A (typed question and solution document)",
+ "keyFile": "sitting 26A-A typed solution document (first listed option) + independent recomputation, tools/verify/26A-A/check.py",
+ "contexts": {},
+ "questions": [
+  {
+   "num": 1,
+   "topic": "dns_dhcp",
+   "question": "לקוח מבצע שאילתת DNS עבור `www.shop.example.com`. ה-Resolver מקבל מה-Authoritative של `example.com` את הרשומות הבאות:\n`www.shop.example.com → A 192.0.2.10`\n`shop.example.com → NS ns1.shop.example.com`\n`ns1.shop.example.com → A 203.0.113.53`\nTTL של ה-NS: 86400\nTTL של ה-A של ה-nameserver: 300\nאיזו מהאפשרויות הבאות היא הכי נכונה לגבי התנהגות ה-Resolver?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "ה-Resolver רשאי לשמור את ה-A של ה-nameserver במטמון, רק עד TTL שלו עצמו (300)"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "ה-Resolver חייב לשמור את ה-A של ה-nameserver במטמון לפי TTL של ה-NS - (86400)"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "ה-Resolver חייב להתעלם מה-A של ה-nameserver ולבצע שאילתה חדשה בכל פעם"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "ה-Resolver אסור לו לשמור את ה-A של ה-nameserver במטמון בכלל"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "לכל רשומה ב-DNS יש TTL משלה, והמטמון מכבד את ה-TTL של כל רשומה בנפרד.\nא: נכון - ה-A של ה-nameserver נשמרת במטמון לכל היותר 300 שניות, ואחר כך פגה (גם אם ה-NS עדיין תקפה).\nב: שגוי - ה-TTL של ה-NS חל על רשומת ה-NS בלבד ואינו מאריך את חיי ה-A, וגם \"חייב\" אינו נכון: המטמון רשאי, לא חייב.\nג: שגוי - אין חובה להתעלם מהרשומה; שמירה במטמון היא בדיוק מטרת ה-TTL.\nד: שגוי - אין איסור על שמירה במטמון.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees."
+  },
+  {
+   "num": 2,
+   "topic": "http",
+   "question": "מהי הדרך להקטין זמן טעינת דף בפרוטוקול HTTP?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "כל התשובות נכונות"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "שימוש בזיכרון local cache"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "שימוש בשרתי web cache"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "שימוש ב-CDN"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "כל שלושת המנגנונים מקצרים את זמן הטעינה: מטמון מקומי בדפדפן (אין פנייה לרשת כלל), שרת Web cache / proxy (עונה במקום השרת המקורי, קרוב ללקוח) ו-CDN (תוכן משוכפל בשרתים קרובים ללקוח, RTT קטן יותר).\nלכן \"כל התשובות נכונות\".",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees."
+  },
+  {
+   "num": 3,
+   "topic": "intro_layers",
+   "question": "מהו תפקיד של שכבת התעבורה?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "לספק שירותי תקשורת בין תהליכים הרצים בתחנות קצה שונות"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "לספק חיבור אמין בשני תהליכים הרצים בתחנות קצה שונות"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "לספק שירותי ניתוב לשכבת היישום"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "אף תשובה לא נכונה"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "שכבת התעבורה מספקת תקשורת לוגית בין תהליכים (דרך מספרי פורטים) בתחנות קצה שונות.\nב: אמינות היא שירות של TCP בלבד, לא של שכבת התעבורה בכלל (UDP אינו אמין), ולכן ההגדרה צרה מדי.\nג: ניתוב הוא תפקיד שכבת הרשת.\nד: שגוי, כי א נכונה.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees."
+  },
+  {
+   "num": 4,
+   "topic": "dns_dhcp",
+   "question": "האם ניתן להשתמש בפרוטוקול ARP במקום DHCP?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "לא ניתן להשתמש ב-ARP במקום DHCP"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "כן, ניתן להשתמש ב-ARP במקום DHCP להגדרת כתובות רשת לתחנות קצה"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "כן, אפשר להשתמש ב-broadcast של ARP כדי לשלוח הגדרות רשת לתחנות קצה"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "אף תשובה לא נכונה"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "ARP מתרגם כתובת IP ידועה לכתובת MAC ברשת המקומית; הוא אינו מקצה כתובות ואינו מעביר הגדרות (מסכה, Gateway, DNS).\nDHCP הוא הפרוטוקול שמקצה כתובת IP והגדרות רשת. לכן אי אפשר להחליף את DHCP ב-ARP; ב ו-ג שגויות, ו-ד שגויה כי א נכונה.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees."
+  },
+  {
+   "num": 5,
+   "topic": "dns_dhcp",
+   "question": "קבלת כתובת IP באופן דינמי משרת DHCP בעת הצטרפות לרשת מתבצעת בסדר הבא:",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "`DHCP Discover -> DHCP Offer -> DHCP Request -> DHCP ACK`"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "`DHCP Request -> DHCP Offer -> DHCP ACK`"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "`DHCP Request -> DHCP ACK -> DHCP Discover -> DHCP Offer`"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "`DHCP Discover -> DHCP Request -> DHCP ACK`"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "הסדר התקני (DORA): הלקוח משדר Discover, השרת עונה Offer, הלקוח מבקש Request את ההצעה והשרת מאשר ב-ACK.\nב, ג: מתחילות ב-Request או משלבות הודעות בסדר הפוך; ד: חסר שלב ה-Offer.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees."
+  },
+  {
+   "num": 6,
+   "topic": "tcp",
+   "question": "הגרף מייצג התפתחות תהליך בקרת עומסים של TCP לאורך הזמן. באילו נקודות זמן הפרוטוקול נכנס ל-Congestion Avoidance?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "4, 29, 35"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "24, 30"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "1, 25, 31"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "אף תשובה לא נכונה"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "ב-Slow Start החלון מוכפל בכל RTT, ובתחילת Congestion Avoidance הוא גדל ב-1 בכל RTT (עד ה-ssthresh).\nבגרף: נקודות 1-4 הן $1,2,4,8$ ואחריהן $9,10,\\ldots$ (קו ישר) - כניסה ל-CA ב-4. אחרי ההפסד ב-24 (החלון חוזר ל-1): $1,2,4,8,16$ ואז $17$ - כניסה ב-29. אחרי ההפסד ב-30: $1,2,4,8,16$ ואז $17,18,\\ldots$ - כניסה ב-35.\n24 ו-30 הן נקודות ההפסד (שיא ואז צניחה), ו-1, 25, 31 הן תחילת Slow Start - לא CA.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees.",
+   "image": "images/exams/26A-A-Q6.png"
+  },
+  {
+   "num": 7,
+   "topic": "ip_cidr",
+   "question": "חבילה בגודל 2000 Bytes עברה fragmentation ל-5 חבילות. נתון כי $MTU=500\\,\\text{B}$, גודל ה-header הוא $20\\,\\text{B}$. מה נכון לגבי חבילה מספר 4 מתוך 5?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "Offset=180"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "Offset=200"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "Offset=400"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "Offset=1600"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "בכל פרגמנט נשאר מקום ל-$500-20=480$ בתים של נתונים (כפולה של 8, כנדרש).\nהפרגמנט הרביעי מתחיל אחרי 3 פרגמנטים מלאים: $3\\cdot 480=1440$ בתים, ושדה ה-Offset נמדד ביחידות של 8 בתים: $1440/8=180$.\n(בסך הכול 5 פרגמנטים: 4 מלאים של 480 בתים ופרגמנט אחרון קטן.) 200 היה מתקבל אילו הנתונים בפרגמנט היו 500 בתים (ללא header), ו-400 ו-1600 אינם ה-Offset של הפרגמנט הרביעי.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees."
+  },
+  {
+   "num": 8,
+   "topic": "dns_dhcp",
+   "question": "מהם הנתונים שמספק שרת ה-DHCP לתחנה שפונה אליו?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "IP, Subnet, Local DNS, Default Gateway IP"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "IP, Router IP, Subnet, Root DNS"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "IP, Router IP, Root DNS, Default Gateway"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "IP, Default Gateway MAC address, Subnet, Local DNS"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "שרת DHCP מספק כתובת IP, מסכת רשת (Subnet), כתובת ה-IP של ה-Default Gateway וכתובת שרת ה-DNS המקומי.\nב, ג: שרת DNS \"Root\" אינו מה שה-DHCP נותן (נותנים Resolver מקומי); ד: כתובת MAC של ה-Gateway מתקבלת מ-ARP, לא מ-DHCP.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees."
+  },
+  {
+   "num": 9,
+   "topic": "ip_cidr",
+   "question": "לאיזה מסלול תנותב החבילה אם כתובת היעד $25.36.67.5$ לפי טבלת הניתוב הבאה?\n`A: 25.36.0.0/16`\n`B: 25.36.128.0/20`\n`C: 25.36.64.0/20`\n`D: 20.0.0.0/8`",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "C"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "A"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "D"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "B"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "Longest Prefix Match: נבדוק אילו כניסות מתאימות לכתובת $25.36.67.5$.\nA: $25.36.0.0/16$ - מתאימה (שני הבתים הראשונים זהים). B: $25.36.128.0/20$ מכסה $25.36.128.0-25.36.143.255$ - לא כוללת 67. C: $25.36.64.0/20$ מכסה $25.36.64.0-25.36.79.255$ - כוללת את 67, והמסכה ארוכה יותר ($/20>/16$). D: $20.0.0.0/8$ - לא מתאימה.\nכלומר A ו-C מתאימות, והארוכה ביותר היא C.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees."
+  },
+  {
+   "num": 10,
+   "topic": "link_layer",
+   "question": "איזו מהטענות הבאות מתארת נכונה את ההבדל בין Ethernet Switch לבין IP Router?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "סוויץ' מעביר מסגרות (frame) וראוטר מעביר חבילות (datagrams)"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "נתב מהיר יותר מסוויץ' כי הוא משתמש בכתובות לוגיות"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "נתבים מסוגלים לבדוק שגיאות על נתוני החבילה (datagram)"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "לסוויץ' יש טבלת ניתוב כתובות (switch table)"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "סוויץ' פועל בשכבת הקו ומעביר מסגרות לפי כתובות MAC; נתב פועל בשכבת הרשת ומעביר datagrams לפי כתובות IP.\nב: אין קשר בין \"כתובות לוגיות\" למהירות, ובדרך כלל סוויץ' מהיר יותר. ג: גם סוויץ' בודק שגיאות במסגרת (FCS) - ואין זה ההבדל בין השניים.\nד: ל-switch יש \"switch table\" - אך זו טבלת העברה (למידה) ולא טבלת ניתוב, ולכן הניסוח שגוי ואינו ההבדל העיקרי.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees."
+  },
+  {
+   "num": 11,
+   "topic": "delays",
+   "question": "מהו זמן ההשהיה הכולל ברשת, אם ההשהיות בתוך הנתבים זניחות? מהירות ההתפשטות: $3\\cdot10^{8}$ m/s. גודל החבילה: 12000 ביט.",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "18 מילישניות"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "36 מילישניות"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "100 מילישניות"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "1 מילישניות"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "לפי האיור, שלושה קישורים ברצף (Store-and-forward), ובכל קישור: $d=\\frac{L}{R}+\\frac{\\text{length}}{3\\cdot 10^{8}}$.\nקישור 1: $\\frac{12000}{10^{9}}=12\\,\\mu s$, התפשטות $\\frac{2000}{3\\cdot10^{8}}\\approx 6.7\\,\\mu s$.\nקישור 2: $\\frac{12000}{10^{7}}=1.2\\,ms$, התפשטות $\\frac{5\\cdot10^{6}}{3\\cdot10^{8}}\\approx 16.67\\,ms$.\nקישור 3: $\\frac{12000}{10^{8}}=0.12\\,ms$, התפשטות $\\frac{3000}{3\\cdot10^{8}}=10\\,\\mu s$.\nסך הכול $\\approx 18.02\\,ms\\approx 18\\,ms$. האפשרויות 36, 100 ו-1 רחוקות מהערך שחושב.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees. Propagation speed printed as '3*108' (superscript lost in the text layer); 3*10^8 m/s reproduces the 18 ms option.",
+   "image": "images/exams/26A-A-Q11.png"
+  },
+  {
+   "num": 12,
+   "topic": "routing",
+   "question": "מהו השיקול המרכזי שמנחה את BGP בבחירת נתיב?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "מדיניות"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "רוחב פס מקסימלי"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "מינימום השהיה"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "חיסכון בחשמל"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "BGP הוא פרוטוקול ניתוב בין מערכות אוטונומיות (AS), והבחירה בנתיב נקבעת בעיקר לפי מדיניות (Policy) של ה-AS: יחסים עסקיים בין ספקים ולקוחות, ערכי local-pref ועוד, ורק אחר כך אורך ה-AS-path.\nBGP אינו מנסה למקסם רוחב פס, להקטין השהיה או לחסוך בחשמל.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees."
+  },
+  {
+   "num": 13,
+   "topic": "routing",
+   "question": "בגרף רשת המשתמש באלגוריתם דייקסטרה (Dijkstra), נתונים המרחקים הבאים מצומת $U$: $D(V)=5$, $D(W)=10$. קיימת קשת ישירה בין $V$ ל-$W$ שמשקלה 3. מה יהיה המרחק המעודכן לצומת $W$ לאחר בחינת הצומת $V$?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "8"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "13"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "10"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "3"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "הצעד של דייקסטרה: $D(W)=\\min\\{D(W),\\,D(V)+c(V,W)\\}=\\min\\{10,\\,5+3\\}=8$.\n13 מתקבל מחיבור שגוי של 10 ו-3; 10 הוא הערך הישן; 3 הוא משקל הקשת בלבד.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees."
+  },
+  {
+   "num": 14,
+   "topic": "link_layer",
+   "question": "מחשב א (`192.168.1.5`) מעוניין לשלוח חבילה למחשב ב (`8.8.8.8`) הנמצא ברשת חיצונית. ה-Default Gateway הוא `192.168.1.1`. איזה מזהה יופיע בשדה 'כתובת יעד' של מסגרת ה-Ethernet (L2 Frame) שתצא ממחשב א?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "ה-MAC של ה-Default Gateway"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "ה-IP של מחשב ה-Default Gateway"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "ה-MAC של מחשב א"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "ה-MAC של מחשב ב"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "יעד ה-IP (`8.8.8.8`) מחוץ לרשת המקומית, לכן המחשב שולח את החבילה אל ה-Default Gateway: כתובת ה-IP בחבילה נשארת `8.8.8.8`, אבל כתובת היעד במסגרת ה-Ethernet היא ה-MAC של ה-Gateway (מתקבלת מ-ARP).\nב: כתובת IP לא מופיעה בכותרת Ethernet; ג: זו כתובת המקור; ד: ה-MAC של מחשב ב אינו ידוע ואינו נגיש בתוך הרשת המקומית.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees."
+  },
+  {
+   "num": 15,
+   "topic": "nat_ipv6_icmp",
+   "question": "איזה פרוטוקול ואיזו הודעה מופעלים כאשר נתב (Router) מקבל חבילת IP שגודלה עולה על ה-MTU של ממשק היציאה, ושדה ה-Flags שלה מכיל את הערך DF (Don't Fragment)?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "ICMP: Destination Unreachable"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "IP: Fragmentation denied"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "TCP: timeout"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "שום פרוטוקול לא יפעל"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "כשיש DF והחבילה גדולה מה-MTU, הנתב אינו מפצל אותה: הוא זורק אותה ושולח למקור הודעת ICMP מסוג Destination Unreachable (קוד \"Fragmentation needed and DF set\").\nב: אין הודעה כזו ב-IP; ג: timeout של TCP הוא תוצאה אפשרית אצל המקור, לא הודעה שהנתב מפעיל; ד: שגוי, כי ICMP פועל.",
+   "note": "Source document lists the correct option first (convention); independently solved - agrees."
+  }
+ ]
+}
