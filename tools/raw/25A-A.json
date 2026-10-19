@@ -1,0 +1,508 @@
+{
+ "examCode": "25A-A",
+ "examLabel": "2025 סמסטר א מועד א",
+ "year": 2025,
+ "examDate": "27.02.2025",
+ "sourceFile": "sitting 25A-A (printed exam, 6 pages)",
+ "keyFile": "no key in the source; independent solution, calculations in tools/verify/25A-A/check.py",
+ "contexts": {},
+ "questions": [
+  {
+   "num": 1,
+   "topic": "http",
+   "question": "מה הפונקציה העיקרית של Cookies ב-HTTP?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "אחסון העדפות המשתמש עבור האתר."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "מעקב אחר סשן (session) המשתמש בין בקשות."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "הצפנת הנתונים במהלך ההעברה."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "האצת מהירות הבקשות ב-HTTP."
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "med",
+   "explanation": "HTTP הוא חסר מצב, ו-Cookie נוצר כדי שהשרת יזהה שבקשות עוקבות מגיעות מאותו משתמש (סשן).\nא: אחסון העדפות הוא שימוש משני, לא הפונקציה העיקרית. ג: הצפנה היא תפקיד TLS. ד: Cookies אינם מאיצים בקשות.",
+   "note": "No key printed in the source; solved independently (see tools/verify/25A-A/check.py for calculations)."
+  },
+  {
+   "num": 2,
+   "topic": "delays",
+   "question": "בהינתן רשת עם שלושה קווים עם מהירות רוחב פס שונה (ראה תמונה), גודל החבילה 8000 bit ומהירות ההפצה $3\\cdot 10^{8}$ m/s, וללא השהיות (delay) אחרות בתחנות קצה או בנתבים, מהו זמן השהייה (delay) כולל של הרשת? יש לבחור את התשובה הקרובה ביותר.",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "4 מילישניות"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "4 שניות"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "10 שניות"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "10 מילישניות"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "שלושה קישורים ברצף (Store-and-forward): $d=\\frac{L}{R}+\\frac{\\text{length}}{3\\cdot10^{8}}$ לכל קישור.\nקישור 1: $\\frac{8000}{10^{7}}=0.8\\,ms$ ו-$\\frac{2000}{3\\cdot10^{8}}\\approx 6.7\\,\\mu s$. קישור 2: $0.8\\,ms$ ו-$\\frac{10^{6}}{3\\cdot10^{8}}\\approx 3.33\\,ms$. קישור 3: $\\frac{8000}{10^{9}}=8\\,\\mu s$ ו-$6.7\\,\\mu s$.\nסך הכול $\\approx 4.95\\,ms$, והתשובה הקרובה ביותר היא 4 מילישניות. שניות (4 או 10) רחוקות בשלושה סדרי גודל, ו-10 ms רחוק פי חמישה.",
+   "note": "No key printed in the source; solved independently (see tools/verify/25A-A/check.py for calculations). Propagation speed printed as '3*108' (superscript); 3*10^8 m/s used. Total 4.95 ms, 'closest answer' is 4 ms.",
+   "image": "images/exams/25A-A-Q2.png"
+  },
+  {
+   "num": 3,
+   "topic": "link_layer",
+   "question": "בצד המקבל קיבלנו בלוק של הנתונים כאשר העמודה והשורה האחרונות נועדות לבדיקת הנכונות בשיטת two-dimensional parity\n```\n10010100 11001010 1\n10001000 00000000 1\n11011011 11101001 1\n10010000 11101001 1\n00011100 01101010 1\n01011011 10100000 1\n```\nמהי השורה והעמודה שבהם הביטים התהפכו",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "שורה 2, עמודה 4"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "שורה 1, עמודה 3"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "שורה 3, עמודה 5"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "שורה 4, עמודה 2"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "בודקים זוגיות (Even parity) לכל שורה (17 הביטים, האחרון הוא ביט הבדיקה) ולכל עמודה (השורה האחרונה היא שורת הבדיקה).\nרק שורה 2 מכילה מספר אי-זוגי של אחדות (3), ורק עמודה 4 (הספירה משמאל, כפי שהביטים מודפסים) מכילה מספר אי-זוגי של אחדות.\nהחיתוך הוא שורה 2, עמודה 4: הביט שהתהפך.",
+   "note": "No key printed in the source; solved independently (see tools/verify/25A-A/check.py for calculations). Rows read as printed left to right, columns counted from the left, even parity (the only reading with exactly one bad row and one bad column)."
+  },
+  {
+   "num": 4,
+   "topic": "nat_ipv6_icmp",
+   "question": "איזה מבין הבאים מהווה חסרון פוטנציאלי של NAT?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "הוא עלול לגרום לבעיות ביישומים שדורשים נראות של כתובת IP מקצה לקצה."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "הוא מגדיל את מספר כתובות ה-IP הציבוריות הנדרשות."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "הוא מבטל את הצורך בחומת אש ברשת."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "הוא מונע גישה לאינטרנט מהתקנים ברשת הפרטית."
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "NAT משנה כתובות ופורטים בכותרת, ולכן יישומים שתלויים בכתובת האמיתית של הקצה (שרתים פנימיים, חלק מפרוטוקולי VoIP ו-P2P) נפגעים.\nב: ההפך, NAT חוסך כתובות ציבוריות. ג: NAT אינו מחליף חומת אש. ד: NAT דווקא מאפשר גישה.",
+   "note": "No key printed in the source; solved independently (see tools/verify/25A-A/check.py for calculations)."
+  },
+  {
+   "num": 5,
+   "topic": "routing",
+   "question": "בהינתן גרף רשת וטבלת המרחקים מקודקוד V:\nמהם המשקלים של קשת X ו-קשת Y?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "X=4, Y=1"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "X – אי אפשר לקבוע, Y=1"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "X=6, Y=2"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "X = 1, Y – אי אפשר לקבוע"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "הטבלה היא פלט של Dijkstra מ-$v$: $D(u)=4$ דרך $v$; $D(w)=5$ עם קודם $u$, כלומר $4+Y=5$ ולכן $Y=1$; $D(y)=9$ עם קודם $w$, כלומר $5+X=9$ ולכן $X=4$.\nבדיקה: מ-$x$ ל-$y$ $5+5=10>9$ ומ-$z$ $6+4=10>9$, ולכן $w$ הוא אכן הקודם של $y$. שני המשקלים נקבעים באופן יחיד.",
+   "note": "No key printed in the source; solved independently (see tools/verify/25A-A/check.py for calculations). Table header prints 'from X' but the first row is v (distance 0) and the stem says V; read as distances from v.",
+   "image": "images/exams/25A-A-Q5.png"
+  },
+  {
+   "num": 6,
+   "topic": "ip_cidr",
+   "question": "לאיזה מסלול תנותב החבילה עם כתובת היעד 12.100.60.37 לפי טבלת הניתוב הבאה?\n`A: 12.100.50.0/20`\n`B: 12.100.64.0/20`\n`C: 12.0.0.0/8`\n`D: 12.100.0.0/16`",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "A"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "B"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "C"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "D"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "Longest Prefix Match. A: $12.100.50.0/20$ מכסה $12.100.48.0-12.100.63.255$ - כוללת את 60. B: $12.100.64.0/20$ מכסה $64-79$ - לא. C ו-D מכילות את הכתובת אבל המסכות קצרות יותר ($/8$ ו-$/16$).\nלכן A, C, D מתאימות, והארוכה ביותר היא A ($/20$).",
+   "note": "No key printed in the source; solved independently (see tools/verify/25A-A/check.py for calculations)."
+  },
+  {
+   "num": 7,
+   "topic": "physical_misc",
+   "question": "מהו ההבדל העיקרי בין חיבור מסוג point-to-point link לבין חיבור מסוג broadcast link?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "ב-broadcast link התווך משותף לכל יחידות הקצה. לכן מידע שנשלח מאחת המכונות מגיע לכל מכונות האחרות ברשת. מכונה, שהמידע מיועד לה, מזהה זאת באמצעות מזהה ומקבלת את המידע. point-to-point link מחבר בין שתי נקודות קצה והמידע נשלח בין שתי נקודות אלה בלבד."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "ב-point-to-point link התווך משותף לכל יחידות הקצה. לכן מידע שנשלח מאחת המכונות מגיע לכל מכונות האחרות ברשת. מכונה, שהמידע מיועד לה, מזהה זאת באמצעות מזהה ומקבלת את המידע. broadcast link מחבר בין שתי נקודות קצה והמידע נשלח בין שתי נקודות אלה בלבד."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "ב-point-to-point link התווך אינו משותף לכל יחידות הקצה ומשתמשים ב-broadcast link כדי לחבר בין שתי נקודות קצה על ידי כך שמכונה, שהמידע מיועד לה, מזהה זאת באמצעות מזהה ומקבלת את המידע."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "אף אחת מהתשובות אינה נכונה"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "Broadcast link: תווך משותף, כל התחנות שומעות, והיעד מזהה את הכתובת שלו. Point-to-point: קו ייעודי בין שתי נקודות בלבד.\nב: ההגדרות הפוכות. ג: מבלבל בין שני הסוגים. ד: שגויה כי א נכונה.",
+   "note": "No key printed in the source; solved independently (see tools/verify/25A-A/check.py for calculations)."
+  },
+  {
+   "num": 8,
+   "topic": "physical_misc",
+   "question": "מדוע חברה כמו גוגל מתחזקת רשת מקבילה לרשת של ספקי ISP?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "לחברה שהיא מקור להרבה מאד מידע יותר זול לבנות רשת נפרדת לשימושה. כך היא תשתמש פחות בקווים של ISPs אחרים, עליהם היא צריכה לשלם, ותחסוך עלויות."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "כדי להגדיל את התלות בספקי אינטרנט חיצוניים ולשפר את מהירות החיבור לרשת."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "הקמת רשת פרטית יקרה יותר, אך משפרת את האבטחה של המידע של גוגל."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "כדי למנוע לחלוטין את הצורך בחיבור לרשת האינטרנט הציבורית דבר התורם להשפעתה של גוגל על מרחב האינטרנט"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "חברת תוכן ענקית מעבירה כמויות מידע עצומות, ולכן משתלם לה להקים רשת משלה ולהקטין את התשלום ל-ISPs (וגם לקרב תוכן למשתמשים).\nב: המטרה היא להקטין תלות, לא להגדיל. ג: הנימוק העיקרי הוא עלות, והטענה שהרשת הפרטית יקרה יותר אינה מסבירה את המהלך. ד: גוגל עדיין מתחברת לאינטרנט הציבורי.",
+   "note": "No key printed in the source; solved independently (see tools/verify/25A-A/check.py for calculations)."
+  },
+  {
+   "num": 9,
+   "topic": "nat_ipv6_icmp",
+   "question": "מהו הייעוד העיקרי של NAT ברשת?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "לחסוך בכתובות IP ציבוריות באמצעות תרגום כתובות IP פרטיות לכתובות ציבוריות."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "לספק הצפנה לנתונים העוברים באינטרנט."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "לחסום גישה לא מורשית לרשת."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "לשייך כתובות IP סטטיות להתקנים ברשת."
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "NAT מאפשר להתקנים רבים עם כתובות פרטיות לחלוק כתובת ציבורית אחת, וכך חוסך כתובות IPv4. הצפנה ואבטחה אינן ייעודו, ושיוך כתובות סטטיות אינו תפקיד של NAT.",
+   "note": "No key printed in the source; solved independently (see tools/verify/25A-A/check.py for calculations)."
+  },
+  {
+   "num": 10,
+   "topic": "udp_checksum",
+   "question": "לאיזה מבין היישומים הבאים UDP משמש לעיתים קרובות?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "סטרימינג וידאו חי (Live Video Streaming)"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "העברת קבצים (File Transfer)"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "גלישה באינטרנט (Web Browsing)"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "דואר אלקטרוני (Email)"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "סטרימינג חי רגיש לעיכוב ויכול לסבול אובדן קל, ולכן UDP מתאים. העברת קבצים, גלישה (HTTP) ודואר (SMTP) דורשים אמינות ולכן משתמשים ב-TCP.",
+   "note": "No key printed in the source; solved independently (see tools/verify/25A-A/check.py for calculations)."
+  },
+  {
+   "num": 11,
+   "topic": "http",
+   "question": "מהי המשמעות של הכותרת Cache-Control: max-age=3600 (header) בהודעת HTTP?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "ניתן לאחסן את התגובה במטמון למשך שעה לפני שתוקפה יפוג."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "התגובה תאופס מידית מהמטמון."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "התגובה תישמר במטמון ללא הגבלת זמן."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "התגובה תישמר למשך 3600 אלפיות שנייה (מילישניות)."
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "$max\\text{-}age$ נמדד בשניות: $3600\\,s=1$ שעה. ב ו-ג מנוגדות להגדרה, ו-ד טועה ביחידות (3600 ms הוא 3.6 שניות).",
+   "note": "No key printed in the source; solved independently (see tools/verify/25A-A/check.py for calculations)."
+  },
+  {
+   "num": 12,
+   "topic": "sockets_email",
+   "question": "מהו התהליך בו נשלחת הודעת דואר אלקטרוני מ-User Agent של השולח ל-User Agent של הנמען?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "ה-User Agent של השולח שולח את ההודעה לשרת הדואר שלו, אשר מקים חיבור TCP עם שרת הדואר של הנמען לפי פרוטוקול SMTP, ומעביר את ההודעה לתיבת הדואר של הנמען. הנמען יכול לקרוא את ההודעה כשהוא מפעיל את ה-User Agent שלו."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "ההודעה נשלחת ישירות מ-User Agent של השולח ל-User Agent של הנמען ללא שימוש בשרתים מתווכים, הנמען יכול לקרוא את ההודעה כשהוא מפעיל את ה-User Agent שלו."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "הודעת הדואר נשמרת במחשב השולח עד שהנמען מחפש באופן יזום את ההודעה, ואז היא מועברת אליו באמצעות פרוטוקול HTTP."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "הודעת הדואר נשלחת תחילה לשרת אינטרנט גלובלי mail server אשר מנתב אותה לכתובת הנמען באמצעות פרוטוקול HTTP לשרת ואז ל-SMTP עד ל-User Agent."
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "התהליך התקני: User Agent של השולח, שרת הדואר של השולח, שרת הדואר של הנמען (בין השרתים SMTP מעל TCP) ותיבת הנמען, ושם הנמען קורא. ב: אין שליחה ישירה בין User Agents. ג: ההודעה נדחפת, לא נמשכת, ואין זה HTTP בין השרתים. ד: אין שרת גלובלי כזה.",
+   "note": "No key printed in the source; solved independently (see tools/verify/25A-A/check.py for calculations)."
+  },
+  {
+   "num": 13,
+   "topic": "dns_dhcp",
+   "question": "כיצד מתבצע תהליך חיפוש כתובת ה-IP של www.cnn.com כאשר אין מידע במטמון (cache) של שרתי ה-DNS?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "הלקוח יוצר קשר עם שרת ה-DNS המקומי, אשר פונה ל-root DNS, שמפנה אותו ל-TLD DNS, שמפנה אותו ל-authoritative DNS, אשר מחזיר את כתובת ה-IP של www.cnn.com במורד המסלול חזרה ללקוח."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "הלקוח שולח בקשת DNS לשרת ה-DNS המקומי, ואם אין לו את המידע, הוא שולח את הבקשה לכל שרתי ה-DNS ברשת עד שהוא מקבל תשובה."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "הלקוח מבצע חיפוש ב-local cache של מערכת ההפעלה, ואם אינו מוצא את הכתובת, הוא שולח בקשה ישירות לשרת ה-root DNS שיחזיר לו את הכתובת הנכונה."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "הלקוח שולח בקשת DNS לשרת ה-DNS המקומי, ואם המידע אינו זמין, מפנה אותו ל-authoritative DNS, אשר מחזיר את כתובת ה-IP של www.cnn.com במורד המסלול חזרה ללקוח."
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "ללא מטמון, ה-Resolver המקומי עובר על ההיררכיה: root, ואז TLD (`.com`), ואז ה-authoritative של cnn.com, והתשובה חוזרת ללקוח.\nב: אין שליחה לכל השרתים. ג: ה-root אינו מחזיר כתובת סופית, רק הפניה. ד: מדלגת על root ו-TLD.",
+   "note": "No key printed in the source; solved independently (see tools/verify/25A-A/check.py for calculations)."
+  },
+  {
+   "num": 14,
+   "topic": "http",
+   "question": "מדוע קיימת בעיה בפרוטוקול HTTP 1.0 בכל הנוגע לטעינת דפי אינטרנט?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "HTTP 1.0 פותח חיבור TCP חדש עבור כל משאב בדף, מה שמוביל להקמת חיבורים מרובים לכל עמוד."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "HTTP 1.0 אינו מאפשר חיבורים מאובטחים, ולכן יש צורך בפרוטוקול נוסף כמו TLS."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "HTTP 1.0 מאפשר רק חיבור אחד לכל אתר, ולכן לא ניתן להוריד משאבים מרובים במקביל."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "HTTP 1.0 שולח את כל המשאבים של הדף בחבילה אחת, מה שעלול לגרום לעומס על הרשת ולהאטת טעינת הדף."
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "ב-HTTP 1.0 החיבור אינו מתמשך (non-persistent): כל אובייקט דורש חיבור TCP חדש (לחיצת יד ושלב Slow Start מחדש), ובדף עם הרבה אובייקטים זה גורם לעיכוב.\nב: גם HTTP 1.1 צריך TLS להצפנה, ולכן זו אינה בעיה ייחודית. ג: אפשר לפתוח חיבורים במקביל. ד: המשאבים נשלחים בנפרד.",
+   "note": "No key printed in the source; solved independently (see tools/verify/25A-A/check.py for calculations)."
+  },
+  {
+   "num": 15,
+   "topic": "tcp",
+   "question": "מהי ההודעה הראשונה שנשלחת בתהליך יצירת חיבור בפרוטוקול TCP?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "SYN"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "ACK"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "FIN"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "RST"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "לחיצת היד התלת-שלבית: SYN, אחריה SYN-ACK ואז ACK. FIN סוגר חיבור ו-RST מאפס אותו.",
+   "note": "No key printed in the source; solved independently (see tools/verify/25A-A/check.py for calculations)."
+  }
+ ]
+}

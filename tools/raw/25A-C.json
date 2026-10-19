@@ -1,0 +1,522 @@
+{
+ "examCode": "25A-C",
+ "examLabel": "2025 סמסטר א מועד ג",
+ "year": 2025,
+ "examDate": "2025",
+ "sourceFile": "sitting 25A-C (exam page with yellow-highlighted answers)",
+ "keyFile": "sitting 25A-C yellow highlights; Q3 recomputed in tools/verify/25A-C/check.py and held",
+ "contexts": {},
+ "questions": [
+  {
+   "num": 1,
+   "topic": "http",
+   "question": "נתון אתר אינטרנט עם 100 משאבים שונים (תמונות, סקריפטים וכו'). כל משאב בגודל KB 100. חשב את מספר חיבורי ה-TCP הדרושים ב-HTTP 1.1 וב-HTTP/2 להורדת כל המשאבים.",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "17 חיבורים ב-HTTP 1.1, וחיבור אחד ב-HTTP/2"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "50 חיבורים ב-HTTP 1.1 ו-10 חיבורים ב-HTTP/2"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "10 חיבורים ב-HTTP 1.1 ו-10 חיבורים ב-HTTP/2"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "5 חיבורים ב-HTTP 1.1 ו-5 חיבורים ב-HTTP/2"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "med",
+   "explanation": "",
+   "note": "Official yellow key. 17 = ceil(100/6) assumes 6 parallel connections per host, a convention the question does not print; only this option has a single HTTP/2 connection."
+  },
+  {
+   "num": 2,
+   "topic": "dns_dhcp",
+   "question": "בהינתן שרת DNS עם זמן תגובה ממוצע של 30 מילי-שניות לכל פנייה, כמה זמן יידרש בממוצע לשלוף רשומה שאינה בזיכרון המטמון?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "90ms"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "30ms"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "60ms"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "120ms"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "med",
+   "explanation": "",
+   "note": "Official yellow key (90ms); the question does not say how many servers are queried (root, TLD, authoritative is the implied three)."
+  },
+  {
+   "num": 3,
+   "topic": "delays",
+   "question": "במערכת רשת הכוללת שלושה קישורים טוריים עם רוחבי פס של 100 Mbps, 50 Mbps ו-10 Mbps, וגודל חבילה של 5000 ביטים, חשב את זמן ההשהייה הכולל אם מהירות ההפצה היא $2\\cdot 10^{8}$ m/s ואורך כל קישור הוא 1000 ק\"מ.",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "5ms"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "10ms"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "15ms"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "20ms"
+    }
+   ],
+   "hold": "official key (10ms) disagrees with recomputation: 5000 bit over 100/50/10 Mbps = 0.65 ms, propagation 3 x 5 ms = 15 ms, total 15.65 ms (nearest option 15ms); propagation alone already exceeds 10 ms"
+  },
+  {
+   "num": 4,
+   "topic": "tcp",
+   "question": "מהי מטרת מנגנון ה-Slow Start בפרוטוקול TCP?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "למנוע הצפה של הרשת על ידי שמירה על קצב גידול מהיר יחסית בגודל החלון"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "לשמור על גודל חלון קבוע בתהליך שליחת החבילות כדי למנוע עומס"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "להבטיח שחבילות יגיעו ליעד ללא אובדן כלל תוך שמירה על קצב שליחה קבוע"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "למנוע קפיצה מיידית למהירות העברת הנתונים המרבית"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": ""
+  },
+  {
+   "num": 5,
+   "topic": "delays",
+   "question": "מה קורה כאשר תור בנתב מתמלא עקב עומס יתר?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "חבילות חדשות נזרקות (packet loss)"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "הנתב מפסיק לעבוד לחלוטין"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "הנתב מתחיל להעביר חבילות לאיטיות רבה"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "הנתב מפעיל באופן אוטומטי חיבור גיבוי"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": ""
+  },
+  {
+   "num": 6,
+   "topic": "delays",
+   "question": "במערכת תקשורת, אם עיכוב העיבוד (Processing Delay) גבוה משמעותית מהעיכוב ההולכה (Transmission Delay), מה מהבאים הוא הסבר סביר לכך?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "רוחב הפס של הקו נמוך מאוד"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "הנתב עמוס או בעל יכולת עיבוד נמוכה"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "המרחק הפיזי בין התחנות גדול מאוד"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "נעשה שימוש בפרוטוקול UDP במקום TCP"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": ""
+  },
+  {
+   "num": 7,
+   "topic": "tcp",
+   "question": "באילו תנאים יבחר פרוטוקול TCP להקטין את גודל חלון השליחה (Congestion Window)?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "כאשר מתקבלת הודעת ACK תוך זמן קצר מהצפוי או מתקבלת הודעת איבוד מנות"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "כאשר לא מתקבלת תגובה תוך Timeout"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "כאשר הקו פנוי לחלוטין ואין עומסים"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "כאשר מנות נשלחות בסדר לא נכון"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": ""
+  },
+  {
+   "num": 8,
+   "topic": "link_layer",
+   "question": "ברשת Ethernet, מה מהבאים אינו מתבצע כחלק מתפקידי שכבת הקו?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "זיהוי התנגשות מנות וטיפול בה (Collision Detection)"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "חלוקת כתובות IP ייחודיות למכשירים ברשת"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "קביעת מסגרות (Framing) של המידע בחבילות בעלות התחלה וסיום ברורים"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "זיהוי שגיאות באמצעות סיכום בדיקה (Checksum)"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": ""
+  },
+  {
+   "num": 9,
+   "topic": "dns_dhcp",
+   "question": "מה תפקידו העיקרי של פרוטוקול ARP?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "להצפין חבילות מידע"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "לתרגם כתובת IP לכתובת MAC"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "לנהל חיבורים מוצפנים"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "להקצות כתובות IP חדשות"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": ""
+  },
+  {
+   "num": 10,
+   "topic": "tcp",
+   "question": "באיזה מצב תתרחש קריסת חלון TCP (TCP Window Collapse)?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "כאשר אין מספיק רוחב פס"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "כאשר הרשת ריקה ממנות"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "כאשר מתקבלות שגיאות מרובות או עומס גבוה"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "כאשר הנתב מפעיל פרוטוקול גיבוי"
+    }
+   ],
+   "correctId": "c",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": ""
+  },
+  {
+   "num": 11,
+   "topic": "nat_ipv6_icmp",
+   "question": "באיזה פרוטוקול משתמשים בעיקר לשליחת הודעות שגיאה ברשת IP?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "TCP"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "UDP"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "ICMP"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "HTTP"
+    }
+   ],
+   "correctId": "c",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": ""
+  },
+  {
+   "num": 12,
+   "topic": "delays",
+   "question": "מה ההבדל העיקרי בין המושגים Bandwidth ו-Throughput בתקשורת נתונים?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "Bandwidth מודד את זמני העיכוב, בעוד Throughput מודד את מספר החיבורים"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "Bandwidth הוא הקיבולת התיאורטית המרבית של ערוץ, בעוד Throughput הוא קצב ההעברה בפועל"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "Bandwidth מתייחס לדיוק הנתונים, בעוד Throughput מתייחס לאמינות החיבור"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "אין הבדל – אלו שני שמות לאותו המושג"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": ""
+  },
+  {
+   "num": 13,
+   "topic": "intro_layers",
+   "question": "איזה פרוטוקול משתמש במספרי יציאה (Port Numbers) כדי לנתב מידע?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "IP"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "TCP"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "ICMP"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "ARP"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": ""
+  },
+  {
+   "num": 14,
+   "topic": "intro_layers",
+   "question": "מהו תפקידה המרכזי של שכבת התעבורה (Transport Layer) במודל OSI, בעת תקשורת בין שני מחשבים ברשת?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "לקבוע את המסלול שהחבילה תעבור בין התחנות ברשת, תוך התחשבות בנתבים ובטופולוגיה"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "לספק שירותים של תקשורת קצה-לקצה, ניהול חיבורים, בקרת שגיאות ושליחת נתונים בצורה אמינה"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "להצפין את המידע כדי להבטיח אבטחת מידע במהלך ההעברה"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "לחלק רשת גדולה לתת-רשתות קטנות יותר באמצעות כתובות ותתי-מסכות"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": ""
+  },
+  {
+   "num": 15,
+   "topic": "dns_dhcp",
+   "question": "איזה פרוטוקול משמש להתאמת כתובת IP לכתובת MAC?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "DNS"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "HTTP"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "ARP"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "FTP"
+    }
+   ],
+   "correctId": "c",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": ""
+  },
+  {
+   "num": 16,
+   "topic": "tcp",
+   "question": "כיצד גודל החלון משפיע על ביצועי העברת הנתונים ב-TCP?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "קובע כמה נתונים ניתן לשלוח לפני קבלת אישור מהנמען"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "מגדיר את מספר הנתבים שניתן לעבור דרכם"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "משמש להצפנת המידע המועבר"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "מגביל את מספר החיבורים לרשת"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": "",
+   "note": "Printed a second time as question number 5 (the page numbers two questions 5); stored as num 16."
+  }
+ ]
+}
