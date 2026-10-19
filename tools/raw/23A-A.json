@@ -1,0 +1,727 @@
+{
+ "examCode": "23A-A",
+ "examLabel": "2023 סמסטר א מועד א",
+ "year": 2023,
+ "examDate": "01.02.2023",
+ "sourceFile": "sitting 23A-A (scanned booklet, 14 pages, student copy)",
+ "keyFile": "none (student ticks not trusted); independently solved, tools/verify/23A-A/check.py",
+ "contexts": {},
+ "questions": [
+  {
+   "num": 1,
+   "topic": "ip_cidr",
+   "question": "חבילת IP (פאקט IP) בגודל 2000 Bytes עברה fragmentation ל-5 חבילות. נתון כי גודל ה-header הוא 20 Bytes ואין שימוש בהרחבת header.\nמה נכון לגבי הערך הרשום בשדה Offset בחבילה מספר 5 (מתוך 5)?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "Offset=1600"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "Offset=200"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "Offset= 400"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "Offset= 480"
+    },
+    {
+     "id": "e",
+     "type": "text",
+     "value": "Offset= 405"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "ה-MTU לא נתון, לכן מחפשים איזה Offset אפשרי כך שהחבילה מתפצלת בדיוק ל-5 פרגמנטים.\nבכל פרגמנט (חוץ מהאחרון) הנתונים הם כפולה של 8 בתים, נסמן $k$. חמישה פרגמנטים פירושו $4k < D \\le 5k$, כאשר $D$ הוא סך הנתונים ($1980$ או $2000$).\nה-Offset של הפרגמנט החמישי הוא $4k/8=k/2$ ביחידות של 8 בתים. עבור $k=400$ מקבלים $4\\cdot400=1600<1980\\le 2000$ ולכן 5 פרגמנטים בדיוק, וה-Offset הוא $200$.\nהאפשרויות 400 ו-480 ו-1600 דורשות $k$ של 800 ומעלה, ואז כל הנתונים נכנסים בפחות מ-5 פרגמנטים. 405 אינו מתקבל מ-$k/2$ עבור $k$ כפולה של 8. (1600 הוא ההיסט בבתים ולא ביחידות של 8.)",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key)."
+  },
+  {
+   "num": 2,
+   "topic": "dns_dhcp",
+   "question": "קבע מה מבין ההיגדים הבאים נכון",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "פרוטוקול DHCP הוא פרוטוקול בשכבת האפליקציה בארכיטקטורה של client-server ועובד מעל פרוטוקול TCP בשכבת התעבורה"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "פרוטוקול DHCP הוא פרוטוקול בשכבת האפליקציה בארכיטקטורה של client-server ועובד מעל פרוטוקול UDP בשכבת התעבורה"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "פרוטוקול DHCP הוא פרוטוקול בשכבת התעבורה ומשמש להעברת מדיע אמינה."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "פרוטוקול DHCP הוא פרוטוקול בשכבת הרשת ומספק ללקוחות כתובות IP באופן דינאמי."
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "DHCP הוא פרוטוקול של שכבת האפליקציה (לקוח-שרת) שרץ מעל UDP (פורטים 67 ו-68), כי הלקוח עדיין אין לו כתובת IP ושולח הודעות Broadcast.\nא: שגוי - DHCP לא משתמש ב-TCP. ג: שגוי - זה לא פרוטוקול תעבורה ואינו מבטיח אמינות. ד: שגוי - DHCP אינו בשכבת הרשת, הוא בשכבת האפליקציה.",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key)."
+  },
+  {
+   "num": 3,
+   "topic": "tcp",
+   "question": "קבע עבור ההיגד מטה את התיאור המדויק ביותר עבורו: האם נכון / לא נכון / לא ניתן לדעת.\nהערכת RTT מתבצעת, עבור תפקוד הפרוטוקול, גם בפרוטוקול TCP וגם בפרוטוקול UDP.",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "לא נכון: הערכה מתבצעת רק ב IP וב ICMP"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "לא נכון: רק ב UDP"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "לא נכון : רק ב TCP"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "לא ניתן לדעת."
+    },
+    {
+     "id": "e",
+     "type": "text",
+     "value": "אף אחד מהתשובות האחרות אינה נכונה."
+    }
+   ],
+   "correctId": "c",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "TCP מעריך את ה-RTT (ממוצע נע ושונות) כדי לקבוע את ה-Timeout של שליחה חוזרת. ל-UDP אין שליחה חוזרת, אין אישורים ולכן הוא אינו מעריך RTT.\nלכן ההיגד \"גם ב-TCP וגם ב-UDP\" שגוי, והתיאור המדויק הוא \"לא נכון: רק ב-TCP\".\nא: IP ו-ICMP אינם מעריכים RTT לצורך תפקוד הפרוטוקול. ב: הפוך מהנכון. ד: אפשר לדעת. ה: שגוי כי ג נכונה.",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key). This is the replacement question 3 from the amendment sheet; the original booklet question 3 (where reassembly happens) is voided and not included."
+  },
+  {
+   "num": 4,
+   "topic": "http",
+   "question": "בחרו את ההיגד המדויק ביותר:",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "פרוטוקול HTTP מחייב להחזיר סטטוס 200 במקרה של בקשת POST מוצלחת."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "פרוטוקול HTTP אינו מחייב להחזיר סטטוס 200 במקרה של בקשת POST מוצלחת."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "פרוטוקול HTTP הוא פרוטוקול בשכבת התעבורה להעברת דפי אינטרנט ואובייקטים נוספים."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "אף אחד מהתשובות האחרות אינה נכונה ."
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "ב-HTTP בקשת POST שהצליחה יכולה להחזיר 200 OK, אבל גם 201 Created, 202 Accepted או 204 No Content, ולכן אין חובה להחזיר 200.\nג: HTTP הוא פרוטוקול של שכבת האפליקציה, לא התעבורה. ד: שגוי כי ב נכונה.",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key). Student tick differs (a); a successful POST may legitimately return 200, 201, 202 or 204."
+  },
+  {
+   "num": 5,
+   "topic": "http",
+   "question": "מה מהכתוב מטה **אינו חלק** מהיתרונות של רשת עמית לעמית (Peer To Peer P2P) בהשוואה לשימוש במודל של שרת לקוח:\nסמנו את כל התשובות הרלוונטיות.",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "סקלביליות : הוספת לקוחות גם מוסיפה נותני שרות."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "באותם קצבי רשת בין מחשבים : יכולת ההעברה וההפצה הן יותר מהירות ברשת P2P בהשוואה למודל שרת-לקוח."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "קלות ניהול."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "Fast Start"
+    }
+   ],
+   "hold": "multi-select question (mark every correct option; full credit needs the exact set) - the single-answer engine cannot hold it. Solved set: c and d (a and b are advantages of P2P; easy management and fast start are not)."
+  },
+  {
+   "num": 6,
+   "topic": "http",
+   "question": "איזה מהבעיות מטה, בא פתרון רשת מסוג CDN לפתור :\nסמנו את כל התשובות הנכונות.",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "סקלביליות : יכולת תמיכה בכמות גדולה של לקוחות."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "חסם הגידול ביכולת התמיכה של שרת בודד."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "חסם הגידול ברוחב הפס של קו תקשורת בודד."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "בעיית המחסור בכתובות רשת מסוג IPV4"
+    }
+   ],
+   "hold": "multi-select question (mark every correct option; full credit needs the exact set) - the single-answer engine cannot hold it. Solved set: a, b and c (IPv4 address shortage is not what a CDN addresses)."
+  },
+  {
+   "num": 7,
+   "topic": "sockets_email",
+   "question": "יעל מבקשת להגיע לאתר http://www.newplace.com שלא גלשה בו קודם. ידוע כי:\n- הדף הראשי של האתר מכיל מלל ו5 תמונות ולא כולל הפניות לאתרים נוספים.\n- דפדפן ושרת תומכים ב HTTP1.1\n- כל התמונות נמצאות על השרת www.newplace.com\n- שרת האתר נמצא במצב האזנה.\nכמה sockets ייפתחו במחשב של יעל?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "7: 1 לבקשת DNS, 1 לדף HTML ועד 5 לתמונות"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "1: עבור דף HTML ותמונות"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "2: 1 לבקשת DNS ו-1 עבור דף HTML ותמונות"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "6: 1 עבור דף HTML ו 5 עבור תמונות"
+    },
+    {
+     "id": "e",
+     "type": "text",
+     "value": "אף תשובה לא נכונה"
+    }
+   ],
+   "correctId": "c",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "med",
+   "explanation": "האתר חדש עבור יעל, לכן קודם נדרשת שאילתת DNS לתרגום השם לכתובת IP: זה socket אחד (UDP).\nאחר כך נפתח חיבור TCP לשרת. ב-HTTP/1.1 החיבור הוא persistent כברירת מחדל, והדף והתמונות (כולן על אותו שרת) עוברים על אותו חיבור, ולכן socket אחד בלבד ל-HTML ולתמונות.\nסך הכול 2 sockets. 7 ו-6 דורשים חיבור נפרד לכל תמונה (HTTP/1.0 או חיבורים מקבילים), ו-1 מתעלם משאילתת ה-DNS.",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key). Assumes the persistent-connection reading of HTTP/1.1 and a UDP socket for DNS; a browser that opens parallel connections would give option a, but the question intends persistence."
+  },
+  {
+   "num": 8,
+   "topic": "ip_cidr",
+   "question": "לאיזה מסלול תנותב החבילה אם כתובת היעד 25.36.67.5 לפי טבלת הניתוב הבאה:\n`A: 25.36.64.0/16`\n`B: 25.36.128.0/20`\n`C: 25.36.64.0/20`\n`D: 20.0.0.0/8`",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "A"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "B"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "C"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "D"
+    },
+    {
+     "id": "e",
+     "type": "text",
+     "value": "אף תשובה לא נכונה"
+    }
+   ],
+   "correctId": "c",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "Longest Prefix Match: נבדוק אילו כניסות מתאימות לכתובת $25.36.67.5$.\nA: $25.36.64.0/16$ - מתאימה (שני הבתים הראשונים $25.36$ זהים). B: $25.36.128.0/20$ מכסה $25.36.128.0-25.36.143.255$ - לא כוללת 67. C: $25.36.64.0/20$ מכסה $25.36.64.0-25.36.79.255$ - כוללת, והמסכה ארוכה יותר ($/20>/16$). D: $20.0.0.0/8$ - לא מתאימה.\nA ו-C מתאימות, והארוכה ביותר היא C.",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key)."
+  },
+  {
+   "num": 9,
+   "topic": "dns_dhcp",
+   "question": "בנוגע לציור מטה: דני פונה פעם ראשונה ובראשון במחשבו במקום העבודה שלו, לגלוש לאתר של www.amazon.com. המחשב של דני נעזר בשרת DNS מקומי בתוך הרשת של mywork.com. המחשב של דני מסומן בתור \"requesting host\" בפינה השמאלית התחתונה של הציור.\nלמה מתאימה סדרת הפעולות המתוארת בשרטוט לעיל:",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "שאילתת ARP"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "שאילתת DNS איטרטיבית."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "שאילתת DNS רקורסיבית."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "שאילתת DNS איטרטיבית פרסיסטנטית."
+    },
+    {
+     "id": "e",
+     "type": "text",
+     "value": "אף תשובה לא נכונה ."
+    }
+   ],
+   "correctId": "c",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "בשרטוט שרת ה-DNS המקומי שולח שאילתה אחת (2) ל-root וממתין לתשובה סופית (7). ה-root עצמו פונה ל-TLD (3, 6) וה-TLD פונה ל-authoritative (4, 5), והתשובה חוזרת בשרשרת. כלומר כל שרת מבצע את העבודה \"בשם\" השואל - זו שאילתה רקורסיבית.\nבשאילתה איטרטיבית ה-root היה מחזיר למקומי הפניה לשרת ה-TLD והמקומי היה פונה אליו בעצמו. ARP אינו קשור (הוא מתרגם IP ל-MAC ברשת מקומית), ו\"איטרטיבית פרסיסטנטית\" אינו מושג קיים.",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key). Amended wording used (amendment sheet: 'the computer of Dani is helped by a local DNS server'). Figure redrawn cleanly from the printed one (tools/verify/23A-A/draw_dns.py).",
+   "image": "images/exams/23A-A-Q9.png"
+  },
+  {
+   "num": 10,
+   "topic": "tcp",
+   "question": "חוו את דעתכם בנוגע לנכונות הטענה הבאה :\nמבחינת האפליקציה אם צריך לשלוח סגמנט אחד בלבד של נתונים, הרי שאין הבדל בין האופן שבו TCP ו-UDP מתנהגים.",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "נכון אין הבדל."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "לא נכון : יש הבדל במקרה אי הגעה או אובדן בדרך."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "נכון בתלות ב \"גודל חלון\". עבור חלון קטן מ 7 אכן אין הבדל."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "נכון פרט לשימוש בבקרת זרימה למניעת הצפת המקבל."
+    },
+    {
+     "id": "e",
+     "type": "text",
+     "value": "אף תשובה לא נכונה"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "גם כשיש סגמנט אחד, TCP מבטיח אמינות: אישור (ACK), Timeout ושליחה חוזרת, ולפני כן לחיצת יד. UDP שולח את ההודעה פעם אחת ולא בודק אם היא הגיעה.\nלכן אם הסגמנט הולך לאיבוד, ב-TCP האפליקציה עדיין תקבל אותו (אחרי שליחה חוזרת) וב-UDP לא - ההיגד \"אין הבדל\" שגוי.\nג ו-ד נכונות רק בניסוח \"אין הבדל\" ולכן שגויות (גודל חלון ובקרת זרימה אינם הנקודה, ההבדל הוא האמינות).",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key)."
+  },
+  {
+   "num": 11,
+   "topic": "dns_dhcp",
+   "question": "האם ניתן להשתמש בפרוטוקול DHCP כתחליף מלא לשימוש בפרוטוקול ARP במצב בו כבר נעזרים בפרוטוקול DHCP ?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "כן, אפשר לוותר על ARP."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "לא נכון : אי אפשר לוותר על ARP."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "כן אפשר לוותר על ARP ברשת גדולה :רק עבור הקלינטים שמקבלים מידע משרת ה DHCP , אבל לא עבור שרתים להם יש כתובות IP קבועות והם לא נעזרים ב DHCP ."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "התשובה לא חד משמעית: כי התשובה תלויה בהגדרות המערכת."
+    },
+    {
+     "id": "e",
+     "type": "text",
+     "value": "אף תשובה לא נכונה."
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "DHCP מקצה ללקוח כתובת IP, מסכה, Gateway ו-DNS, אך אינו נותן כתובות MAC. כדי לשלוח מסגרת Ethernet בתוך הרשת (למשל אל ה-Gateway) צריך את ה-MAC של היעד, ואותו מקבלים רק מ-ARP.\nלכן אי אפשר לוותר על ARP, גם אם כל התחנות מקבלות את הכתובת שלהן מ-DHCP. ג שגויה (גם הלקוחות צריכים ARP), ד שגויה (אין תלות בהגדרות).",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key)."
+  },
+  {
+   "num": 12,
+   "topic": "http",
+   "question": "בפרוטוקול HTTP בגרסת HTTP שתומכת בפרסיסטנטיות: האם ניתן לבקש שני דפים שונים (למשל: https://ims.gov.il/he/Forecast ו- https://ims.gov.il/he/coasts) מעל אותו persistent connection.",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "כן."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "לא נכון : אי אפשר."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "תלוי בגודל הדף: בדפים קטנים כן, בדפים גדולים לא."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "תלוי בגודל הדף: בדפים קטנים לא , בדפים גדולים (ללא תמונות) כן."
+    },
+    {
+     "id": "e",
+     "type": "text",
+     "value": "אף תשובה לא נכונה"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "חיבור persistent (HTTP/1.1) נשאר פתוח אחרי תגובה ומאפשר לשלוח עליו בקשות נוספות לאותו שרת. שני ה-URL הם באותו שרת (`ims.gov.il`), ולכן אפשר לבקש את שני הדפים על אותו חיבור.\nגודל הדף אינו משנה (ב, ג ו-ד שגויות).",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key). Corrected wording used (amendment sheet adds 'in the HTTP version that supports persistence')."
+  },
+  {
+   "num": 13,
+   "topic": "dns_dhcp",
+   "question": "הניחו שלקוח HTTP מעוניין לקבל דף אינטרנט שנמצא ב-URL מסוים במחשב מקומי באותו LAN וזוהי בקשה ראשונה לקבלת דף זה במחשב זה (כי המחשב חדש אבל קונפגה לו כבר כתובת IP).\nבתחילת התהליך כתובת ה-IP של שרת ה-HTTP **אינה ידועה**.\nאלו פרוטוקולים של שכבת ה-transport נדרשים להיות מופעלים בתסריט זה?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "DNS ו-HTTP"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "TCP בשביל DNS; TCP בשביל HTTP"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "UDP בשביל DNS; TCP בשביל HTTP"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "אף לא אחת מהתשובות לעיל"
+    }
+   ],
+   "correctId": "c",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "כתובת ה-IP של השרת אינה ידועה, לכן המחשב מבצע שאילתת DNS, והיא עוברת על UDP. אחר כך נפתח חיבור TCP לשרת ה-HTTP.\nא: DNS ו-HTTP הם פרוטוקולי אפליקציה, והשאלה מבקשת פרוטוקולי תעבורה. ב: DNS לא משתמש ב-TCP בשאילתה רגילה.",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key)."
+  },
+  {
+   "num": 14,
+   "topic": "dns_dhcp",
+   "question": "הניחו שלקוח HTTP מעוניין לקבל דף אינטרנט הנמצא ב-URL מסוים **בשרת מקומי באותו LAN** בכתובת IP **ידועה** באותו Subnet כמו המחשב המבקש. וזוהי בקשה ראשונה לקבלת דף זה במחשב זה (כי המחשב חדש אבל קונפגה לו כבר כתובת IP).\nבתחילת התהליך כתובת ה-MAC של שרת ה-HTTP **אינה ידועה**.\nאלו פרוטוקולים נדרשים להיות מופעלים בתסריט זה?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "ARP ו-HTTP"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "DHCP ו ARP ואז DNS ואז HTTP"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "TCP בשביל DNS; TCP בשביל HTTP"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "DHCP ו ARP ואז HTTP"
+    },
+    {
+     "id": "e",
+     "type": "text",
+     "value": "אף לא אחת מהתשובות לעיל"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "כתובת ה-IP של השרת ידועה ולכן אין צורך ב-DNS; למחשב כבר הוגדרה כתובת IP ולכן אין צורך ב-DHCP.\nחסרה רק כתובת ה-MAC של השרת באותה רשת מקומית, ולכן נדרש ARP, ואחריו HTTP (מעל TCP).\nב ו-ד כוללות DHCP שלא נדרש, ג כוללת DNS שלא נדרש.",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key)."
+  },
+  {
+   "num": 15,
+   "topic": "dns_dhcp",
+   "question": "באיזה פרוטוקול משתמש DHCP בשכבת ה-transport?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "IP"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "ARP"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "TCP"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "UDP"
+    },
+    {
+     "id": "e",
+     "type": "text",
+     "value": "אף לא אחת מהתשובות לעיל"
+    }
+   ],
+   "correctId": "d",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "DHCP משתמש ב-UDP (שרת בפורט 67, לקוח בפורט 68), כי ללקוח עדיין אין כתובת IP והוא שולח Broadcast.\nIP ו-ARP אינם פרוטוקולי תעבורה, ו-TCP דורש כתובות IP מוגדרות לחיבור.",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key)."
+  },
+  {
+   "num": 16,
+   "topic": "ip_cidr",
+   "question": "נתונה כתובת 200.107.16.17/18. כתובת זו שייכת לבלוק כתובות.\nמהי הכתובת הראשונה והאחרונה בבלוק?\nרמז: קודם מצאו מהו הבלוק אליו שייכת הכתובת.",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "200.107.16.17 זוהי כתובת ראשונה ואחרונה בבלוק"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "כתובת ראשונה בבלוק: 200.107.0.0 . אחרונה בבלוק: 200.107.63.255"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "כתובת ראשונה בבלוק: 200.107.16.0 . אחרונה בבלוק: 200.107.79.255"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "כתובת ראשונה בבלוק: 200.107.16.17 . אחרונה בבלוק: 200.107.80.16"
+    },
+    {
+     "id": "e",
+     "type": "text",
+     "value": "אף תשובה לא נכונה."
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "המסכה $/18$ היא $255.255.192.0$, כלומר בבית השלישי הבלוקים הם בקפיצות של $64$: $0\\text{-}63$, $64\\text{-}127$, $\\ldots$\nהערך $16$ נמצא בבלוק $0\\text{-}63$, לכן הכתובת הראשונה $200.107.0.0$ והאחרונה $200.107.63.255$ (ביטי ה-host הם 14 ביטים).\nג, ד: מתחילות מ-16, שאינו גבול של בלוק /18. א: הכתובת אינה לבדה בבלוק (יש $2^{14}$ כתובות).",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key)."
+  },
+  {
+   "num": 17,
+   "topic": "tcp",
+   "question": "אילו מהפונקציות הבאות חייבות להיות מיושמות על ידי פרוטוקול תעבורה אמין מעבר לפונקציות שממומשות כבר בפרוטוקול רשת? (יש לסמן כל הנכון)",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "קישוריות מ HOST ל HOST"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "משלוח פאקטות בסדר הנכון"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "הגנה בפני משלוח פאקטות כפולות"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "התאוששות מאיבודי פאקטות"
+    },
+    {
+     "id": "e",
+     "type": "text",
+     "value": "אף תשובה."
+    }
+   ],
+   "hold": "multi-select question (mark every correct option; full credit needs the exact set) - the single-answer engine cannot hold it. Solved set: b, c and d (host-to-host connectivity is already a network-layer function, so a is not required)."
+  },
+  {
+   "num": 18,
+   "topic": "intro_layers",
+   "question": "אילו מהפונקציות הבאות **לא** חייבות להיות מיושמות על ידי פרוטוקול תעבורה \"ללא דרישה לאמינות\" מעבר לפונקציות שכן ממומשות בפרוטוקול רשת?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "קישוריות מ HOST ל HOST"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "משלוח פאקטות בסדר הנכון"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "משלוח פאקטות כפולות"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "התאוששות מאיבודי פאקטות"
+    },
+    {
+     "id": "e",
+     "type": "text",
+     "value": "אף תשובה לא נכונה."
+    }
+   ],
+   "hold": "multi-select question (mark every correct option; full credit needs the exact set) - the single-answer engine cannot hold it. Solved set: a, b, c and d (an unreliable transport adds only process multiplexing; the stem's third option as printed reads 'משלוח פאקטות כפולות', treated as protection from duplicates). Reading of the stem and of option c is uncertain - ask Adir."
+  },
+  {
+   "num": 19,
+   "topic": "http",
+   "question": "איך מגיעים לשרתים שונים של CDN כאשר פונים לאותו שרת WEB עם אותו שם Domain :",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "בעזרת DNS חכם."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "בעזרת תכונת הפניה הרנדומית ב HTTP."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "אפשרי רק בעזרת קוקיס עוגיות."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "בעזרת פרסיסטנטיות ב HTTP1.1 ."
+    },
+    {
+     "id": "e",
+     "type": "text",
+     "value": "אף תשובה."
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "med",
+   "explanation": "ב-CDN שרת ה-DNS של המפעיל משיב כתובת IP שונה לפי המיקום של השואל (ה-Resolver שלו), ולכן לקוחות שונים שפונים לאותו שם מגיעים לשרתי CDN שונים הקרובים אליהם. זה \"DNS חכם\".\nב: אין מנגנון \"הפניה רנדומית\" ב-HTTP שמכוון לפי מיקום; ג: עוגיות אינן הדרך; ד: persistence שומר חיבור פתוח ואינו בוחר שרת.",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key). The cover page allows several correct answers; only option a is a mechanism a CDN uses."
+  },
+  {
+   "num": 20,
+   "topic": "tcp",
+   "question": "מהו התפקיד של מנגנון בקרת זרימה (Flow Control) ב-TCP?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "להגן מפני העמסת נתבים ROUTERS עי ריבוי re-transmits ."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "להגן מפני העמסת מתגים SWITCHES עי ריבוי re-transmits ."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "להגן מפני הצפת הצד המקבל בשל שליחה מהירה מידי או איטית מיידי ."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "להגן מפני העמסת נתבים ROUTERS מ TimeOuts ארוכים מידי."
+    },
+    {
+     "id": "e",
+     "type": "text",
+     "value": "אף תשובה לא נכונה ."
+    }
+   ],
+   "correctId": "c",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "בקרת זרימה ב-TCP מגינה על המקבל: המקבל מפרסם חלון קבלה (rwnd) והשולח לא שולח יותר ממה שהמקבל יכול לקלוט.\nהעמסה על נתבים ומתגים היא עניין של בקרת עומס (Congestion Control), ולא של בקרת זרימה.",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key). Corrected wording used (amendment sheet: 'flow-control mechanism'). Option c is printed with 'או איטית מיידי' (sic)."
+  }
+ ]
+}

@@ -1,0 +1,304 @@
+# -*- coding: utf-8 -*-
+"""Generator for tools/raw/23A-A.json -- networks, 2023 semester A, moed A (01.02.2023).
+Run: PYTHONUTF8=1 py tools/gen/gen_23A-A.py
+
+Source: a 0-text scan (14 pages, 20 American-format questions, a-e options) of a student copy. The pages carry student
+ticks and handwriting; they are NOT used as a key and no crop of them is shipped. Every question was transcribed from
+the rendered page and solved independently (calculations recomputed in tools/verify/23A-A/check.py), so items ship as
+answerSource "solved", official:false.
+Amendment sheet (page 13, "tosefet"): question 3 of the booklet is voided and replaced by a new question 3 (RTT
+estimation); Q9, Q12 and Q20 carry wording corrections. The corrected texts are used here.
+Multi-select questions (the cover page allows "mark all that are correct"; Q5, Q6, Q17, Q18) cannot be represented by
+the single-answer engine: they are held, the solved answer set is recorded in the hold reason.
+Figure: the DNS diagram of Q9 is redrawn (tools/verify/23A-A/draw_dns.py), not cropped from the scan."""
+import json, pathlib
+
+OUT = pathlib.Path(__file__).resolve().parents[1] / "raw" / "23A-A.json"
+IDS = "abcdef"
+EVID = ("Scan with student ticks: ticks not used as a key; solved independently from the printed question "
+        "(student copy, no official key).")
+
+
+def opts(*vals):
+    return [{"id": IDS[i], "type": "text", "value": v} for i, v in enumerate(vals)]
+
+
+def Q(num, topic, question, options, correct, explanation, **kw):
+    q = {"num": num, "topic": topic, "question": question, "options": options,
+         "correctId": correct, "answerSource": "solved", "official": False,
+         "confidence": "high", "explanation": explanation, "note": EVID}
+    q.update(kw)
+    return q
+
+
+def HOLD(num, topic, question, options, why):
+    return {"num": num, "topic": topic, "question": question, "options": options, "hold": why}
+
+
+MULTI = ("multi-select question (mark every correct option; full credit needs the exact set) - the single-answer "
+         "engine cannot hold it. Solved set: ")
+
+questions = []
+
+# ---------------------------------------------------------------- 1
+questions.append(Q(
+    1, "ip_cidr",
+    "חבילת IP (פאקט IP) בגודל 2000 Bytes עברה fragmentation ל-5 חבילות. נתון כי גודל ה-header הוא 20 Bytes ואין שימוש בהרחבת header.\n"
+    "מה נכון לגבי הערך הרשום בשדה Offset בחבילה מספר 5 (מתוך 5)?",
+    opts("Offset=1600", "Offset=200", "Offset= 400", "Offset= 480", "Offset= 405"), "b",
+    r"""ה-MTU לא נתון, לכן מחפשים איזה Offset אפשרי כך שהחבילה מתפצלת בדיוק ל-5 פרגמנטים.
+בכל פרגמנט (חוץ מהאחרון) הנתונים הם כפולה של 8 בתים, נסמן $k$. חמישה פרגמנטים פירושו $4k < D \le 5k$, כאשר $D$ הוא סך הנתונים ($1980$ או $2000$).
+ה-Offset של הפרגמנט החמישי הוא $4k/8=k/2$ ביחידות של 8 בתים. עבור $k=400$ מקבלים $4\cdot400=1600<1980\le 2000$ ולכן 5 פרגמנטים בדיוק, וה-Offset הוא $200$.
+האפשרויות 400 ו-480 ו-1600 דורשות $k$ של 800 ומעלה, ואז כל הנתונים נכנסים בפחות מ-5 פרגמנטים. 405 אינו מתקבל מ-$k/2$ עבור $k$ כפולה של 8. (1600 הוא ההיסט בבתים ולא ביחידות של 8.)"""))
+
+# ---------------------------------------------------------------- 2
+questions.append(Q(
+    2, "dns_dhcp", "קבע מה מבין ההיגדים הבאים נכון",
+    opts("פרוטוקול DHCP הוא פרוטוקול בשכבת האפליקציה בארכיטקטורה של client-server ועובד מעל פרוטוקול TCP בשכבת התעבורה",
+         "פרוטוקול DHCP הוא פרוטוקול בשכבת האפליקציה בארכיטקטורה של client-server ועובד מעל פרוטוקול UDP בשכבת התעבורה",
+         "פרוטוקול DHCP הוא פרוטוקול בשכבת התעבורה ומשמש להעברת מדיע אמינה.",
+         "פרוטוקול DHCP הוא פרוטוקול בשכבת הרשת ומספק ללקוחות כתובות IP באופן דינאמי."),
+    "b",
+    r"""DHCP הוא פרוטוקול של שכבת האפליקציה (לקוח-שרת) שרץ מעל UDP (פורטים 67 ו-68), כי הלקוח עדיין אין לו כתובת IP ושולח הודעות Broadcast.
+א: שגוי - DHCP לא משתמש ב-TCP. ג: שגוי - זה לא פרוטוקול תעבורה ואינו מבטיח אמינות. ד: שגוי - DHCP אינו בשכבת הרשת, הוא בשכבת האפליקציה."""))
+
+# ---------------------------------------------------------------- 3 (replacement question)
+questions.append(Q(
+    3, "tcp",
+    "קבע עבור ההיגד מטה את התיאור המדויק ביותר עבורו: האם נכון / לא נכון / לא ניתן לדעת.\n"
+    "הערכת RTT מתבצעת, עבור תפקוד הפרוטוקול, גם בפרוטוקול TCP וגם בפרוטוקול UDP.",
+    opts("לא נכון: הערכה מתבצעת רק ב IP וב ICMP",
+         "לא נכון: רק ב UDP",
+         "לא נכון : רק ב TCP",
+         "לא ניתן לדעת.",
+         "אף אחד מהתשובות האחרות אינה נכונה."),
+    "c",
+    r"""TCP מעריך את ה-RTT (ממוצע נע ושונות) כדי לקבוע את ה-Timeout של שליחה חוזרת. ל-UDP אין שליחה חוזרת, אין אישורים ולכן הוא אינו מעריך RTT.
+לכן ההיגד "גם ב-TCP וגם ב-UDP" שגוי, והתיאור המדויק הוא "לא נכון: רק ב-TCP".
+א: IP ו-ICMP אינם מעריכים RTT לצורך תפקוד הפרוטוקול. ב: הפוך מהנכון. ד: אפשר לדעת. ה: שגוי כי ג נכונה.""",
+    note=EVID + " This is the replacement question 3 from the amendment sheet; the original booklet question 3 "
+                "(where reassembly happens) is voided and not included."))
+
+# ---------------------------------------------------------------- 4
+questions.append(Q(
+    4, "http", "בחרו את ההיגד המדויק ביותר:",
+    opts("פרוטוקול HTTP מחייב להחזיר סטטוס 200 במקרה של בקשת POST מוצלחת.",
+         "פרוטוקול HTTP אינו מחייב להחזיר סטטוס 200 במקרה של בקשת POST מוצלחת.",
+         "פרוטוקול HTTP הוא פרוטוקול בשכבת התעבורה להעברת דפי אינטרנט ואובייקטים נוספים.",
+         "אף אחד מהתשובות האחרות אינה נכונה ."),
+    "b",
+    r"""ב-HTTP בקשת POST שהצליחה יכולה להחזיר 200 OK, אבל גם 201 Created, 202 Accepted או 204 No Content, ולכן אין חובה להחזיר 200.
+ג: HTTP הוא פרוטוקול של שכבת האפליקציה, לא התעבורה. ד: שגוי כי ב נכונה.""",
+    note=EVID + " Student tick differs (a); a successful POST may legitimately return 200, 201, 202 or 204."))
+
+# ---------------------------------------------------------------- 5 (held, multi-select)
+questions.append(HOLD(
+    5, "http",
+    "מה מהכתוב מטה **אינו חלק** מהיתרונות של רשת עמית לעמית (Peer To Peer P2P) בהשוואה לשימוש במודל של שרת לקוח:\nסמנו את כל התשובות הרלוונטיות.",
+    opts("סקלביליות : הוספת לקוחות גם מוסיפה נותני שרות.",
+         "באותם קצבי רשת בין מחשבים : יכולת ההעברה וההפצה הן יותר מהירות ברשת P2P בהשוואה למודל שרת-לקוח.",
+         "קלות ניהול.",
+         "Fast Start"),
+    MULTI + "c and d (a and b are advantages of P2P; easy management and fast start are not)."))
+
+# ---------------------------------------------------------------- 6 (held, multi-select)
+questions.append(HOLD(
+    6, "http",
+    "איזה מהבעיות מטה, בא פתרון רשת מסוג CDN לפתור :\nסמנו את כל התשובות הנכונות.",
+    opts("סקלביליות : יכולת תמיכה בכמות גדולה של לקוחות.",
+         "חסם הגידול ביכולת התמיכה של שרת בודד.",
+         "חסם הגידול ברוחב הפס של קו תקשורת בודד.",
+         "בעיית המחסור בכתובות רשת מסוג IPV4"),
+    MULTI + "a, b and c (IPv4 address shortage is not what a CDN addresses)."))
+
+# ---------------------------------------------------------------- 7
+questions.append(Q(
+    7, "sockets_email",
+    "יעל מבקשת להגיע לאתר http://www.newplace.com שלא גלשה בו קודם. ידוע כי:\n"
+    "- הדף הראשי של האתר מכיל מלל ו5 תמונות ולא כולל הפניות לאתרים נוספים.\n"
+    "- דפדפן ושרת תומכים ב HTTP1.1\n"
+    "- כל התמונות נמצאות על השרת www.newplace.com\n"
+    "- שרת האתר נמצא במצב האזנה.\n"
+    "כמה sockets ייפתחו במחשב של יעל?",
+    opts("7: 1 לבקשת DNS, 1 לדף HTML ועד 5 לתמונות",
+         "1: עבור דף HTML ותמונות",
+         "2: 1 לבקשת DNS ו-1 עבור דף HTML ותמונות",
+         "6: 1 עבור דף HTML ו 5 עבור תמונות",
+         "אף תשובה לא נכונה"),
+    "c",
+    r"""האתר חדש עבור יעל, לכן קודם נדרשת שאילתת DNS לתרגום השם לכתובת IP: זה socket אחד (UDP).
+אחר כך נפתח חיבור TCP לשרת. ב-HTTP/1.1 החיבור הוא persistent כברירת מחדל, והדף והתמונות (כולן על אותו שרת) עוברים על אותו חיבור, ולכן socket אחד בלבד ל-HTML ולתמונות.
+סך הכול 2 sockets. 7 ו-6 דורשים חיבור נפרד לכל תמונה (HTTP/1.0 או חיבורים מקבילים), ו-1 מתעלם משאילתת ה-DNS.""",
+    confidence="med",
+    note=EVID + " Assumes the persistent-connection reading of HTTP/1.1 and a UDP socket for DNS; a browser that "
+                "opens parallel connections would give option a, but the question intends persistence."))
+
+# ---------------------------------------------------------------- 8
+questions.append(Q(
+    8, "ip_cidr",
+    "לאיזה מסלול תנותב החבילה אם כתובת היעד 25.36.67.5 לפי טבלת הניתוב הבאה:\n"
+    "`A: 25.36.64.0/16`\n`B: 25.36.128.0/20`\n`C: 25.36.64.0/20`\n`D: 20.0.0.0/8`",
+    opts("A", "B", "C", "D", "אף תשובה לא נכונה"), "c",
+    r"""Longest Prefix Match: נבדוק אילו כניסות מתאימות לכתובת $25.36.67.5$.
+A: $25.36.64.0/16$ - מתאימה (שני הבתים הראשונים $25.36$ זהים). B: $25.36.128.0/20$ מכסה $25.36.128.0-25.36.143.255$ - לא כוללת 67. C: $25.36.64.0/20$ מכסה $25.36.64.0-25.36.79.255$ - כוללת, והמסכה ארוכה יותר ($/20>/16$). D: $20.0.0.0/8$ - לא מתאימה.
+A ו-C מתאימות, והארוכה ביותר היא C."""))
+
+# ---------------------------------------------------------------- 9
+questions.append(Q(
+    9, "dns_dhcp",
+    "בנוגע לציור מטה: דני פונה פעם ראשונה ובראשון במחשבו במקום העבודה שלו, לגלוש לאתר של www.amazon.com. המחשב של דני נעזר בשרת DNS מקומי בתוך הרשת של mywork.com. המחשב של דני מסומן בתור \"requesting host\" בפינה השמאלית התחתונה של הציור.\n"
+    "למה מתאימה סדרת הפעולות המתוארת בשרטוט לעיל:",
+    opts("שאילתת ARP", "שאילתת DNS איטרטיבית.", "שאילתת DNS רקורסיבית.", "שאילתת DNS איטרטיבית פרסיסטנטית.",
+         "אף תשובה לא נכונה ."),
+    "c",
+    r"""בשרטוט שרת ה-DNS המקומי שולח שאילתה אחת (2) ל-root וממתין לתשובה סופית (7). ה-root עצמו פונה ל-TLD (3, 6) וה-TLD פונה ל-authoritative (4, 5), והתשובה חוזרת בשרשרת. כלומר כל שרת מבצע את העבודה "בשם" השואל - זו שאילתה רקורסיבית.
+בשאילתה איטרטיבית ה-root היה מחזיר למקומי הפניה לשרת ה-TLD והמקומי היה פונה אליו בעצמו. ARP אינו קשור (הוא מתרגם IP ל-MAC ברשת מקומית), ו"איטרטיבית פרסיסטנטית" אינו מושג קיים.""",
+    image="images/exams/23A-A-Q9.png",
+    note=EVID + " Amended wording used (amendment sheet: 'the computer of Dani is helped by a local DNS server'). "
+                "Figure redrawn cleanly from the printed one (tools/verify/23A-A/draw_dns.py)."))
+
+# ---------------------------------------------------------------- 10
+questions.append(Q(
+    10, "tcp",
+    "חוו את דעתכם בנוגע לנכונות הטענה הבאה :\n"
+    "מבחינת האפליקציה אם צריך לשלוח סגמנט אחד בלבד של נתונים, הרי שאין הבדל בין האופן שבו TCP ו-UDP מתנהגים.",
+    opts("נכון אין הבדל.",
+         "לא נכון : יש הבדל במקרה אי הגעה או אובדן בדרך.",
+         "נכון בתלות ב \"גודל חלון\". עבור חלון קטן מ 7 אכן אין הבדל.",
+         "נכון פרט לשימוש בבקרת זרימה למניעת הצפת המקבל.",
+         "אף תשובה לא נכונה"),
+    "b",
+    r"""גם כשיש סגמנט אחד, TCP מבטיח אמינות: אישור (ACK), Timeout ושליחה חוזרת, ולפני כן לחיצת יד. UDP שולח את ההודעה פעם אחת ולא בודק אם היא הגיעה.
+לכן אם הסגמנט הולך לאיבוד, ב-TCP האפליקציה עדיין תקבל אותו (אחרי שליחה חוזרת) וב-UDP לא - ההיגד "אין הבדל" שגוי.
+ג ו-ד נכונות רק בניסוח "אין הבדל" ולכן שגויות (גודל חלון ובקרת זרימה אינם הנקודה, ההבדל הוא האמינות)."""))
+
+# ---------------------------------------------------------------- 11
+questions.append(Q(
+    11, "dns_dhcp",
+    "האם ניתן להשתמש בפרוטוקול DHCP כתחליף מלא לשימוש בפרוטוקול ARP במצב בו כבר נעזרים בפרוטוקול DHCP ?",
+    opts("כן, אפשר לוותר על ARP.",
+         "לא נכון : אי אפשר לוותר על ARP.",
+         "כן אפשר לוותר על ARP ברשת גדולה :רק עבור הקלינטים שמקבלים מידע משרת ה DHCP , אבל לא עבור שרתים להם יש כתובות IP קבועות והם לא נעזרים ב DHCP .",
+         "התשובה לא חד משמעית: כי התשובה תלויה בהגדרות המערכת.",
+         "אף תשובה לא נכונה."),
+    "b",
+    r"""DHCP מקצה ללקוח כתובת IP, מסכה, Gateway ו-DNS, אך אינו נותן כתובות MAC. כדי לשלוח מסגרת Ethernet בתוך הרשת (למשל אל ה-Gateway) צריך את ה-MAC של היעד, ואותו מקבלים רק מ-ARP.
+לכן אי אפשר לוותר על ARP, גם אם כל התחנות מקבלות את הכתובת שלהן מ-DHCP. ג שגויה (גם הלקוחות צריכים ARP), ד שגויה (אין תלות בהגדרות)."""))
+
+# ---------------------------------------------------------------- 12
+questions.append(Q(
+    12, "http",
+    "בפרוטוקול HTTP בגרסת HTTP שתומכת בפרסיסטנטיות: האם ניתן לבקש שני דפים שונים (למשל: https://ims.gov.il/he/Forecast ו- https://ims.gov.il/he/coasts) מעל אותו persistent connection.",
+    opts("כן.", "לא נכון : אי אפשר.",
+         "תלוי בגודל הדף: בדפים קטנים כן, בדפים גדולים לא.",
+         "תלוי בגודל הדף: בדפים קטנים לא , בדפים גדולים (ללא תמונות) כן.",
+         "אף תשובה לא נכונה"),
+    "a",
+    r"""חיבור persistent (HTTP/1.1) נשאר פתוח אחרי תגובה ומאפשר לשלוח עליו בקשות נוספות לאותו שרת. שני ה-URL הם באותו שרת (`ims.gov.il`), ולכן אפשר לבקש את שני הדפים על אותו חיבור.
+גודל הדף אינו משנה (ב, ג ו-ד שגויות).""",
+    note=EVID + " Corrected wording used (amendment sheet adds 'in the HTTP version that supports persistence')."))
+
+# ---------------------------------------------------------------- 13
+questions.append(Q(
+    13, "dns_dhcp",
+    "הניחו שלקוח HTTP מעוניין לקבל דף אינטרנט שנמצא ב-URL מסוים במחשב מקומי באותו LAN וזוהי בקשה ראשונה לקבלת דף זה במחשב זה (כי המחשב חדש אבל קונפגה לו כבר כתובת IP).\n"
+    "בתחילת התהליך כתובת ה-IP של שרת ה-HTTP **אינה ידועה**.\n"
+    "אלו פרוטוקולים של שכבת ה-transport נדרשים להיות מופעלים בתסריט זה?",
+    opts("DNS ו-HTTP", "TCP בשביל DNS; TCP בשביל HTTP", "UDP בשביל DNS; TCP בשביל HTTP", "אף לא אחת מהתשובות לעיל"),
+    "c",
+    r"""כתובת ה-IP של השרת אינה ידועה, לכן המחשב מבצע שאילתת DNS, והיא עוברת על UDP. אחר כך נפתח חיבור TCP לשרת ה-HTTP.
+א: DNS ו-HTTP הם פרוטוקולי אפליקציה, והשאלה מבקשת פרוטוקולי תעבורה. ב: DNS לא משתמש ב-TCP בשאילתה רגילה."""))
+
+# ---------------------------------------------------------------- 14
+questions.append(Q(
+    14, "dns_dhcp",
+    "הניחו שלקוח HTTP מעוניין לקבל דף אינטרנט הנמצא ב-URL מסוים **בשרת מקומי באותו LAN** בכתובת IP **ידועה** באותו Subnet כמו המחשב המבקש. וזוהי בקשה ראשונה לקבלת דף זה במחשב זה (כי המחשב חדש אבל קונפגה לו כבר כתובת IP).\n"
+    "בתחילת התהליך כתובת ה-MAC של שרת ה-HTTP **אינה ידועה**.\n"
+    "אלו פרוטוקולים נדרשים להיות מופעלים בתסריט זה?",
+    opts("ARP ו-HTTP", "DHCP ו ARP ואז DNS ואז HTTP", "TCP בשביל DNS; TCP בשביל HTTP", "DHCP ו ARP ואז HTTP",
+         "אף לא אחת מהתשובות לעיל"),
+    "a",
+    r"""כתובת ה-IP של השרת ידועה ולכן אין צורך ב-DNS; למחשב כבר הוגדרה כתובת IP ולכן אין צורך ב-DHCP.
+חסרה רק כתובת ה-MAC של השרת באותה רשת מקומית, ולכן נדרש ARP, ואחריו HTTP (מעל TCP).
+ב ו-ד כוללות DHCP שלא נדרש, ג כוללת DNS שלא נדרש."""))
+
+# ---------------------------------------------------------------- 15
+questions.append(Q(
+    15, "dns_dhcp", "באיזה פרוטוקול משתמש DHCP בשכבת ה-transport?",
+    opts("IP", "ARP", "TCP", "UDP", "אף לא אחת מהתשובות לעיל"), "d",
+    r"""DHCP משתמש ב-UDP (שרת בפורט 67, לקוח בפורט 68), כי ללקוח עדיין אין כתובת IP והוא שולח Broadcast.
+IP ו-ARP אינם פרוטוקולי תעבורה, ו-TCP דורש כתובות IP מוגדרות לחיבור."""))
+
+# ---------------------------------------------------------------- 16
+questions.append(Q(
+    16, "ip_cidr",
+    "נתונה כתובת 200.107.16.17/18. כתובת זו שייכת לבלוק כתובות.\nמהי הכתובת הראשונה והאחרונה בבלוק?\nרמז: קודם מצאו מהו הבלוק אליו שייכת הכתובת.",
+    opts("200.107.16.17 זוהי כתובת ראשונה ואחרונה בבלוק",
+         "כתובת ראשונה בבלוק: 200.107.0.0 . אחרונה בבלוק: 200.107.63.255",
+         "כתובת ראשונה בבלוק: 200.107.16.0 . אחרונה בבלוק: 200.107.79.255",
+         "כתובת ראשונה בבלוק: 200.107.16.17 . אחרונה בבלוק: 200.107.80.16",
+         "אף תשובה לא נכונה."),
+    "b",
+    r"""המסכה $/18$ היא $255.255.192.0$, כלומר בבית השלישי הבלוקים הם בקפיצות של $64$: $0\text{-}63$, $64\text{-}127$, $\ldots$
+הערך $16$ נמצא בבלוק $0\text{-}63$, לכן הכתובת הראשונה $200.107.0.0$ והאחרונה $200.107.63.255$ (ביטי ה-host הם 14 ביטים).
+ג, ד: מתחילות מ-16, שאינו גבול של בלוק /18. א: הכתובת אינה לבדה בבלוק (יש $2^{14}$ כתובות)."""))
+
+# ---------------------------------------------------------------- 17 (held, multi-select)
+questions.append(HOLD(
+    17, "tcp",
+    "אילו מהפונקציות הבאות חייבות להיות מיושמות על ידי פרוטוקול תעבורה אמין מעבר לפונקציות שממומשות כבר בפרוטוקול רשת? (יש לסמן כל הנכון)",
+    opts("קישוריות מ HOST ל HOST", "משלוח פאקטות בסדר הנכון", "הגנה בפני משלוח פאקטות כפולות", "התאוששות מאיבודי פאקטות",
+         "אף תשובה."),
+    MULTI + "b, c and d (host-to-host connectivity is already a network-layer function, so a is not required)."))
+
+# ---------------------------------------------------------------- 18 (held, multi-select)
+questions.append(HOLD(
+    18, "intro_layers",
+    "אילו מהפונקציות הבאות **לא** חייבות להיות מיושמות על ידי פרוטוקול תעבורה \"ללא דרישה לאמינות\" מעבר לפונקציות שכן ממומשות בפרוטוקול רשת?",
+    opts("קישוריות מ HOST ל HOST", "משלוח פאקטות בסדר הנכון", "משלוח פאקטות כפולות", "התאוששות מאיבודי פאקטות",
+         "אף תשובה לא נכונה."),
+    MULTI + "a, b, c and d (an unreliable transport adds only process multiplexing; the stem's third option as "
+            "printed reads 'משלוח פאקטות כפולות', treated as protection from duplicates). Reading of the stem and of "
+            "option c is uncertain - ask Adir."))
+
+# ---------------------------------------------------------------- 19
+questions.append(Q(
+    19, "http",
+    "איך מגיעים לשרתים שונים של CDN כאשר פונים לאותו שרת WEB עם אותו שם Domain :",
+    opts("בעזרת DNS חכם.", "בעזרת תכונת הפניה הרנדומית ב HTTP.", "אפשרי רק בעזרת קוקיס עוגיות.",
+         "בעזרת פרסיסטנטיות ב HTTP1.1 .", "אף תשובה."),
+    "a",
+    r"""ב-CDN שרת ה-DNS של המפעיל משיב כתובת IP שונה לפי המיקום של השואל (ה-Resolver שלו), ולכן לקוחות שונים שפונים לאותו שם מגיעים לשרתי CDN שונים הקרובים אליהם. זה "DNS חכם".
+ב: אין מנגנון "הפניה רנדומית" ב-HTTP שמכוון לפי מיקום; ג: עוגיות אינן הדרך; ד: persistence שומר חיבור פתוח ואינו בוחר שרת.""",
+    confidence="med",
+    note=EVID + " The cover page allows several correct answers; only option a is a mechanism a CDN uses."))
+
+# ---------------------------------------------------------------- 20
+questions.append(Q(
+    20, "tcp", "מהו התפקיד של מנגנון בקרת זרימה (Flow Control) ב-TCP?",
+    opts("להגן מפני העמסת נתבים ROUTERS עי ריבוי re-transmits .",
+         "להגן מפני העמסת מתגים SWITCHES עי ריבוי re-transmits .",
+         "להגן מפני הצפת הצד המקבל בשל שליחה מהירה מידי או איטית מיידי .",
+         "להגן מפני העמסת נתבים ROUTERS מ TimeOuts ארוכים מידי.",
+         "אף תשובה לא נכונה ."),
+    "c",
+    r"""בקרת זרימה ב-TCP מגינה על המקבל: המקבל מפרסם חלון קבלה (rwnd) והשולח לא שולח יותר ממה שהמקבל יכול לקלוט.
+העמסה על נתבים ומתגים היא עניין של בקרת עומס (Congestion Control), ולא של בקרת זרימה.""",
+    note=EVID + " Corrected wording used (amendment sheet: 'flow-control mechanism'). Option c is printed with "
+                "'או איטית מיידי' (sic)."))
+
+exam = {
+    "examCode": "23A-A",
+    "examLabel": "2023 סמסטר א מועד א",
+    "year": 2023,
+    "examDate": "01.02.2023",
+    "sourceFile": "sitting 23A-A (scanned booklet, 14 pages, student copy)",
+    "keyFile": "none (student ticks not trusted); independently solved, tools/verify/23A-A/check.py",
+    "contexts": {},
+    "questions": questions,
+}
+
+OUT.parent.mkdir(parents=True, exist_ok=True)
+OUT.write_text(json.dumps(exam, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+held = sum(1 for q in questions if q.get("hold"))
+print(f"wrote {OUT.name}: {len(questions)} questions ({held} held)")
