@@ -1,0 +1,341 @@
+{
+ "examCode": "24A-B",
+ "examLabel": "2024 סמסטר א מועד ב",
+ "year": 2024,
+ "examDate": "1.5.2024",
+ "sourceFile": "sitting 24A-B (typed exam, 6 pages, 10 questions)",
+ "keyFile": "no answer table: solved independently, agrees with the bold option in the printed text; calculations in tools/verify/24A-B/check.py",
+ "contexts": {},
+ "questions": [
+  {
+   "num": 1,
+   "topic": "delays",
+   "question": "מערכת תקשורת מוגדרת עם הפרמטרים הבאים:\n- רוחב פס (bandwidth): 20 Mbps\n- גודל חבילה (packet size): 1,500 Bytes\n- מרחק התפשטות (propagation distance): 500 קילומטרים\n- מהירות התפשטות (propagation speed): $2\\times10^{8}$ מטר לשנייה\n- ניתן להניח שאין עיכובים אחרים במערכת\nידוע ששיעור ההגעה (arrival rate) הנוכחי הוא 300,000 חבילות לשעה. מהו ה-Traffic Intensity במערכת? מה ניתן לומר על העומס במערכת?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "עוצמת תעבורה = 0.005, העומס נמוך אך יש פוטנציאל לעומס בטווח הרחוק"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "עוצמת תעבורה = 5, המערכת לא באיזון ((congested"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "עוצמת תעבורה = 0.05, העומס כעת נמוך והפוטנציאל לעומס מיידי נמוך"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "עוצמת תעבורה = 0.005, העומס נמוך יחסית והפוטנציאל לעומס מיידי נמוך"
+    }
+   ],
+   "correctId": "c",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "ממירים: חבילה של $1500\\cdot 8=12000$ ביט, ושיעור ההגעה $a=\\frac{300000}{3600}\\approx 83.3$ חבילות לשנייה.\n$$\\rho=\\frac{a\\cdot L}{R}=\\frac{83.3\\cdot 12000}{20\\cdot10^{6}}=0.05$$\nהעוצמה נמוכה בהרבה מ-1, ולכן העומס נמוך ואין פוטנציאל לעומס מיידי.\nא ו-ד: 0.005 הוא פי 10 קטן מדי (טעות בהמרת Bytes או שעה); ב: 5 היה אומר שהתור גדל ללא גבול.",
+   "note": "No answer table in the source; solved independently - agrees with the option printed in bold."
+  },
+  {
+   "num": 2,
+   "topic": "delays",
+   "question": "מבין האפשרויות הבאות, איזו אפשרות תאפשר הורדה של עומס על רשת תקשורת מחשבים:",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "הגבלת מספר החיבורים הפתוחים בו-זמנית לשרת"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "שימוש ב-TCP בשכבת התעבורה לכל פרוטוקול בשכבת האפליקציה שמאפשר זאת"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "העלאת קצב העברת הנתונים ברשת"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "הקטנה של גודל החבילות המועברות ברשת"
+    }
+   ],
+   "correctId": "c",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "med",
+   "explanation": "עומס מוגדר דרך $\\rho=\\frac{a\\cdot L}{R}$: הוא קטן כש-$R$ (קצב העברת הנתונים) גדל. העלאת הקצב היא הדרך היחידה בין האפשרויות שמורידה את העומס בלי לפגוע בשירות.\nא: הגבלת חיבורים משנה את מי שמקבל שירות אך לא את הקיבולת של הרשת. ב: TCP מוסיף תקורה (ACK, שידורים חוזרים) ולא מפחית עומס. ד: חבילות קטנות יותר בכמות נתונים זהה הן יותר חבילות ויותר כותרות - $a$ גדל, ולכן הנתון הכולל לא ירד.",
+   "note": "No answer table in the source; solved independently - agrees with the option printed in bold. Conceptual question with some overlap (option ד lowers L but raises the packet count); the bold option is the only one that cleanly lowers rho = a*L/R."
+  },
+  {
+   "num": 3,
+   "topic": "http",
+   "question": "מהו ההבדל העיקרי בין גרסה HTTP/2 ו-HTTP/3?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "HTTP/2 דורש שימוש בהצפנה בעוד ש-HTTP/3 אינו דורש זאת."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "HTTP/2 תומך ביכולת Server Push בעוד ש-HTTP/3 אינו תומך בכך."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "HTTP/2 פועל מעל פרוטוקול TCP בעוד ש-HTTP/3 פועל מעל פרוטוקול UDP."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "HTTP/2 מעביר נתונים ב-multiplexing על גבי חיבור TCP יחיד בעוד ש-HTTP/3 לא."
+    }
+   ],
+   "correctId": "c",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "ההבדל היסודי: HTTP/2 רץ מעל TCP, ו-HTTP/3 רץ מעל QUIC שמבוסס על UDP.\nא: ב-HTTP/3 ההצפנה (TLS 1.3) מובנית ב-QUIC, כך שהוא דווקא תמיד מוצפן. ב: Server Push הוגדר גם ב-HTTP/3. ד: גם HTTP/3 מבצע multiplexing - על זרמי QUIC.",
+   "note": "No answer table in the source; solved independently - agrees with the option printed in bold."
+  },
+  {
+   "num": 4,
+   "topic": "http",
+   "question": "השרת האינטרנטי שלכם מריץ אפליקציית רשת שמטרתה לנהל הזמנות של לקוחות. כחלק מהפונקציונליות שלה, האפליקציה מאפשרת למשתמשים ליצור הזמנה חדשה בכתובת: `mywebserver.com/create` ולעדכן הזמנה קיימת בנתיב: `mywebserver.com/update/orderNum` כאשר orderNum יוחלף במס׳ ההזמנה הקיים.\nאיזה מהמשפטים הבאים נכון לבקשת HTTP PUT אשר יכולה להישלח לשרת? ידוע שהמערכת תומכת במתודה.",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "בקשת HTTP PUT תמיד תחזיר שגיאה אם ההזמנה הספציפית לא קיימת."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "HTTP PUT יכולה ליצור הזמנה חדשה אם ההזמנה הספציפית לא קיימת."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "HTTP PUT חייבת לקרוא לנתיב הרלוונטי שתומך ב- HTTP POST במידה וההזמנה לא קיימת."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "HTTP PUT אינה מתאימה לעדכון הזמנות ואין לעשות בה שימוש בהקשר זה."
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "לפי ההגדרה של HTTP, PUT יוצר משאב בכתובת הנתונה או מחליף אותו אם הוא כבר קיים (idempotent). לכן אם ההזמנה אינה קיימת, PUT יכול ליצור אותה.\nא: אין חובה להחזיר שגיאה. ג: PUT אינו חייב לקרוא ל-POST. ד: PUT מתאים בדיוק להחלפה/עדכון של משאב ידוע.",
+   "note": "No answer table in the source; solved independently - agrees with the option printed in bold."
+  },
+  {
+   "num": 5,
+   "topic": "http",
+   "question": "שושי הכניסה בשורת הכתובת בדפדפן את ה-URL הבא: `http://mywebsite.com/index.html`.\nבדפדפן התקבל מסמך HTML עם הפניות לשתי תמונות בכתובות הבאות:\n`http://mywebsite.com/imageA.jpg`\n`http://mymirrorwebsite.com/imageB.jpg`\nלאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:\n- `mywebsite.com: 203.1.113.10`\n- `mymirrorwebsite.com: 203.0.113.10`\nבהנחה שהדפדפן והשרתים תומכים בפרוטוקול HTTP/1.1 (persistent ללא pipelining), כמה חיבורי TCP נדרשים בצד הלקוח כדי לטעון את הדף כולל שתי התמונות?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "לא ניתן לדעת"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "4"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "3"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "2"
+    }
+   ],
+   "correctId": "d",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "שני שמות מארח ושתי כתובות IP שונות (203.1.113.10 לעומת 203.0.113.10), ולכן שני שרתים נפרדים. חיבור persistent אחד לכל שרת משרת את כל האובייקטים ממנו ברצף: `index.html` ו-`imageA.jpg` על החיבור הראשון, `imageB.jpg` על השני - בסך הכול 2.\n3 או 4 היו נכונים רק בלי שימוש חוזר בחיבור (חיבור לכל אובייקט).",
+   "note": "No answer table in the source; solved independently - agrees with the option printed in bold."
+  },
+  {
+   "num": 6,
+   "topic": "delays",
+   "question": "מערכת תקשורת מוגדרת עם הפרמטרים הבאים:\n- רוחב פס (bandwidth): 20 Mbps\n- גודל חבילה (packet size): 1,500 Byte\n- מרחק התפשטות (propagation distance): 500 קילומטרים\n- מהירות התפשטות (propagation speed): $2\\times10^{8}$ מטר לשנייה\n- ידוע ששיעור ההגעה (arrival rate) הנוכחי הוא 300,000 חבילות לשעה\n- ניתן להניח שאין עיכובים אחרים במערכת\nמהי כמות החבילות המקסימלית שתיאורטית שניתן להעביר בקישור זה יוכל כדי לשמור על Traffic Intensity של ל-0.8? המספרים בתשובה מעוגלים:",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "1,333,333 חבילות לדקה"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "1,333 חבילות לשנייה"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "1,666 חבילות לשנייה"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "1,666,666 חבילות לדקה"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "מ-$\\rho=\\frac{a\\cdot L}{R}$ מקבלים $a=\\frac{\\rho\\cdot R}{L}=\\frac{0.8\\cdot 20\\cdot10^{6}}{12000}\\approx 1333$ חבילות לשנייה (שיעור ההגעה הנוכחי אינו משפיע על התשובה).\nבדקה זה כ-80,000 חבילות, ולכן שתי האפשרויות \"לדקה\" רחוקות מהערך. 1,666 מתקבל אם מחשבים עם $\\rho=1$ ו-1,500 ביט.",
+   "note": "No answer table in the source; solved independently - agrees with the option printed in bold."
+  },
+  {
+   "num": 7,
+   "topic": "dns_dhcp",
+   "question": "כאשר הקצאת הכתובות ברשת נעשית באופן דינאמי, מתי ישלח לקוח הודעת 'DHCP Discover'?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "כאשר כתובת ה-IP שלו פגה והלקוח מעוניין בחידושה."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "כאשר הלקוח מתחבר לרשת בפעם הראשונה או לאחר אתחול המכשיר"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "כאשר הלקוח מעוניין לגלות מכשירים אחרים שמחוברים לרשת המקומית"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "כאשר הלקוח מעוניין לקבל את כתובת שרת ה-DNS המקומי ואת ה-Default Gateway"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "Discover הוא השלב הראשון בקבלת כתובת: לקוח ללא כתובת (חיבור ראשון, או אחרי אתחול) משדר אותו כדי למצוא שרתי DHCP.\nא: חידוש של כתובת קיימת נעשה בבקשת Request ישירה לשרת. ג: DHCP אינו פרוטוקול גילוי מכשירים. ד: DNS ו-Gateway מגיעים בהודעת Offer/ACK, לא כסיבה לשליחת Discover.",
+   "note": "No answer table in the source; solved independently - agrees with the option printed in bold."
+  },
+  {
+   "num": 8,
+   "topic": "http",
+   "question": "כמנהלי המוצר של משחק רשת פופולארי, עם משתמשים רבים ברחבי העולם, נוכחתם כי חווית המשתמשים אינה מספקת - ישנם עיכובים גבוהים במיוחד עבור משתמשים במיקומים גיאוגרפיים מרוחקים. איזה שינוי צפוי לספק את ההשפעה המשמעותית ביותר על זמני התגובה של האפליקציה?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "שימוש בפרוטוקול QUIC הן בשרת והן באפליקציית הלקוח."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "ויתור על החיבור המוצפן בין השרת ללקוח"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "הפעלת HTTP Persistent Connections בצד השרת ובדפדפני המשתמשים."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "תשובות א׳-ג׳ אינן נכונות"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "כשהמרחק גדול, כל RTT יקר. QUIC מקצר את הקמת החיבור (לחיצת יד משולבת של הובלה והצפנה ב-RTT אחד או אפילו 0-RTT בחיבור חוזר) ומונע חסימת head-of-line, ולכן הוא מקטין את זמן התגובה בצורה הניכרת ביותר.\nב: ויתור על הצפנה חוסך מעט מאוד ופוגע באבטחה. ג: חיבורים persistent כבר ברירת המחדל ב-HTTP/1.1 וחוסכים הקמה חוזרת בלבד.",
+   "note": "No answer table in the source; solved independently - agrees with the option printed in bold."
+  },
+  {
+   "num": 9,
+   "topic": "dns_dhcp",
+   "question": "מה יקרה אם ערכי ה-TTL ברשומות ה-DNS במטמון (cache) של דפדפנים יהיה נמוך מדי?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "העומס על שרתי ה-DNS יופחת משמעותית"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "זמן הטעינה של דפי אינטרנט יעלה משמעותית"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "האבטחה והפרטיות של המשתמשים תשתפר משמעותית"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "תשובות א׳-ג׳ אינן נכונות"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "TTL נמוך גורם לרשומות לפוג מהר, כך שהדפדפן צריך לבצע שאילתות DNS חוזרות לפני כל גישה לאתר - כל שאילתה מוסיפה השהיה, וזמן הטעינה עולה.\nא: ההפך - העומס על שרתי ה-DNS גדל. ג: אין קשר ישיר לאבטחה.",
+   "note": "No answer table in the source; solved independently - agrees with the option printed in bold."
+  },
+  {
+   "num": 10,
+   "topic": "intro_layers",
+   "question": "מהו ההבדל המשמעותי בין שכבת הרשת (Network Layer) לשכבת התעבורה (Transport Layer) במודל ה-OSI:",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "שכבת הרשת לניתוב הודעות ללא שגיאות בין שתי תחנות סמוכות בעוד ששכבת התעבורה אחראית על אמינות העברת הנתונים."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "שכבת הרשת אחראית לניתוב החבילות אל היעד הנכון בסדר הנכון, בעוד ששכבת התעבורה אחראית להעביר את המידע בין כל שני נתבים סמוכים."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "שכבת הרשת פועלת רק בין שני מחשבים המחוברים זה לזה ישירות, בעוד ששכבת התובלה מאפשרת תקשורת בין תהליכים (Processes) במחשבים שונים."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "שכבת התובלה יוצרת חיבור בין תהליכים בעוד ששכבת הרשת אחראית לניתוב הודעות ללא שגיאות בין תחנות מרוחקות."
+    }
+   ],
+   "correctId": "d",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "שכבת התעבורה מספקת תקשורת בין תהליכים (פורטים) בתחנות הקצה, ושכבת הרשת מנתבת הודעות בין תחנות מרוחקות על פני רשתות.\nא: ניתוב אינו \"בין שתי תחנות סמוכות\" - זו שכבת הקו. ב: הגדרת שכבת התעבורה שגויה - היא מקצה לקצה, לא בין נתבים סמוכים. ג: שכבת הרשת פועלת בין מחשבים מרוחקים, לא רק מחוברים ישירות.",
+   "note": "No answer table in the source; solved independently - agrees with the option printed in bold."
+  }
+ ]
+}

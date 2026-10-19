@@ -1,0 +1,599 @@
+{
+ "examCode": "22S-A",
+ "examLabel": "2022 סמסטר קיץ מועד א",
+ "year": 2022,
+ "examDate": "3.10.2022",
+ "sourceFile": "sitting 22S-A (questions + answers PDF, 24 pages, 18 questions)",
+ "keyFile": "sitting 22S-A questions+answers PDF, yellow-highlighted correct options (Q10 and Q11 unhighlighted: solved); calculations in tools/verify/22S-A/check.py",
+ "contexts": {},
+ "questions": [
+  {
+   "num": 1,
+   "topic": "ip_cidr",
+   "question": "אלו מבין הבאים יכול לבצע re-assembly ל-IP Packets?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "רק NAT"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "רק תחנת היעד ו-NAT"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "רק תחנת היעד"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "רק Switch"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": "הרכבה מחדש של פרגמנטים מתבצעת בתחנת היעד. גם NAT יכול לבצע אותה: מספרי הפורטים (שבהם הוא משתמש לתרגום) נמצאים רק בפרגמנט הראשון, ולכן NAT שמתרגם כתובות ופורטים נדרש לעיתים להרכיב את החבילה כדי לתרגם נכון.\nSwitch פועל בשכבת הקו ואינו רואה את שכבת ה-IP, ולכן אינו מרכיב חבילות. \"רק NAT\" ו-\"רק תחנת היעד\" חסרות כל אחת את הצד השני.",
+   "note": "Official highlighted key: NAT and the destination host."
+  },
+  {
+   "num": 2,
+   "topic": "nat_ipv6_icmp",
+   "question": "אלו מבין הבאים בא לפתור את מצוקת הכתובות?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "Router"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "NAT"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "Switch"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "DNS"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": "מצוקת כתובות ה-IPv4: NAT מאפשר להרבה תחנות ברשת פרטית להשתמש בכתובת ציבורית אחת (באמצעות תרגום פורטים).\nRouter מנתב, Switch מעביר מסגרות לפי MAC ו-DNS מתרגם שמות לכתובות - אף אחד מהם אינו חוסך כתובות."
+  },
+  {
+   "num": 3,
+   "topic": "ip_cidr",
+   "question": "חבילה בגודל 2000 Bytes עברה fragmentation ל-5 חבילות. נתון כי גודל ה-header הוא 20 Bytes. מה נכון לגבי חבילה מספר 5 (מתוך 5)?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "Offset=1600"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "Offset=200"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "Offset=400"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "Offset=480"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": "2000 הבתים הם נתונים, והם נחתכים ל-5 פרגמנטים, כלומר כל פרגמנט נושא $F$ בתים (כפולה של 8) עם $400\\le F<500$ כדי שיהיו בדיוק 5. הפרגמנט החמישי מתחיל אחרי $4F$ בתים, והשדה Offset נמדד בבלוקים של 8: $\\text{Offset}=4F/8=F/2\\in[200,250)$.\nמבין האפשרויות רק 200 נמצא בטווח ($F=400$, כלומר MTU של 420). 1600 הוא ההיסט בבתים (לא בבלוקים), ו-400 ו-480 מתאימים לפרגמנטים גדולים מדי.",
+   "note": "Official highlighted key; the MTU is not printed, the offset range pins F=400 (verified in tools/verify/22S-A/check.py)."
+  },
+  {
+   "num": 4,
+   "topic": "dns_dhcp",
+   "question": "איזו תשובה מתארת בצורה המדויקת ביותר את פרוטוקול DHCP?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "פרוטוקול הפועל בשכבת הקו (Data-Link Layer) כיוון שמטרתו היא לאפשר לתחנה לקבל כתובת IP מקומית"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "פרוטוקול הפועל בשכבת התעבורה שפועל על-גבי פרוטוקול TCP כיוון שכתובות ה-IP ייחודיות וידועות."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "מאפשר להתחבר לרשת באופן ידני (כלומר הלקוח יבחר כתובת IP מקומית ללא תלות בשרת ה-DHCP)"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "פרוטוקול בשכבת האפליקציה שפועל מעל פרוטוקול UDP בשכבת התעבורה"
+    }
+   ],
+   "correctId": "d",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": "DHCP הוא פרוטוקול של שכבת האפליקציה (לקוח-שרת) שרץ מעל UDP (פורטים 67 ו-68), כי ללקוח עדיין אין כתובת IP ולכן הוא משדר.\nא: אינו פרוטוקול של שכבת הקו. ב: אינו רץ מעל TCP. ג: DHCP דווקא מקצה את הכתובת ואינו ידני."
+  },
+  {
+   "num": 5,
+   "topic": "http",
+   "question": "מעוניינים להציג בדפדפן את דף הבית של אתר ״שושי-נט״ בכתובת www.shoshinet.com. נניח כי גודל הדף הוא 100KByte ובתוכו הפניה ל-5 תמונות, כל אחת מהתמונות בגודל 300KByte. כמו כן, ידוע כי הדף המבוקש והתמונות מאוחסנים באותו מחשב. ה-RTT בין המחשב שלך לשרת הוא 500msec ומהירות הקו היא 100Mbps. ניתן להזניח את זמן שידור הודעת ה-GET.\nכמה זמן יידרש לטעינת הדף כולל התמונות ב-host בחיבור מסוג HTTP Persistent (ללא pipelining)?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "`T = 1sec + 100KB/100Mb + 5*(500msec + 300KB/100Mb)`"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "`T = 500msec + 100KB /100Mb + 5*(1sec + 300KB /100Mb)`"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "`T = 1sec + 100KB /100Mb + 500msec + 5*(300KB /100Mb)`"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "`T = 1msec + 100KB /100Mb + 5*(1sec + 250KB/100Mb)`"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": "חיבור persistent: ההקמה של חיבור ה-TCP עולה RTT אחד, ואחריה בקשת ה-GET של הדף עולה עוד RTT (יחד $2\\cdot 500\\,ms=1\\,sec$), ואז משדרים את הדף. כל אחת מ-5 התמונות (ללא pipelining, בזו אחר זו על אותו חיבור) עולה RTT אחד של בקשה ועוד זמן שידור התמונה.\n$$T=1\\,sec+\\frac{100KB}{100Mb}+5\\left(500\\,msec+\\frac{300KB}{100Mb}\\right)\\approx 3.63\\,sec$$\nב: נותן RTT כפול לכל תמונה (כמו חיבור שאינו persistent). ג: מחשב את ה-RTT של התמונות פעם אחת בלבד (כמו pipelining). ד: ערכים שאינם מתאימים לנתונים."
+  },
+  {
+   "num": 6,
+   "topic": "udp_checksum",
+   "question": "בחר את הנוסח המדויק ביותר:",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "מנגנון Checksum משמש לגילוי שגיאות (האם מידע השתבש). מנגנון זה אינו בטוח לגמרי שכן אם יש שגיאה בהודעה וגם יש שגיאה מפצה בשדה ה-checksum, אזי הצד המקבל כלל לא יבחין בשגיאה."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "מנגנון Checksum משמש לבדיקת תקינות/שלמות ההודעה שנשלחה והוא בטוח לחלוטין. בפרוטוקול UDP, אם הערך שמופיע בשדה ה-checksum שווה לערך שחישב הצד המקבל, הרי שההודעה תקינה באופן וודאי."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "מנגנון ה-checksum בודק האם ההודעה שהתקבלה זהה להודעה שנשלחה. בגלל מבנה UDP Datagram, אין אפשרות שה-header ישתבש אלא רק המידע שהוא עוטף."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "מנגנון ה-checksum משמש לתיקון שגיאות ולכן אם ה-checksum שחושב לא שווה לערך ה-checksum שנשלח בהודעה מעל פרוטוקול UDP, הרי שהחבילה תתוקן ותעלה לשכבת האפליקציה."
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": "Checksum מזהה שגיאות בלבד ואינו מתקן אותן, והוא אינו מושלם: שינויים שמבטלים זה את זה (למשל שגיאה בהודעה ושגיאה מפצה בשדה ה-checksum) לא יתגלו.\nב: \"בטוח לחלוטין\" ו-\"ודאי\" שגויים - התאמה אינה הוכחה לתקינות. ג: גם ה-header יכול להשתבש. ד: ה-checksum אינו מתקן; חבילה פגומה נזרקת."
+  },
+  {
+   "num": 7,
+   "topic": "dns_dhcp",
+   "question": "קבלת כתובת IP באופן דינאמי משרת DHCP בעת הצטרפות לרשת מתבצע בסדר הבא:",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "`DHCP Request->DHCP Offer->DHCP ACK`"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "`DHCP Request->DHCP ACK->DHCP Discover->DHCP Offer`"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "`DHCP Discover-> DHCP Request-> DHCP ACK`"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "`DHCP Discover->DHCP Offer->DHCP Request->DHCP ACK`"
+    }
+   ],
+   "correctId": "d",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": "הסדר התקני (DORA): הלקוח משדר Discover, השרת עונה Offer, הלקוח מבקש Request את ההצעה והשרת מאשר ב-ACK.\nא, ב, ג משמיטות את שלב ה-Offer או הופכות את הסדר."
+  },
+  {
+   "num": 8,
+   "topic": "nat_ipv6_icmp",
+   "question": "שכבת התעבורה במחשב A (10.0.0.1) שולחת חבילה בגודל 2000Bytes למחשב C (20.0.3.1) אשר משמש כשרת web.\nנקבע MTU בקווים ברשת ל-1500 bytes, פרט לקו המחבר בין R2 ל-R3 אשר בו נקבע MTU = 500Bytes. R1 משמש גם כשרת NAT. ניתן להניח כי גודל ה-header הוא 20 בתים. נתונים כתובת ה-IP של תחנות הקצה והנתבים וכן הרשומה הרלוונטית בטבלת ה-NAT.\nמהי החלוקה לחבילות אשר מתארת בצורה המדויקת ביותר את המידע שיוצא מ-A אל R1?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "`SRC IP 10.0.0.1 | DST IP 20.0.3.1 | SRC PORT 123 | DST PORT 80 | SIZE 1500 | OFFSET 0 | FRAG 1`\n`SRC IP 10.0.0.1 | DST IP 20.0.3.1 | SRC PORT 123 | DST PORT 80 | SIZE 540 | OFFSET 185 | FRAG 0`"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "`SRC IP 20.0.0.1 | DST IP 20.0.3.1 | SRC PORT 130 | DST PORT 80 | SIZE 1500 | OFFSET 0 | FRAG 1`\n`SRC IP 20.0.0.1 | DST IP 20.0.3.1 | SRC PORT 130 | DST PORT 80 | SIZE 540 | OFFSET 185 | FRAG 0`"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "`SRC IP 20.0.1.1 | DST IP 20.0.3.1 | SRC PORT 123 | DST PORT 80 | SIZE 2000 | OFFSET 0 | FRAG 0`"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "`SRC IP 10.0.0.1 | DST IP 20.0.3.1 | SRC PORT 123 | DST PORT 80 | SIZE 1500 | OFFSET 0 | FRAG 1`\n`SRC IP 20.0.0.1 | DST IP 20.0.3.1 | SRC PORT 130 | DST PORT 80 | SIZE 540 | OFFSET 185 | FRAG 0`"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": "השאלה היא על המידע היוצא מ-A אל R1, כלומר לפני ה-NAT: כתובת המקור עדיין הפרטית `10.0.0.1` ופורט המקור 123 (התרגום ל-`20.0.0.1:130` נעשה רק ב-R1).\nהקו של A מוגבל ל-1500: 2000 בתים נתונים מתחלקים לפרגמנט ראשון של 1480 בתים נתונים + 20 header = 1500 (Offset 0, FRAG 1) ופרגמנט שני של 520 בתים נתונים + 20 = 540 (Offset $1480/8=185$, FRAG 0).\nב: כבר אחרי NAT. ג: ללא פרגמנטציה למרות MTU של 1500. ד: מערבב כתובת לפני NAT ואחריו. (ה-MTU של 500 בין R2 ל-R3 משפיע רק בהמשך הדרך.)",
+   "image": "images/exams/22S-A-Q8.png",
+   "note": "Official highlighted key: option A. The source prints the four packet tables and then a letter list; here the tables are the options. D is the fourth printed table (first packet un-NATed, second NATed)."
+  },
+  {
+   "num": 9,
+   "topic": "sockets_email",
+   "question": "סיון מעוניינת להציג בדפדפן את דף הבית של ״שושי-נט״ בכתובת: http://www.shoshinet.com\nניתן להניח כי:\n- הכתובת עבור שרת האינטרנט נרשמה במערכת ה-DNS העולמית ועודנה פעילה.\n- תשובה על DNS A Query מלקוח עבור הכתובת http://www.shoshinet.com תכיל את כתובת ה-IP הבאה: 212.235.27.38\n- הכתובת היא של Web Server במצב online, כלומר יכול להאזין לבקשות מלקוחות ולטפל בהן, אך מאז שהשרת עלה טרם נשלחה אליו בקשה.\n- סיון מעולם לא ביקרה באתר ״שושי-נט״ או באתר אשר מפנה אל אתר ״שושי-נט״/משאבים ששמורים ב-domain של ״שושי-נט״.\n- ידוע כי באופן עקרוני, בקשת HTTP GET בודדת, ללא פרמטרים נוספים לאתר ״שושי-נט״, תענה ב-Response שב-Body שלו מסמך HTML אחד, הכולל טקסט בלבד, ללא לינקים/הפניות למשאבים כלשהם.\n- ידוע כי סיון ביצעה בקשת HTTP GET אחת ובסופו של התהליך, דף הבית של שושי-נט הוצג באופן תקין בדפדפן של סיון.\nכמה Sockets נוצרו בסה״כ הן בצד השרת והן בצד הלקוח מאז שהשרת עלה ועד שדף האתר הוצג בהצלחה בדפדפן של סיון?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "3"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "4"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "2"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "5"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "med",
+   "explanation": "בצד השרת: socket האזנה (welcome) שנוצר כשהשרת עלה, וסוקט חיבור אחד שנוצר כשהתקבל החיבור של סיון - 2.\nבצד הלקוח: סוקט UDP עבור שאילתת ה-DNS וסוקט TCP עבור חיבור ה-HTTP - 2 (הדף כולל HTML אחד בלבד, ללא תמונות, ולכן אין חיבורים נוספים).\nסך הכול 4.\n3 מתקבל אם שוכחים את סוקט ה-DNS (או את סוקט ההאזנה), ו-5 מניח חיבור נוסף שלא נדרש.",
+   "note": "Official highlighted key: 4 (server welcome + connection socket, client DNS UDP + HTTP TCP socket)."
+  },
+  {
+   "num": 10,
+   "topic": "link_layer",
+   "question": "בטבלה מופיעות 2 מחרוזות שמייצגות מידע בעל-משמעות.\n`ID 1: 1 0 0 1 1 0 0`\n`ID 2: 1 0 0 1 1 0 1`\nלפי Hamming Code ו-Hamming Distance:",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "אם בשידור המידע יתהפך הביט האחרון באחת מהמחרוזות, נדע לזהות שארעה שגיאה"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "אם בשידור המידע יתהפך הביט האחד לפני אחרון, באחת מהמחרוזות, לא נדע לזהות שארעה שגיאה"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "אם בהעברת המידע יתהפך ביט במיקום כלשהו באחת המחרוזות, נדע לזהות שארעה שגיאה"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "אף אחת מהתשובות האחרות נכונה"
+    }
+   ],
+   "correctId": "d",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "שתי המחרוזות נבדלות בביט אחד בלבד (המרחק של Hamming הוא 1). היפוך הביט האחרון באחת מהן מייצר בדיוק את המחרוזת השנייה, שהיא מילה חוקית - לכן השגיאה לא תזוהה (א שגויה, וממילא ג שגויה).\nהיפוך הביט שלפני האחרון מייצר מחרוזת שאינה אחת משתי המילים החוקיות (`1001110` או `1001111`), ולכן השגיאה כן תזוהה (ב שגויה).\nלכן אף אחת מהתשובות האחרות אינה נכונה: ד.",
+   "note": "No highlight in the key copy for this question; solved independently (tools/verify/22S-A/check.py)."
+  },
+  {
+   "num": 11,
+   "topic": "link_layer",
+   "question": "בטבלה מופיעות שתי מחרוזות שמייצגות מידע בעל-משמעות.\n`ID 1: 1 0 1 1 1 0 1`\n`ID 2: 1 0 0 1 1 0 1`\nעל-פי Hamming Code, שימוש ב-1's complement באופן הבא יאפשר זיהוי של שגיאה בודדת בין המחרוזות:",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "`ID 1: Binary Data 1011101 | Parity Bit 0 | Binary Data 10111010`\n`ID 2: Binary Data 1001101 | Parity Bit 0 | Binary Data 10011010`"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "`ID 1: Binary Data 1011101 | Parity Bit 1 | Binary Data 101110101`\n`ID 2: Binary Data 1001101 | Parity Bit 0 | Binary Data 100110100`"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "`ID 1: Binary Data 1011101 | Parity Bit 1 | Binary Data 101110101`\n`ID 2: Binary Data 1001101 | Parity Bit 1 | Binary Data 100110101`"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "`ID 1: Binary Data 1011101 | Parity Bit 1 | Binary Data 101110101`\n`ID 2: Binary Data 1001101 | Parity Bit 0 | Binary Data 100110100`"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "שתי המחרוזות נבדלות בביט אחד, ולכן שגיאה בודדת עלולה להפוך אחת לשנייה. הוספת ביט זוגיות (even parity) מגדילה את המרחק בין המילים החוקיות ל-2, וכך כל שגיאה בודדת מזוהה.\nבמחרוזת 1 יש חמישה אחדות, ולכן ביט הזוגיות הוא 1; במחרוזת 2 יש ארבעה אחדות ולכן ביט הזוגיות הוא 0. רק הטבלה שבה ביטי הזוגיות הם (1, 0) והנתונים המוארכים מתאימים להם נכונה.\nא: ביטי הזוגיות (0, 0) שגויים ומרחק המילים נשאר 1. ג: ביט הזוגיות של מחרוזת 2 שגוי (1 במקום 0).\nבשאלון האפשרויות ב ו-ד מודפסות בטבלה זהה, ולכן שתיהן מתקבלות.",
+   "acceptedIds": [
+    "b",
+    "d"
+   ],
+   "note": "No highlight in the key copy for this question; solved independently. Options b and d print the same table, so both are accepted (acceptedIds). Parity checked in tools/verify/22S-A/check.py."
+  },
+  {
+   "num": 12,
+   "topic": "dns_dhcp",
+   "question": "מהם הנתונים שמספק שרת ה-DHCP לתחנה שפונה אליו?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "IP, Router IP, Subnet, Root DNS"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "IP, Router IP, DNS Root, Default Gateway IP"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "IP, subnet, local DNS, Default Gateway IP"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "IP, Default Gateway MAC address, Subnet, Local DNS"
+    }
+   ],
+   "correctId": "c",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": "שרת DHCP מספק כתובת IP, מסכת רשת (Subnet), כתובת ה-IP של ה-Default Gateway וכתובת שרת ה-DNS המקומי.\nא, ב: שרת DNS \"Root\" אינו מה ש-DHCP נותן. ד: כתובת MAC של ה-Gateway מתקבלת מ-ARP, לא מ-DHCP."
+  },
+  {
+   "num": 13,
+   "topic": "intro_layers",
+   "question": "מה תפקידה של שכבת התעבורה?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "להבטיח אמינות בין תחנות רחוקות"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "לנתב את התעבורה ברשת"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "להעביר מידע בין מחשבים קרובים"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "להגדיר את המסלולים בניתוב ההודעות"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": "שכבת התעבורה מספקת תקשורת בין תהליכים בתחנות הקצה (ב-TCP גם אמינות), מקצה לקצה.\nב ו-ד: ניתוב והגדרת מסלולים הם תפקיד שכבת הרשת. ג: העברה בין מחשבים קרובים היא עניין של שכבת הקו."
+  },
+  {
+   "num": 14,
+   "topic": "tcp",
+   "question": "לפניכם תהליך TCP 3-Way Handshake בין תחנות A ל-B:\nX מייצג מספר רנדומלי שהוגרל. בהנחה שהתהליך הושלם בהצלחה ולא בוצעה שליחה מחדש של SYN של אחד הצדדים, מה הערכים של המשתנים var1, var2, var3?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "`var1 =501, var2 = 501, var3 = X+1`"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "`var1 = 500, var2 = X+1, var3 = X`"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "`var1 = X, var2 = 502, var3 = X+1`"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "`var1= 501, var2 =X, var3=X+1`"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": "A שולח SYN עם $seq=500$ (ה-SYN צורך מספר סידורי אחד). B עונה ב-SYN+ACK עם $seq=X$ ו-$ack=500+1=501$ - לכן $var1=501$.\nA שולח ACK: ה-seq שלו הוא המספר הבא שלו, 501 ($var2=501$), וה-ack הוא $X+1$ ($var3=X+1$).\nב, ג, ד מחליפות בין מספר ה-seq ל-ack או שוכחות את ה-1 של ה-SYN.",
+   "image": "images/exams/22S-A-Q14.png"
+  },
+  {
+   "num": 15,
+   "topic": "http",
+   "question": "עומר הסביר לאדם שב-HTTP Response, גוף ההודעה (Body) תמיד נכלל ב-Response וגם אינו יכול להיות ריק. בחרו את הנוסח המדויק ביותר מבין האפשרויות הבאות:",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "עומר צודק"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "עומר טועה רק במקרה ומדובר בתשובה על בקשת HTTP GET למסמך שכבר נמצא ב-cache הדפדפן. במידה והשרת מצא שהמסמך עדיין valid, המסמך לא יישלח ב-Response Body"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "עומר טועה כיוון שכללי הפרוטוקול לא מאפשרים לשלוח Response ללא חלק הגוף (Body)"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "אף אחת מהתשובות האחרות נכונה"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": "גוף ההודעה אינו חובה. בבקשה מותנית (`If-Modified-Since`) על מסמך שנמצא ב-cache, אם הוא עדיין תקף השרת עונה `304 Not Modified` ללא גוף.\nא: עומר טועה. ג: הפרוטוקול כן מאפשר תשובות ללא גוף (304, וגם 204 ועוד). ד: ב נכונה."
+  },
+  {
+   "num": 16,
+   "topic": "dns_dhcp",
+   "question": "כמה שלבים יש בתהליך מול שרת ה-DHCP?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "2"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "3"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "4"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "אין תשובה אחרת נכונה"
+    }
+   ],
+   "correctId": "c",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": "ארבעה שלבים (DORA): Discover, Offer, Request, ACK."
+  },
+  {
+   "num": 17,
+   "topic": "reliable_transfer",
+   "question": "בפרוטוקול ARQ בשיטת Stop and Wait הצד השולח העביר frame אשר הגיע לצד המקבל. הצד המקבל חישב את ה-CRC וגילה שגיאה. מה ייקרה כעת?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "מתישהו יהיה timeout והצד השולח יבצע retransmission עם מספר סידורי שונה מהחבילה שלא הגיעה תקינה."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "מתישהו יהיה timeout והצד השולח יבצע retransmission עם אותו מספר סידורי של החבילה שלא הגיעה תקינה."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "הצד המקבל יבקש מהשולח לשלוח מחדש את החבילה"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "אף אחת מהתשובות האחרות נכונה"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": "ב-Stop and Wait המקבל שמגלה שגיאה זורק את המסגרת ואינו שולח ACK. השולח ממתין, ה-timer פג, והוא שולח שוב את אותה מסגרת עם אותו מספר סידורי (מספר סידורי חדש יתקבל רק אחרי ACK).\nא: מספר סידורי שונה יגרום למקבל לחשוב שזו מסגרת חדשה. ג: המקבל אינו מבקש שידור חוזר ב-Stop and Wait הבסיסי."
+  },
+  {
+   "num": 18,
+   "topic": "dns_dhcp",
+   "question": "מה נכון לגבי פרוטוקול ARP (Address Resolution Protocol)?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "פרוטוקול שמאפשר המרה של כתובת IP (לוגית) אשר ידועה לי ברשת מקומית לכתובת MAC (פיזית). פרוטוקול זה שייך לשכבת הקו."
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "פרוטוקול בשכבת הרשת ומטרתו לבצע המרה בין כתובות MAC לכתובות IP בין שני מחשבים ברשתות מרוחקות."
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "פרוטוקול זה לא שומר מטמון ולכן קשה לזייף בקשות/תשובות ARP."
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "פרוטוקול בשכבת הקו שמחליף את פרוטוקול ה-Ethernet המוכר."
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "highlighted-pdf",
+   "official": true,
+   "confidence": "high",
+   "explanation": "ARP מתרגם כתובת IP ידועה ברשת המקומית לכתובת MAC, ושייך לשכבת הקו.\nב: פועל רק ברשת מקומית ולא בין רשתות מרוחקות. ג: ל-ARP יש מטמון (ARP table) ואפשר לזייף אותו. ד: ARP אינו מחליף את Ethernet אלא משמש אותו."
+  }
+ ]
+}

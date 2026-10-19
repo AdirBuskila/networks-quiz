@@ -1,0 +1,479 @@
+{
+ "examCode": "SAMP-1",
+ "examLabel": "2024 מבחן לדוגמה",
+ "year": 2024,
+ "examDate": "",
+ "sourceFile": "sitting SAMP-1 (2024 sample exam, 6 pages, 14 questions)",
+ "keyFile": "no answer table: solved independently, agrees with the bold option in the printed text; calculations in tools/verify/SAMP-1/check.py",
+ "contexts": {},
+ "questions": [
+  {
+   "num": 1,
+   "topic": "delays",
+   "question": "מערכת תקשורת מוגדרת עם הפרמטרים הבאים:\n- רוחב פס (bandwidth): 1 Gbps\n- גודל חבילה (packet size): 5,000 ביטים\n- מרחק התפשטות (propagation distance): 1000 קילומטרים\n- מהירות התפשטות (propagation speed): $2\\times10^{8}$ מטר לשנייה\n- ניתן להניח שאין עיכובים אחרים במערכת\nידוע ששיעור ההגעה (arrival rate) הנוכחי הוא 500,000 חבילות לשעה. מהו ה-Traffic Intensity במערכת? האם תוצאה זו מצביעה על פוטנציאל לעומס (congestion) בקישור?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "עוצמת תעבורה = 0.0007, אין פוטנציאל לעומס"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "עוצמת תעבורה = 0.007, אין פוטנציאל לעומס"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "עוצמת תעבורה = 0.7, יש פוטנציאל לעומס"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "עוצמת תעבורה = 7, יש פוטנציאל לעומס גבוה מאוד"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "שיעור ההגעה הוא לשעה - ממירים לשנייה: $a=\\frac{500000}{3600}$.\n$$\\rho=\\frac{a\\cdot L}{R}=\\frac{(500000/3600)\\cdot 5000}{10^{9}}\\approx 0.0007$$\nהעוצמה קטנה בהרבה מ-1, ולכן אין פוטנציאל לעומס. 0.007 ו-0.7 הן טעויות בסדר גודל.",
+   "note": "Sample exam, no separate answer table; solved independently - agrees with the option printed in bold."
+  },
+  {
+   "num": 2,
+   "topic": "delays",
+   "question": "במערכת תקשורת מוגדרת עם הפרמטרים הבאים:\n- רוחב פס (bandwidth): 10 Gbps\n- גודל חבילה (packet size): 5,000 ביטים\n- מרחק התפשטות (propagation distance): 1000 קילומטרים\n- מהירות התפשטות (propagation speed): $2\\times10^{8}$ מטר לשנייה\n- ניתן להניח שאין עיכובים אחרים במערכת\nמהי כמות החבילות המקסימלית (בחבילות לשנייה) שניתן להשיג בקישור זה כך שה Traffic Intensity יהיה שווה ל-0.8?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "1,600,000 חבילות לשנייה"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "8,000 חבילות לשנייה"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "16,000,000 חבילות לשנייה"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "32,000,000 חבילות לשנייה"
+    }
+   ],
+   "correctId": "a",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "$a=\\frac{\\rho\\cdot R}{L}=\\frac{0.8\\cdot 10\\cdot10^{9}}{5000}=1{,}600{,}000$ חבילות לשנייה. שאר האפשרויות הן טעויות בחזקת 10 או בגורם 0.8.",
+   "note": "Sample exam, no separate answer table; solved independently - agrees with the option printed in bold."
+  },
+  {
+   "num": 3,
+   "topic": "http",
+   "question": "איזה שיפור משמעותי מציע HTTP/2.0 לעומת HTTP/1.1 מבחינת ניצול משאבי הרשת?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "HTTP/2.0 פועל אך ורק מעל פרוטוקול UDP מה שמאפשר העברת נתונים מהירה יותר"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "HTTP/2.0 מחייב הצפנה, ובכך משפר משמעותית את האבטחה של כל הרכיבים"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "HTTP/2.0 מאפשר לשרת וללקוח להעביר מספר בקשות ותגובות על גבי חיבור TCP יחיד, מה שמקטין את זמן ההשהיה הכולל בעיית HOL שקיימת ב TCP"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "אף תשובה לא נכונה"
+    }
+   ],
+   "correctId": "d",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "HTTP/2 מבצע multiplexing על חיבור TCP יחיד, אך הוא רץ מעל TCP ולכן בעיית ה-head-of-line blocking של TCP (איבוד חבילה עוצר את כל הזרמים) נשארת; רק HTTP/3 מעל QUIC פותר אותה. לכן ג שגויה בחלקה.\nא: HTTP/2 רץ מעל TCP, לא UDP. ב: ההצפנה אינה חובה בתקן ואינה שיפור בניצול משאבים. לכן \"אף תשובה לא נכונה\".",
+   "note": "Sample exam, no separate answer table; solved independently - agrees with the option printed in bold."
+  },
+  {
+   "num": 4,
+   "topic": "dns_dhcp",
+   "question": "מהו סדר ההודעות המלא (במידה ולא מדובר בבקשת חידוש) בפרוטוקול DHCP?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "`Offer->Discover->Request->Acknowledge`"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "`Discover->Offer->Acknowledge->Request`"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "`Discover->Offer->Request->Acknowledge`"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "`Request->Discover->Offer->Acknowledge`"
+    }
+   ],
+   "correctId": "c",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "הסדר התקני (DORA): Discover, Offer, Request, Acknowledge. שאר האפשרויות מחליפות את הסדר.",
+   "note": "Sample exam, no separate answer table; solved independently - agrees with the option printed in bold."
+  },
+  {
+   "num": 5,
+   "topic": "http",
+   "question": "מדוע פרוטוקול HTTP/3 משתמש ב QUIC במקום TCP?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "כדי לאכוף שיטות הצפנה חזקות יותר כברירת מחדל"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "כדי להפחית את זמן ההשהיה להקמת הקשרים ואת השהיית שידור כוללת. כמו כן, לפתור את בעיית HOL שקיימת ב HTTP/2.0"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "כדי לבטל את צורך בכתובות IP"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "כדי לספק שיטת שידור אותות אמינה יותר"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "QUIC רץ מעל UDP, משלב הצפנה עם הקמת החיבור (פחות RTT) ומנהל זרמים בנפרד, כך שאיבוד חבילה בזרם אחד לא חוסם את האחרים - פתרון ל-HOL שנשאר ב-HTTP/2.\nא: ההצפנה היא תוצאה נלווית. ג: QUIC עדיין משתמש בכתובות IP. ד: אמינות אותות היא עניין של השכבה הפיזית.",
+   "note": "Sample exam, no separate answer table; solved independently - agrees with the option printed in bold."
+  },
+  {
+   "num": 6,
+   "topic": "http",
+   "question": "שושי הכניסה בשורת הכתובת בדפדפן את ה-URL הבא: `http://mywebsite.com/index.html`.\nבדפדפן התקבל מסמך HTML עם הפניות לשתי תמונות בכתובות הבאות:\n`http://mywebsite.com/imageA.jpg`\n`http://mymirrorwebsite.com/imageB.jpg`\nלאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:\n- `mywebsite.com: 203.0.113.10`\n- `mymirrorwebsite.com: 203.0.113.10`\nבהנחה שהדפדפן והשרתים תומכים בפרוטוקול HTTP/1.1 (persistent וללא pipelining), כמה חיבורי TCP נדרשים כדי לטעון את הדף כולל שתי התמונות?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "1"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "2"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "3"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "לא ניתן לדעת"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "med",
+   "explanation": "חיבור persistent אחד משרת כמה אובייקטים ברצף (ללא pipelining) מאותו מארח. הדפדפן מנהל חיבורים לפי שם המארח: `mywebsite.com` מספק את `index.html` ואת `imageA.jpg` בחיבור אחד, ו-`mymirrorwebsite.com` דורש חיבור נפרד עבור `imageB.jpg` - בסך הכול 2, גם אם שני השמות נפתרו לאותה כתובת IP.",
+   "note": "Sample exam, no separate answer table; solved independently - agrees with the option printed in bold. Browsers pool HTTP/1.1 connections per host name, not per IP; the shared IP is the distractor."
+  },
+  {
+   "num": 7,
+   "topic": "http",
+   "question": "מהי המטרה העיקרית של עוגיות צד שלישי (third-party cookies)?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "לאחסן את העדפות המשתמש באתר בו הוא מבקר כרגע"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "לאפשר מעקב בין אתרים ומקוד פרסומות"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "לשפר את אבטחה בהתחברות (session) משתמשים"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "לנהל את ה- sessions של המשתמש באתר נוכחי"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "עוגיית צד שלישי נקבעת על ידי דומיין שאינו האתר שהמשתמש מבקר בו (למשל שרת פרסומות מוטמע), ולכן אותה עוגייה מזהה את המשתמש בכמה אתרים ומאפשרת מעקב בין אתרים ומיקוד פרסומות. א, ג, ד מתארות עוגיות צד ראשון.",
+   "note": "Sample exam, no separate answer table; solved independently - agrees with the option printed in bold."
+  },
+  {
+   "num": 8,
+   "topic": "http",
+   "question": "הנך מתכנן להעלות אתר אינטרנט ואתה צופה שתהיה תעבורת משתמשים גבוהה. איזה אספקט יהיה בעל ההשפעה הגדולה ביותר על הפחתת זמני טעינת הדף עבור משתמשים מאזורים גיאוגרפיים שונים?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "העברת צד השרת של האתר לשימוש בפרוטוקול HTTP/2.0"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "שימוש ב CDN לאחסון של משאבים סטטיים של האתר קרוב יותר למשתמש קצה"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "אופטימיזציה של שרת אינטרנט לטיפול במספר גדול יותר של סוקטים בו-זמנית"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "העברת צד השרת לשמוש בפרוטוקול HTTP/3.0"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "כשהמשתמשים מפוזרים גיאוגרפית, רוב זמן הטעינה הוא RTT והתפשטות למרחקים. CDN משכפל את המשאבים הסטטיים לשרתים קרובים למשתמש ומקטין את המרחק - ההשפעה הגדולה ביותר. HTTP/2, HTTP/3 והגדלת מספר ה-sockets אינם מקצרים את המרחק הפיזי.",
+   "note": "Sample exam, no separate answer table; solved independently - agrees with the option printed in bold."
+  },
+  {
+   "num": 9,
+   "topic": "dns_dhcp",
+   "question": "בחרו את התשובה עם הנוסח המדויק ביותר:",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "פרוטוקול DHCP הוא פרוטוקול בשכבת תעבורה המאפשר הקצאה דינמית של כתובות IP פנימיות"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "פרוטוקול DHCP הוא פרוטוקול בארכיטקטורה שרת-לקוח המאפשר הקצאה סטאטית של כתובות IP ומספק מידע חיוני נוסף למשתמשים כגון שרת DNS מקומי"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "פרוטוקול DHCP הוא במשתמש בדרך כלל ב-TCP בשכבת התעבורה כיוון שעובד בארכיטקטורה של שרת-לקוח"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "אף תשובה אינה נכונה"
+    }
+   ],
+   "correctId": "d",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "כל אחת מהטענות שגויה: א - DHCP הוא פרוטוקול של שכבת האפליקציה. ב - ההקצאה דינמית, לא סטטית. ג - הוא משתמש ב-UDP, לא ב-TCP. לכן \"אף תשובה אינה נכונה\".",
+   "note": "Sample exam, no separate answer table; solved independently - agrees with the option printed in bold."
+  },
+  {
+   "num": 10,
+   "topic": "http",
+   "question": "מפתחת אתרים מעוניינת לייעל פעילות של אתר אינטרנט המציג תמונות באיכות גבוהה. כדי להפחית העברת נתונים מיותרת, היא מעוניינת לאפשר שליחה של בקשות מותנות. השרת תומך ב-Header של Last-Modified בלבד. איזו מבין האפשרויות הבאות היא היעילה ביותר:",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "תמיד עדיף להשתמש ב GET מותנה ( Conditional get )"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "עדיף להשתמש ב-GET מותנה כאשר התוכן של התמונה עשוי להשתנות לעיתים קרובות, אך אין צורך למשוך את התוכן המלא בכל פעם – הבקשה תשלך עם header: if-Modified-Since"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "עדיף להשתמש בבקשת PUT רק כאשר צריך אישור שהמשאב השתנה ללא צורך בהורדת התוכן"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "אין הבדל משמעותי בין אפשרויות"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "כשהשרת מחזיר Last-Modified, הלקוח שולח `If-Modified-Since`; אם המשאב לא השתנה, השרת עונה `304 Not Modified` בלי גוף ונחסכת הורדת התמונה.\nא: \"תמיד\" שגוי - לתוכן שמשתנה בכל בקשה זו רק תקורה. ג: PUT מעלה משאב ואינו בודק שינוי. ד: יש הבדל ברור.",
+   "note": "Sample exam, no separate answer table; solved independently - agrees with the option printed in bold."
+  },
+  {
+   "num": 11,
+   "topic": "ip_cidr",
+   "question": "לאיזה מסלול תנותב החבילה אם כתובת היעד 25.36.67.5 לפי טבלת הניתוב הבאה\n`A: 25.36.64.0/16`\n`B: 25.36.128.0/20`\n`C: 25.36.64.0/20`\n`D: 20.0.0.0/8`",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "A"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "B"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "C"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "D"
+    }
+   ],
+   "correctId": "c",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "Longest Prefix Match. הכתובת $25.36.67.5$ בבינארי: `00011001.00100100.01000011.00000101`.\nA: הקידומת של 16 ביט (`25.36`) מתאימה. B: `25.36.128.0/20` מכסה 128-143 ברובע השלישי - לא כולל 67. C: `25.36.64.0/20` מכסה 64-79 - כולל 67, והקידומת ארוכה יותר ($/20>/16$). D: `20.0.0.0/8` לא מתאימה.\nA ו-C מתאימות והארוכה ביותר היא C.",
+   "note": "Sample exam, no separate answer table; solved independently - agrees with the option printed in bold. Route A is printed as 25.36.64.0/16 (the host bits are non-zero); only the /16 prefix matters."
+  },
+  {
+   "num": 12,
+   "topic": "dns_dhcp",
+   "question": "האם ניתן להשתמש בפרוטוקול DHCP כתחליף מלא לשימוש בפרוטוקול ARP במצב בו כבר נעזרים בפרוטוקול DHCP?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "כן, אפשר לוותר על ARP"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "לא נכון: אי אפשר לוותר על ARP"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "כן אפשר לוותר על ARP ברשת גדולה – רק עבור לקוחות שמקבלים מידע משרת הDHCP אבל לא עבור תחנות קצה עם IP סטטי"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "התשובה לא חד משמעית – תלויה בהגדרות מערכת"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "DHCP מקצה כתובת IP, מסכה, Gateway ו-DNS - אך לא מספק את כתובת ה-MAC של היעד. כדי לשלוח מסגרת Ethernet צריך את ה-MAC של היעד (או של ה-Gateway), וזה תפקידו של ARP. לכן אי אפשר לוותר עליו, גם בתחנות שקיבלו כתובת מ-DHCP.",
+   "note": "Sample exam, no separate answer table; solved independently - agrees with the option printed in bold."
+  },
+  {
+   "num": 13,
+   "topic": "ip_cidr",
+   "question": "חבילת IP (datagram) בגודל 2000B עברה פרגמנטציה (fragmentation). נתון כי MTU של הרשת - 420B וגודל ה-header הוא 20B ואין שימוש בהרחבות. מה נכון לגבי הערך הרשום בשדה ה-offset בחבילה מספר 5?",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "1600"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "200"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "400"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "480"
+    },
+    {
+     "id": "e",
+     "type": "text",
+     "value": "405"
+    }
+   ],
+   "correctId": "b",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "בכל פרגמנט נשארים $420-20=400$ בתים לנתונים (כפולה של 8). 2000 בתים נתונים נחתכים ל-5 פרגמנטים של 400. הפרגמנט החמישי מתחיל אחרי $4\\cdot400=1600$ בתים, והשדה offset נמדד בבלוקים של 8 בתים: $1600/8=200$ (הערכים בפרגמנטים: 0, 50, 100, 150, 200).\n1600 הוא ההיסט בבתים ולא בבלוקים.",
+   "note": "Sample exam, no separate answer table; solved independently - agrees with the option printed in bold. The printed worked line lists offsets 0, 50, 100, 150, 200."
+  },
+  {
+   "num": 14,
+   "topic": "tcp",
+   "question": "בהינתן גרף התנהגות של פרוטוקול TCP, תהליך slow-start עובד בפרקים:",
+   "options": [
+    {
+     "id": "a",
+     "type": "text",
+     "value": "[1, 6]"
+    },
+    {
+     "id": "b",
+     "type": "text",
+     "value": "[6, 16]"
+    },
+    {
+     "id": "c",
+     "type": "text",
+     "value": "[1,6] , [23, 26]"
+    },
+    {
+     "id": "d",
+     "type": "text",
+     "value": "[6, 16], [17, 22]"
+    }
+   ],
+   "correctId": "c",
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "ב-Slow Start החלון מוכפל בכל סבב. בסבבים 1-6: $1,2,4,8,16,32$ - slow start עד שהחלון מגיע ל-ssthresh=32. בסבבים 6-16 החלון גדל ב-1 בכל סבב (Congestion Avoidance), ואחרי ההפסד בסבב 16 הוא יורד ל-21 וממשיך לגדול ב-1 בסבבים 17-22 (שוב Congestion Avoidance). בסבב 22 מתרחש timeout והחלון יורד ל-1, ובסבבים 23-26 הוא שוב מוכפל: $1,2,4,8$.\nלכן slow start פועל ב-[1,6] ו-[23,26].",
+   "note": "Sample exam, no separate answer table; solved independently - agrees with the option printed in bold.",
+   "image": "images/exams/SAMP-1-Q14.png"
+  }
+ ]
+}
