@@ -265,7 +265,9 @@
     fb.innerHTML = `<div class="verdict">${ok ? "✓ נכון" : "✗ לא נכון"}</div>` +
       (expl ? `<div class="expl">${expl}</div>` : `<div class="expl expl-none">אין הסבר במקור.</div>`) +
       (!multi && acc.length > 1 ? `<span class="accept-note">בשאלה זו התקבלה יותר מתשובה אחת כנכונה.</span>` : "") +
-      (it.bank ? `<span class="note">מקור: ${esc(APP.examLabelOf(q))}${Number.isInteger(q.num) ? ` · שאלה ${q.num}` : ""}</span>` : "");
+      (it.bank ? `<span class="note">מקור: ${esc(APP.examLabelOf(q))}${Number.isInteger(q.num) ? ` · שאלה ${q.num}` : ""}</span>` : "") +
+      // networks extra (calc.js): "נסו במחשבון" for a calculator topic; an own question takes the course's topic
+      (APP.calcTryHtml ? APP.calcTryHtml(it.bank ? q : Object.assign({ topic: C.meta.topic }, q)) : "");
     $("#crsNextBtn").classList.remove("hidden");
     $("#crsNextBtn").focus();
   }

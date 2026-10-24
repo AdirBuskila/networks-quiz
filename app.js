@@ -420,9 +420,53 @@ function paintAnswered(v){
     (q.official?"":`<span class="note">⚠ תשובה לא רשמית — מומלץ לאמת מול המקור.</span>`)+
     (q.confidence==="low"?`<span class="note">⚠ רמת ביטחון נמוכה בתשובה המסומנת.</span>`:"")+
     (srcNote?`<span class="note">${escapeHtml(srcNote)}</span>`:"")+
-    `<span class="note">מקור: ${escapeHtml(examLabelOf(q))}${Number.isInteger(q.num)?` · שאלה ${q.num}`:""}</span>`;
+    `<span class="note">מקור: ${escapeHtml(examLabelOf(q))}${Number.isInteger(q.num)?` · שאלה ${q.num}`:""}</span>`+
+    calcTryHtml(q);
   $("#nextBtn").classList.remove("hidden");
 }
+
+/* ---------- networks extra: built-in calculators (calc.js) ----------
+   A question whose topic has a calculator (delays, ip_cidr, link_layer, tcp) shows "נסו במחשבון" after it is
+   answered; it opens the calculator page prefilled from the question text (Calc.forQuestion). The page is a
+   plain screen, so going back shows the question exactly as it was left. */
+let CALC_BACK = null, CALC_Y = 0;
+function calcTryHtml(q){
+  const spec = window.Calc ? window.Calc.forQuestion(q) : null;
+  if(!spec) return "";
+  return `<div class="calc-try-row"><button type="button" class="btn ghost calc-try" data-calc-spec="${escapeHtml(JSON.stringify(spec))}">🧮 נסו במחשבון: ${escapeHtml(window.Calc.TITLE[spec.kind])}</button></div>`;
+}
+function currentScreen(){ const s=document.querySelector(".screen:not(.hidden)"); return s ? s.id : "screen-start"; }
+function openCalc(spec, from){
+  if(!window.Calc) return false;
+  const cur = currentScreen();
+  if(cur!=="screen-calc"){ CALC_BACK = from || cur; CALC_Y = window.scrollY || 0; }
+  show("screen-calc");
+  window.Calc.page($("#calcHost"), spec || null);
+  $("#calcBackBtn").textContent = CALC_BACK && CALC_BACK!=="screen-start" ? "⟵ חזרה" : "⟵ לדף הבית";
+  return true;
+}
+function closeCalc(){
+  const back = CALC_BACK; CALC_BACK = null;
+  if(!back || back==="screen-start" || !$("#"+back)){ quit(); return; }
+  show(back);
+  const y = CALC_Y; setTimeout(()=>window.scrollTo({top:y, behavior:"instant"}), 0);
+}
+(function initCalc(){
+  const entry=$("#calcEntry"), card=$("#calcCard");
+  if(!window.Calc){ if(entry) entry.style.display="none"; if(card) card.style.display="none"; return; }
+  if(entry) entry.onclick=()=>openCalc(null);
+  if(card) card.querySelectorAll("[data-calc-open]").forEach(b=> b.onclick=()=>openCalc({kind:b.dataset.calcOpen}, "screen-start"));
+  $("#calcBackBtn").onclick=closeCalc;
+  document.addEventListener("click", e=>{
+    const b=e.target.closest && e.target.closest(".calc-try"); if(!b) return;
+    let spec=null; try{ spec=JSON.parse(b.dataset.calcSpec); }catch(err){}
+    openCalc(spec);
+  });
+  document.addEventListener("keydown", e=>{
+    if($("#screen-calc").classList.contains("hidden")) return;
+    if(e.key==="Escape" && !(e.target && /^(SELECT|INPUT|TEXTAREA)$/.test(e.target.tagName))) closeCalc();
+  });
+})();
 
 function markExamChoice(disp){ document.querySelectorAll("#optionsList .opt").forEach((b,i)=> b.classList.toggle("chosen-exam", i===disp)); }
 function recordAnswer(q, correct){ P.stats.answered++; if(correct) P.stats.correct++; P.perQ[q.id]={correct, t:Date.now()}; saveProgress(); }
@@ -712,11 +756,12 @@ function startTopicPractice(topic){
   startSession();
   return true;
 }
-/* deep links: index.html?practice=<topicKey>  |  index.html?learn=<chapterId> */
+/* deep links: index.html?practice=<topicKey>  |  index.html?learn=<chapterId>  |  index.html?calc=<kind> */
 function autoStartFromURL(){
-  let t, c;
-  try{ const u=new URLSearchParams(location.search); t=u.get("practice"); c=u.get("learn"); }catch(e){ return; }
-  if(t) startTopicPractice(t);
+  let t, c, k;
+  try{ const u=new URLSearchParams(location.search); t=u.get("practice"); c=u.get("learn"); k=u.get("calc"); }catch(e){ return; }
+  if(k!==null && window.Calc) openCalc(window.Calc.KINDS.includes(k) ? {kind:k} : null, "screen-start");
+  else if(t) startTopicPractice(t);
   else if(c && openLearnAt) openLearnAt(c);
 }
 
@@ -730,6 +775,7 @@ window.CC_APP = {
   isMulti, MULTI_HINT, contextHtml, extrasHtml, questionHtml, optionHtml, examLabelOf, acceptedIdsOf, isAccepted,
   topicCount: topic => countFor(topic, {officialOnly:false, mistakesOnly:false}),
   practiceTopic: startTopicPractice,
+  openCalc, calcTryHtml,   // networks extra (calc.js)
 };
 
 /* ---------- boot ---------- */

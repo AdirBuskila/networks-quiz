@@ -6,7 +6,7 @@
 <title>רשתות תקשורת מחשבים</title>
 <meta name="description" content="תרגול מבחנים - רשתות תקשורת מחשבים">
 <link rel="icon" href="favicon.svg?v=3" type="image/svg+xml">
-<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="styles.css?v=5">
 <script>
   // Apply saved theme before first paint to avoid a flash of the wrong theme.
   (function(){ try{ var t=localStorage.getItem("networks_theme"); if(t==="light"||t==="dark") document.documentElement.dataset.theme=t; }catch(e){} })();
@@ -26,6 +26,7 @@
     <div class="topstats" id="topStats"></div>
     <button id="helpEntry" class="btn ghost crs-entry" type="button" title="קורסים מודרכים בנושאים הקשים: משיעור קצר ועד שאלות מבחן" style="display:none">🧭 צריך עזרה?</button>
     <button id="learnEntry" class="btn ghost learn-entry" type="button">📖 מצב לימוד</button>
+    <button id="calcEntry" class="btn ghost calc-entry" type="button" title="מחשבונים: רשתות משנה, השהיות, CRC וחלון TCP" aria-label="מחשבונים"><span aria-hidden="true">🧮</span><span class="calc-entry-t"> מחשבונים</span></button>
     <button id="themeToggle" class="theme-toggle" type="button" aria-label="החלפת מצב תצוגה (בהיר/כהה)" title="מצב בהיר/כהה"></button>
   </div>
 </header>
@@ -35,6 +36,17 @@
   <section id="screen-start" class="screen">
     <!-- guided "need help?" course cards (filled by course-ui.js from course.config.json needHelp; hidden when empty) -->
     <div id="helpCards" class="crs-promos hidden"></div>
+    <!-- built-in calculators (calc.js, networks extra) -->
+    <div id="calcCard" class="card calc-promo">
+      <div class="calc-promo-h"><span class="big-ico" aria-hidden="true">🧮</span>
+        <div><b>מחשבונים מובנים</b><span class="calc-promo-sub">מחשבים, רואים את הצעדים ובודקים תשובה</span></div></div>
+      <div class="calc-promo-links">
+        <button type="button" class="btn ghost" data-calc-open="subnet">🌐 רשתות משנה</button>
+        <button type="button" class="btn ghost" data-calc-open="delay">⏱️ השהיות</button>
+        <button type="button" class="btn ghost" data-calc-open="crc">🧮 CRC וזוגיות</button>
+        <button type="button" class="btn ghost" data-calc-open="tcp">📈 חלון TCP</button>
+      </div>
+    </div>
     <div class="card">
       <h2>בחירת אופן תרגול</h2>
 
@@ -167,6 +179,15 @@
     </div>
   </section>
 
+  <!-- CALCULATORS (calc.js fills #calcHost; reached from home, the toolbar, ?calc=<kind> and "נסו במחשבון") -->
+  <section id="screen-calc" class="screen hidden">
+    <div class="quizbar">
+      <button id="calcBackBtn" class="btn ghost" type="button">⟵ לדף הבית</button>
+      <h2 class="calc-title">🧮 מחשבונים</h2>
+    </div>
+    <div class="card calc-card"><div id="calcHost"></div></div>
+  </section>
+
   <!-- RESULTS -->
   <section id="screen-results" class="screen hidden">
     <div class="card">
@@ -218,8 +239,9 @@
 <script src="learn.js?v=3"></script>
 <script src="courses.js?v=1"></script>
 <script src="grade.js?v=1"></script>
-<script src="app.js?v=7"></script>
+<script src="calc.js?v=1"></script>
+<script src="app.js?v=8"></script>
 <script src="feedback.js?v=1"></script>
-<script src="course-ui.js?v=3"></script>
+<script src="course-ui.js?v=4"></script>
 </body>
 </html>

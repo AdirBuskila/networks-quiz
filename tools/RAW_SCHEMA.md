@@ -152,3 +152,47 @@ COURSE_LEVEL("DEMO", {
   (`_claims_course_<id>.json`); `--compare` checks the refuter's `_verify_course_<id>.json`
   (`{"answers": {"<question id>": {"answer": ...}}}`) against it and exits 1 on any disagreement.
 - `py tools/build_courses.py` -- rebuild only `courses.js`.
+
+## Calculators (networks extra; `calc.js`)
+Four built-in calculators, app-local: **subnet/CIDR** (`subnet`, and `lpm` = longest prefix match over a pasted
+forwarding table), **delay** (`delay` = L/R + d/s over N store-and-forward links, P packets back to back; `intensity` =
+La/R and the arrival rate for a target rho), **CRC / 2D parity** (`crc` = long division step by step, sender or receiver;
+`parity` = even/odd 2D parity, error location or the check bits) and the **TCP cwnd timeline** (`tcp` = slow start,
+congestion avoidance, ssthresh, 3 dup ACKs vs timeout, Reno / Tahoe, a step chart per RTT round).
+
+- **Where they show:** a calculator page (`#screen-calc`), reached from the start-screen card, the toolbar button and
+  `?calc=<kind>`. Every bank question whose topic is `delays`, `ip_cidr`, `link_layer` or `tcp` shows **"נסו במחשבון"**
+  after it is answered, in practice mode and in the guided courses (an own course question takes the course's `topic`).
+  The button opens the matching calculator prefilled from the question text (`Calc.forQuestion`: CIDR / routing table +
+  destination, `G=`/`D=` or a parity block, L / rates / distance / speed / arrival rate). Nothing is added to the raw JSON.
+- **A calculator spec** is `{"kind": "<kind>", ...prefill}`; every key is optional (a missing one takes the default):
+
+  | kind | keys |
+  |---|---|
+  | `subnet` | `cidr` (`"200.107.16.17/18"`, `"223.1.2/24"`, `"10.0.0.1 255.255.0.0"`) |
+  | `lpm` | `table` (one entry per line, or a list: `"A: 25.36.64.0/16"`, `"11001000 00010111 00010 → 0"`, `"default → 3"`), `addr` |
+  | `delay` | `L`, `Lunit` (bit/byte/Kbit/KB/Mbit/MB), `s` (m/s; `"2e8"`), `packets`, `links: [{R, Runit (bps/Kbps/Mbps/Gbps), d, dunit (m/km), n}]` |
+  | `intensity` | `a`, `aunit` (s/min/hour), `L`, `Lunit`, `R`, `Runit`, `rho` (target, optional) |
+  | `crc` | `mode` (send/recv), `D`, `G` (bits or a polynomial `"x^3+1"`), `W` (received word) |
+  | `parity` | `rows` (lines of bits, spaces ignored), `parity` (even/odd), `hasCheck` (true: received block incl. check row+column) |
+  | `tcp` | `rounds`, `init`, `ssthresh`, `variant` (reno/tahoe), `events` (`"8:3dup, 14:timeout"`), `cap` (slow start stops at ssthresh, default true), `plus3` (Reno cwnd = ssthresh+3) |
+
+  plus `caption` (a line shown above an embedded calculator). K = 1000 and 1 byte = 8 bits; loss sets ssthresh =
+  max(floor(cwnd/2), 1).
+- **Embedding (guided courses and learn briefs)**, the same pattern as the graph visualizer: in a lesson's `html` write
+  `<div class="calc-fig" data-calc='{"kind": "delay", "L": 1500, "Lunit": "byte"}'></div>` (or `data-calc="tcp"`); in a
+  brief (`docs/briefs/*.md`) a fenced block with the language `calc` and the spec as its body:
+
+  ```calc
+  {"kind": "crc", "D": "10011100", "G": "1001", "caption": "25A-B Q8"}
+  ```
+
+  calc.js mounts both at run time (a MutationObserver: `.calc-fig[data-calc]` and the fence's `pre > code.language-calc`),
+  so no build step changes; the embedded calculator is live and has a "למחשבון המלא" button.
+- **Checks:** `node tools/test_calc.js` runs `py tools/verify/calc/ref.py` (a Python reference using the same formulas as
+  the keys' `tools/verify/*/check.py` / `refute_calc.py`: `ipaddress`, sum of L/R + d/s, the CRC XOR loop, row/column
+  sums, the cwnd rules) and compares every calc.js output on 269 seeded cases, including the real exam cases 25A-C Q3
+  (15.65 ms), 25A-B Q7, 25A-A Q2, 25A-B Q8 (CRC 101), 25A-B Q10 (/24 = 256), 23A-A Q16, 25A-B Q15 / 25A-A Q6 (LPM),
+  25A-A Q3 (2D parity), SAMP-2 Q1/Q2 and 24A-B Q6 (La/R). It also runs `forQuestion` on every calculator-topic bank
+  question, and runs `Calc.check` on every `calc` fence in `docs/briefs` and every `data-calc` in `courses/` (a bad spec
+  fails the test). `py tools/verify/calc/ref.py` rewrites `tools/verify/calc/vectors.json` (the fallback when no Python).
