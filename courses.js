@@ -741,7 +741,7 @@ window.COURSES = {
      },
      {
       "id": "app-C04-Q4",
-      "question": "הדפדפן פותח עד 6 חיבורים מקבילים לשרת. הדף כבר הגיע, ונשארו 40 תמונות באותו שרת (persistent וללא pipelining). מזניחים זמן שידור. כמה סבבי RTT דרושים לטעינת התמונות?",
+      "question": "הדפדפן פותח עד 6 חיבורים מקבילים לשרת. הדף כבר הגיע, ונשארו 40 תמונות באותו שרת (persistent וללא pipelining). מזניחים זמן שידור (מזניחים את זמן פתיחת החיבורים). כמה סבבי RTT דרושים לטעינת התמונות?",
       "options": [
        {
         "id": "a",
@@ -769,15 +769,15 @@ window.COURSES = {
        }
       ],
       "correctId": "c",
-      "explanation": "בכל סבב נטענות עד 6 תמונות במקביל: $\\lceil40/6\\rceil=7$ סבבים (שישה סבבים מלאים ועוד סבב של 4 תמונות). הערך 6 מעגל כלפי מטה ומשאיר תמונות, והערך 40 הוא בלי מקביליות. הערך 8 מוסיף סבב שאין לו סיבה.",
+      "explanation": "בכל סבב נטענות עד 6 תמונות במקביל: $\\lceil40/6\\rceil=7$ סבבים (שישה סבבים מלאים ועוד סבב של 4 תמונות). הערך 6 מעגל כלפי מטה ומשאיר תמונות, והערך 40 הוא בלי מקביליות. הערך 8 סופר גם את לחיצות היד של פתיחת החיבורים, ובשאלה זו מורים להזניח אותן.",
       "recap": "סבבים = ⌈n/6⌉",
-      "questionHtml": "הדפדפן פותח עד 6 חיבורים מקבילים לשרת. הדף כבר הגיע, ונשארו 40 תמונות באותו שרת (persistent וללא pipelining). מזניחים זמן שידור. כמה סבבי RTT דרושים לטעינת התמונות?",
-      "explanationHtml": "בכל סבב נטענות עד 6 תמונות במקביל: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo stretchy=\"false\">⌈</mo><mn>40</mn><mi mathvariant=\"normal\">/</mi><mn>6</mn><mo stretchy=\"false\">⌉</mo><mo>=</mo><mn>7</mn></mrow><annotation encoding=\"application/x-tex\">\\lceil40/6\\rceil=7</annotation></semantics></math></span> סבבים (שישה סבבים מלאים ועוד סבב של 4 תמונות). הערך 6 מעגל כלפי מטה ומשאיר תמונות, והערך 40 הוא בלי מקביליות. הערך 8 מוסיף סבב שאין לו סיבה.",
+      "questionHtml": "הדפדפן פותח עד 6 חיבורים מקבילים לשרת. הדף כבר הגיע, ונשארו 40 תמונות באותו שרת (persistent וללא pipelining). מזניחים זמן שידור (מזניחים את זמן פתיחת החיבורים). כמה סבבי RTT דרושים לטעינת התמונות?",
+      "explanationHtml": "בכל סבב נטענות עד 6 תמונות במקביל: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo stretchy=\"false\">⌈</mo><mn>40</mn><mi mathvariant=\"normal\">/</mi><mn>6</mn><mo stretchy=\"false\">⌉</mo><mo>=</mo><mn>7</mn></mrow><annotation encoding=\"application/x-tex\">\\lceil40/6\\rceil=7</annotation></semantics></math></span> סבבים (שישה סבבים מלאים ועוד סבב של 4 תמונות). הערך 6 מעגל כלפי מטה ומשאיר תמונות, והערך 40 הוא בלי מקביליות. הערך 8 סופר גם את לחיצות היד של פתיחת החיבורים, ובשאלה זו מורים להזניח אותן.",
       "recapHtml": "סבבים = ⌈n/6⌉"
      },
      {
       "id": "app-C04-Q5",
-      "question": "הדפדפן פותח עד 6 חיבורים מקבילים **לכל שרת**. הדף כבר הגיע, ונשארו 14 תמונות בשרת א' ו-20 תמונות בשרת ב', ושני השרתים נטענים במקביל (persistent וללא pipelining, מזניחים זמן שידור). כמה סבבי RTT דרושים?",
+      "question": "הדפדפן פותח עד 6 חיבורים מקבילים **לכל שרת**. הדף כבר הגיע, ונשארו 14 תמונות בשרת א' ו-20 תמונות בשרת ב', ושני השרתים נטענים במקביל (persistent וללא pipelining, מזניחים זמן שידור ואת זמן פתיחת החיבורים). כמה סבבי RTT דרושים?",
       "options": [
        {
         "id": "a",
@@ -807,7 +807,7 @@ window.COURSES = {
       "correctId": "d",
       "explanation": "המגבלה היא לכל שרת: שרת א' צריך $\\lceil14/6\\rceil=3$ סבבים ושרת ב' $\\lceil20/6\\rceil=4$, והם רצים במקביל, ולכן המקסימום: 4. הערך 7 הוא הסכום (כאילו השרתים נטענים בזה אחר זה). הערך 6 הוא $\\lceil34/6\\rceil$, כאילו 6 החיבורים משותפים לשני השרתים. הערך 34 הוא בלי מקביליות.",
       "recap": "שרתים במקביל: מקסימום של ⌈n/6⌉ על השרתים",
-      "questionHtml": "הדפדפן פותח עד 6 חיבורים מקבילים <strong>לכל שרת</strong>. הדף כבר הגיע, ונשארו 14 תמונות בשרת א' ו-20 תמונות בשרת ב', ושני השרתים נטענים במקביל (persistent וללא pipelining, מזניחים זמן שידור). כמה סבבי RTT דרושים?",
+      "questionHtml": "הדפדפן פותח עד 6 חיבורים מקבילים <strong>לכל שרת</strong>. הדף כבר הגיע, ונשארו 14 תמונות בשרת א' ו-20 תמונות בשרת ב', ושני השרתים נטענים במקביל (persistent וללא pipelining, מזניחים זמן שידור ואת זמן פתיחת החיבורים). כמה סבבי RTT דרושים?",
       "explanationHtml": "המגבלה היא לכל שרת: שרת א' צריך <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo stretchy=\"false\">⌈</mo><mn>14</mn><mi mathvariant=\"normal\">/</mi><mn>6</mn><mo stretchy=\"false\">⌉</mo><mo>=</mo><mn>3</mn></mrow><annotation encoding=\"application/x-tex\">\\lceil14/6\\rceil=3</annotation></semantics></math></span> סבבים ושרת ב' <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo stretchy=\"false\">⌈</mo><mn>20</mn><mi mathvariant=\"normal\">/</mi><mn>6</mn><mo stretchy=\"false\">⌉</mo><mo>=</mo><mn>4</mn></mrow><annotation encoding=\"application/x-tex\">\\lceil20/6\\rceil=4</annotation></semantics></math></span>, והם רצים במקביל, ולכן המקסימום: 4. הערך 7 הוא הסכום (כאילו השרתים נטענים בזה אחר זה). הערך 6 הוא <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo stretchy=\"false\">⌈</mo><mn>34</mn><mi mathvariant=\"normal\">/</mi><mn>6</mn><mo stretchy=\"false\">⌉</mo></mrow><annotation encoding=\"application/x-tex\">\\lceil34/6\\rceil</annotation></semantics></math></span>, כאילו 6 החיבורים משותפים לשני השרתים. הערך 34 הוא בלי מקביליות.",
       "recapHtml": "שרתים במקביל: מקסימום של ⌈n/6⌉ על השרתים"
      },
@@ -2992,7 +2992,7 @@ window.COURSES = {
      },
      {
       "id": "C06-Q4",
-      "question": "4 חיבורים חולקים קישור של 100 Mbps; קישור השרת 60 Mbps וקישור הלקוח 50 Mbps. מה ניצולת קישור השרת?",
+      "question": "4 חיבורים חולקים קישור של 100 Mbps; קישור השרת (60 Mbps) וקישור הלקוח (50 Mbps) הם קישורים נפרדים של כל חיבור, ואינם משותפים בין החיבורים. מה ניצולת קישור השרת?",
       "options": [
        {
         "id": "a",
@@ -3022,7 +3022,7 @@ window.COURSES = {
       "correctId": "a",
       "explanation": "כל חיבור מקבל $100/4=25$ Mbps (וזה קטן מ-60 ומ-50). ניצולת השרת: $25/60\\approx$ **0.42**. ‏0.50 היא ניצולת הלקוח ($25/50$).",
       "recap": "ניצולת = בפועל חלקי הקצב של אותו צד",
-      "questionHtml": "4 חיבורים חולקים קישור של 100 Mbps; קישור השרת 60 Mbps וקישור הלקוח 50 Mbps. מה ניצולת קישור השרת?",
+      "questionHtml": "4 חיבורים חולקים קישור של 100 Mbps; קישור השרת (60 Mbps) וקישור הלקוח (50 Mbps) הם קישורים נפרדים של כל חיבור, ואינם משותפים בין החיבורים. מה ניצולת קישור השרת?",
       "explanationHtml": "כל חיבור מקבל <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>100</mn><mi mathvariant=\"normal\">/</mi><mn>4</mn><mo>=</mo><mn>25</mn></mrow><annotation encoding=\"application/x-tex\">100/4=25</annotation></semantics></math></span> Mbps (וזה קטן מ-60 ומ-50). ניצולת השרת: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>25</mn><mi mathvariant=\"normal\">/</mi><mn>60</mn><mo>≈</mo></mrow><annotation encoding=\"application/x-tex\">25/60\\approx</annotation></semantics></math></span> <strong>0.42</strong>. ‏0.50 היא ניצולת הלקוח (<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>25</mn><mi mathvariant=\"normal\">/</mi><mn>50</mn></mrow><annotation encoding=\"application/x-tex\">25/50</annotation></semantics></math></span>).",
       "recapHtml": "ניצולת = בפועל חלקי הקצב של אותו צד"
      },
@@ -4894,10 +4894,10 @@ window.COURSES = {
        }
       ],
       "correctId": "a",
-      "explanation": "מספר אי-זוגי של היפוכים משנה את הזוגיות, ולכן 3 ביטים מזוהים תמיד. 2 ו-4 הם מספרים זוגיים ולכן עלולים לחמוק. האפשרות האחרונה מתארת מקרים שבהם שום דבר לא מזוהה.",
+      "explanation": "מספר אי-זוגי של היפוכים משנה את הזוגיות, ולכן 3 ביטים מזוהים תמיד. 2 ו-4 הם מספרים זוגיים ולכן עלולים לחמוק. האפשרות \"אפס ביטים או שניים\" מתארת מקרים שבהם שום דבר לא מזוהה.",
       "recap": "זוגיות מזהה מספר אי-זוגי של היפוכים.",
       "questionHtml": "ביט זוגיות יחיד מזהה תמיד שגיאה שבה התהפכו בדיוק...",
-      "explanationHtml": "מספר אי-זוגי של היפוכים משנה את הזוגיות, ולכן 3 ביטים מזוהים תמיד. 2 ו-4 הם מספרים זוגיים ולכן עלולים לחמוק. האפשרות האחרונה מתארת מקרים שבהם שום דבר לא מזוהה.",
+      "explanationHtml": "מספר אי-זוגי של היפוכים משנה את הזוגיות, ולכן 3 ביטים מזוהים תמיד. 2 ו-4 הם מספרים זוגיים ולכן עלולים לחמוק. האפשרות \"אפס ביטים או שניים\" מתארת מקרים שבהם שום דבר לא מזוהה.",
       "recapHtml": "זוגיות מזהה מספר אי-זוגי של היפוכים."
      }
     ]
@@ -6214,10 +6214,10 @@ window.COURSES = {
        }
       ],
       "correctId": "a",
-      "explanation": "ה-seq של הלקוח מתקדם ב-1 בגלל ה-SYN שלו (1001), וה-ack מאשר את ה-SYN של השרת (5000+1=5001). באפשרות ג' הצדדים מוחלפים, ובאפשרות ד' ה-ack לא התקדם.",
+      "explanation": "ה-seq של הלקוח מתקדם ב-1 בגלל ה-SYN שלו (1001), וה-ack מאשר את ה-SYN של השרת (5000+1=5001). באפשרות \"seq = 5001, ack = 1001\" הצדדים מוחלפים, ובאפשרות \"seq = 1001, ack = 5000\" ה-ack לא התקדם.",
       "recap": "הודעה 3: seq=x+1 ו-ack=y+1",
       "questionHtml": "הלקוח שלח SYN עם <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>s</mi><mi>e</mi><mi>q</mi><mo>=</mo><mn>1000</mn></mrow><annotation encoding=\"application/x-tex\">seq=1000</annotation></semantics></math></span>, והשרת ענה SYN+ACK עם <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>s</mi><mi>e</mi><mi>q</mi><mo>=</mo><mn>5000</mn></mrow><annotation encoding=\"application/x-tex\">seq=5000</annotation></semantics></math></span>. מהם seq ו-ack בהודעה השלישית של הלקוח?",
-      "explanationHtml": "ה-seq של הלקוח מתקדם ב-1 בגלל ה-SYN שלו (1001), וה-ack מאשר את ה-SYN של השרת (5000+1=5001). באפשרות ג' הצדדים מוחלפים, ובאפשרות ד' ה-ack לא התקדם.",
+      "explanationHtml": "ה-seq של הלקוח מתקדם ב-1 בגלל ה-SYN שלו (1001), וה-ack מאשר את ה-SYN של השרת (5000+1=5001). באפשרות \"seq = 5001, ack = 1001\" הצדדים מוחלפים, ובאפשרות \"seq = 1001, ack = 5000\" ה-ack לא התקדם.",
       "recapHtml": "הודעה 3: seq=x+1 ו-ack=y+1"
      },
      {

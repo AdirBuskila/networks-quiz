@@ -31,7 +31,7 @@ COURSE_LEVEL("tcp", {
     { id: "C01-Q3", question: "הלקוח שלח SYN עם $seq=1000$, והשרת ענה SYN+ACK עם $seq=5000$. מהם seq ו-ack בהודעה השלישית של הלקוח?",
       options: [{ id: "a", value: "seq = 1001, ack = 5001" }, { id: "b", value: "seq = 1000, ack = 5000" }, { id: "c", value: "seq = 5001, ack = 1001" }, { id: "d", value: "seq = 1001, ack = 5000" }],
       correctId: "a",
-      explanation: "ה-seq של הלקוח מתקדם ב-1 בגלל ה-SYN שלו (1001), וה-ack מאשר את ה-SYN של השרת (5000+1=5001). באפשרות ג' הצדדים מוחלפים, ובאפשרות ד' ה-ack לא התקדם.",
+      explanation: "ה-seq של הלקוח מתקדם ב-1 בגלל ה-SYN שלו (1001), וה-ack מאשר את ה-SYN של השרת (5000+1=5001). באפשרות \"seq = 5001, ack = 1001\" הצדדים מוחלפים, ובאפשרות \"seq = 1001, ack = 5000\" ה-ack לא התקדם.",
       recap: "הודעה 3: seq=x+1 ו-ack=y+1" },
     { id: "C01-Q4", question: "איזה דגלים מופיעים בהודעה השנייה של לחיצת היד (מהשרת ללקוח)?",
       options: [{ id: "a", value: "SYN בלבד" }, { id: "b", value: "SYN ו-ACK יחד" }, { id: "c", value: "ACK בלבד" }, { id: "d", value: "FIN ו-ACK" }],
