@@ -1,0 +1,114 @@
+{
+ "1": {
+  "refuterAnswer": "a",
+  "claim": "a",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "2": {
+  "refuterAnswer": "a",
+  "claim": "a",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "3": {
+  "refuterAnswer": "d",
+  "claim": "d",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "blind first pass chose c (HOL wording unclear); on analysis c is false since HTTP/2 does not fix TCP-level HOL; key d correct",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "4": {
+  "refuterAnswer": "c",
+  "claim": "c",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "5": {
+  "refuterAnswer": "b",
+  "claim": "b",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "6": {
+  "refuterAnswer": "b",
+  "claim": "b",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "med: HTTP/1.1 pools connections per host:port (origin), not per resolved IP; 2. Coalescing by IP is HTTP/2 only",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "7": {
+  "refuterAnswer": "b",
+  "claim": "b",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "8": {
+  "refuterAnswer": "b",
+  "claim": "b",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "9": {
+  "refuterAnswer": "d",
+  "claim": "d",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "10": {
+  "refuterAnswer": "b",
+  "claim": "b",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "11": {
+  "refuterAnswer": "c",
+  "claim": "c",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "12": {
+  "refuterAnswer": "b",
+  "claim": "b",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "13": {
+  "refuterAnswer": "b",
+  "claim": "b",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "14": {
+  "refuterAnswer": "c",
+  "claim": "c",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ }
+}

@@ -1,0 +1,82 @@
+{
+ "1": {
+  "refuterAnswer": "c",
+  "claim": "c",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "2": {
+  "refuterAnswer": "a",
+  "claim": "c",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "blind pick a; options a,c,d overlap (rho=aL/R falls with larger R, smaller L at fixed rate, or fewer connections); printed bold c accepted, ambiguous item",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "3": {
+  "refuterAnswer": "c",
+  "claim": "c",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "4": {
+  "refuterAnswer": "b",
+  "claim": "b",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "5": {
+  "refuterAnswer": "d",
+  "claim": "d",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "6": {
+  "refuterAnswer": "b",
+  "claim": "b",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "7": {
+  "refuterAnswer": "b",
+  "claim": "b",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "8": {
+  "refuterAnswer": "d",
+  "claim": "a",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "blind pick d (none); printed bold a (QUIC cuts handshake RTTs); weak item, key follows printed bold",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "9": {
+  "refuterAnswer": "d",
+  "claim": "b",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "blind pick d; printed bold b; \"significantly\" is overstated but b is the intended consequence",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ },
+ "10": {
+  "refuterAnswer": "d",
+  "claim": "d",
+  "verdict": "agree",
+  "divergence": null,
+  "note": "\"without errors\" in network-layer wording is loose but d is the only correct-in-substance option",
+  "explanationCitesPosition": "cites ORIGINAL exam letters; app tags shuffled options with \"במקור\" letter (app.js ~l.343), acceptable"
+ }
+}
