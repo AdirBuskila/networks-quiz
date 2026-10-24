@@ -1,0 +1,900 @@
+{
+ "courseId": "delays",
+ "levels": [
+  {
+   "id": "C01",
+   "order": 1,
+   "boss": false,
+   "questions": [
+    {
+     "id": "C01-Q1",
+     "question": "חבילה בגודל 1500 Bytes. מה גודלה בביטים?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "12,000 ביט"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "1,500 ביט"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "187.5 ביט"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "1,500,000 ביט"
+      }
+     ]
+    },
+    {
+     "id": "C01-Q2",
+     "question": "קישור בקצב 100 Mbps. מה הקצב ב-bps?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "100,000 bps"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "12,500,000 bps"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "800,000,000 bps"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "100,000,000 bps"
+      }
+     ]
+    },
+    {
+     "id": "C01-Q3",
+     "question": "השהיה של 0.5 מילישניות. כמה מיקרושניות זה?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "500 מיקרושניות"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "0.5 מיקרושניות"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "5,000 מיקרושניות"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "50 מיקרושניות"
+      }
+     ]
+    },
+    {
+     "id": "C01-Q4",
+     "question": "קצב ההגעה הוא 3,600,000 חבילות לשעה. כמה חבילות מגיעות בשנייה?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "60,000"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "3,600,000"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "1,000"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "216,000,000"
+      }
+     ]
+    },
+    {
+     "id": "C01-Q5",
+     "question": "מה נכון לגבי 1 Gbps?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "100 Mbps"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "1024 Mbps"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "10,000 Mbps"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "1000 Mbps"
+      }
+     ]
+    },
+    {
+     "id": "C01-Q6",
+     "question": "5 מילישניות הן כמה שניות?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "0.05 שניות"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "5,000 שניות"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "0.005 שניות"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "0.0005 שניות"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C02",
+   "order": 2,
+   "boss": false,
+   "questions": [
+    {
+     "id": "C02-Q1",
+     "question": "חבילה של 8,000 ביט נשלחת בקישור של 10 Mbps. מה השהיית השידור?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "0.8 ms"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "8 ms"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "0.08 ms"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "80 ms"
+      }
+     ]
+    },
+    {
+     "id": "C02-Q2",
+     "question": "חבילה של 1500 Bytes נשלחת בקישור של 100 Mbps. מה השהיית השידור?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "0.015 ms"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "0.12 ms"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "1.2 ms"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "15 ms"
+      }
+     ]
+    },
+    {
+     "id": "C02-Q3",
+     "question": "חבילה של 1500 Bytes נשלחת בקישור של 1 Gbps. מה השהיית השידור?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "12 מיקרושניות"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "1.5 מיקרושניות"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "120 מיקרושניות"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "12 מילישניות"
+      }
+     ]
+    },
+    {
+     "id": "C02-Q4",
+     "question": "קובץ של 1 MB (מיליון בתים) נשלח כחבילה אחת בקישור של 10 Mbps. כמה זמן נמשך השידור?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "0.1 שנייה"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "8 שניות"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "0.8 שנייה"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "0.08 שנייה"
+      }
+     ]
+    },
+    {
+     "id": "C02-Q5",
+     "question": "איזה מהגורמים הבאים **אינו** משפיע על השהיית השידור של חבילה?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "אורך הקו בק\"מ"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "גודל החבילה"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "קצב הקישור"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "מספר הביטים בכותרת החבילה"
+      }
+     ]
+    },
+    {
+     "id": "C02-Q6",
+     "question": "אותה חבילה נשלחת פעם בקישור של 20 Mbps ופעם בקישור של 40 Mbps. מה היחס בין השהיות השידור?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "בקישור האיטי השידור ארוך פי 2"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "בקישור האיטי השידור קצר פי 2"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "השהיות השידור שוות"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "בקישור האיטי השידור ארוך פי 4"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C03",
+   "order": 3,
+   "boss": false,
+   "questions": [
+    {
+     "id": "C03-Q1",
+     "question": "קו באורך 1000 ק\"מ, ומהירות ההתפשטות $2\\cdot10^{8}$ מטר לשנייה. מה השהיית ההתפשטות?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "50 ms"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "5 ms"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "0.5 ms"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "5 מיקרושניות"
+      }
+     ]
+    },
+    {
+     "id": "C03-Q2",
+     "question": "קו באורך 2 ק\"מ ומהירות ההתפשטות $3\\cdot10^{8}$ מטר לשנייה. מה השהיית ההתפשטות?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "6.67 מיקרושניות"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "6.67 מילישניות"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "0.67 מיקרושניות"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "66.7 מיקרושניות"
+      }
+     ]
+    },
+    {
+     "id": "C03-Q3",
+     "question": "חבילה של 1500 Bytes בקישור של 1 Gbps ובקו באורך 100 ק\"מ ($s=2\\cdot10^{8}$). איזו השהיה גדולה יותר?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "שידור (12 מיקרושניות)"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "התפשטות (500 מיקרושניות)"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "שתיהן שוות"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "שידור (120 מיקרושניות)"
+      }
+     ]
+    },
+    {
+     "id": "C03-Q4",
+     "question": "חבילה של 1500 Bytes בקישור של 10 Mbps ובקו באורך 100 מטר ($s=2\\cdot10^{8}$). איזו השהיה גדולה יותר?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "התפשטות, כי יש קו"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "שידור (1.2 ms) מול התפשטות (0.5 מיקרושניות)"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "שתיהן שוות"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "אי אפשר לדעת בלי השהיית התור"
+      }
+     ]
+    },
+    {
+     "id": "C03-Q5",
+     "question": "מעדכנים קישור מ-10 Mbps ל-1 Gbps באותו כבל. איזו השהיה **לא** תשתנה בגלל השדרוג?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "השהיית השידור"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "השהיית ההתפשטות"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "שתיהן ישתנו"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "אף אחת מהן"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C04",
+   "order": 4,
+   "boss": false,
+   "questions": [
+    {
+     "id": "C04-Q1",
+     "question": "חבילה של 10,000 ביט עוברת שני קישורים עוקבים, כל אחד 10 Mbps, והתפשטות זניחה. מה ההשהיה הכוללת?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "1 ms"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "0.5 ms"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "2 ms"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "20 ms"
+      }
+     ]
+    },
+    {
+     "id": "C04-Q2",
+     "question": "בין המקור ליעד יש 2 נתבים, וכל הקישורים 8 Mbps. החבילה 16,000 ביט, התפשטות ועיבוד זניחים. מה ההשהיה הכוללת?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "4 ms"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "6 ms"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "2 ms"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "8 ms"
+      }
+     ]
+    },
+    {
+     "id": "C04-Q3",
+     "question": "חבילה של 4,000 ביט עוברת קישור של 100 Mbps ואחריו קישור של 10 Mbps, התפשטות זניחה. מה ההשהיה הכוללת?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "440 מיקרושניות"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "400 מיקרושניות"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "40 מיקרושניות"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "4.4 מילישניות"
+      }
+     ]
+    },
+    {
+     "id": "C04-Q4",
+     "question": "חבילה של 12,000 ביט. קישור 1: 100 Mbps באורך 300 ק\"מ. קישור 2: 10 Mbps באורך 600 ק\"מ. $s=2\\cdot10^{8}$ מטר לשנייה. מה ההשהיה הכוללת?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "1.32 ms"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "4.5 ms"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "5.82 ms"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "58.2 ms"
+      }
+     ]
+    },
+    {
+     "id": "C04-Q5",
+     "question": "חבילה בגודל 1000 Bytes עוברת שני קישורים של 8 Mbps, בלי התפשטות. מה ההשהיה הכוללת?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "0.25 ms"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "2 ms"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "1 ms"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "16 ms"
+      }
+     ]
+    },
+    {
+     "id": "C04-Q6",
+     "question": "חבילה של 6,000 ביט עוברת שלושה קישורים באורך 500 ק\"מ כל אחד, בקצבים 60, 30 ו-20 Mbps. $s=2\\cdot10^{8}$. מה ההשהיה הכוללת?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "0.6 ms"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "7.5 ms"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "81 ms"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "8.1 ms"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C05",
+   "order": 5,
+   "boss": false,
+   "questions": [
+    {
+     "id": "C05-Q1",
+     "question": "מגיעות 6,000 חבילות בדקה, כל אחת 1,000 ביט, והקישור 1 Mbps. מה עוצמת התעבורה?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "6"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "0.1"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "0.0017"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "100"
+      }
+     ]
+    },
+    {
+     "id": "C05-Q2",
+     "question": "מגיעות 720,000 חבילות לשעה, כל אחת 1,500 Bytes, והקישור 100 Mbps. מה עוצמת התעבורה?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "86.4"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "0.003"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "0.024"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "0.19"
+      }
+     ]
+    },
+    {
+     "id": "C05-Q3",
+     "question": "מגיעות 1,000 חבילות לשנייה, כל אחת 10,000 ביט, והקישור 5 Mbps. מה נכון?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$\\rho=0.5$ והתור כמעט ריק"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$\\rho=2$ והתור גדל ללא גבול, ובסוף יש אובדן חבילות"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$\\rho=0.002$ ואין עומס"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$\\rho=2$ והקישור פשוט מאט את השידור"
+      }
+     ]
+    },
+    {
+     "id": "C05-Q4",
+     "question": "באיזו מהעוצמות הבאות השהיית התור הצפויה הגדולה ביותר?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$\\rho=0.02$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$\\rho=0.5$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$\\rho=0.1$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$\\rho=0.95$"
+      }
+     ]
+    },
+    {
+     "id": "bank:25A-C-Q5",
+     "bankId": "25A-C-Q5"
+    },
+    {
+     "id": "bank:24A-B-Q1",
+     "bankId": "24A-B-Q1"
+    }
+   ]
+  },
+  {
+   "id": "C06",
+   "order": 6,
+   "boss": false,
+   "questions": [
+    {
+     "id": "C06-Q1",
+     "question": "קישור 24 Mbps, חבילות של 1,500 Bytes. מה קצב ההגעה המרבי כך ש-$\\rho=0.5$?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "2,000 חבילות לשנייה"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "1,000 חבילות לדקה"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "8,000 חבילות לשנייה"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "1,000 חבילות לשנייה"
+      }
+     ]
+    },
+    {
+     "id": "C06-Q2",
+     "question": "קישור 1 Gbps, חבילות של 5,000 ביט, מרחק 1000 ק\"מ. מה קצב ההגעה המרבי (בחבילות לשנייה) כך ש-$\\rho=0.8$?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "200,000"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "160,000"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "1,600,000"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "16,000"
+      }
+     ]
+    },
+    {
+     "id": "C06-Q3",
+     "question": "שרת 80 Mbps, לקוח 100 Mbps, ובדרך קישור משותף של 200 Mbps שחולקים בו 5 חיבורים שווים. מה התפוקה של חיבור?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "80 Mbps"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "40 Mbps"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "100 Mbps"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "200 Mbps"
+      }
+     ]
+    },
+    {
+     "id": "C06-Q4",
+     "question": "4 חיבורים חולקים קישור של 100 Mbps; קישור השרת 60 Mbps וקישור הלקוח 50 Mbps. מה ניצולת קישור השרת?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "0.42"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "0.25"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "0.50"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "1.00"
+      }
+     ]
+    },
+    {
+     "id": "bank:25A-C-Q12",
+     "bankId": "25A-C-Q12"
+    },
+    {
+     "id": "bank:25A-C-Q6",
+     "bankId": "25A-C-Q6"
+    }
+   ]
+  },
+  {
+   "id": "C07",
+   "order": 7,
+   "boss": true,
+   "questions": [
+    {
+     "id": "bank:24A-A-Q1",
+     "bankId": "24A-A-Q1"
+    },
+    {
+     "id": "bank:24A-B-Q6",
+     "bankId": "24A-B-Q6"
+    },
+    {
+     "id": "bank:25A-A-Q2",
+     "bankId": "25A-A-Q2"
+    },
+    {
+     "id": "bank:25A-B-Q7",
+     "bankId": "25A-B-Q7"
+    },
+    {
+     "id": "bank:25A-B-Q6",
+     "bankId": "25A-B-Q6"
+    },
+    {
+     "id": "bank:26A-A-Q11",
+     "bankId": "26A-A-Q11"
+    }
+   ]
+  }
+ ]
+}
