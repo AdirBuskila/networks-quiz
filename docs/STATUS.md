@@ -4,7 +4,7 @@ Resume here: phase 7 (ship, awaiting Adir). QA done 2026-10-25: 166 questions (8
 Opus sessions: 0 of 2
 Engine: mcq   Format: unknown   Cutoff: unknown
 
-Triage material (private, names students, never copied into this repo): C:\Users\Adir\Desktop\Coding\Dev\course-factory\courses\networksormat_triage.md
+Triage material (private, names students, never copied into this repo): C:\Users\Adir\Desktop\Coding\Dev\course-factory\courses\networks\format_triage.md
 
 Gates 1, 2 and 7 always stop for Adir.
 
