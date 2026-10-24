@@ -8,8 +8,8 @@ the rendered page and solved independently (calculations recomputed in tools/ver
 answerSource "solved", official:false.
 Amendment sheet (page 13, "tosefet"): question 3 of the booklet is voided and replaced by a new question 3 (RTT
 estimation); Q9, Q12 and Q20 carry wording corrections. The corrected texts are used here.
-Multi-select questions (the cover page allows "mark all that are correct"; Q5, Q6, Q17, Q18) cannot be represented by
-the single-answer engine: they are held, the solved answer set is recorded in the hold reason.
+Multi-select questions (the cover page allows "mark all that are correct"; Q5, Q6, Q17) ship as multi items with the
+solved answer set (answerIds). Q18 is ambiguous (arbiter 2026-10-24) and stays held, out of the bank.
 Figure: the DNS diagram of Q9 is redrawn (tools/verify/23A-A/draw_dns.py), not cropped from the scan."""
 import json, pathlib
 
@@ -33,6 +33,15 @@ def Q(num, topic, question, options, correct, explanation, **kw):
 
 def HOLD(num, topic, question, options, why):
     return {"num": num, "topic": topic, "question": question, "options": options, "hold": why}
+
+
+def MQ(num, topic, question, options, answer_ids, explanation, **kw):
+    """Multi-select item (mark every correct option; graded on the exact set)."""
+    q = {"num": num, "topic": topic, "question": question, "options": options,
+         "multi": True, "answerIds": answer_ids, "answerSource": "solved", "official": False,
+         "confidence": "high", "explanation": explanation, "note": EVID + " Multi-select: solved set, refuted."}
+    q.update(kw)
+    return q
 
 
 MULTI = ("multi-select question (mark every correct option; full credit needs the exact set) - the single-answer "
@@ -92,24 +101,35 @@ questions.append(Q(
     note=EVID + " Student tick differs (a); a successful POST may legitimately return 200, 201, 202 or 204."))
 
 # ---------------------------------------------------------------- 5 (held, multi-select)
-questions.append(HOLD(
+questions.append(MQ(
     5, "http",
     "מה מהכתוב מטה **אינו חלק** מהיתרונות של רשת עמית לעמית (Peer To Peer P2P) בהשוואה לשימוש במודל של שרת לקוח:\nסמנו את כל התשובות הרלוונטיות.",
     opts("סקלביליות : הוספת לקוחות גם מוסיפה נותני שרות.",
          "באותם קצבי רשת בין מחשבים : יכולת ההעברה וההפצה הן יותר מהירות ברשת P2P בהשוואה למודל שרת-לקוח.",
          "קלות ניהול.",
          "Fast Start"),
-    MULTI + "c and d (a and b are advantages of P2P; easy management and fast start are not)."))
+    ["c", "d"],
+    r"""השאלה מבקשת את מה שאינו יתרון של P2P לעומת לקוח-שרת, ולכן מסמנים את שתי התשובות שאינן יתרון (ג ו-ד).
+ג - "קלות ניהול": אינה יתרון. אין שרת מרכזי ששולט, והניהול והאבטחה מבוזרים וקשים יותר. לסמן.
+ד - "Fast Start": אינה יתרון מוכר של P2P. בתחילת ההורדה יש לעמית מעט נתונים וכמעט אין מי שיספק אותם, והקצב עולה רק אחרי שהצטברו חלקים. לסמן.
+א - סקלביליות: יתרון של P2P, כי כל עמית חדש מוסיף ביקוש וגם יכולת שירות. לא לסמן.
+ב - מהירות הפצה: יתרון של P2P, כי כל העמיתים משתתפים בהעברה ולא רק שרת בודד. לא לסמן.""",
+    confidence="med"))
 
 # ---------------------------------------------------------------- 6 (held, multi-select)
-questions.append(HOLD(
+questions.append(MQ(
     6, "http",
     "איזה מהבעיות מטה, בא פתרון רשת מסוג CDN לפתור :\nסמנו את כל התשובות הנכונות.",
     opts("סקלביליות : יכולת תמיכה בכמות גדולה של לקוחות.",
          "חסם הגידול ביכולת התמיכה של שרת בודד.",
          "חסם הגידול ברוחב הפס של קו תקשורת בודד.",
          "בעיית המחסור בכתובות רשת מסוג IPV4"),
-    MULTI + "a, b and c (IPv4 address shortage is not what a CDN addresses)."))
+    ["a", "b", "c"],
+    r"""CDN מפזר עותקי תוכן בשרתים רבים הקרובים ללקוחות, ולכן הוא פותר בעיות של עומס ושל מרחק.
+א - סקלביליות: נכון, הלקוחות מתחלקים בין שרתים רבים ולכן אפשר לשרת הרבה יותר לקוחות.
+ב - חסם היכולת של שרת בודד: נכון, כבר אין שרת יחיד שמטפל בכולם.
+ג - חסם רוחב הפס של קו בודד: נכון, התנועה מתפזרת על פני קווים רבים ואינה עוברת כולה בקו אחד.
+ד - מחסור בכתובות IPv4: לא נכון. זו בעיה של שכבת הרשת, שנפתרת ב-NAT וב-IPv6, ו-CDN אינו עוסק בה."""))
 
 # ---------------------------------------------------------------- 7
 questions.append(Q(
@@ -244,12 +264,18 @@ questions.append(Q(
 ג, ד: מתחילות מ-16, שאינו גבול של בלוק /18. א: הכתובת אינה לבדה בבלוק (יש $2^{14}$ כתובות)."""))
 
 # ---------------------------------------------------------------- 17 (held, multi-select)
-questions.append(HOLD(
+questions.append(MQ(
     17, "tcp",
     "אילו מהפונקציות הבאות חייבות להיות מיושמות על ידי פרוטוקול תעבורה אמין מעבר לפונקציות שממומשות כבר בפרוטוקול רשת? (יש לסמן כל הנכון)",
     opts("קישוריות מ HOST ל HOST", "משלוח פאקטות בסדר הנכון", "הגנה בפני משלוח פאקטות כפולות", "התאוששות מאיבודי פאקטות",
          "אף תשובה."),
-    MULTI + "b, c and d (host-to-host connectivity is already a network-layer function, so a is not required)."))
+    ["b", "c", "d"],
+    r"""שכבת הרשת (IP) היא best-effort: חבילות יכולות להגיע בסדר שונה, בכפילויות או לא להגיע. פרוטוקול תעבורה אמין חייב להוסיף מעליה:
+ב - משלוח בסדר הנכון: חובה, באמצעות מספרי סדר ומיון אצל המקבל.
+ג - הגנה בפני כפילויות: חובה, מספרי הסדר מאפשרים לזהות ולזרוק עותק כפול.
+ד - התאוששות מאיבודים: חובה, באמצעות אישורים (ACK), Timeout ושליחה חוזרת.
+א - קישוריות מ-Host ל-Host: אינה נדרשת "מעבר" לשכבת הרשת, כי זו כבר פונקציה של IP. לא לסמן.
+ה - "אף תשובה": שגויה, כי ב, ג ו-ד נכונות."""))
 
 # ---------------------------------------------------------------- 18 (held, multi-select)
 questions.append(HOLD(
@@ -257,9 +283,8 @@ questions.append(HOLD(
     "אילו מהפונקציות הבאות **לא** חייבות להיות מיושמות על ידי פרוטוקול תעבורה \"ללא דרישה לאמינות\" מעבר לפונקציות שכן ממומשות בפרוטוקול רשת?",
     opts("קישוריות מ HOST ל HOST", "משלוח פאקטות בסדר הנכון", "משלוח פאקטות כפולות", "התאוששות מאיבודי פאקטות",
          "אף תשובה לא נכונה."),
-    MULTI + "a, b, c and d (an unreliable transport adds only process multiplexing; the stem's third option as "
-            "printed reads 'משלוח פאקטות כפולות', treated as protection from duplicates). Reading of the stem and of "
-            "option c is uncertain - ask Adir."))
+    "ambiguous multi-select (arbiter 2026-10-24): literal reading gives {a,b,c,d}, the contrast-with-network-layer "
+    "reading gives {b,c,d} (the grader accepted {b,c,d} on the scan); dropped pending ASK_ADIR."))
 
 # ---------------------------------------------------------------- 19
 questions.append(Q(

@@ -9,8 +9,8 @@ answerSource "solved", official:false.
 Numbering: the answer sheet has 20 rows. The booklet prints 22 questions; the second "12" (HTTP persistent) and the
 second "13" (large organisation) have their numbers struck through on the scan and have no answer-sheet row, so they are
 treated as probably voided and held as Q21 and Q22. Q1-Q20 follow the answer-sheet numbering.
-Multi-select questions (the cover page: mark every correct option, full answer needed; Q5, Q7, Q8, Q17) cannot be
-represented by the single-answer engine: they are held and the solved answer set is recorded in the hold reason.
+Multi-select questions (the cover page: mark every correct option, full answer needed; Q5, Q7, Q8, Q17, Q20) ship as
+multi items with the solved answer set (answerIds). Q21 and Q22 stay held (voided).
 Figure: the DNS diagram of Q11 is redrawn (tools/verify/23A-A/draw_dns.py), not cropped from the scan."""
 import json, pathlib
 
@@ -24,6 +24,15 @@ MULTI = ("multi-select question (mark every correct option; full credit needs th
 
 def opts(*vals):
     return [{"id": IDS[i], "type": "text", "value": v} for i, v in enumerate(vals)]
+
+
+def MQ(num, topic, question, options, answer_ids, explanation, **kw):
+    """Multi-select item (mark every correct option; graded on the exact set)."""
+    q = {"num": num, "topic": topic, "question": question, "options": options,
+         "multi": True, "answerIds": answer_ids, "answerSource": "solved", "official": False,
+         "confidence": "high", "explanation": explanation, "note": EVID + " Multi-select: solved set, refuted."}
+    q.update(kw)
+    return q
 
 
 def Q(num, topic, question, options, correct, explanation, **kw):
@@ -92,12 +101,20 @@ questions.append(Q(
 ההיגד "גם ב-TCP וגם ב-UDP" שגוי, והתיאור המדויק הוא "לא נכון: רק ב-TCP". ד: אפשר לדעת, זה לא תלוי בעומס."""))
 
 # ---------------------------------------------------------------- 5 (held)
-questions.append(HOLD(
+questions.append(MQ(
     5, "ip_cidr",
     "בחרו את כל הנכון:\nהיכן מתבצעת פרגמנטציית IP **בשכבת הרשת** (סמנו את כל הנכון)\n(בשאלה זו לא להתייחס לפרגמנטציה בשכבות אחרות )",
     opts("HOST שולח", "HOST מקבל", "נתב", "מחשב לקוח מקבל +נתב", "אף אחד מהתשובות האחרות אינה נכונה .",
          "בשרתי DNS בשאילתה המתקבלת, בתנאי שעובדים ב UDP (יבוצע בצד השרת המקבל)."),
-    MULTI + "a and c (the sending host and routers fragment; the receiver only reassembles)."))
+    ["a", "c"],
+    r"""פרגמנטציה ב-IP מתבצעת כשחבילה גדולה מה-MTU של הקישור שבו היא עומדת לעבור.
+א - HOST שולח: נכון, המחשב השולח מפרגמנט חבילה שגדולה מה-MTU של הקישור היוצא שלו.
+ג - נתב: נכון, נתב שמעביר חבילה לקישור עם MTU קטן יותר מפרגמנט אותה (אלא אם הוגדר DF).
+ב - HOST מקבל: שגוי, המקבל מבצע רק הרכבה מחדש (reassembly) ולא פרגמנטציה.
+ד - מחשב לקוח מקבל ונתב: שגוי, כי היא כוללת את המקבל.
+ה - "אף אחת": שגויה, כי א ו-ג נכונות.
+ו - שרת DNS בצד המקבל: שגוי, הצד המקבל מרכיב ואינו מפרגמנט, גם כשעובדים מעל UDP.""",
+    confidence="med"))
 
 # ---------------------------------------------------------------- 6
 questions.append(Q(
@@ -112,7 +129,7 @@ questions.append(Q(
 א: ממשק משתמש אינו חובה (יש אפליקציות רקע, שרתים ועוד). ג, ה: השכבות התחתונות אינן מחליטות עבור האפליקציה."""))
 
 # ---------------------------------------------------------------- 7 (held)
-questions.append(HOLD(
+questions.append(MQ(
     7, "http",
     "מה מהכתוב מטה **אינו חלק** מהיתרונות של רשת עמית לעמית (Peer To Peer P2P) בהשוואה לשימוש במודל של שרת לקוח :\nסמנו את כל התשובות הרלוונטיות.",
     opts("סקלביליות : הוספת לקוחות גם מוסיפה נותני שרות.",
@@ -120,11 +137,17 @@ questions.append(HOLD(
          "קלות ניהול.",
          "תלות בשרת מרכזי.",
          "בהנחת הוגנות: הוספת לקוחות לא מוסיפה נותני שרות."),
-    MULTI + "c, d and e (a and b are advantages of P2P; easy management, dependence on a central server and "
-            "'adding clients adds no providers' are not)."))
+    ["c", "d", "e"],
+    r"""השאלה מבקשת את מה שאינו יתרון של P2P, ולכן מסמנים את ג, ד ו-ה.
+ג - קלות ניהול: אינה יתרון, כי אין שרת מרכזי ששולט והניהול מבוזר וקשה יותר. לסמן.
+ד - תלות בשרת מרכזי: אינה יתרון של P2P. זו תכונה של מודל לקוח-שרת (וחיסרון שלו), וב-P2P ההפך הוא הנכון. לסמן.
+ה - "הוספת לקוחות לא מוסיפה נותני שירות": הפוכה למציאות ב-P2P, שבו כל עמית מוסיף גם יכולת שירות. לכן אינה יתרון. לסמן.
+א - סקלביליות: יתרון של P2P (כל עמית חדש מוסיף גם ביקוש וגם שירות). לא לסמן.
+ב - מהירות הפצה: יתרון של P2P (כל העמיתים משתתפים בהעברה). לא לסמן.""",
+    confidence="med"))
 
 # ---------------------------------------------------------------- 8 (held)
-questions.append(HOLD(
+questions.append(MQ(
     8, "http",
     "איזה מהבעיות מטה, בא פתרון רשת מסוג CDN לפתור :\nסמנו את כל התשובות הנכונות.",
     opts("סקלביליות : יכולת תמיכה בכמות גדולה של לקוחות.",
@@ -133,7 +156,13 @@ questions.append(HOLD(
          "בעיית המחסור בכתובות רשת מסוג IPV6",
          "תלות במיגבלות ביצועים של שרת בודד.",
          "בעיית המחסור בכתובות רשת מסוג IPV4"),
-    MULTI + "a, b, c and e (address-shortage options d and f are not what a CDN solves)."))
+    ["a", "b", "c", "e"],
+    r"""CDN מפזר עותקי תוכן בשרתים רבים הקרובים ללקוחות, ולכן הוא פותר בעיות של עומס ושל מרחק.
+א - סקלביליות: נכון, הלקוחות מתחלקים בין שרתים רבים.
+ב - חסם היכולת של שרת בודד: נכון, כבר אין שרת יחיד שמטפל בכולם.
+ג - חסם רוחב הפס של קו בודד: נכון, התנועה מתפזרת על פני קווים רבים.
+ה - תלות במגבלות הביצועים של שרת בודד: נכון, זו אותה בעיה של ב מנוסחת אחרת.
+ד, ו - מחסור בכתובות IPv6 או IPv4: לא נכון. זו בעיה של שכבת הרשת (נפתרת ב-NAT וב-IPv6), ו-CDN אינו עוסק בה."""))
 
 # ---------------------------------------------------------------- 9
 questions.append(Q(
@@ -243,12 +272,18 @@ questions.append(Q(
 ג, ד: מתחילות מ-16, שאינו גבול של בלוק /18."""))
 
 # ---------------------------------------------------------------- 17 (held)
-questions.append(HOLD(
+questions.append(MQ(
     17, "tcp",
     "אילו מהפונקציות הבאות חייבות להיות מיושמות על ידי פרוטוקול תעבורה אמין TCP ? (יש לסמן כל הנכון)",
     opts("קישוריות מ PROCESS ל PROCESS", "קבלת פאקטות בסדר הנכון", "הגנה בפני משלוח פאקטות כפולות",
          "התאוששות מאיבודי פאקטות", "אף תשובה."),
-    MULTI + "a, b, c and d."))
+    ["a", "b", "c", "d"],
+    r"""TCP חייב לספק מעל שכבת הרשת (best-effort) את כל הפונקציות האלה:
+א - קישוריות בין תהליכים: חובה. שכבת הרשת מגיעה עד התחנה, ו-TCP מוסיף פורטים כדי להגיע לתהליך הנכון.
+ב - קבלת חבילות בסדר הנכון: חובה, באמצעות מספרי סדר ומיון אצל המקבל.
+ג - הגנה בפני כפילויות: חובה, מספרי הסדר מאפשרים לזהות עותק כפול ולזרוק אותו.
+ד - התאוששות מאיבודים: חובה, באמצעות אישורים (ACK), Timeout ושליחה חוזרת.
+ה - "אף תשובה": שגויה, כי א עד ד נכונות."""))
 
 # ---------------------------------------------------------------- 18
 questions.append(Q(
@@ -275,7 +310,7 @@ questions.append(Q(
 לכן "אין Flow Control ב-UDP" (ה) הוא ההיגד הנכון; א-ד מתארים תפקידים שאינם קיימים ב-UDP."""))
 
 # ---------------------------------------------------------------- 20
-questions.append(Q(
+questions.append(MQ(
     20, "tcp",
     "מהו התפקיד של מנגנון בקרת עומס Congestion Control ב TCP ?\n(תזכורת, סמנו את כל הנכון בשאלה זו וגם בכל השאלות האחרות !)",
     opts("להגן מפני העמסת נתבים ROUTERS בשל ריבוי re-transmits .",
@@ -283,12 +318,15 @@ questions.append(Q(
          "להגן מפני הצפת הצד המקבל בשל שליחה מהירה מידי אבל גם להימנע משליחה איטית מידי .",
          "להגן מפני תת-ניצול נתבים בשל TimeOuts ארוכים מידי.",
          "אף תשובה לא נכונה."),
-    "a",
-    r"""בקרת עומס מגינה על הרשת: כשיש עומס (איבוד חבילות) TCP מקטין את קצב השליחה, כדי שהנתבים לא יוצפו בחבילות חדשות ובשליחות חוזרות.
-ב: מתגים אינם היעד, ואין "fast-transmits" שמעמיסים. ג: זו בקרת זרימה (מקבל). ד: Timeout ארוך אינו עניין של בקרת עומס.""",
+    ["a", "b"],
+    r"""בקרת עומס ב-TCP מגינה על הרשת, לא על המקבל: כשמתגלה עומס (איבוד חבילות, Timeout או שלושה ACK כפולים) השולח מקטין את חלון העומס (cwnd), כדי שרכיבי הרשת - נתבים ומתגים - לא יוצפו בחבילות חדשות ובשליחות חוזרות.
+א ו-ב נכונות: ההגנה היא על נתבים (א) ועל מתגים (ב) מפני עומס יתר שנגרם משליחות חוזרות.
+ג מתארת בקרת זרימה (חלון הקבלה rwnd של המקבל), לא בקרת עומס.
+ד עוסקת באורך ה-Timeout, שנקבע בהערכת RTT, ואינו המטרה של בקרת עומס.
+ה שגויה, כי א ו-ב נכונות.""",
     confidence="med",
-    note=EVID + " The cover page allows several correct answers; only option a fits congestion control (option d "
-                "describes a retransmission-timer effect, not the purpose of congestion control)."))
+    note=EVID + " Multi-select (the stem carries the reminder to mark every correct option). Arbiter 2026-10-24: set {a,b}; "
+                "option d judged not a purpose of congestion control but doubtful - ASK_ADIR open."))
 
 # ---------------------------------------------------------------- 21 (held: number struck on the scan)
 questions.append(HOLD(

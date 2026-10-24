@@ -200,7 +200,16 @@
      "value": "בשרתי DNS בשאילתה המתקבלת, בתנאי שעובדים ב UDP (יבוצע בצד השרת המקבל)."
     }
    ],
-   "hold": "multi-select question (mark every correct option; full credit needs the exact set) - the single-answer engine cannot hold it. Solved set: a and c (the sending host and routers fragment; the receiver only reassembles)."
+   "multi": true,
+   "answerIds": [
+    "a",
+    "c"
+   ],
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "med",
+   "explanation": "פרגמנטציה ב-IP מתבצעת כשחבילה גדולה מה-MTU של הקישור שבו היא עומדת לעבור.\nא - HOST שולח: נכון, המחשב השולח מפרגמנט חבילה שגדולה מה-MTU של הקישור היוצא שלו.\nג - נתב: נכון, נתב שמעביר חבילה לקישור עם MTU קטן יותר מפרגמנט אותה (אלא אם הוגדר DF).\nב - HOST מקבל: שגוי, המקבל מבצע רק הרכבה מחדש (reassembly) ולא פרגמנטציה.\nד - מחשב לקוח מקבל ונתב: שגוי, כי היא כוללת את המקבל.\nה - \"אף אחת\": שגויה, כי א ו-ג נכונות.\nו - שרת DNS בצד המקבל: שגוי, הצד המקבל מרכיב ואינו מפרגמנט, גם כשעובדים מעל UDP.",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key). Multi-select: solved set, refuted."
   },
   {
    "num": 6,
@@ -271,7 +280,17 @@
      "value": "בהנחת הוגנות: הוספת לקוחות לא מוסיפה נותני שרות."
     }
    ],
-   "hold": "multi-select question (mark every correct option; full credit needs the exact set) - the single-answer engine cannot hold it. Solved set: c, d and e (a and b are advantages of P2P; easy management, dependence on a central server and 'adding clients adds no providers' are not)."
+   "multi": true,
+   "answerIds": [
+    "c",
+    "d",
+    "e"
+   ],
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "med",
+   "explanation": "השאלה מבקשת את מה שאינו יתרון של P2P, ולכן מסמנים את ג, ד ו-ה.\nג - קלות ניהול: אינה יתרון, כי אין שרת מרכזי ששולט והניהול מבוזר וקשה יותר. לסמן.\nד - תלות בשרת מרכזי: אינה יתרון של P2P. זו תכונה של מודל לקוח-שרת (וחיסרון שלו), וב-P2P ההפך הוא הנכון. לסמן.\nה - \"הוספת לקוחות לא מוסיפה נותני שירות\": הפוכה למציאות ב-P2P, שבו כל עמית מוסיף גם יכולת שירות. לכן אינה יתרון. לסמן.\nא - סקלביליות: יתרון של P2P (כל עמית חדש מוסיף גם ביקוש וגם שירות). לא לסמן.\nב - מהירות הפצה: יתרון של P2P (כל העמיתים משתתפים בהעברה). לא לסמן.",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key). Multi-select: solved set, refuted."
   },
   {
    "num": 8,
@@ -309,7 +328,18 @@
      "value": "בעיית המחסור בכתובות רשת מסוג IPV4"
     }
    ],
-   "hold": "multi-select question (mark every correct option; full credit needs the exact set) - the single-answer engine cannot hold it. Solved set: a, b, c and e (address-shortage options d and f are not what a CDN solves)."
+   "multi": true,
+   "answerIds": [
+    "a",
+    "b",
+    "c",
+    "e"
+   ],
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "CDN מפזר עותקי תוכן בשרתים רבים הקרובים ללקוחות, ולכן הוא פותר בעיות של עומס ושל מרחק.\nא - סקלביליות: נכון, הלקוחות מתחלקים בין שרתים רבים.\nב - חסם היכולת של שרת בודד: נכון, כבר אין שרת יחיד שמטפל בכולם.\nג - חסם רוחב הפס של קו בודד: נכון, התנועה מתפזרת על פני קווים רבים.\nה - תלות במגבלות הביצועים של שרת בודד: נכון, זו אותה בעיה של ב מנוסחת אחרת.\nד, ו - מחסור בכתובות IPv6 או IPv4: לא נכון. זו בעיה של שכבת הרשת (נפתרת ב-NAT וב-IPv6), ו-CDN אינו עוסק בה.",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key). Multi-select: solved set, refuted."
   },
   {
    "num": 9,
@@ -657,7 +687,18 @@
      "value": "אף תשובה."
     }
    ],
-   "hold": "multi-select question (mark every correct option; full credit needs the exact set) - the single-answer engine cannot hold it. Solved set: a, b, c and d."
+   "multi": true,
+   "answerIds": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "TCP חייב לספק מעל שכבת הרשת (best-effort) את כל הפונקציות האלה:\nא - קישוריות בין תהליכים: חובה. שכבת הרשת מגיעה עד התחנה, ו-TCP מוסיף פורטים כדי להגיע לתהליך הנכון.\nב - קבלת חבילות בסדר הנכון: חובה, באמצעות מספרי סדר ומיון אצל המקבל.\nג - הגנה בפני כפילויות: חובה, מספרי הסדר מאפשרים לזהות עותק כפול ולזרוק אותו.\nד - התאוששות מאיבודים: חובה, באמצעות אישורים (ACK), Timeout ושליחה חוזרת.\nה - \"אף תשובה\": שגויה, כי א עד ד נכונות.",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key). Multi-select: solved set, refuted."
   },
   {
    "num": 18,
@@ -771,12 +812,16 @@
      "value": "אף תשובה לא נכונה."
     }
    ],
-   "correctId": "a",
+   "multi": true,
+   "answerIds": [
+    "a",
+    "b"
+   ],
    "answerSource": "solved",
    "official": false,
    "confidence": "med",
-   "explanation": "בקרת עומס מגינה על הרשת: כשיש עומס (איבוד חבילות) TCP מקטין את קצב השליחה, כדי שהנתבים לא יוצפו בחבילות חדשות ובשליחות חוזרות.\nב: מתגים אינם היעד, ואין \"fast-transmits\" שמעמיסים. ג: זו בקרת זרימה (מקבל). ד: Timeout ארוך אינו עניין של בקרת עומס.",
-   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key). The cover page allows several correct answers; only option a fits congestion control (option d describes a retransmission-timer effect, not the purpose of congestion control)."
+   "explanation": "בקרת עומס ב-TCP מגינה על הרשת, לא על המקבל: כשמתגלה עומס (איבוד חבילות, Timeout או שלושה ACK כפולים) השולח מקטין את חלון העומס (cwnd), כדי שרכיבי הרשת - נתבים ומתגים - לא יוצפו בחבילות חדשות ובשליחות חוזרות.\nא ו-ב נכונות: ההגנה היא על נתבים (א) ועל מתגים (ב) מפני עומס יתר שנגרם משליחות חוזרות.\nג מתארת בקרת זרימה (חלון הקבלה rwnd של המקבל), לא בקרת עומס.\nד עוסקת באורך ה-Timeout, שנקבע בהערכת RTT, ואינו המטרה של בקרת עומס.\nה שגויה, כי א ו-ב נכונות.",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key). Multi-select (the stem carries the reminder to mark every correct option). Arbiter 2026-10-24: set {a,b}; option d judged not a purpose of congestion control but doubtful - ASK_ADIR open."
   },
   {
    "num": 21,

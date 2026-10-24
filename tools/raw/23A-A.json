@@ -175,7 +175,16 @@
      "value": "Fast Start"
     }
    ],
-   "hold": "multi-select question (mark every correct option; full credit needs the exact set) - the single-answer engine cannot hold it. Solved set: c and d (a and b are advantages of P2P; easy management and fast start are not)."
+   "multi": true,
+   "answerIds": [
+    "c",
+    "d"
+   ],
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "med",
+   "explanation": "השאלה מבקשת את מה שאינו יתרון של P2P לעומת לקוח-שרת, ולכן מסמנים את שתי התשובות שאינן יתרון (ג ו-ד).\nג - \"קלות ניהול\": אינה יתרון. אין שרת מרכזי ששולט, והניהול והאבטחה מבוזרים וקשים יותר. לסמן.\nד - \"Fast Start\": אינה יתרון מוכר של P2P. בתחילת ההורדה יש לעמית מעט נתונים וכמעט אין מי שיספק אותם, והקצב עולה רק אחרי שהצטברו חלקים. לסמן.\nא - סקלביליות: יתרון של P2P, כי כל עמית חדש מוסיף ביקוש וגם יכולת שירות. לא לסמן.\nב - מהירות הפצה: יתרון של P2P, כי כל העמיתים משתתפים בהעברה ולא רק שרת בודד. לא לסמן.",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key). Multi-select: solved set, refuted."
   },
   {
    "num": 6,
@@ -203,7 +212,17 @@
      "value": "בעיית המחסור בכתובות רשת מסוג IPV4"
     }
    ],
-   "hold": "multi-select question (mark every correct option; full credit needs the exact set) - the single-answer engine cannot hold it. Solved set: a, b and c (IPv4 address shortage is not what a CDN addresses)."
+   "multi": true,
+   "answerIds": [
+    "a",
+    "b",
+    "c"
+   ],
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "CDN מפזר עותקי תוכן בשרתים רבים הקרובים ללקוחות, ולכן הוא פותר בעיות של עומס ושל מרחק.\nא - סקלביליות: נכון, הלקוחות מתחלקים בין שרתים רבים ולכן אפשר לשרת הרבה יותר לקוחות.\nב - חסם היכולת של שרת בודד: נכון, כבר אין שרת יחיד שמטפל בכולם.\nג - חסם רוחב הפס של קו בודד: נכון, התנועה מתפזרת על פני קווים רבים ואינה עוברת כולה בקו אחד.\nד - מחסור בכתובות IPv4: לא נכון. זו בעיה של שכבת הרשת, שנפתרת ב-NAT וב-IPv6, ו-CDN אינו עוסק בה.",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key). Multi-select: solved set, refuted."
   },
   {
    "num": 7,
@@ -612,7 +631,17 @@
      "value": "אף תשובה."
     }
    ],
-   "hold": "multi-select question (mark every correct option; full credit needs the exact set) - the single-answer engine cannot hold it. Solved set: b, c and d (host-to-host connectivity is already a network-layer function, so a is not required)."
+   "multi": true,
+   "answerIds": [
+    "b",
+    "c",
+    "d"
+   ],
+   "answerSource": "solved",
+   "official": false,
+   "confidence": "high",
+   "explanation": "שכבת הרשת (IP) היא best-effort: חבילות יכולות להגיע בסדר שונה, בכפילויות או לא להגיע. פרוטוקול תעבורה אמין חייב להוסיף מעליה:\nב - משלוח בסדר הנכון: חובה, באמצעות מספרי סדר ומיון אצל המקבל.\nג - הגנה בפני כפילויות: חובה, מספרי הסדר מאפשרים לזהות ולזרוק עותק כפול.\nד - התאוששות מאיבודים: חובה, באמצעות אישורים (ACK), Timeout ושליחה חוזרת.\nא - קישוריות מ-Host ל-Host: אינה נדרשת \"מעבר\" לשכבת הרשת, כי זו כבר פונקציה של IP. לא לסמן.\nה - \"אף תשובה\": שגויה, כי ב, ג ו-ד נכונות.",
+   "note": "Scan with student ticks: ticks not used as a key; solved independently from the printed question (student copy, no official key). Multi-select: solved set, refuted."
   },
   {
    "num": 18,
@@ -645,7 +674,7 @@
      "value": "אף תשובה לא נכונה."
     }
    ],
-   "hold": "multi-select question (mark every correct option; full credit needs the exact set) - the single-answer engine cannot hold it. Solved set: a, b, c and d (an unreliable transport adds only process multiplexing; the stem's third option as printed reads 'משלוח פאקטות כפולות', treated as protection from duplicates). Reading of the stem and of option c is uncertain - ask Adir."
+   "hold": "ambiguous multi-select (arbiter 2026-10-24): literal reading gives {a,b,c,d}, the contrast-with-network-layer reading gives {b,c,d} (the grader accepted {b,c,d} on the scan); dropped pending ASK_ADIR."
   },
   {
    "num": 19,

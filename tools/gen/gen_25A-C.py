@@ -6,8 +6,10 @@ Source: the exam page with the answers highlighted in yellow (3 pages, 16 printe
 The page numbers two questions "5" (the queue-overflow question and the TCP window-size question);
 the second one is stored as num 16 so the numbers stay unique.
 The highlighted key is used as given (answerSource highlighted-pdf), with these exceptions:
-  Q3 - HELD: key says 10ms, recomputation gives 15.65 ms (tools/verify/25A-C/check.py) -> ASK_ADIR.
-The page carries no explanations, so explanation is empty for the keyed questions."""
+  Q3 - key says 10ms, but the printed data gives 15.65 ms (tools/verify/25A-C/check.py): typo ruling, key c (15ms),
+       solved / official:false (arbiter 2026-10-24).
+  Q4 - official key a kept, d also accepted (acceptedIds [a, d], arbiter 2026-10-24).
+The page carries no explanations; the explanations below are written for this app (EXPL)."""
 import json, pathlib
 
 OUT = pathlib.Path(__file__).resolve().parents[1] / "raw" / "25A-C.json"
@@ -36,7 +38,7 @@ questions.append(Q(
          "10 חיבורים ב-HTTP 1.1 ו-10 חיבורים ב-HTTP/2",
          "5 חיבורים ב-HTTP 1.1 ו-5 חיבורים ב-HTTP/2"),
     "a", confidence="med",
-    note="Official yellow key. 17 = ceil(100/6) assumes 6 parallel connections per host, a convention the question does not print; only this option has a single HTTP/2 connection."))
+    note="Official yellow key; 17 = ceil(100/6) request rounds under the 6-parallel-connection convention (not printed) - explained in a הערה; HTTP/2 half decides the item. Arbiter 2026-10-24."))
 
 questions.append(Q(
     2, "dns_dhcp",
@@ -44,12 +46,12 @@ questions.append(Q(
     opts("90ms", "30ms", "60ms", "120ms"), "a", confidence="med",
     note="Official yellow key (90ms); the question does not say how many servers are queried (root, TLD, authoritative is the implied three)."))
 
-questions.append({
-    "num": 3, "topic": "delays",
-    "question": "במערכת רשת הכוללת שלושה קישורים טוריים עם רוחבי פס של 100 Mbps, 50 Mbps ו-10 Mbps, וגודל חבילה של 5000 ביטים, חשב את זמן ההשהייה הכולל אם מהירות ההפצה היא $2\\cdot 10^{8}$ m/s ואורך כל קישור הוא 1000 ק\"מ.",
-    "options": opts("5ms", "10ms", "15ms", "20ms"),
-    "hold": "official key (10ms) disagrees with recomputation: 5000 bit over 100/50/10 Mbps = 0.65 ms, propagation 3 x 5 ms = 15 ms, total 15.65 ms (nearest option 15ms); propagation alone already exceeds 10 ms",
-})
+questions.append(Q(
+    3, "delays",
+    "במערכת רשת הכוללת שלושה קישורים טוריים עם רוחבי פס של 100 Mbps, 50 Mbps ו-10 Mbps, וגודל חבילה של 5000 ביטים, חשב את זמן ההשהייה הכולל אם מהירות ההפצה היא $2\\cdot 10^{8}$ m/s ואורך כל קישור הוא 1000 ק\"מ.",
+    opts("5ms", "10ms", "15ms", "20ms"), "c",
+    answerSource="solved", official=False,
+    note="Official yellow key b (10ms) contradicts the printed data (15.65 ms); typo ruling, key = nearest option c. Arbiter 2026-10-24."))
 
 questions.append(Q(
     4, "tcp", "מהי מטרת מנגנון ה-Slow Start בפרוטוקול TCP?",
@@ -57,7 +59,8 @@ questions.append(Q(
          "לשמור על גודל חלון קבוע בתהליך שליחת החבילות כדי למנוע עומס",
          "להבטיח שחבילות יגיעו ליעד ללא אובדן כלל תוך שמירה על קצב שליחה קבוע",
          "למנוע קפיצה מיידית למהירות העברת הנתונים המרבית"),
-    "a"))
+    "a", acceptedIds=["a", "d"],
+    note="Official key a; d also accepted (correct description of slow start) - arbiter 2026-10-24, ASK_ADIR open."))
 
 questions.append(Q(
     5, "delays", "מה קורה כאשר תור בנתב מתמלא עקב עומס יתר?",
@@ -146,13 +149,57 @@ questions.append(Q(
     "a",
     note="Printed a second time as question number 5 (the page numbers two questions 5); stored as num 16."))
 
+
+EXPL = {
+    1: r"""ב-HTTP/2 כל הבקשות לאותו שרת עוברות במקביל (multiplexing) על חיבור TCP אחד בלבד, ולכן רק תשובה א אפשרית: בכל שאר התשובות יש יותר מחיבור אחד ב-HTTP/2.
+ב-HTTP 1.1 כל חיבור מטפל בבקשה אחת בכל פעם, ולכן הדפדפן פותח כמה חיבורים מקבילים לשרת - בדרך כלל עד 6. כך 100 המשאבים מתחלקים ל-$\lceil 100/6 \rceil = 17$ סבבים של בקשות.
+הערה: השאלה אינה מציינת את מספר החיבורים המקבילים. המספר 17 מבוסס על המוסכמה של 6 חיבורים מקבילים, ובפועל הוא מספר סבבי הבקשות: עם חיבורים מתמשכים (persistent) נפתחים 6 חיבורים, שכל אחד מהם משמש לכ-17 בקשות.""",
+    2: r"""כשהרשומה אינה במטמון, השרת פונה בשאילתות עוקבות: שרת ה-Root, אחריו שרת ה-TLD ולבסוף השרת האוטוריטטיבי. כל שאילתה נמשכת 30ms, ולכן $3\cdot 30=90\,\text{ms}$.
+הנחה: סופרים רק את שלוש השאילתות האלה. אם סופרים גם את הפנייה הראשונה של הלקוח אל ה-Resolver המקומי מתקבלים $4\cdot 30=120\,\text{ms}$ (אפשרות ד), אבל הפתרון הצפוי בשאלה הוא 90ms.
+30ms ו-60ms מניחים שאילתה אחת או שתיים בלבד, שאינן מספיקות כדי להגיע לשרת האוטוריטטיבי.""",
+    3: r"""הפתרון הרשמי עם תיקון: בדף מסומנת התשובה 10ms, אך לפי הנתונים המודפסים זמן ההשהייה הוא כ-15.65ms, והתשובה הקרובה ביותר היא 15ms.
+השהיית התפשטות: כל קישור באורך $1000\,\text{km}$, ולכן $\frac{10^{6}\,\text{m}}{2\cdot 10^{8}\,\text{m/s}}=5\,\text{ms}$ לקישור, ובשלושה קישורים $15\,\text{ms}$.
+השהיית שידור (Store-and-Forward, בכל קישור מחדש): $\frac{5000}{10^{8}}+\frac{5000}{5\cdot 10^{7}}+\frac{5000}{10^{7}}=0.05+0.1+0.5=0.65\,\text{ms}$.
+סך הכול $15+0.65=15.65\,\text{ms}\approx 15\,\text{ms}$. כבר השהיית ההתפשטות לבדה (15ms) גדולה מ-10ms, ולכן 10ms אינו אפשרי לפי נתוני השאלה.""",
+    4: r"""Slow Start מתחיל בחלון עומס קטן (cwnd = 1 MSS) ומכפיל אותו בכל RTT. כך TCP לא שולח מיד חלון מלא שעלול להציף את הרשת, ועדיין מגיע במהירות (גידול מעריכי) לקצב שהרשת מסוגלת לשאת, עד ssthresh או עד איבוד חבילה.
+ב שגויה: החלון אינו קבוע. ג שגויה: Slow Start אינו מבטיח מסירה ללא אובדן.
+הערה: המפתח הרשמי הוא א. גם ד מתארת נכון את Slow Start (התחלה בחלון קטן במקום קפיצה מיידית לקצב המרבי), ולכן גם היא מתקבלת כנכונה.""",
+    5: r"""לתור בנתב יש גודל סופי. כשהוא מתמלא, חבילה חדשה שמגיעה אין לה מקום והנתב זורק אותה (packet loss, בדרך כלל tail drop). האובדן הוא אות העומס ש-TCP מגיב אליו.
+ב: הנתב ממשיך לעבוד. ג: הנתב אינו מאט את ההעברה, הוא פשוט זורק חבילות שלא נכנסות. ד: אין "חיבור גיבוי" אוטומטי כתגובה למילוי תור.""",
+    6: r"""השהיית עיבוד (processing) היא הזמן שהנתב משקיע בבדיקת הכותרת, בחירת הנתיב וניהול התור. אם היא גבוהה בהרבה מהשהיית השידור, ההסבר הסביר הוא שהנתב עמוס או חלש ולכן מעבד לאט.
+א: רוחב פס נמוך מגדיל דווקא את השהיית השידור $L/R$ ולא את העיבוד. ג: מרחק גדול מגדיל את השהיית ההתפשטות. ד: בחירת UDP או TCP אינה משנה את זמן העיבוד בנתב.""",
+    7: r"""TCP מקטין את חלון העומס כשהוא מזהה עומס, והסימן הברור לכך הוא היעדר תגובה: כשלא מתקבל ACK תוך Timeout, החבילה כנראה אבדה בגלל עומס, ו-TCP מקטין את החלון (בדרך כלל חזרה ל-1 MSS) ומקטין את ssthresh.
+א: ACK שמגיע מהר מהצפוי מעיד שאין עומס, ולכן החלון דווקא גדל. ג: כשהקו פנוי החלון גדל ולא קטן. ד: הגעה בסדר שגוי אינה סימן לעומס בפני עצמה (TCP מסדר מחדש אצל המקבל).""",
+    8: r"""שכבת הקו אחראית על העברת מסגרות בין שני צמתים סמוכים: מסגור (Framing), זיהוי שגיאות (CRC/Checksum) וטיפול בגישה לערוץ, כולל זיהוי התנגשויות ב-Ethernet.
+הקצאת כתובות IP היא עניין של שכבת הרשת (ושל DHCP בשכבת האפליקציה), ולכן ב היא מה שאינו מתבצע בשכבת הקו.""",
+    9: r"""ARP (Address Resolution Protocol) מתרגם כתובת IP ידועה לכתובת MAC באותה רשת מקומית: התחנה משדרת בקשה לכולם, והבעלים של ה-IP עונה עם כתובת ה-MAC שלו.
+א ו-ג עוסקות בהצפנה, ד היא תפקיד של DHCP.""",
+    10: r"""קריסת חלון (window collapse) קורית כשיש עומס גבוה או שגיאות רבות: חבילות אובדות, מתרחש Timeout, וחלון העומס יורד בבת אחת (בדרך כלל ל-1 MSS) ואז מתחילים שוב מ-Slow Start.
+א: רוחב פס נמוך מגביל את הקצב אך אינו גורם לקריסה מיידית. ב: ברשת ריקה החלון גדל. ד: פרוטוקול גיבוי של הנתב אינו קשור.""",
+    11: r"""ICMP (Internet Control Message Protocol) משמש לשליחת הודעות שגיאה ובקרה ברשת IP, למשל Destination Unreachable ו-Time Exceeded.
+TCP ו-UDP הם פרוטוקולי תעבורה שנושאים נתוני אפליקציה, ו-HTTP הוא פרוטוקול אפליקציה.""",
+    12: r"""Bandwidth הוא הקיבולת התיאורטית המרבית של הערוץ (למשל 100 Mbps), ו-Throughput הוא הקצב שמושג בפועל, והוא בדרך כלל קטן יותר בגלל עומס, שגיאות, שליחות חוזרות ותקורה.
+א ו-ג מחליפים בין מושגים שאינם קשורים (עיכוב, אמינות), ו-ד שגויה כי יש הבדל.""",
+    13: r"""מספרי פורטים (Port Numbers) הם חלק מכותרת פרוטוקול התעבורה (TCP, וגם UDP), והם קובעים לאיזה תהליך אפליקציה לספק את הנתונים. מבין האפשרויות רק TCP הוא פרוטוקול תעבורה.
+IP מנתב לפי כתובות IP, ICMP נושא הודעות בקרה, ו-ARP מתרגם IP ל-MAC - אף אחד מהם אינו משתמש בפורטים.""",
+    14: r"""שכבת התעבורה מספקת תקשורת קצה-לקצה בין תהליכים: ניהול חיבורים, בקרת שגיאות ובקרת זרימה ועומס, ובפרוטוקול TCP גם שליחה אמינה.
+א: קביעת מסלול וניתוב היא תפקיד שכבת הרשת. ג: הצפנה אינה תפקידה המרכזי של שכבת התעבורה. ד: חלוקה לתת-רשתות באמצעות כתובות ומסכות היא עניין של שכבת הרשת.""",
+    15: r"""ARP מתאים כתובת IP לכתובת MAC ברשת המקומית.
+DNS מתרגם שמות לכתובות IP, HTTP מעביר דפי אינטרנט ו-FTP מעביר קבצים - אף אחד מהם אינו קשור לכתובות MAC.""",
+    16: r"""חלון TCP קובע כמה נתונים השולח רשאי לשלוח לפני שהוא חייב להמתין לאישור (ACK) מהנמען. חלון גדול יותר מאפשר לשלוח יותר נתונים ברצף, מנצל טוב יותר את הקו ומשפר את התפוקה, בכפוף ל-rwnd ול-cwnd.
+ב: מספר הנתבים בדרך אינו קשור לחלון. ג: החלון אינו משמש להצפנה. ד: החלון אינו מגביל את מספר החיבורים לרשת.""",
+}
+for _q in questions:
+    if _q.get("num") in EXPL and not _q.get("hold"):
+        _q["explanation"] = EXPL[_q["num"]]
+
 exam = {
     "examCode": "25A-C",
     "examLabel": "2025 סמסטר א מועד ג",
     "year": 2025,
     "examDate": "2025",
     "sourceFile": "sitting 25A-C (exam page with yellow-highlighted answers)",
-    "keyFile": "sitting 25A-C yellow highlights; Q3 recomputed in tools/verify/25A-C/check.py and held",
+    "keyFile": "sitting 25A-C yellow highlights; Q3 recomputed in tools/verify/25A-C/check.py (typo ruling, key c)",
     "contexts": {},
     "questions": questions,
 }
