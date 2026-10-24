@@ -1,0 +1,1288 @@
+{
+ "courseId": "app",
+ "levels": [
+  {
+   "id": "C01",
+   "order": 1,
+   "boss": false,
+   "questions": [
+    {
+     "id": "app-C01-Q1",
+     "question": "מדוע HTTP נחשב לפרוטוקול חסר מצב (stateless)?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "כי הוא אינו מצפין את המידע שעובר בו"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "כי השרת אינו זוכר בקשות קודמות, וכל בקשה עומדת בפני עצמה"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "כי הוא תומך רק בבקשה אחת בכל חיבור"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "כי הוא מעביר רק קבצי טקסט ולא תמונות"
+      }
+     ]
+    },
+    {
+     "id": "app-C01-Q2",
+     "question": "אתר מסוים צריך לזכור שאותו משתמש הוא שהוסיף מוצר לעגלה שתי לחיצות קודם. איך עושים זאת בפועל מעל HTTP?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "השרת מחזיר מזהה בכותרת `Set-Cookie`, והדפדפן שולח אותו בכל בקשה הבאה"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "הדפדפן מצפין כל בקשה, והשרת מזהה אותה לפי ההצפנה"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "הפרוטוקול כבר זוכר את הבקשות הקודמות של כל לקוח"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "השרת שולח קוד לדפדפן שמאיץ את הבקשות הבאות"
+      }
+     ]
+    },
+    {
+     "id": "app-C01-Q3",
+     "question": "מהי המטרה העיקרית של עוגיות צד שלישי (third-party cookies)?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "לשמור על הסשן של המשתמש באתר שבו הוא גולש"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "להצפין את התקשורת בין הדפדפן לשרת"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "מעקב אחר המשתמש בין אתרים שונים וטירגוט פרסומות"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "לקצר את זמן הטעינה של הדף"
+      }
+     ]
+    },
+    {
+     "id": "app-C01-Q4",
+     "question": "איזו מהתגובות הבאות חוזרת **בלי גוף** (Body)?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "תגובת 200 לבקשת GET רגילה"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "תגובת 404 שמציגה דף שגיאה"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "תגובת 200 לבקשת POST של טופס שמחזירה דף אישור"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "תגובת 304 לבקשת GET מותנה"
+      }
+     ]
+    },
+    {
+     "id": "app-C01-Q5",
+     "question": "יש לך משאב שכתובתו ידועה, ואתה רוצה ליצור אותו או להחליף את תוכנו אם הוא כבר קיים. איזו שיטת HTTP מתאימה בדיוק לכך?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "HEAD"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "GET"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "PUT"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "אף אחת מהן"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C02",
+   "order": 2,
+   "boss": false,
+   "questions": [
+    {
+     "id": "app-C02-Q1",
+     "question": "דף כולל קובץ HTML ו-4 תמונות, הכול מאותו שרת. HTTP **non-persistent**, מזניחים זמן שידור. כמה סבבי RTT דרושים לטעינת הדף?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "10 RTT"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "6 RTT"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "5 RTT"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "3 RTT"
+      }
+     ]
+    },
+    {
+     "id": "app-C02-Q2",
+     "question": "דף כולל קובץ HTML ו-6 תמונות, הכול מאותו שרת. HTTP/1.1 **persistent בלי pipelining**, מזניחים זמן שידור. כמה סבבי RTT דרושים?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "14 RTT"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "7 RTT"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "3 RTT"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "8 RTT"
+      }
+     ]
+    },
+    {
+     "id": "app-C02-Q3",
+     "question": "דף כולל קובץ HTML ו-9 תמונות, הכול מאותו שרת. HTTP/1.1 **persistent עם pipelining**, מזניחים זמן שידור. כמה סבבי RTT דרושים?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "20 RTT"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "11 RTT"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "3 RTT"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "2 RTT"
+      }
+     ]
+    },
+    {
+     "id": "app-C02-Q4",
+     "question": "מדוע קיימת בעיה בפרוטוקול HTTP 1.0 בכל הנוגע לטעינת דפי אינטרנט?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "הוא פותח חיבור TCP חדש לכל משאב, ולכן משלם RTT נוסף ו-Slow Start חדש בכל אובייקט"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "הוא מחייב לשלוח את כל התמונות לפני קובץ ה-HTML"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "הוא אינו תומך ב-TCP"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "הוא מגביל כל דף לאובייקט אחד בלבד"
+      }
+     ]
+    },
+    {
+     "id": "app-C02-Q5",
+     "question": "ה-RTT לשרת הוא 50 ms. דף כולל קובץ HTML ו-9 תמונות מאותו שרת, ב-HTTP/1.1 **persistent בלי pipelining**. מזניחים זמן שידור. מה זמן הטעינה?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "1000 ms"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "550 ms"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "500 ms"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "150 ms"
+      }
+     ]
+    },
+    {
+     "id": "app-C02-Q6",
+     "question": "האם אפשר לבקש שני דפים שונים מאותו שרת מעל אותו חיבור persistent?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "כן, חיבור persistent נשאר פתוח ומשרת כמה בקשות"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "לא, כל דף דורש חיבור משלו"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "רק אם שני הדפים קטנים"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "רק אם משתמשים בעוגיות"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C03",
+   "order": 3,
+   "boss": false,
+   "questions": [
+    {
+     "id": "app-C03-Q1",
+     "question": "$RTT=200\\ ms$, קו של $100\\ Mbps$. דף של $50\\ KB$ ובו שלוש תמונות של $250\\ KB$, הכול על אותו שרת. HTTP **non-persistent**. מה זמן הטעינה הכולל?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "1064 ms"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "1664 ms"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "864 ms"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "664 ms"
+      }
+     ]
+    },
+    {
+     "id": "app-C03-Q2",
+     "question": "$RTT=200\\ ms$, קו של $100\\ Mbps$. דף של $50\\ KB$ ובו חמש תמונות של $250\\ KB$, הכול על אותו שרת. HTTP **persistent בלי pipelining**. מה זמן הטעינה הכולל?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "2504 ms"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "704 ms"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "1504 ms"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "1304 ms"
+      }
+     ]
+    },
+    {
+     "id": "app-C03-Q3",
+     "question": "אותו דף כמו בשאלה הראשונה ($RTT=200\\ ms$, $100\\ Mbps$, דף של $50\\ KB$ ושלוש תמונות של $250\\ KB$), אבל עכשיו HTTP **persistent עם pipelining**. מה זמן הטעינה הכולל?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "1664 ms"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "1064 ms"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "464 ms"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "664 ms"
+      }
+     ]
+    },
+    {
+     "id": "app-C03-Q4",
+     "question": "דף של זמן שידור $t_0$ ובו $N$ תמונות, שלכל אחת זמן שידור $t_1$. HTTP **persistent בלי pipelining**. איזה ביטוי נותן את זמן הטעינה?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "$RTT+(RTT+t_0)+N\\,(RTT+t_1)$"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "$2RTT+t_0+N\\,(2RTT+t_1)$"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "$RTT+(RTT+t_0)+RTT+N\\,t_1$"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "$(RTT+t_0)+N\\,(RTT+t_1)$"
+      }
+     ]
+    },
+    {
+     "id": "app-C03-Q5",
+     "question": "$RTT=100\\ ms$. דף עם 5 תמונות. בכמה זמן קצרה טעינת הדף ב-**persistent** (בלי pipelining) לעומת **non-persistent**, כשזמני השידור זהים בשני המצבים?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "600 ms"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "100 ms"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "1000 ms"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "500 ms"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C04",
+   "order": 4,
+   "boss": false,
+   "questions": [
+    {
+     "id": "app-C04-Q1",
+     "question": "הדפדפן טוען `http://www.a.com/index.html`. בדף קובץ HTML (מ-a.com), שלוש תמונות מ-a.com, שתי תמונות מ-b.com ותמונה אחת מ-c.com. HTTP/1.1 persistent וללא pipelining, חיבור אחד לכל שם שרת. כמה חיבורי TCP נדרשים?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "7"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "6"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "1"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "3"
+      }
+     ]
+    },
+    {
+     "id": "app-C04-Q2",
+     "question": "הדף `http://www.shop.com/index.html` כולל תמונה מ-`www.shop.com`, תמונה מ-`img.shop.com` ותמונה נוספת מ-`www.shop.com`. DNS מחזיר לשני השמות את אותה כתובת IP. HTTP/1.1 persistent וללא pipelining, חיבור אחד לכל שם שרת. כמה חיבורי TCP נדרשים?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "1"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "2"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "3"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "4"
+      }
+     ]
+    },
+    {
+     "id": "app-C04-Q3",
+     "question": "אתר עם 80 משאבים משרת אחד. כמה חיבורי TCP ישמש הדפדפן מול השרת הזה ב-**HTTP/2**?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "80"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "14"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "1"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "6"
+      }
+     ]
+    },
+    {
+     "id": "app-C04-Q4",
+     "question": "הדפדפן פותח עד 6 חיבורים מקבילים לשרת. הדף כבר הגיע, ונשארו 40 תמונות באותו שרת (persistent וללא pipelining). מזניחים זמן שידור. כמה סבבי RTT דרושים לטעינת התמונות?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "6"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "40"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "7"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "8"
+      }
+     ]
+    },
+    {
+     "id": "app-C04-Q5",
+     "question": "הדפדפן פותח עד 6 חיבורים מקבילים **לכל שרת**. הדף כבר הגיע, ונשארו 14 תמונות בשרת א' ו-20 תמונות בשרת ב', ושני השרתים נטענים במקביל (persistent וללא pipelining, מזניחים זמן שידור). כמה סבבי RTT דרושים?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "7"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "6"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "34"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "4"
+      }
+     ]
+    },
+    {
+     "id": "app-C04-Q6",
+     "question": "לפי המוסכמה של שאלות מבחן (דפדפן ב-HTTP/1.1 מחשב $\\lceil N/6\\rceil$ חיבורים, ו-HTTP/2 פותח חיבור אחד לשרת): אתר עם 60 משאבים משרת אחד. כמה חיבורי TCP דרושים בכל אחת מהגרסאות?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "10 חיבורים ב-HTTP/1.1, וחיבור אחד ב-HTTP/2"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "10 חיבורים ב-HTTP/1.1, ו-10 חיבורים ב-HTTP/2"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "60 חיבורים ב-HTTP/1.1, וחיבור אחד ב-HTTP/2"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "6 חיבורים ב-HTTP/1.1, ו-6 חיבורים ב-HTTP/2"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C05",
+   "order": 5,
+   "boss": false,
+   "questions": [
+    {
+     "id": "app-C05-Q1",
+     "question": "הלקוח מחזיק עותק של תמונה עם `Last-Modified` מאתמול. הוא שולח GET מותנה, והתמונה לא השתנה. מה השרת עונה?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "304 Not Modified בלי גוף"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "200 OK עם התמונה כולה בגוף"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "404 Not Found"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "301 Moved Permanently"
+      }
+     ]
+    },
+    {
+     "id": "app-C05-Q2",
+     "question": "$RTT=100\\ ms$, אובייקט של $1\\ MB$ בקו של $80\\ Mbps$, החיבור כבר פתוח. כמה זמן עולה GET **מותנה** כשהאובייקט לא השתנה?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "300 ms"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "0 ms"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "100 ms"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "200 ms"
+      }
+     ]
+    },
+    {
+     "id": "app-C05-Q3",
+     "question": "מה המשמעות של הכותרת `Cache-Control: max-age=7200` בתגובת HTTP?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "אפשר להשתמש בתגובה מהמטמון למשך שעתיים"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "אפשר להשתמש בתגובה מהמטמון למשך 7200 אלפיות שנייה"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "אסור לשמור את התגובה במטמון"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "התגובה נשמרת במטמון ללא הגבלת זמן"
+      }
+     ]
+    },
+    {
+     "id": "app-C05-Q4",
+     "question": "אתר מציג תמונות גדולות באיכות גבוהה, והתמונות משתנות מדי פעם. השרת תומך ב-`Last-Modified`. מתי כדאי להשתמש ב-GET מותנה?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "תמיד, בכל בקשה לכל אובייקט, גם לתוכן שמשתנה בכל בקשה"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "כאשר התמונה עשויה להשתנות אבל לא בכל בקשה, ואין צורך להוריד את הגוף המלא בכל פעם"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "כאשר רוצים לדעת אם המשאב השתנה, באמצעות PUT"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "אף פעם, כי הוא עולה RTT"
+      }
+     ]
+    },
+    {
+     "id": "app-C05-Q5",
+     "question": "קו הגישה של ארגון מנוצל ב-$0.9$. מוסיפים web cache עם שיעור פגיעה (hit rate) של $0.4$. מה הניצולת החדשה של קו הגישה?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "0.9"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "0.36"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "0.5"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "0.54"
+      }
+     ]
+    },
+    {
+     "id": "app-C05-Q6",
+     "question": "שיעור הפגיעה במטמון הוא $0.6$. תשובה מהמטמון לוקחת $10\\ ms$, ופספוס (פנייה לשרת המקור) לוקח בסך הכול $210\\ ms$. מה זמן התגובה הממוצע?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "130 ms"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "110 ms"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "210 ms"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "90 ms"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C06",
+   "order": 6,
+   "boss": false,
+   "questions": [
+    {
+     "id": "app-C06-Q1",
+     "question": "כיצד מתבצע חיפוש כתובת ה-IP של `www.cnn.com` כשאין מידע במטמון של שרתי ה-DNS?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "ה-Resolver פונה ל-Authoritative, משם ל-TLD, ומשם ל-Root, שמחזיר את הכתובת"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "ה-Resolver פונה ל-Root, שמפנה ל-TLD, שמפנה ל-Authoritative, שמחזיר את הכתובת"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "הלקוח שולח ARP ל-Resolver, והוא מחזיר את הכתובת"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "ה-Root מחזיר מיד את כתובת ה-IP של `www.cnn.com`"
+      }
+     ]
+    },
+    {
+     "id": "app-C06-Q2",
+     "question": "הניחו ש-Resolver מקומי שולח שאילתה לכל אחד מ-Root, TLD ו-Authoritative **באיטרטיבית** (כל שרת מחזיר הפניה או את התשובה), והלקוח שואל את ה-Resolver. סופרים כל שאילתה וכל תשובה, כולל השאילתה מהלקוח והתשובה אליו. כמה הודעות בסך הכול?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "8"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "6"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "4"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "10"
+      }
+     ]
+    },
+    {
+     "id": "app-C06-Q3",
+     "question": "ה-Resolver המקומי שלח שאילתה ל-Root וקיבל תשובה: \"אני לא יודע את הכתובת, פנה לשרת ה-TLD הזה\". אחר כך ה-Resolver עצמו פנה לשרת ה-TLD. איזו שאילתה זו מול ה-Root?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "רקורסיבית"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "שאילתת ARP"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "איטרטיבית"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "שאילתת DHCP"
+      }
+     ]
+    },
+    {
+     "id": "app-C06-Q4",
+     "question": "הלקוח שואל את ה-Resolver המקומי, וה-Resolver שולח שאילתה אחת ל-Root וממתין. ה-Root פונה בעצמו ל-TLD, ה-TLD פונה ל-Authoritative, והתשובה הסופית חוזרת בשרשרת עד ה-Resolver. איך מתאר זאת הציור?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "שאילתה איטרטיבית"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "שאילתה רקורסיבית"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "שאילתה איטרטיבית פרסיסטנטית"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "תהליך ARP"
+      }
+     ]
+    },
+    {
+     "id": "app-C06-Q5",
+     "question": "שרת DNS מגיב תוך $25\\ ms$ לכל שאילתה. ה-Resolver לא מכיר כתובת של האתר, אבל במטמון שלו כבר יש את שרת ה-TLD של `.com`. כמה זמן לוקח לו למצוא את הכתובת (שאילתות ל-TLD ול-Authoritative בלבד)?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "75 ms"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "25 ms"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "50 ms"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "100 ms"
+      }
+     ]
+    },
+    {
+     "id": "app-C06-Q6",
+     "question": "איזו רשומת DNS מגדירה שם נוסף (כינוי) שמפנה לשם הקנוני של מארח?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "A"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "MX"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "NS"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "CNAME"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C07",
+   "order": 7,
+   "boss": false,
+   "questions": [
+    {
+     "id": "app-C07-Q1",
+     "question": "מה קובע ה-TTL של רשומת DNS?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "כמה שניות לכל היותר מותר לשמור את הרשומה במטמון"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "כמה שרתים מותר לעבור בדרך אל הרשומה"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "כמה אלפיות שנייה לוקחת תשובה"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "כמה פעמים מותר לשאול על הרשומה"
+      }
+     ]
+    },
+    {
+     "id": "app-C07-Q2",
+     "question": "רשומת A של אתר נשמרת ב-Resolver עם $TTL=60\\ s$. משתמשים פונים לאתר בזמנים $t=0,\\ 30,\\ 70,\\ 100$ (שניות). כמה מהפניות הן חיפושים אמיתיים (כאלה שלא נענו מהמטמון)?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "4"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "1"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "2"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "3"
+      }
+     ]
+    },
+    {
+     "id": "app-C07-Q3",
+     "question": "הזמן של חיפוש אמיתי מלא (Root, TLD, Authoritative) הוא $3\\cdot20=60\\ ms$. הרשומה נשמרת עם $TTL=45\\ s$, ורק רשומת ה-A של האתר נשמרת במטמון. משתמשים פונים לאתר כל 10 שניות במשך 100 שניות: $t=0,\\ 10,\\ \\ldots,\\ 90$. מה סך זמן החיפוש בכל 10 הפניות?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "60 ms"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "180 ms"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "600 ms"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "120 ms"
+      }
+     ]
+    },
+    {
+     "id": "app-C07-Q4",
+     "question": "ה-Resolver מקבל מה-Authoritative: רשומת NS לדומיין עם $TTL=86400$, ורשומת A של שרת ה-nameserver שלו עם $TTL=300$. מה נכון לגבי רשומת ה-A של ה-nameserver?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "ה-Resolver רשאי לשמור אותה במטמון עד ה-TTL שלה עצמה, 300 שניות"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "ה-Resolver חייב לשמור אותה 86400 שניות, כמו רשומת ה-NS"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "ה-Resolver אסור לו לשמור אותה במטמון בכלל"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "ה-Resolver חייב לשאול מחדש בכל פעם"
+      }
+     ]
+    },
+    {
+     "id": "app-C07-Q5",
+     "question": "מה יקרה אם ערכי ה-TTL ברשומות ה-DNS שבמטמון של הדפדפנים יהיו נמוכים מאוד (למשל שניות ספורות)?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "העומס על שרתי ה-DNS יקטן משמעותית"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "שאילתות DNS יחזרו בתדירות גבוהה, והעומס על שרתי ה-DNS וזמן הטעינה של הדפים יעלו"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "האבטחה והפרטיות של המשתמשים ישתפרו משמעותית"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "לא ישתנה דבר, כי המטמון בדפדפן תמיד שומר שעה"
+      }
+     ]
+    },
+    {
+     "id": "app-C07-Q6",
+     "question": "לאתר יש רשומת A עם $TTL=86400$ שניות (יממה). בעל האתר מעביר אותו לכתובת IP חדשה ומעדכן את הרשומה ב-Authoritative. מה יקרה למשתמשים?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "כולם יגיעו מיד לכתובת החדשה"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "אף אחד לא יגיע לכתובת החדשה לפני שבוע"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "משתמשים שהרשומה הישנה במטמון שלהם ימשיכו לגשת לכתובת הישנה עד שה-TTL שלה יפוג"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "ה-Authoritative ימחק את הרשומה הישנה מכל המטמונים"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C08",
+   "order": 8,
+   "boss": false,
+   "questions": [
+    {
+     "id": "app-C08-Q1",
+     "question": "איזו מהבעיות הבאות CDN נועד לפתור?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "מחסור בכתובות IPv4"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "עומס על שרת יחיד ומרחק גדול בין המשתמשים לשרת"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "איבוד חבילות בחיבור TCP בודד"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "הצפנת התקשורת בין הדפדפן לשרת"
+      }
+     ]
+    },
+    {
+     "id": "app-C08-Q2",
+     "question": "שני לקוחות, אחד בלוס אנג'לס ואחד בתל אביב, פונים לאותו שם דומיין של אתר ומקבלים תוכן משרתי CDN שונים. איך זה קורה?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "שרת ה-DNS מחזיר כתובת IP שונה לפי מיקום השואל"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "הדפדפן בוחר שרת באקראי מתוך רשימה ב-HTTP"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "העוגייה של כל משתמש קובעת לאיזה שרת הוא יגיע"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "החיבור ה-persistent עובר אוטומטית לשרת הקרוב"
+      }
+     ]
+    },
+    {
+     "id": "app-C08-Q3",
+     "question": "איזה שיפור משמעותי מציע HTTP/2 לעומת HTTP/1.1 מבחינת ניצול משאבי הרשת?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "הוא עובר מ-TCP ל-UDP"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "הוא מבטל את בעיית ה-head-of-line blocking של TCP"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "ריבוי בקשות ותגובות בזרמים על חיבור TCP אחד (multiplexing)"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "הוא מחייב הצפנה בכל חיבור לפי התקן"
+      }
+     ]
+    },
+    {
+     "id": "app-C08-Q4",
+     "question": "מדוע HTTP/3 משתמש ב-QUIC במקום ב-TCP?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "כי QUIC מאחד את לחיצת היד ומנהל זרמים נפרדים, כך שאיבוד חבילה בזרם אחד לא חוסם את האחרים"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "כי QUIC מבטל את הצורך בהצפנה"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "כי QUIC רץ ישירות מעל IP בלי UDP"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "כי QUIC מריץ רק בקשה אחת בכל חיבור"
+      }
+     ]
+    },
+    {
+     "id": "app-C08-Q5",
+     "question": "אתר עם משתמשים בכל העולם סובל מזמני טעינה ארוכים אצל משתמשים רחוקים מהשרת. איזה שינוי ישפר את הזמנים הכי הרבה?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "מעבר מ-HTTP/1.1 ל-HTTP/2 בלבד"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "פריסת CDN עם שרתים קרובים למשתמשים"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "הגדלת מספר העוגיות"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "שימוש ב-HTTP non-persistent"
+      }
+     ]
+    },
+    {
+     "id": "app-C08-Q6",
+     "question": "מה נכון לגבי איבוד חבילה בודדת בחיבור שמשרת הרבה זרמים במקביל?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "ב-HTTP/2 הוא עוצר את כל הזרמים שעל החיבור (HOL), וב-HTTP/3 הוא עוצר רק את הזרם שנפגע"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "ב-HTTP/2 הוא עוצר רק את הזרם שנפגע, וב-HTTP/3 את כל הזרמים"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "הוא אינו משפיע על אף זרם בשום גרסה"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "הוא עוצר את כל הזרמים בשתי הגרסאות"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C09",
+   "order": 9,
+   "boss": true,
+   "questions": [
+    {
+     "id": "bank:22S-A-Q5",
+     "bankId": "22S-A-Q5"
+    },
+    {
+     "id": "bank:25A-C-Q1",
+     "bankId": "25A-C-Q1"
+    },
+    {
+     "id": "bank:25A-C-Q2",
+     "bankId": "25A-C-Q2"
+    },
+    {
+     "id": "bank:22S-A-Q15",
+     "bankId": "22S-A-Q15"
+    },
+    {
+     "id": "bank:24A-A-Q10",
+     "bankId": "24A-A-Q10"
+    },
+    {
+     "id": "bank:25A-A-Q11",
+     "bankId": "25A-A-Q11"
+    }
+   ]
+  }
+ ]
+}
