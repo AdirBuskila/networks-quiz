@@ -1078,6 +1078,740 @@ window.COURSES = {
       "recapHtml": "ממוצע משוקלל: h·פגיעה + (1−h)·פספוס"
      }
     ]
+   },
+   {
+    "id": "C06",
+    "order": 6,
+    "icon": "🌳",
+    "title": "DNS: היררכיה, איטרטיבית ורקורסיבית",
+    "goal": "לתאר את מסלול חיפוש הכתובת, להבדיל בין שאילתה איטרטיבית לרקורסיבית, ולחשב זמן חיפוש.",
+    "source": "ai-verified",
+    "boss": false,
+    "lesson": {
+     "html": "\n<p><b>DNS</b> מתרגם <b>שם</b> (כמו <code>www.cnn.com</code>) ל<b>כתובת IP</b>. שאילתת DNS רגילה רצה מעל <b>UDP</b> (פורט 53). המבנה היררכי:</p>\n<ul>\n<li><b>Root</b>: יודע לאילו שרתי TLD לפנות.</li>\n<li><b>TLD</b> (למשל <code>.com</code>): יודע מי שרת ה-authoritative של הדומיין.</li>\n<li><b>Authoritative</b>: יודע את כתובת ה-IP עצמה.</li>\n<li><b>Resolver מקומי</b> (שרת DNS מקומי): הלקוח פונה אליו, והוא מבצע את החיפוש בשמו.</li>\n</ul>\n<table><thead><tr><th>רשומה</th><th>משמעות</th></tr></thead><tbody>\n<tr><td>A</td><td>שם מארח אל כתובת IP</td></tr>\n<tr><td>NS</td><td>דומיין אל שרת authoritative שלו</td></tr>\n<tr><td>CNAME</td><td>כינוי אל השם הקנוני</td></tr>\n<tr><td>MX</td><td>שרת הדואר של הדומיין</td></tr>\n</tbody></table>\n<h3>המסלול כשאין מטמון</h3>\n<p>הלקוח שואל את ה-Resolver המקומי, וה-Resolver פונה ל-Root, אחר כך ל-TLD, ואחר כך ל-Authoritative. ה-Root וה-TLD לא מחזירים כתובת סופית אלא <b>הפניה</b> לשרת הבא. רק ה-Authoritative מחזיר את ה-IP.</p>\n<h3>איטרטיבית מול רקורסיבית</h3>\n<ul>\n<li><b>איטרטיבית:</b> השרת אומר \"אני לא יודע, פנה לשרת הזה\", והשואל פונה הלאה בעצמו. ה-Resolver המקומי הוא זה ששולח את כל השאילתות, וחוזרות אליו הפניות.</li>\n<li><b>רקורסיבית:</b> השרת שנשאל מבצע את העבודה <b>בשם</b> השואל, פונה בעצמו לשרת הבא, והתשובה הסופית חוזרת בשרשרת.</li>\n</ul>\n<div class=\"lesson-rule\">🔑 <b>איך מזהים:</b> אם השרת שנשאל מחזיר \"פנה לשרת אחר\", השאילתה איטרטיבית. אם הוא פונה בעצמו לשרת הבא וממתין לתשובה, היא רקורסיבית. בדרך כלל השאילתה מהלקוח ל-Resolver המקומי היא רקורסיבית.</div>\n<h3>זמן חיפוש</h3>\n<p>אם כל שאילתה לשרת נמשכת <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>T</mi></mrow><annotation encoding=\"application/x-tex\">T</annotation></semantics></math></span> והרשומה לא במטמון, ה-Resolver מבצע שלוש שאילתות עוקבות (Root, TLD, Authoritative): <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>3</mn><mi>T</mi></mrow><annotation encoding=\"application/x-tex\">3T</annotation></semantics></math></span>. אם ה-Resolver כבר מכיר את שרת ה-TLD במטמון, נשארות שתי שאילתות: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>2</mn><mi>T</mi></mrow><annotation encoding=\"application/x-tex\">2T</annotation></semantics></math></span>.</p>\n<div class=\"lesson-ex\"><b>דוגמה:</b> <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>T</mi><mo>=</mo><mn>30</mn><mtext> </mtext><mi>m</mi><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">T=30\\,ms</annotation></semantics></math></span> ואין מטמון: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>3</mn><mo>⋅</mo><mn>30</mn><mo>=</mo><mn>90</mn><mtext> </mtext><mi>m</mi><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">3\\cdot30=90\\,ms</annotation></semantics></math></span>. עם שרת ה-TLD ידוע: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>60</mn><mtext> </mtext><mi>m</mi><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">60\\,ms</annotation></semantics></math></span>.</div>\n<div class=\"lesson-ex\"><b>ספירת הודעות באיטרטיבית:</b> לקוח אל Resolver (1), Resolver ו-Root: שאילתה ותשובה (2), Resolver ו-TLD (2), Resolver ו-Authoritative (2), Resolver אל הלקוח (1): סה\"כ <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>1</mn><mo>+</mo><mn>6</mn><mo>+</mo><mn>1</mn><mo>=</mo><mn>8</mn></mrow><annotation encoding=\"application/x-tex\">1+6+1=8</annotation></semantics></math></span>.</div>\n<div class=\"lesson-trap\">⚠️ <b>ה-Root אינו מחזיר כתובת סופית.</b> ו-ARP ו-DHCP אינם קשורים לציור כזה. \"איטרטיבית פרסיסטנטית\" אינה קיימת.</div>\n"
+    },
+    "questions": [
+     {
+      "id": "app-C06-Q1",
+      "question": "כיצד מתבצע חיפוש כתובת ה-IP של `www.cnn.com` כשאין מידע במטמון של שרתי ה-DNS?",
+      "options": [
+       {
+        "id": "a",
+        "value": "ה-Resolver פונה ל-Authoritative, משם ל-TLD, ומשם ל-Root, שמחזיר את הכתובת",
+        "type": "text",
+        "html": "ה-Resolver פונה ל-Authoritative, משם ל-TLD, ומשם ל-Root, שמחזיר את הכתובת"
+       },
+       {
+        "id": "b",
+        "value": "ה-Resolver פונה ל-Root, שמפנה ל-TLD, שמפנה ל-Authoritative, שמחזיר את הכתובת",
+        "type": "text",
+        "html": "ה-Resolver פונה ל-Root, שמפנה ל-TLD, שמפנה ל-Authoritative, שמחזיר את הכתובת"
+       },
+       {
+        "id": "c",
+        "value": "הלקוח שולח ARP ל-Resolver, והוא מחזיר את הכתובת",
+        "type": "text",
+        "html": "הלקוח שולח ARP ל-Resolver, והוא מחזיר את הכתובת"
+       },
+       {
+        "id": "d",
+        "value": "ה-Root מחזיר מיד את כתובת ה-IP של `www.cnn.com`",
+        "type": "text",
+        "html": "ה-Root מחזיר מיד את כתובת ה-IP של <code class=\"tok\" dir=\"ltr\">www.cnn.com</code>"
+       }
+      ],
+      "correctId": "b",
+      "explanation": "המסלול הוא מלמעלה למטה: Root מפנה ל-TLD של `.com`, ה-TLD מפנה ל-Authoritative של `cnn.com`, והוא מחזיר את ה-IP. הסדר ההפוך שגוי, ARP מתרגם IP ל-MAC ברשת מקומית ולא שמות, וה-Root לא מחזיר כתובת סופית אלא הפניה.",
+      "recap": "Root, אחריו TLD, אחריו Authoritative",
+      "questionHtml": "כיצד מתבצע חיפוש כתובת ה-IP של <code class=\"tok\" dir=\"ltr\">www.cnn.com</code> כשאין מידע במטמון של שרתי ה-DNS?",
+      "explanationHtml": "המסלול הוא מלמעלה למטה: Root מפנה ל-TLD של <code class=\"tok\" dir=\"ltr\">.com</code>, ה-TLD מפנה ל-Authoritative של <code class=\"tok\" dir=\"ltr\">cnn.com</code>, והוא מחזיר את ה-IP. הסדר ההפוך שגוי, ARP מתרגם IP ל-MAC ברשת מקומית ולא שמות, וה-Root לא מחזיר כתובת סופית אלא הפניה.",
+      "recapHtml": "Root, אחריו TLD, אחריו Authoritative"
+     },
+     {
+      "id": "app-C06-Q2",
+      "question": "הניחו ש-Resolver מקומי שולח שאילתה לכל אחד מ-Root, TLD ו-Authoritative **באיטרטיבית** (כל שרת מחזיר הפניה או את התשובה), והלקוח שואל את ה-Resolver. סופרים כל שאילתה וכל תשובה, כולל השאילתה מהלקוח והתשובה אליו. כמה הודעות בסך הכול?",
+      "options": [
+       {
+        "id": "a",
+        "value": "8",
+        "type": "text",
+        "html": "8"
+       },
+       {
+        "id": "b",
+        "value": "6",
+        "type": "text",
+        "html": "6"
+       },
+       {
+        "id": "c",
+        "value": "4",
+        "type": "text",
+        "html": "4"
+       },
+       {
+        "id": "d",
+        "value": "10",
+        "type": "text",
+        "html": "10"
+       }
+      ],
+      "correctId": "a",
+      "explanation": "הלקוח שואל את ה-Resolver (1), שלושה שרתים כל אחד שאילתה ותשובה ($3\\cdot2=6$), והתשובה חוזרת ללקוח (1): $1+6+1=8$. הערך 6 סופר רק את המהלך בין ה-Resolver לשרתים, הערך 4 סופר רק שאילתות (או רק תשובות), והערך 10 מוסיף הודעות שלא קיימות.",
+      "recap": "איטרטיבית: 1 + 2·3 + 1 = 8 הודעות",
+      "questionHtml": "הניחו ש-Resolver מקומי שולח שאילתה לכל אחד מ-Root, TLD ו-Authoritative <strong>באיטרטיבית</strong> (כל שרת מחזיר הפניה או את התשובה), והלקוח שואל את ה-Resolver. סופרים כל שאילתה וכל תשובה, כולל השאילתה מהלקוח והתשובה אליו. כמה הודעות בסך הכול?",
+      "explanationHtml": "הלקוח שואל את ה-Resolver (1), שלושה שרתים כל אחד שאילתה ותשובה (<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>3</mn><mo>⋅</mo><mn>2</mn><mo>=</mo><mn>6</mn></mrow><annotation encoding=\"application/x-tex\">3\\cdot2=6</annotation></semantics></math></span>), והתשובה חוזרת ללקוח (1): <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>1</mn><mo>+</mo><mn>6</mn><mo>+</mo><mn>1</mn><mo>=</mo><mn>8</mn></mrow><annotation encoding=\"application/x-tex\">1+6+1=8</annotation></semantics></math></span>. הערך 6 סופר רק את המהלך בין ה-Resolver לשרתים, הערך 4 סופר רק שאילתות (או רק תשובות), והערך 10 מוסיף הודעות שלא קיימות.",
+      "recapHtml": "איטרטיבית: 1 + 2·3 + 1 = 8 הודעות"
+     },
+     {
+      "id": "app-C06-Q3",
+      "question": "ה-Resolver המקומי שלח שאילתה ל-Root וקיבל תשובה: \"אני לא יודע את הכתובת, פנה לשרת ה-TLD הזה\". אחר כך ה-Resolver עצמו פנה לשרת ה-TLD. איזו שאילתה זו מול ה-Root?",
+      "options": [
+       {
+        "id": "a",
+        "value": "רקורסיבית",
+        "type": "text",
+        "html": "רקורסיבית"
+       },
+       {
+        "id": "b",
+        "value": "שאילתת ARP",
+        "type": "text",
+        "html": "שאילתת ARP"
+       },
+       {
+        "id": "c",
+        "value": "איטרטיבית",
+        "type": "text",
+        "html": "איטרטיבית"
+       },
+       {
+        "id": "d",
+        "value": "שאילתת DHCP",
+        "type": "text",
+        "html": "שאילתת DHCP"
+       }
+      ],
+      "correctId": "c",
+      "explanation": "ה-Root החזיר הפניה והשואל פנה הלאה בעצמו: זו שאילתה איטרטיבית. בשאילתה רקורסיבית ה-Root עצמו היה פונה ל-TLD ומחזיר רק את התשובה הסופית. ARP ו-DHCP אינם פרוטוקולי חיפוש שמות.",
+      "recap": "הפניה בחזרה לשואל = איטרטיבית",
+      "questionHtml": "ה-Resolver המקומי שלח שאילתה ל-Root וקיבל תשובה: \"אני לא יודע את הכתובת, פנה לשרת ה-TLD הזה\". אחר כך ה-Resolver עצמו פנה לשרת ה-TLD. איזו שאילתה זו מול ה-Root?",
+      "explanationHtml": "ה-Root החזיר הפניה והשואל פנה הלאה בעצמו: זו שאילתה איטרטיבית. בשאילתה רקורסיבית ה-Root עצמו היה פונה ל-TLD ומחזיר רק את התשובה הסופית. ARP ו-DHCP אינם פרוטוקולי חיפוש שמות.",
+      "recapHtml": "הפניה בחזרה לשואל = איטרטיבית"
+     },
+     {
+      "id": "app-C06-Q4",
+      "question": "הלקוח שואל את ה-Resolver המקומי, וה-Resolver שולח שאילתה אחת ל-Root וממתין. ה-Root פונה בעצמו ל-TLD, ה-TLD פונה ל-Authoritative, והתשובה הסופית חוזרת בשרשרת עד ה-Resolver. איך מתאר זאת הציור?",
+      "options": [
+       {
+        "id": "a",
+        "value": "שאילתה איטרטיבית",
+        "type": "text",
+        "html": "שאילתה איטרטיבית"
+       },
+       {
+        "id": "b",
+        "value": "שאילתה רקורסיבית",
+        "type": "text",
+        "html": "שאילתה רקורסיבית"
+       },
+       {
+        "id": "c",
+        "value": "שאילתה איטרטיבית פרסיסטנטית",
+        "type": "text",
+        "html": "שאילתה איטרטיבית פרסיסטנטית"
+       },
+       {
+        "id": "d",
+        "value": "תהליך ARP",
+        "type": "text",
+        "html": "תהליך ARP"
+       }
+      ],
+      "correctId": "b",
+      "explanation": "כל שרת מבצע את העבודה בשם השואל ופונה בעצמו לשרת הבא, והתשובה הסופית חוזרת בשרשרת: זו שאילתה רקורסיבית. \"איטרטיבית פרסיסטנטית\" אינה קיימת, ו-ARP אינו קשור.",
+      "recap": "השרת פונה בעצמו לשרת הבא = רקורסיבית",
+      "questionHtml": "הלקוח שואל את ה-Resolver המקומי, וה-Resolver שולח שאילתה אחת ל-Root וממתין. ה-Root פונה בעצמו ל-TLD, ה-TLD פונה ל-Authoritative, והתשובה הסופית חוזרת בשרשרת עד ה-Resolver. איך מתאר זאת הציור?",
+      "explanationHtml": "כל שרת מבצע את העבודה בשם השואל ופונה בעצמו לשרת הבא, והתשובה הסופית חוזרת בשרשרת: זו שאילתה רקורסיבית. \"איטרטיבית פרסיסטנטית\" אינה קיימת, ו-ARP אינו קשור.",
+      "recapHtml": "השרת פונה בעצמו לשרת הבא = רקורסיבית"
+     },
+     {
+      "id": "app-C06-Q5",
+      "question": "שרת DNS מגיב תוך $25\\ ms$ לכל שאילתה. ה-Resolver לא מכיר כתובת של האתר, אבל במטמון שלו כבר יש את שרת ה-TLD של `.com`. כמה זמן לוקח לו למצוא את הכתובת (שאילתות ל-TLD ול-Authoritative בלבד)?",
+      "options": [
+       {
+        "id": "a",
+        "value": "75 ms",
+        "type": "text",
+        "html": "75 ms"
+       },
+       {
+        "id": "b",
+        "value": "25 ms",
+        "type": "text",
+        "html": "25 ms"
+       },
+       {
+        "id": "c",
+        "value": "50 ms",
+        "type": "text",
+        "html": "50 ms"
+       },
+       {
+        "id": "d",
+        "value": "100 ms",
+        "type": "text",
+        "html": "100 ms"
+       }
+      ],
+      "correctId": "c",
+      "explanation": "נשארו שתי שאילתות עוקבות (TLD ו-Authoritative): $2\\cdot25=50$ ms. הערך 75 הוא שלוש שאילתות ללא מטמון, הערך 25 הוא שאילתה אחת, והערך 100 הוא ארבע שאילתות.",
+      "recap": "זמן חיפוש = מספר השאילתות העוקבות × T",
+      "questionHtml": "שרת DNS מגיב תוך <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>25</mn><mtext> </mtext><mi>m</mi><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">25\\ ms</annotation></semantics></math></span> לכל שאילתה. ה-Resolver לא מכיר כתובת של האתר, אבל במטמון שלו כבר יש את שרת ה-TLD של <code class=\"tok\" dir=\"ltr\">.com</code>. כמה זמן לוקח לו למצוא את הכתובת (שאילתות ל-TLD ול-Authoritative בלבד)?",
+      "explanationHtml": "נשארו שתי שאילתות עוקבות (TLD ו-Authoritative): <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>2</mn><mo>⋅</mo><mn>25</mn><mo>=</mo><mn>50</mn></mrow><annotation encoding=\"application/x-tex\">2\\cdot25=50</annotation></semantics></math></span> ms. הערך 75 הוא שלוש שאילתות ללא מטמון, הערך 25 הוא שאילתה אחת, והערך 100 הוא ארבע שאילתות.",
+      "recapHtml": "זמן חיפוש = מספר השאילתות העוקבות × T"
+     },
+     {
+      "id": "app-C06-Q6",
+      "question": "איזו רשומת DNS מגדירה שם נוסף (כינוי) שמפנה לשם הקנוני של מארח?",
+      "options": [
+       {
+        "id": "a",
+        "value": "A",
+        "type": "text",
+        "html": "A"
+       },
+       {
+        "id": "b",
+        "value": "MX",
+        "type": "text",
+        "html": "MX"
+       },
+       {
+        "id": "c",
+        "value": "NS",
+        "type": "text",
+        "html": "NS"
+       },
+       {
+        "id": "d",
+        "value": "CNAME",
+        "type": "text",
+        "html": "CNAME"
+       }
+      ],
+      "correctId": "d",
+      "explanation": "CNAME ממפה כינוי לשם הקנוני. רשומת A ממפה שם לכתובת IP, NS מפנה דומיין לשרת ה-authoritative שלו, ו-MX מציינת את שרת הדואר.",
+      "recap": "CNAME = כינוי, A = שם ל-IP, NS = שרת authoritative",
+      "questionHtml": "איזו רשומת DNS מגדירה שם נוסף (כינוי) שמפנה לשם הקנוני של מארח?",
+      "explanationHtml": "CNAME ממפה כינוי לשם הקנוני. רשומת A ממפה שם לכתובת IP, NS מפנה דומיין לשרת ה-authoritative שלו, ו-MX מציינת את שרת הדואר.",
+      "recapHtml": "CNAME = כינוי, A = שם ל-IP, NS = שרת authoritative"
+     }
+    ]
+   },
+   {
+    "id": "C07",
+    "order": 7,
+    "icon": "⏳",
+    "title": "מטמון ו-TTL ב-DNS",
+    "goal": "להסביר מה TTL קובע, ולחשב כמה חיפושים אמיתיים מתבצעים כשרשומה נשמרת במטמון עד שה-TTL פג.",
+    "source": "ai-verified",
+    "boss": false,
+    "lesson": {
+     "html": "\n<p>כל שרת DNS שלמד מיפוי <b>שומר אותו במטמון</b> כדי לא לחזור על החיפוש. לכל רשומה יש שדה <b>TTL</b> (Time To Live), הנמדד ב<b>שניות</b>: הזמן המרבי שמותר לשמור את הרשומה.</p>\n<ul>\n<li>אחרי שה-TTL פג, הרשומה נמחקת וחיפוש הבא חייב לפנות שוב לשרתים.</li>\n<li>המטמון <b>רשאי</b> לשמור עד ה-TTL, לא חייב. TTL הוא תקרה.</li>\n<li>ה-TTL <b>סופר מרגע שהרשומה נשמרה</b> ואינו מתחדש בפגיעות במטמון.</li>\n<li><b>לכל רשומה TTL משלה.</b> רשומת A של שרת ה-nameserver נשמרת עד ה-TTL של עצמה, גם אם רשומת ה-NS שלו תקפה הרבה יותר זמן. ה-TTL של ה-NS אינו מאריך את ה-A.</li>\n</ul>\n<h3>מה קורה כש-TTL נמוך או גבוה</h3>\n<ul>\n<li><b>TTL נמוך מדי:</b> הרשומות פוקעות מהר, שאילתות DNS חוזרות לפני הגישה לאתר, ולכן <b>זמן הטעינה עולה</b> ועומס שרתי ה-DNS גדל.</li>\n<li><b>TTL גבוה:</b> שינוי כתובת של האתר לא יגיע מיד לכל המשתמשים. מי שיש לו עדיין את הרשומה הישנה במטמון ימשיך לפנות לכתובת הישנה עד שה-TTL שלה יפוג.</li>\n</ul>\n<div class=\"lesson-ex\"><b>דוגמה:</b> רשומה עם <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>T</mi><mi>T</mi><mi>L</mi><mo>=</mo><mn>60</mn><mtext> </mtext><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">TTL=60\\,s</annotation></semantics></math></span> והמשתמש פונה ב-<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>t</mi><mo>=</mo><mn>0</mn><mo separator=\"true\">,</mo><mtext> </mtext><mn>25</mn><mo separator=\"true\">,</mo><mtext> </mtext><mn>80</mn></mrow><annotation encoding=\"application/x-tex\">t=0,\\ 25,\\ 80</annotation></semantics></math></span> שניות. ב-<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>t</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding=\"application/x-tex\">t=0</annotation></semantics></math></span> אין מטמון: חיפוש אמיתי, והרשומה בתוקף עד <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>t</mi><mo>=</mo><mn>60</mn></mrow><annotation encoding=\"application/x-tex\">t=60</annotation></semantics></math></span>. ב-<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>t</mi><mo>=</mo><mn>25</mn></mrow><annotation encoding=\"application/x-tex\">t=25</annotation></semantics></math></span> יש פגיעה. ב-<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>t</mi><mo>=</mo><mn>80</mn></mrow><annotation encoding=\"application/x-tex\">t=80</annotation></semantics></math></span> הרשומה פגה: חיפוש אמיתי חדש, בתוקף עד <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>t</mi><mo>=</mo><mn>140</mn></mrow><annotation encoding=\"application/x-tex\">t=140</annotation></semantics></math></span>. סה\"כ שני חיפושים.</div>\n<div class=\"lesson-rule\">🔑 <b>כך מחשבים:</b> עוברים על הפניות לפי הזמן. פנייה היא חיפוש אמיתי אם אין רשומה, או אם עברו לפחות <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>T</mi><mi>T</mi><mi>L</mi></mrow><annotation encoding=\"application/x-tex\">TTL</annotation></semantics></math></span> שניות מאז שהיא נשמרה. אחרת היא פגיעה.</div>\n<div class=\"lesson-trap\">⚠️ <b>פגיעה לא מאריכה את התוקף.</b> אל תחשבו שה-TTL מתחיל מחדש בכל גישה. והיחידה היא שניות.</div>\n"
+    },
+    "questions": [
+     {
+      "id": "app-C07-Q1",
+      "question": "מה קובע ה-TTL של רשומת DNS?",
+      "options": [
+       {
+        "id": "a",
+        "value": "כמה שניות לכל היותר מותר לשמור את הרשומה במטמון",
+        "type": "text",
+        "html": "כמה שניות לכל היותר מותר לשמור את הרשומה במטמון"
+       },
+       {
+        "id": "b",
+        "value": "כמה שרתים מותר לעבור בדרך אל הרשומה",
+        "type": "text",
+        "html": "כמה שרתים מותר לעבור בדרך אל הרשומה"
+       },
+       {
+        "id": "c",
+        "value": "כמה אלפיות שנייה לוקחת תשובה",
+        "type": "text",
+        "html": "כמה אלפיות שנייה לוקחת תשובה"
+       },
+       {
+        "id": "d",
+        "value": "כמה פעמים מותר לשאול על הרשומה",
+        "type": "text",
+        "html": "כמה פעמים מותר לשאול על הרשומה"
+       }
+      ],
+      "correctId": "a",
+      "explanation": "TTL הוא זמן החיים של הרשומה במטמון, בשניות, והוא תקרה. הוא אינו ספירת שרתים או פניות, ואינו מדד לזמן תגובה.",
+      "recap": "TTL = תקרת זמן שמירה במטמון, בשניות",
+      "questionHtml": "מה קובע ה-TTL של רשומת DNS?",
+      "explanationHtml": "TTL הוא זמן החיים של הרשומה במטמון, בשניות, והוא תקרה. הוא אינו ספירת שרתים או פניות, ואינו מדד לזמן תגובה.",
+      "recapHtml": "TTL = תקרת זמן שמירה במטמון, בשניות"
+     },
+     {
+      "id": "app-C07-Q2",
+      "question": "רשומת A של אתר נשמרת ב-Resolver עם $TTL=60\\ s$. משתמשים פונים לאתר בזמנים $t=0,\\ 30,\\ 70,\\ 100$ (שניות). כמה מהפניות הן חיפושים אמיתיים (כאלה שלא נענו מהמטמון)?",
+      "options": [
+       {
+        "id": "a",
+        "value": "4",
+        "type": "text",
+        "html": "4"
+       },
+       {
+        "id": "b",
+        "value": "1",
+        "type": "text",
+        "html": "1"
+       },
+       {
+        "id": "c",
+        "value": "2",
+        "type": "text",
+        "html": "2"
+       },
+       {
+        "id": "d",
+        "value": "3",
+        "type": "text",
+        "html": "3"
+       }
+      ],
+      "correctId": "c",
+      "explanation": "ב-$t=0$ חיפוש אמיתי (בתוקף עד 60). ב-$t=30$ פגיעה. ב-$t=70$ הרשומה פגה, ולכן חיפוש אמיתי שני (בתוקף עד 130). ב-$t=100$ פגיעה. סה\"כ 2. הערך 4 הוא בלי מטמון בכלל, והערך 1 מניח בטעות שכל פגיעה מאריכה את התוקף.",
+      "recap": "TTL סופר מרגע השמירה, פגיעה לא מאריכה",
+      "questionHtml": "רשומת A של אתר נשמרת ב-Resolver עם <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>T</mi><mi>T</mi><mi>L</mi><mo>=</mo><mn>60</mn><mtext> </mtext><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">TTL=60\\ s</annotation></semantics></math></span>. משתמשים פונים לאתר בזמנים <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>t</mi><mo>=</mo><mn>0</mn><mo separator=\"true\">,</mo><mtext> </mtext><mn>30</mn><mo separator=\"true\">,</mo><mtext> </mtext><mn>70</mn><mo separator=\"true\">,</mo><mtext> </mtext><mn>100</mn></mrow><annotation encoding=\"application/x-tex\">t=0,\\ 30,\\ 70,\\ 100</annotation></semantics></math></span> (שניות). כמה מהפניות הן חיפושים אמיתיים (כאלה שלא נענו מהמטמון)?",
+      "explanationHtml": "ב-<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>t</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding=\"application/x-tex\">t=0</annotation></semantics></math></span> חיפוש אמיתי (בתוקף עד 60). ב-<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>t</mi><mo>=</mo><mn>30</mn></mrow><annotation encoding=\"application/x-tex\">t=30</annotation></semantics></math></span> פגיעה. ב-<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>t</mi><mo>=</mo><mn>70</mn></mrow><annotation encoding=\"application/x-tex\">t=70</annotation></semantics></math></span> הרשומה פגה, ולכן חיפוש אמיתי שני (בתוקף עד 130). ב-<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>t</mi><mo>=</mo><mn>100</mn></mrow><annotation encoding=\"application/x-tex\">t=100</annotation></semantics></math></span> פגיעה. סה\"כ 2. הערך 4 הוא בלי מטמון בכלל, והערך 1 מניח בטעות שכל פגיעה מאריכה את התוקף.",
+      "recapHtml": "TTL סופר מרגע השמירה, פגיעה לא מאריכה"
+     },
+     {
+      "id": "app-C07-Q3",
+      "question": "הזמן של חיפוש אמיתי מלא (Root, TLD, Authoritative) הוא $3\\cdot20=60\\ ms$. הרשומה נשמרת עם $TTL=45\\ s$, ורק רשומת ה-A של האתר נשמרת במטמון. משתמשים פונים לאתר כל 10 שניות במשך 100 שניות: $t=0,\\ 10,\\ \\ldots,\\ 90$. מה סך זמן החיפוש בכל 10 הפניות?",
+      "options": [
+       {
+        "id": "a",
+        "value": "60 ms",
+        "type": "text",
+        "html": "60 ms"
+       },
+       {
+        "id": "b",
+        "value": "180 ms",
+        "type": "text",
+        "html": "180 ms"
+       },
+       {
+        "id": "c",
+        "value": "600 ms",
+        "type": "text",
+        "html": "600 ms"
+       },
+       {
+        "id": "d",
+        "value": "120 ms",
+        "type": "text",
+        "html": "120 ms"
+       }
+      ],
+      "correctId": "d",
+      "explanation": "חיפוש אמיתי ב-$t=0$ (בתוקף עד 45), ושוב ב-$t=50$ כשהרשומה פגה (בתוקף עד 95). שאר ההפניות פגיעות. שני חיפושים: $2\\cdot60=120$ ms. הערך 60 הוא חיפוש יחיד, הערך 600 הוא בלי מטמון בכלל ($10\\cdot60$), והערך 180 מניח בטעות שלושה חיפושים.",
+      "recap": "סופרים חיפושים אמיתיים × זמן חיפוש מלא",
+      "questionHtml": "הזמן של חיפוש אמיתי מלא (Root, TLD, Authoritative) הוא <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>3</mn><mo>⋅</mo><mn>20</mn><mo>=</mo><mn>60</mn><mtext> </mtext><mi>m</mi><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">3\\cdot20=60\\ ms</annotation></semantics></math></span>. הרשומה נשמרת עם <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>T</mi><mi>T</mi><mi>L</mi><mo>=</mo><mn>45</mn><mtext> </mtext><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">TTL=45\\ s</annotation></semantics></math></span>, ורק רשומת ה-A של האתר נשמרת במטמון. משתמשים פונים לאתר כל 10 שניות במשך 100 שניות: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>t</mi><mo>=</mo><mn>0</mn><mo separator=\"true\">,</mo><mtext> </mtext><mn>10</mn><mo separator=\"true\">,</mo><mtext> </mtext><mo>…</mo><mo separator=\"true\">,</mo><mtext> </mtext><mn>90</mn></mrow><annotation encoding=\"application/x-tex\">t=0,\\ 10,\\ \\ldots,\\ 90</annotation></semantics></math></span>. מה סך זמן החיפוש בכל 10 הפניות?",
+      "explanationHtml": "חיפוש אמיתי ב-<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>t</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding=\"application/x-tex\">t=0</annotation></semantics></math></span> (בתוקף עד 45), ושוב ב-<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>t</mi><mo>=</mo><mn>50</mn></mrow><annotation encoding=\"application/x-tex\">t=50</annotation></semantics></math></span> כשהרשומה פגה (בתוקף עד 95). שאר ההפניות פגיעות. שני חיפושים: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>2</mn><mo>⋅</mo><mn>60</mn><mo>=</mo><mn>120</mn></mrow><annotation encoding=\"application/x-tex\">2\\cdot60=120</annotation></semantics></math></span> ms. הערך 60 הוא חיפוש יחיד, הערך 600 הוא בלי מטמון בכלל (<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>10</mn><mo>⋅</mo><mn>60</mn></mrow><annotation encoding=\"application/x-tex\">10\\cdot60</annotation></semantics></math></span>), והערך 180 מניח בטעות שלושה חיפושים.",
+      "recapHtml": "סופרים חיפושים אמיתיים × זמן חיפוש מלא"
+     },
+     {
+      "id": "app-C07-Q4",
+      "question": "ה-Resolver מקבל מה-Authoritative: רשומת NS לדומיין עם $TTL=86400$, ורשומת A של שרת ה-nameserver שלו עם $TTL=300$. מה נכון לגבי רשומת ה-A של ה-nameserver?",
+      "options": [
+       {
+        "id": "a",
+        "value": "ה-Resolver רשאי לשמור אותה במטמון עד ה-TTL שלה עצמה, 300 שניות",
+        "type": "text",
+        "html": "ה-Resolver רשאי לשמור אותה במטמון עד ה-TTL שלה עצמה, 300 שניות"
+       },
+       {
+        "id": "b",
+        "value": "ה-Resolver חייב לשמור אותה 86400 שניות, כמו רשומת ה-NS",
+        "type": "text",
+        "html": "ה-Resolver חייב לשמור אותה 86400 שניות, כמו רשומת ה-NS"
+       },
+       {
+        "id": "c",
+        "value": "ה-Resolver אסור לו לשמור אותה במטמון בכלל",
+        "type": "text",
+        "html": "ה-Resolver אסור לו לשמור אותה במטמון בכלל"
+       },
+       {
+        "id": "d",
+        "value": "ה-Resolver חייב לשאול מחדש בכל פעם",
+        "type": "text",
+        "html": "ה-Resolver חייב לשאול מחדש בכל פעם"
+       }
+      ],
+      "correctId": "a",
+      "explanation": "לכל רשומה TTL משלה, וה-A נשמרת עד 300 שניות. ה-TTL הארוך של ה-NS אינו מאריך אותה. שמירה במטמון מותרת (אפילו רצויה), ולכן אין איסור או חובה לשאול בכל פעם.",
+      "recap": "לכל רשומה TTL משלה, ו-TTL הוא תקרה",
+      "questionHtml": "ה-Resolver מקבל מה-Authoritative: רשומת NS לדומיין עם <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>T</mi><mi>T</mi><mi>L</mi><mo>=</mo><mn>86400</mn></mrow><annotation encoding=\"application/x-tex\">TTL=86400</annotation></semantics></math></span>, ורשומת A של שרת ה-nameserver שלו עם <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>T</mi><mi>T</mi><mi>L</mi><mo>=</mo><mn>300</mn></mrow><annotation encoding=\"application/x-tex\">TTL=300</annotation></semantics></math></span>. מה נכון לגבי רשומת ה-A של ה-nameserver?",
+      "explanationHtml": "לכל רשומה TTL משלה, וה-A נשמרת עד 300 שניות. ה-TTL הארוך של ה-NS אינו מאריך אותה. שמירה במטמון מותרת (אפילו רצויה), ולכן אין איסור או חובה לשאול בכל פעם.",
+      "recapHtml": "לכל רשומה TTL משלה, ו-TTL הוא תקרה"
+     },
+     {
+      "id": "app-C07-Q5",
+      "question": "מה יקרה אם ערכי ה-TTL ברשומות ה-DNS שבמטמון של הדפדפנים יהיו נמוכים מאוד (למשל שניות ספורות)?",
+      "options": [
+       {
+        "id": "a",
+        "value": "העומס על שרתי ה-DNS יקטן משמעותית",
+        "type": "text",
+        "html": "העומס על שרתי ה-DNS יקטן משמעותית"
+       },
+       {
+        "id": "b",
+        "value": "שאילתות DNS יחזרו בתדירות גבוהה, והעומס על שרתי ה-DNS וזמן הטעינה של הדפים יעלו",
+        "type": "text",
+        "html": "שאילתות DNS יחזרו בתדירות גבוהה, והעומס על שרתי ה-DNS וזמן הטעינה של הדפים יעלו"
+       },
+       {
+        "id": "c",
+        "value": "האבטחה והפרטיות של המשתמשים ישתפרו משמעותית",
+        "type": "text",
+        "html": "האבטחה והפרטיות של המשתמשים ישתפרו משמעותית"
+       },
+       {
+        "id": "d",
+        "value": "לא ישתנה דבר, כי המטמון בדפדפן תמיד שומר שעה",
+        "type": "text",
+        "html": "לא ישתנה דבר, כי המטמון בדפדפן תמיד שומר שעה"
+       }
+      ],
+      "correctId": "b",
+      "explanation": "TTL נמוך גורם לרשומות לפוג מהר, ולכן יותר חיפושים אמיתיים לפני כל גישה לאתר: העומס על שרתי ה-DNS וזמן הטעינה עולים, לא יורדים. אין קשר לאבטחה או לפרטיות, והמטמון מכבד את ה-TTL ולא שומר שעה קבועה.",
+      "recap": "TTL נמוך = יותר שאילתות, טעינה איטית יותר",
+      "questionHtml": "מה יקרה אם ערכי ה-TTL ברשומות ה-DNS שבמטמון של הדפדפנים יהיו נמוכים מאוד (למשל שניות ספורות)?",
+      "explanationHtml": "TTL נמוך גורם לרשומות לפוג מהר, ולכן יותר חיפושים אמיתיים לפני כל גישה לאתר: העומס על שרתי ה-DNS וזמן הטעינה עולים, לא יורדים. אין קשר לאבטחה או לפרטיות, והמטמון מכבד את ה-TTL ולא שומר שעה קבועה.",
+      "recapHtml": "TTL נמוך = יותר שאילתות, טעינה איטית יותר"
+     },
+     {
+      "id": "app-C07-Q6",
+      "question": "לאתר יש רשומת A עם $TTL=86400$ שניות (יממה). בעל האתר מעביר אותו לכתובת IP חדשה ומעדכן את הרשומה ב-Authoritative. מה יקרה למשתמשים?",
+      "options": [
+       {
+        "id": "a",
+        "value": "כולם יגיעו מיד לכתובת החדשה",
+        "type": "text",
+        "html": "כולם יגיעו מיד לכתובת החדשה"
+       },
+       {
+        "id": "b",
+        "value": "אף אחד לא יגיע לכתובת החדשה לפני שבוע",
+        "type": "text",
+        "html": "אף אחד לא יגיע לכתובת החדשה לפני שבוע"
+       },
+       {
+        "id": "c",
+        "value": "משתמשים שהרשומה הישנה במטמון שלהם ימשיכו לגשת לכתובת הישנה עד שה-TTL שלה יפוג",
+        "type": "text",
+        "html": "משתמשים שהרשומה הישנה במטמון שלהם ימשיכו לגשת לכתובת הישנה עד שה-TTL שלה יפוג"
+       },
+       {
+        "id": "d",
+        "value": "ה-Authoritative ימחק את הרשומה הישנה מכל המטמונים",
+        "type": "text",
+        "html": "ה-Authoritative ימחק את הרשומה הישנה מכל המטמונים"
+       }
+      ],
+      "correctId": "c",
+      "explanation": "המטמונים שמרו את הרשומה הישנה ורשאים להשתמש בה עד שה-TTL פג, לכל היותר יממה. לכן הם עדיין מפנים לכתובת הישנה. הכתובת החדשה לא מגיעה מיד לכולם, אבל גם לא רק אחרי שבוע, והשרת אינו יכול למחוק רשומות ממטמונים של אחרים.",
+      "recap": "TTL גבוה = עדכון כתובת מתפשט לאט",
+      "questionHtml": "לאתר יש רשומת A עם <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>T</mi><mi>T</mi><mi>L</mi><mo>=</mo><mn>86400</mn></mrow><annotation encoding=\"application/x-tex\">TTL=86400</annotation></semantics></math></span> שניות (יממה). בעל האתר מעביר אותו לכתובת IP חדשה ומעדכן את הרשומה ב-Authoritative. מה יקרה למשתמשים?",
+      "explanationHtml": "המטמונים שמרו את הרשומה הישנה ורשאים להשתמש בה עד שה-TTL פג, לכל היותר יממה. לכן הם עדיין מפנים לכתובת הישנה. הכתובת החדשה לא מגיעה מיד לכולם, אבל גם לא רק אחרי שבוע, והשרת אינו יכול למחוק רשומות ממטמונים של אחרים.",
+      "recapHtml": "TTL גבוה = עדכון כתובת מתפשט לאט"
+     }
+    ]
+   },
+   {
+    "id": "C08",
+    "order": 8,
+    "icon": "🌍",
+    "title": "CDN, HTTP/2 ו-HTTP/3",
+    "goal": "לדעת מה CDN פותר ואיך מגיעים לשרת הקרוב, ומה משפרים HTTP/2 ו-HTTP/3 ומה לא.",
+    "source": "ai-verified",
+    "boss": false,
+    "lesson": {
+     "html": "\n<h3>CDN</h3>\n<p><b>CDN</b> משכפל תוכן לשרתים רבים, קרובים ללקוחות ברחבי העולם. הוא פותר:</p>\n<ul>\n<li><b>סקלביליות</b> ועומס על שרת יחיד, וגם תלות בביצועי שרת אחד וברוחב הפס של קו אחד.</li>\n<li><b>מרחק:</b> שרת קרוב מקצר את ה-RTT ואת זמן ההתפשטות.</li>\n</ul>\n<p>הוא <b>אינו</b> פותר מחסור בכתובות IPv4.</p>\n<p><b>איך שני לקוחות בעולם פונים לאותו שם ומגיעים לשרתי CDN שונים?</b> שרת ה-DNS של המפעיל מחזיר <b>כתובת IP שונה לפי מיקום השואל</b> (DNS \"חכם\"). לא עוגיות, לא persistent ולא \"הפניה רנדומית\". (רשומות כאלה נשמרות לרוב עם TTL קצר, כדי שהכתובת תתעדכן.)</p>\n<div class=\"lesson-rule\">🔑 למשתמשים מפוזרים גיאוגרפית, ההשפעה הגדולה ביותר על זמן הטעינה היא <b>CDN</b>. HTTP/2 ו-HTTP/3 משפרים ניצול חיבור, לא מרחק פיזי.</div>\n<h3>HTTP/2, HTTP/3 ו-QUIC</h3>\n<table><thead><tr><th></th><th>HTTP/1.1</th><th>HTTP/2</th><th>HTTP/3</th></tr></thead><tbody>\n<tr><td>תעבורה</td><td>TCP</td><td>TCP</td><td>QUIC מעל UDP</td></tr>\n<tr><td>ריבוי בקשות</td><td>חיבורים מקבילים</td><td>multiplexing על חיבור אחד</td><td>זרמי QUIC נפרדים</td></tr>\n<tr><td>HOL של TCP</td><td>יש</td><td>נשאר</td><td>נפתר</td></tr>\n</tbody></table>\n<ul>\n<li><b>Multiplexing (HTTP/2):</b> הרבה בקשות ותגובות בזרמים על חיבור TCP אחד.</li>\n<li><b>HOL (head-of-line blocking):</b> חבילה אחת שאבדה ב-TCP עוצרת את כל הזרמים שעל החיבור. HTTP/2 נשען על TCP ולכן <b>לא פותר</b> את זה.</li>\n<li><b>QUIC</b> רץ מעל UDP, מאחד את לחיצת היד של התעבורה ושל ההצפנה (פחות RTT), ומנהל כל זרם בנפרד, כך שאיבוד בזרם אחד לא עוצר את האחרים.</li>\n</ul>\n<div class=\"lesson-trap\">⚠️ HTTP/2 לא רץ על UDP ואינו מחייב הצפנה בתקן. ההצפנה המובנית ושינוי התעבורה (UDP) שייכים ל-HTTP/3.</div>\n"
+    },
+    "questions": [
+     {
+      "id": "app-C08-Q1",
+      "question": "איזו מהבעיות הבאות CDN נועד לפתור?",
+      "options": [
+       {
+        "id": "a",
+        "value": "מחסור בכתובות IPv4",
+        "type": "text",
+        "html": "מחסור בכתובות IPv4"
+       },
+       {
+        "id": "b",
+        "value": "עומס על שרת יחיד ומרחק גדול בין המשתמשים לשרת",
+        "type": "text",
+        "html": "עומס על שרת יחיד ומרחק גדול בין המשתמשים לשרת"
+       },
+       {
+        "id": "c",
+        "value": "איבוד חבילות בחיבור TCP בודד",
+        "type": "text",
+        "html": "איבוד חבילות בחיבור TCP בודד"
+       },
+       {
+        "id": "d",
+        "value": "הצפנת התקשורת בין הדפדפן לשרת",
+        "type": "text",
+        "html": "הצפנת התקשורת בין הדפדפן לשרת"
+       }
+      ],
+      "correctId": "b",
+      "explanation": "CDN משכפל תוכן לשרתים קרובים, ולכן מפחית את העומס על שרת יחיד ומקצר את המרחק וה-RTT. הוא אינו פותר מחסור בכתובות IPv4, אינו מטפל באיבוד חבילות ב-TCP, ואינו תפקיד של הצפנה.",
+      "recap": "CDN: סקלביליות וקרבה, לא כתובות IP",
+      "questionHtml": "איזו מהבעיות הבאות CDN נועד לפתור?",
+      "explanationHtml": "CDN משכפל תוכן לשרתים קרובים, ולכן מפחית את העומס על שרת יחיד ומקצר את המרחק וה-RTT. הוא אינו פותר מחסור בכתובות IPv4, אינו מטפל באיבוד חבילות ב-TCP, ואינו תפקיד של הצפנה.",
+      "recapHtml": "CDN: סקלביליות וקרבה, לא כתובות IP"
+     },
+     {
+      "id": "app-C08-Q2",
+      "question": "שני לקוחות, אחד בלוס אנג'לס ואחד בתל אביב, פונים לאותו שם דומיין של אתר ומקבלים תוכן משרתי CDN שונים. איך זה קורה?",
+      "options": [
+       {
+        "id": "a",
+        "value": "שרת ה-DNS מחזיר כתובת IP שונה לפי מיקום השואל",
+        "type": "text",
+        "html": "שרת ה-DNS מחזיר כתובת IP שונה לפי מיקום השואל"
+       },
+       {
+        "id": "b",
+        "value": "הדפדפן בוחר שרת באקראי מתוך רשימה ב-HTTP",
+        "type": "text",
+        "html": "הדפדפן בוחר שרת באקראי מתוך רשימה ב-HTTP"
+       },
+       {
+        "id": "c",
+        "value": "העוגייה של כל משתמש קובעת לאיזה שרת הוא יגיע",
+        "type": "text",
+        "html": "העוגייה של כל משתמש קובעת לאיזה שרת הוא יגיע"
+       },
+       {
+        "id": "d",
+        "value": "החיבור ה-persistent עובר אוטומטית לשרת הקרוב",
+        "type": "text",
+        "html": "החיבור ה-persistent עובר אוטומטית לשרת הקרוב"
+       }
+      ],
+      "correctId": "a",
+      "explanation": "DNS \"חכם\" של מפעיל ה-CDN עונה לפי מיקום השואל, ולכן אותו שם נפתר לכתובות שונות. אין \"הפניה אקראית\" ב-HTTP לצורך זה, עוגיות לא קובעות את השרת, ו-persistent לא מעביר חיבור בין שרתים.",
+      "recap": "CDN מנתב דרך DNS שמחזיר IP לפי מיקום",
+      "questionHtml": "שני לקוחות, אחד בלוס אנג'לס ואחד בתל אביב, פונים לאותו שם דומיין של אתר ומקבלים תוכן משרתי CDN שונים. איך זה קורה?",
+      "explanationHtml": "DNS \"חכם\" של מפעיל ה-CDN עונה לפי מיקום השואל, ולכן אותו שם נפתר לכתובות שונות. אין \"הפניה אקראית\" ב-HTTP לצורך זה, עוגיות לא קובעות את השרת, ו-persistent לא מעביר חיבור בין שרתים.",
+      "recapHtml": "CDN מנתב דרך DNS שמחזיר IP לפי מיקום"
+     },
+     {
+      "id": "app-C08-Q3",
+      "question": "איזה שיפור משמעותי מציע HTTP/2 לעומת HTTP/1.1 מבחינת ניצול משאבי הרשת?",
+      "options": [
+       {
+        "id": "a",
+        "value": "הוא עובר מ-TCP ל-UDP",
+        "type": "text",
+        "html": "הוא עובר מ-TCP ל-UDP"
+       },
+       {
+        "id": "b",
+        "value": "הוא מבטל את בעיית ה-head-of-line blocking של TCP",
+        "type": "text",
+        "html": "הוא מבטל את בעיית ה-head-of-line blocking של TCP"
+       },
+       {
+        "id": "c",
+        "value": "ריבוי בקשות ותגובות בזרמים על חיבור TCP אחד (multiplexing)",
+        "type": "text",
+        "html": "ריבוי בקשות ותגובות בזרמים על חיבור TCP אחד (multiplexing)"
+       },
+       {
+        "id": "d",
+        "value": "הוא מחייב הצפנה בכל חיבור לפי התקן",
+        "type": "text",
+        "html": "הוא מחייב הצפנה בכל חיבור לפי התקן"
+       }
+      ],
+      "correctId": "c",
+      "explanation": "HTTP/2 מריץ הרבה בקשות במקביל על חיבור אחד באמצעות multiplexing. הוא עדיין רץ על TCP, ולכן HOL של TCP נשאר (HTTP/3 פתר אותו). העברה ל-UDP היא שינוי של HTTP/3, והצפנה אינה חובה בתקן של HTTP/2.",
+      "recap": "HTTP/2 = multiplexing על חיבור TCP אחד",
+      "questionHtml": "איזה שיפור משמעותי מציע HTTP/2 לעומת HTTP/1.1 מבחינת ניצול משאבי הרשת?",
+      "explanationHtml": "HTTP/2 מריץ הרבה בקשות במקביל על חיבור אחד באמצעות multiplexing. הוא עדיין רץ על TCP, ולכן HOL של TCP נשאר (HTTP/3 פתר אותו). העברה ל-UDP היא שינוי של HTTP/3, והצפנה אינה חובה בתקן של HTTP/2.",
+      "recapHtml": "HTTP/2 = multiplexing על חיבור TCP אחד"
+     },
+     {
+      "id": "app-C08-Q4",
+      "question": "מדוע HTTP/3 משתמש ב-QUIC במקום ב-TCP?",
+      "options": [
+       {
+        "id": "a",
+        "value": "כי QUIC מאחד את לחיצת היד ומנהל זרמים נפרדים, כך שאיבוד חבילה בזרם אחד לא חוסם את האחרים",
+        "type": "text",
+        "html": "כי QUIC מאחד את לחיצת היד ומנהל זרמים נפרדים, כך שאיבוד חבילה בזרם אחד לא חוסם את האחרים"
+       },
+       {
+        "id": "b",
+        "value": "כי QUIC מבטל את הצורך בהצפנה",
+        "type": "text",
+        "html": "כי QUIC מבטל את הצורך בהצפנה"
+       },
+       {
+        "id": "c",
+        "value": "כי QUIC רץ ישירות מעל IP בלי UDP",
+        "type": "text",
+        "html": "כי QUIC רץ ישירות מעל IP בלי UDP"
+       },
+       {
+        "id": "d",
+        "value": "כי QUIC מריץ רק בקשה אחת בכל חיבור",
+        "type": "text",
+        "html": "כי QUIC מריץ רק בקשה אחת בכל חיבור"
+       }
+      ],
+      "correctId": "a",
+      "explanation": "QUIC (מעל UDP) מקצר את הקמת החיבור כי הוא מאחד את לחיצת היד של התעבורה וההצפנה, ומנהל כל זרם בנפרד, ולכן אין HOL בין זרמים. הוא כולל הצפנה מובנית, רץ מעל UDP, ותומך בהרבה זרמים.",
+      "recap": "QUIC: פחות RTT ובלי HOL בין זרמים",
+      "questionHtml": "מדוע HTTP/3 משתמש ב-QUIC במקום ב-TCP?",
+      "explanationHtml": "QUIC (מעל UDP) מקצר את הקמת החיבור כי הוא מאחד את לחיצת היד של התעבורה וההצפנה, ומנהל כל זרם בנפרד, ולכן אין HOL בין זרמים. הוא כולל הצפנה מובנית, רץ מעל UDP, ותומך בהרבה זרמים.",
+      "recapHtml": "QUIC: פחות RTT ובלי HOL בין זרמים"
+     },
+     {
+      "id": "app-C08-Q5",
+      "question": "אתר עם משתמשים בכל העולם סובל מזמני טעינה ארוכים אצל משתמשים רחוקים מהשרת. איזה שינוי ישפר את הזמנים הכי הרבה?",
+      "options": [
+       {
+        "id": "a",
+        "value": "מעבר מ-HTTP/1.1 ל-HTTP/2 בלבד",
+        "type": "text",
+        "html": "מעבר מ-HTTP/1.1 ל-HTTP/2 בלבד"
+       },
+       {
+        "id": "b",
+        "value": "פריסת CDN עם שרתים קרובים למשתמשים",
+        "type": "text",
+        "html": "פריסת CDN עם שרתים קרובים למשתמשים"
+       },
+       {
+        "id": "c",
+        "value": "הגדלת מספר העוגיות",
+        "type": "text",
+        "html": "הגדלת מספר העוגיות"
+       },
+       {
+        "id": "d",
+        "value": "שימוש ב-HTTP non-persistent",
+        "type": "text",
+        "html": "שימוש ב-HTTP non-persistent"
+       }
+      ],
+      "correctId": "b",
+      "explanation": "הבעיה היא מרחק (RTT והתפשטות), ו-CDN מקרב את התוכן למשתמש. HTTP/2 משפר ניצול חיבור אך לא מרחק פיזי. עוגיות אינן קשורות, ו-non-persistent מוסיף RTT.",
+      "recap": "מרחק גדול = CDN",
+      "questionHtml": "אתר עם משתמשים בכל העולם סובל מזמני טעינה ארוכים אצל משתמשים רחוקים מהשרת. איזה שינוי ישפר את הזמנים הכי הרבה?",
+      "explanationHtml": "הבעיה היא מרחק (RTT והתפשטות), ו-CDN מקרב את התוכן למשתמש. HTTP/2 משפר ניצול חיבור אך לא מרחק פיזי. עוגיות אינן קשורות, ו-non-persistent מוסיף RTT.",
+      "recapHtml": "מרחק גדול = CDN"
+     },
+     {
+      "id": "app-C08-Q6",
+      "question": "מה נכון לגבי איבוד חבילה בודדת בחיבור שמשרת הרבה זרמים במקביל?",
+      "options": [
+       {
+        "id": "a",
+        "value": "ב-HTTP/2 הוא עוצר את כל הזרמים שעל החיבור (HOL), וב-HTTP/3 הוא עוצר רק את הזרם שנפגע",
+        "type": "text",
+        "html": "ב-HTTP/2 הוא עוצר את כל הזרמים שעל החיבור (HOL), וב-HTTP/3 הוא עוצר רק את הזרם שנפגע"
+       },
+       {
+        "id": "b",
+        "value": "ב-HTTP/2 הוא עוצר רק את הזרם שנפגע, וב-HTTP/3 את כל הזרמים",
+        "type": "text",
+        "html": "ב-HTTP/2 הוא עוצר רק את הזרם שנפגע, וב-HTTP/3 את כל הזרמים"
+       },
+       {
+        "id": "c",
+        "value": "הוא אינו משפיע על אף זרם בשום גרסה",
+        "type": "text",
+        "html": "הוא אינו משפיע על אף זרם בשום גרסה"
+       },
+       {
+        "id": "d",
+        "value": "הוא עוצר את כל הזרמים בשתי הגרסאות",
+        "type": "text",
+        "html": "הוא עוצר את כל הזרמים בשתי הגרסאות"
+       }
+      ],
+      "correctId": "a",
+      "explanation": "HTTP/2 נשען על TCP, שמעביר את הנתונים לפי סדר, ולכן חבילה שאבדה עוצרת את כל הזרמים. ב-HTTP/3 כל זרם של QUIC נפרד, ולכן רק הזרם הפגוע ממתין.",
+      "recap": "HOL: נשאר ב-HTTP/2, נפתר ב-HTTP/3",
+      "questionHtml": "מה נכון לגבי איבוד חבילה בודדת בחיבור שמשרת הרבה זרמים במקביל?",
+      "explanationHtml": "HTTP/2 נשען על TCP, שמעביר את הנתונים לפי סדר, ולכן חבילה שאבדה עוצרת את כל הזרמים. ב-HTTP/3 כל זרם של QUIC נפרד, ולכן רק הזרם הפגוע ממתין.",
+      "recapHtml": "HOL: נשאר ב-HTTP/2, נפתר ב-HTTP/3"
+     }
+    ]
+   },
+   {
+    "id": "C09",
+    "order": 9,
+    "icon": "🏆",
+    "title": "בוס: שאלות מבחן אמיתיות",
+    "goal": "לפתור שאלות מבחן אמיתיות על זמני טעינה, ספירת חיבורים, מטמון ו-DNS.",
+    "source": "ai-verified",
+    "boss": true,
+    "lesson": {
+     "html": "\n<p>כל מה שלמדתם בשמונה השלבים הקודמים מופיע כאן, בשאלות מבחן אמיתיות. נוסחאות לתזכורת:</p>\n<ul>\n<li><b>Non-persistent:</b> <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>2</mn><mi>R</mi><mi>T</mi><mi>T</mi><mo>+</mo><mi>t</mi></mrow><annotation encoding=\"application/x-tex\">2RTT+t</annotation></semantics></math></span> לכל אובייקט.</li>\n<li><b>Persistent בלי pipelining:</b> <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>R</mi><mi>T</mi><mi>T</mi></mrow><annotation encoding=\"application/x-tex\">RTT</annotation></semantics></math></span> לחיבור, ואז <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>R</mi><mi>T</mi><mi>T</mi><mo>+</mo><mi>t</mi></mrow><annotation encoding=\"application/x-tex\">RTT+t</annotation></semantics></math></span> לכל אובייקט, כולל הבסיס.</li>\n<li><b>Persistent עם pipelining:</b> <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>R</mi><mi>T</mi><mi>T</mi></mrow><annotation encoding=\"application/x-tex\">RTT</annotation></semantics></math></span> לחיבור, <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>R</mi><mi>T</mi><mi>T</mi><mo>+</mo><msub><mi>t</mi><mn>0</mn></msub></mrow><annotation encoding=\"application/x-tex\">RTT+t_0</annotation></semantics></math></span> לדף, <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>R</mi><mi>T</mi><mi>T</mi></mrow><annotation encoding=\"application/x-tex\">RTT</annotation></semantics></math></span> אחד לכל התמונות ועוד סכום זמני השידור שלהן.</li>\n<li><b>חיבורי HTTP/1.1:</b> חיבור persistent אחד לכל <b>שם</b> שרת, ובמוסכמת המבחן עם 6 מקבילים: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo stretchy=\"false\">⌈</mo><mi>N</mi><mi mathvariant=\"normal\">/</mi><mn>6</mn><mo stretchy=\"false\">⌉</mo></mrow><annotation encoding=\"application/x-tex\">\\lceil N/6\\rceil</annotation></semantics></math></span>. ב-HTTP/2: חיבור אחד לשרת.</li>\n<li><b>GET מותנה:</b> 304 בלי גוף, עדיין RTT. ‏<code>max-age</code> בשניות.</li>\n<li><b>DNS בלי מטמון:</b> <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>3</mn><mi>T</mi></mrow><annotation encoding=\"application/x-tex\">3T</annotation></semantics></math></span> (Root, TLD, Authoritative).</li>\n</ul>\n<div class=\"lesson-rule\">🔑 בשאלה עם ביטויי זמן, כתבו קודם את הרכיבים: כמה RTT לפתיחה, כמה לכל אובייקט, ומה זמן השידור של הדף ושל כל תמונה (בייט כפול 8, חלקי הקצב).</div>\n"
+    },
+    "questions": [
+     {
+      "bankId": "22S-A-Q5",
+      "recap": "persistent בלי pipelining: RTT לחיבור, ואז RTT + זמן שידור לכל אובייקט כולל הדף",
+      "recapHtml": "persistent בלי pipelining: RTT לחיבור, ואז RTT + זמן שידור לכל אובייקט כולל הדף"
+     },
+     {
+      "bankId": "25A-C-Q1",
+      "recap": "HTTP/1.1: ⌈N/6⌉ חיבורים; HTTP/2: חיבור אחד",
+      "recapHtml": "HTTP/1.1: ⌈N/6⌉ חיבורים; HTTP/2: חיבור אחד"
+     },
+     {
+      "bankId": "25A-C-Q2",
+      "recap": "אין במטמון: שלוש שאילתות עוקבות, 3 × 30 = 90 ms",
+      "recapHtml": "אין במטמון: שלוש שאילתות עוקבות, 3 × 30 = 90 ms"
+     },
+     {
+      "bankId": "22S-A-Q15",
+      "recap": "גוף ההודעה אינו חובה: 304 חוזר בלי גוף",
+      "recapHtml": "גוף ההודעה אינו חובה: 304 חוזר בלי גוף"
+     },
+     {
+      "bankId": "24A-A-Q10",
+      "recap": "GET מותנה משתלם לאובייקט גדול שמשתנה לעיתים",
+      "recapHtml": "GET מותנה משתלם לאובייקט גדול שמשתנה לעיתים"
+     },
+     {
+      "bankId": "25A-A-Q11",
+      "recap": "max-age=3600: תקף במטמון 3600 שניות, כלומר שעה",
+      "recapHtml": "max-age=3600: תקף במטמון 3600 שניות, כלומר שעה"
+     }
+    ]
    }
   ]
  },
@@ -4637,7 +5371,7 @@ window.COURSES = {
     "source": "ai-verified",
     "boss": false,
     "lesson": {
-     "html": "\n<p>ב-CRC השולח והמקבל מסכימים מראש על <b>מחולל (generator)</b> <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>G</mi></mrow><annotation encoding=\"application/x-tex\">G</annotation></semantics></math></span> בן <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>r</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding=\"application/x-tex\">r+1</annotation></semantics></math></span> ביטים. השולח מצרף לנתונים <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>D</mi></mrow><annotation encoding=\"application/x-tex\">D</annotation></semantics></math></span> שארית <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>R</mi></mrow><annotation encoding=\"application/x-tex\">R</annotation></semantics></math></span> בת <b><span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>r</mi></mrow><annotation encoding=\"application/x-tex\">r</annotation></semantics></math></span> ביטים</b>, כך שהמסגרת <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo stretchy=\"false\">⟨</mo><mi>D</mi><mo separator=\"true\">,</mo><mi>R</mi><mo stretchy=\"false\">⟩</mo></mrow><annotation encoding=\"application/x-tex\">\\langle D,R\\rangle</annotation></semantics></math></span> מתחלקת ב-<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>G</mi></mrow><annotation encoding=\"application/x-tex\">G</annotation></semantics></math></span> בלי שארית. החילוק הוא <b>מודולו 2</b>: חיבור וחיסור הם שניהם XOR, בלי נשאים.</p>\n<table><thead><tr><th>XOR</th><th>תוצאה</th></tr></thead>\n<tbody><tr><td><code>0 ⊕ 0</code></td><td><code>0</code></td></tr>\n<tr><td><code>0 ⊕ 1</code></td><td><code>1</code></td></tr>\n<tr><td><code>1 ⊕ 0</code></td><td><code>1</code></td></tr>\n<tr><td><code>1 ⊕ 1</code></td><td><code>0</code></td></tr></tbody></table>\n<div class=\"lesson-rule\">🔑 <b>מתכון לחישוב <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>R</mi></mrow><annotation encoding=\"application/x-tex\">R</annotation></semantics></math></span>:</b>\n<ul>\n<li>מוסיפים ל-<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>D</mi></mrow><annotation encoding=\"application/x-tex\">D</annotation></semantics></math></span> בדיוק <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>r</mi></mrow><annotation encoding=\"application/x-tex\">r</annotation></semantics></math></span> אפסים בסופו.</li>\n<li>כל עוד נשאר ביט מוביל 1 (בתוך אורך <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>D</mi></mrow><annotation encoding=\"application/x-tex\">D</annotation></semantics></math></span>): עושים XOR עם <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>G</mi></mrow><annotation encoding=\"application/x-tex\">G</annotation></semantics></math></span> מיושר אליו. אם הביט המוביל הוא 0, פשוט עוברים לביט הבא.</li>\n<li>השארית היא <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>r</mi></mrow><annotation encoding=\"application/x-tex\">r</annotation></semantics></math></span> הביטים האחרונים שנותרו, <b>כולל אפסים מובילים</b>.</li>\n</ul></div>\n<div class=\"lesson-ex\"><span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>D</mi><mo>=</mo><mn>1101</mn></mrow><annotation encoding=\"application/x-tex\">D=1101</annotation></semantics></math></span> ו-<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>G</mi><mo>=</mo><mn>1011</mn></mrow><annotation encoding=\"application/x-tex\">G=1011</annotation></semantics></math></span>, לכן <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>r</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding=\"application/x-tex\">r=3</annotation></semantics></math></span>. מוסיפים 3 אפסים ומקבלים <code>1101000</code>.\n<pre>1101000\n1011\n-------\n0110000\n 1011\n-------\n0011100\n  1011\n-------\n0001010\n   1011\n-------\n0000001</pre>\nהשארית היא <code>001</code>, שלושה ביטים (עם שני אפסים מובילים). המסגרת שנשלחת היא <code>1101001</code>.</div>\n<div class=\"lesson-trap\">⚠️ השארית חייבת להיות באורך <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>r</mi></mrow><annotation encoding=\"application/x-tex\">r</annotation></semantics></math></span> בדיוק. כתיבת <code>1</code> במקום <code>001</code> היא טעות. ואל תשכחו להוסיף את <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>r</mi></mrow><annotation encoding=\"application/x-tex\">r</annotation></semantics></math></span> האפסים לפני החילוק.</div>\n"
+     "html": "\n<p>ב-CRC השולח והמקבל מסכימים מראש על <b>מחולל (generator)</b> <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>G</mi></mrow><annotation encoding=\"application/x-tex\">G</annotation></semantics></math></span> בן <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>r</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding=\"application/x-tex\">r+1</annotation></semantics></math></span> ביטים. השולח מצרף לנתונים <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>D</mi></mrow><annotation encoding=\"application/x-tex\">D</annotation></semantics></math></span> שארית <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>R</mi></mrow><annotation encoding=\"application/x-tex\">R</annotation></semantics></math></span> בת <b><span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>r</mi></mrow><annotation encoding=\"application/x-tex\">r</annotation></semantics></math></span> ביטים</b>, כך שהמסגרת <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo stretchy=\"false\">⟨</mo><mi>D</mi><mo separator=\"true\">,</mo><mi>R</mi><mo stretchy=\"false\">⟩</mo></mrow><annotation encoding=\"application/x-tex\">\\langle D,R\\rangle</annotation></semantics></math></span> מתחלקת ב-<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>G</mi></mrow><annotation encoding=\"application/x-tex\">G</annotation></semantics></math></span> בלי שארית. החילוק הוא <b>מודולו 2</b>: חיבור וחיסור הם שניהם XOR, בלי נשאים.</p>\n<table><thead><tr><th>XOR</th><th>תוצאה</th></tr></thead>\n<tbody><tr><td><code>0 ⊕ 0</code></td><td><code>0</code></td></tr>\n<tr><td><code>0 ⊕ 1</code></td><td><code>1</code></td></tr>\n<tr><td><code>1 ⊕ 0</code></td><td><code>1</code></td></tr>\n<tr><td><code>1 ⊕ 1</code></td><td><code>0</code></td></tr></tbody></table>\n<div class=\"lesson-rule\">🔑 <b>מתכון לחישוב <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>R</mi></mrow><annotation encoding=\"application/x-tex\">R</annotation></semantics></math></span>:</b>\n<ul>\n<li>מוסיפים ל-<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>D</mi></mrow><annotation encoding=\"application/x-tex\">D</annotation></semantics></math></span> בדיוק <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>r</mi></mrow><annotation encoding=\"application/x-tex\">r</annotation></semantics></math></span> אפסים בסופו.</li>\n<li>כל עוד נשאר ביט מוביל 1 (בתוך אורך <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>D</mi></mrow><annotation encoding=\"application/x-tex\">D</annotation></semantics></math></span>): עושים XOR עם <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>G</mi></mrow><annotation encoding=\"application/x-tex\">G</annotation></semantics></math></span> מיושר אליו. אם הביט המוביל הוא 0, פשוט עוברים לביט הבא.</li>\n<li>השארית היא <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>r</mi></mrow><annotation encoding=\"application/x-tex\">r</annotation></semantics></math></span> הביטים האחרונים שנותרו, <b>כולל אפסים מובילים</b>.</li>\n</ul></div>\n<div class=\"lesson-ex\"><span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>D</mi><mo>=</mo><mn>1101</mn></mrow><annotation encoding=\"application/x-tex\">D=1101</annotation></semantics></math></span> ו-<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>G</mi><mo>=</mo><mn>1011</mn></mrow><annotation encoding=\"application/x-tex\">G=1011</annotation></semantics></math></span>, לכן <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>r</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding=\"application/x-tex\">r=3</annotation></semantics></math></span>. מוסיפים 3 אפסים ומקבלים <code>1101000</code>.\n<pre>1101000\n1011\n-------\n0110000\n 1011\n-------\n0011100\n  1011\n-------\n0001010\n   1011\n-------\n0000001</pre>\nהשארית היא <code>001</code>, שלושה ביטים (עם שני אפסים מובילים). המסגרת שנשלחת היא <code>1101001</code>.</div>\n<div class=\"calc-fig\" data-calc='{\"kind\": \"crc\", \"mode\": \"send\", \"D\": \"1101\", \"G\": \"1011\", \"caption\": \"המחשבון מציג את אותו חילוק צעד אחר צעד. אפשר להחליף נתונים ומחולל ולבדוק את עצמכם.\"}'></div>\n<div class=\"lesson-trap\">⚠️ השארית חייבת להיות באורך <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>r</mi></mrow><annotation encoding=\"application/x-tex\">r</annotation></semantics></math></span> בדיוק. כתיבת <code>1</code> במקום <code>001</code> היא טעות. ואל תשכחו להוסיף את <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>r</mi></mrow><annotation encoding=\"application/x-tex\">r</annotation></semantics></math></span> האפסים לפני החילוק.</div>\n"
     },
     "questions": [
      {
@@ -5085,6 +5819,280 @@ window.COURSES = {
       "questionHtml": "מחולל <code class=\"tok\" dir=\"ltr\">101</code> ונתונים <code class=\"tok\" dir=\"ltr\">1011</code> (השארית היא <code class=\"tok\" dir=\"ltr\">01</code>). איזו מסגרת נשלחת?",
       "explanationHtml": "מצרפים את השארית <code class=\"tok\" dir=\"ltr\">01</code> לנתונים <code class=\"tok\" dir=\"ltr\">1011</code> ומקבלים <code class=\"tok\" dir=\"ltr\">101101</code>. בדיקה: <code class=\"tok\" dir=\"ltr\">101101</code> מתחלקת ב-<code class=\"tok\" dir=\"ltr\">101</code> בלי שארית. כל אחת מהמסגרות האחרות נותנת שארית שונה מאפס.",
       "recapHtml": "נשלח D ואחריו R, והמסגרת מתחלקת ב-G."
+     }
+    ]
+   },
+   {
+    "id": "C07",
+    "order": 7,
+    "icon": "🔀",
+    "title": "ARP, מסגרות Ethernet וסוויץ'",
+    "goal": "להסביר איך ARP ממפה IP ל-MAC, איזו כתובת MAC נמצאת במסגרת בכל קישור, ואיך סוויץ' לומד ומעביר.",
+    "source": "ai-verified",
+    "boss": false,
+    "lesson": {
+     "html": "\n<p><b>ARP</b> (Address Resolution Protocol) משיב על השאלה: \"ידועה לי כתובת IP של תחנה <b>באותה רשת מקומית</b>, מהי כתובת ה-MAC שלה?\". כל תחנה שומרת <b>טבלת ARP</b> של תשובות שכבר למדה.</p>\n<div class=\"lesson-rule\">🔑 <b>איך זה עובד:</b>\n<ul>\n<li>בקשת ARP נשלחת ב-<b>broadcast</b>: כתובת MAC יעד <code>FF:FF:FF:FF:FF:FF</code> (כל 48 הביטים אחדות), והשאלה \"של מי כתובת ה-IP הזו?\".</li>\n<li>התחנה שהכתובת שלה נשאלת עונה ב-<b>unicast</b> ישירות לשואלת, עם כתובת ה-MAC שלה.</li>\n<li>ARP עובד <b>בתוך רשת אחת בלבד</b>. כדי לשלוח ליעד מחוץ לרשת, התחנה שואלת על ה-MAC של ה-<b>Default Gateway</b>, ולא של היעד.</li>\n</ul></div>\n<div class=\"lesson-ex\"><b>מה כתוב במסגרת?</b> תחנה A שולחת לתחנה B דרך נתב R. בקישור A–R: IP מקור A, ‏IP יעד B, ‏MAC מקור A, ‏MAC יעד R (הממשק של R ברשת של A). בקישור R–B: אותם IP, אבל MAC מקור הוא הממשק של R ברשת של B, ו-MAC יעד הוא B. ה-IP לא משתנה, ה-MAC משתנה בכל קישור.</div>\n<p><b>סוויץ' (switch)</b> עובד בשכבת הקו ומעביר מסגרות לפי MAC. הוא <b>לומד לבד</b> טבלת העברה:</p>\n<div class=\"lesson-rule\">🔑 <b>אלגוריתם הסוויץ':</b> בכל מסגרת שמגיעה, רושמים בטבלה \"כתובת המקור נמצאת בממשק שממנו הגיעה\". אחר כך:\n<ul>\n<li>היעד בטבלה: מעבירים <b>רק</b> לממשק שלו (ואם הוא אותו ממשק שממנו הגיעה, זורקים).</li>\n<li>היעד לא בטבלה (או broadcast): <b>flooding</b>, כלומר לכל הממשקים חוץ מזה שממנו הגיעה.</li>\n</ul></div>\n<div class=\"lesson-trap\">⚠️ לסוויץ' אין כתובות IP בעבודה הרגילה, ולנתב יש טבלת ניתוב (לפי IP). סוויץ' מעביר <b>מסגרות</b>, נתב מעביר <b>חבילות</b>.</div>\n"
+    },
+    "questions": [
+     {
+      "id": "C07-Q1",
+      "question": "מה המטרה של פרוטוקול ARP?",
+      "options": [
+       {
+        "id": "a",
+        "value": "למצוא כתובת MAC של תחנה ברשת המקומית, לפי כתובת ה-IP שלה",
+        "type": "text",
+        "html": "למצוא כתובת MAC של תחנה ברשת המקומית, לפי כתובת ה-IP שלה"
+       },
+       {
+        "id": "b",
+        "value": "למצוא כתובת IP לפי שם של אתר",
+        "type": "text",
+        "html": "למצוא כתובת IP לפי שם של אתר"
+       },
+       {
+        "id": "c",
+        "value": "להקצות כתובת IP לתחנה חדשה",
+        "type": "text",
+        "html": "להקצות כתובת IP לתחנה חדשה"
+       },
+       {
+        "id": "d",
+        "value": "למצוא את הנתיב הקצר ביותר ליעד מרוחק",
+        "type": "text",
+        "html": "למצוא את הנתיב הקצר ביותר ליעד מרוחק"
+       }
+      ],
+      "correctId": "a",
+      "explanation": "ARP ממפה IP ל-MAC בתוך הרשת המקומית. המרה משם לכתובת IP היא DNS, הקצאת כתובת היא DHCP, ובחירת נתיב היא ניתוב.",
+      "recap": "ARP: IP ← MAC באותה רשת.",
+      "questionHtml": "מה המטרה של פרוטוקול ARP?",
+      "explanationHtml": "ARP ממפה IP ל-MAC בתוך הרשת המקומית. המרה משם לכתובת IP היא DNS, הקצאת כתובת היא DHCP, ובחירת נתיב היא ניתוב.",
+      "recapHtml": "ARP: IP ← MAC באותה רשת."
+     },
+     {
+      "id": "C07-Q2",
+      "question": "מהי כתובת ה-MAC של היעד בבקשת ARP?",
+      "options": [
+       {
+        "id": "a",
+        "value": "`FF:FF:FF:FF:FF:FF` (broadcast)",
+        "type": "text",
+        "html": "<code class=\"tok\" dir=\"ltr\">FF:FF:FF:FF:FF:FF</code> (broadcast)"
+       },
+       {
+        "id": "b",
+        "value": "ה-MAC של התחנה שאת כתובתה מחפשים",
+        "type": "text",
+        "html": "ה-MAC של התחנה שאת כתובתה מחפשים"
+       },
+       {
+        "id": "c",
+        "value": "ה-MAC של ה-Default Gateway",
+        "type": "text",
+        "html": "ה-MAC של ה-Default Gateway"
+       },
+       {
+        "id": "d",
+        "value": "`00:00:00:00:00:00`",
+        "type": "text",
+        "html": "<code class=\"tok\" dir=\"ltr\">00:00:00:00:00:00</code>"
+       }
+      ],
+      "correctId": "a",
+      "explanation": "המשדר עדיין לא יודע את ה-MAC של היעד, ולכן שולח בקשה ב-broadcast. רק התשובה חוזרת ב-unicast.",
+      "recap": "בקשת ARP ב-broadcast, תשובה ב-unicast.",
+      "questionHtml": "מהי כתובת ה-MAC של היעד בבקשת ARP?",
+      "explanationHtml": "המשדר עדיין לא יודע את ה-MAC של היעד, ולכן שולח בקשה ב-broadcast. רק התשובה חוזרת ב-unicast.",
+      "recapHtml": "בקשת ARP ב-broadcast, תשובה ב-unicast."
+     },
+     {
+      "id": "C07-Q3",
+      "question": "תחנה `10.0.5.20` ברשת `10.0.5.0/24` רוצה לשלוח חבילה ל-`10.0.7.9`. ה-Default Gateway הוא `10.0.5.1`. עבור איזו כתובת IP התחנה תשלח בקשת ARP?",
+      "options": [
+       {
+        "id": "a",
+        "value": "`10.0.5.1`",
+        "type": "text",
+        "html": "<code class=\"tok\" dir=\"ltr\">10.0.5.1</code>"
+       },
+       {
+        "id": "b",
+        "value": "`10.0.7.9`",
+        "type": "text",
+        "html": "<code class=\"tok\" dir=\"ltr\">10.0.7.9</code>"
+       },
+       {
+        "id": "c",
+        "value": "`10.0.5.255`",
+        "type": "text",
+        "html": "<code class=\"tok\" dir=\"ltr\">10.0.5.255</code>"
+       },
+       {
+        "id": "d",
+        "value": "`10.0.5.20`",
+        "type": "text",
+        "html": "<code class=\"tok\" dir=\"ltr\">10.0.5.20</code>"
+       }
+      ],
+      "correctId": "a",
+      "explanation": "היעד `10.0.7.9` אינו ברשת `10.0.5.0/24`, ולכן הצעד הבא הוא ה-Gateway, והתחנה שואלת על ה-MAC של `10.0.5.1`. ל-ARP יש משמעות רק בתוך הרשת המקומית, ו-`10.0.5.255` היא כתובת broadcast.",
+      "recap": "יעד מחוץ לרשת: ARP לגבי ה-Gateway.",
+      "questionHtml": "תחנה <code class=\"tok\" dir=\"ltr\">10.0.5.20</code> ברשת <code class=\"tok\" dir=\"ltr\">10.0.5.0/24</code> רוצה לשלוח חבילה ל-<code class=\"tok\" dir=\"ltr\">10.0.7.9</code>. ה-Default Gateway הוא <code class=\"tok\" dir=\"ltr\">10.0.5.1</code>. עבור איזו כתובת IP התחנה תשלח בקשת ARP?",
+      "explanationHtml": "היעד <code class=\"tok\" dir=\"ltr\">10.0.7.9</code> אינו ברשת <code class=\"tok\" dir=\"ltr\">10.0.5.0/24</code>, ולכן הצעד הבא הוא ה-Gateway, והתחנה שואלת על ה-MAC של <code class=\"tok\" dir=\"ltr\">10.0.5.1</code>. ל-ARP יש משמעות רק בתוך הרשת המקומית, ו-<code class=\"tok\" dir=\"ltr\">10.0.5.255</code> היא כתובת broadcast.",
+      "recapHtml": "יעד מחוץ לרשת: ARP לגבי ה-Gateway."
+     },
+     {
+      "id": "C07-Q4",
+      "question": "תחנה A שולחת חבילה לתחנה B דרך נתב R (A ו-B ברשתות שונות). מה כתובות המקור והיעד במסגרת בקישור שבין R ל-B?",
+      "options": [
+       {
+        "id": "a",
+        "value": "IP: מקור A ויעד B. MAC: מקור הממשק של R ויעד B",
+        "type": "text",
+        "html": "IP: מקור A ויעד B. MAC: מקור הממשק של R ויעד B"
+       },
+       {
+        "id": "b",
+        "value": "IP: מקור R ויעד B. MAC: מקור הממשק של R ויעד B",
+        "type": "text",
+        "html": "IP: מקור R ויעד B. MAC: מקור הממשק של R ויעד B"
+       },
+       {
+        "id": "c",
+        "value": "IP: מקור A ויעד B. MAC: מקור A ויעד B",
+        "type": "text",
+        "html": "IP: מקור A ויעד B. MAC: מקור A ויעד B"
+       },
+       {
+        "id": "d",
+        "value": "IP: מקור A ויעד R. MAC: מקור A ויעד R",
+        "type": "text",
+        "html": "IP: מקור A ויעד R. MAC: מקור A ויעד R"
+       }
+      ],
+      "correctId": "a",
+      "explanation": "כתובות ה-IP לא משתנות לאורך הדרך. כתובות ה-MAC הן של שני הצמתים הסמוכים בקישור: הממשק של R ברשת של B, ו-B. ‏MAC של A כבר לא נמצא בקישור הזה.",
+      "recap": "IP נשאר, MAC של הקישור משתנה.",
+      "questionHtml": "תחנה A שולחת חבילה לתחנה B דרך נתב R (A ו-B ברשתות שונות). מה כתובות המקור והיעד במסגרת בקישור שבין R ל-B?",
+      "explanationHtml": "כתובות ה-IP לא משתנות לאורך הדרך. כתובות ה-MAC הן של שני הצמתים הסמוכים בקישור: הממשק של R ברשת של B, ו-B. ‏MAC של A כבר לא נמצא בקישור הזה.",
+      "recapHtml": "IP נשאר, MAC של הקישור משתנה."
+     },
+     {
+      "id": "C07-Q5",
+      "question": "לסוויץ' ארבעה ממשקים (1 עד 4) וטבלת ההעברה שלו ריקה. מגיעה מהממשק 1 מסגרת מ-A ל-B. מה הסוויץ' עושה?",
+      "options": [
+       {
+        "id": "a",
+        "value": "רושם שהכתובת של A נמצאת בממשק 1, ומעביר את המסגרת לממשקים 2, 3 ו-4",
+        "type": "text",
+        "html": "רושם שהכתובת של A נמצאת בממשק 1, ומעביר את המסגרת לממשקים 2, 3 ו-4"
+       },
+       {
+        "id": "b",
+        "value": "רושם שהכתובת של B נמצאת בממשק 1, ומעביר לממשקים 2, 3 ו-4",
+        "type": "text",
+        "html": "רושם שהכתובת של B נמצאת בממשק 1, ומעביר לממשקים 2, 3 ו-4"
+       },
+       {
+        "id": "c",
+        "value": "זורק את המסגרת, כי היעד לא בטבלה",
+        "type": "text",
+        "html": "זורק את המסגרת, כי היעד לא בטבלה"
+       },
+       {
+        "id": "d",
+        "value": "רושם שהכתובת של A בממשק 1, ומעביר לממשקים 1, 2, 3 ו-4",
+        "type": "text",
+        "html": "רושם שהכתובת של A בממשק 1, ומעביר לממשקים 1, 2, 3 ו-4"
+       }
+      ],
+      "correctId": "a",
+      "explanation": "הסוויץ' לומד את כתובת המקור (A) ואת הממשק שממנו הגיעה. היעד B לא בטבלה, ולכן flooding לכל הממשקים חוץ מזה שממנו הגיעה, כלומר 2, 3 ו-4. אין שליחה חזרה לממשק 1.",
+      "recap": "לומדים את המקור; יעד לא ידוע: flooding בלי ממשק הכניסה.",
+      "questionHtml": "לסוויץ' ארבעה ממשקים (1 עד 4) וטבלת ההעברה שלו ריקה. מגיעה מהממשק 1 מסגרת מ-A ל-B. מה הסוויץ' עושה?",
+      "explanationHtml": "הסוויץ' לומד את כתובת המקור (A) ואת הממשק שממנו הגיעה. היעד B לא בטבלה, ולכן flooding לכל הממשקים חוץ מזה שממנו הגיעה, כלומר 2, 3 ו-4. אין שליחה חזרה לממשק 1.",
+      "recapHtml": "לומדים את המקור; יעד לא ידוע: flooding בלי ממשק הכניסה."
+     },
+     {
+      "id": "C07-Q6",
+      "question": "המשך לשאלה הקודמת: טבלת הסוויץ' מכילה כעת רק את A בממשק 1. עכשיו מגיעה מהממשק 2 מסגרת מ-B ל-A. מה קורה?",
+      "options": [
+       {
+        "id": "a",
+        "value": "המסגרת מועברת רק לממשק 1, והסוויץ' רושם את B בממשק 2",
+        "type": "text",
+        "html": "המסגרת מועברת רק לממשק 1, והסוויץ' רושם את B בממשק 2"
+       },
+       {
+        "id": "b",
+        "value": "המסגרת מועברת לממשקים 1, 3 ו-4, והסוויץ' רושם את B בממשק 2",
+        "type": "text",
+        "html": "המסגרת מועברת לממשקים 1, 3 ו-4, והסוויץ' רושם את B בממשק 2"
+       },
+       {
+        "id": "c",
+        "value": "המסגרת מועברת רק לממשק 2",
+        "type": "text",
+        "html": "המסגרת מועברת רק לממשק 2"
+       },
+       {
+        "id": "d",
+        "value": "המסגרת מועברת רק לממשק 1, ו-B לא נרשם בטבלה",
+        "type": "text",
+        "html": "המסגרת מועברת רק לממשק 1, ו-B לא נרשם בטבלה"
+       }
+      ],
+      "correctId": "a",
+      "explanation": "A נמצא בטבלה בממשק 1, ולכן אין flooding: המסגרת יוצאת רק מממשק 1. הסוויץ' גם לומד את כתובת המקור B בממשק 2.",
+      "recap": "יעד ידוע: רק הממשק שלו; המקור תמיד נלמד.",
+      "questionHtml": "המשך לשאלה הקודמת: טבלת הסוויץ' מכילה כעת רק את A בממשק 1. עכשיו מגיעה מהממשק 2 מסגרת מ-B ל-A. מה קורה?",
+      "explanationHtml": "A נמצא בטבלה בממשק 1, ולכן אין flooding: המסגרת יוצאת רק מממשק 1. הסוויץ' גם לומד את כתובת המקור B בממשק 2.",
+      "recapHtml": "יעד ידוע: רק הממשק שלו; המקור תמיד נלמד."
+     }
+    ]
+   },
+   {
+    "id": "C08",
+    "order": 8,
+    "icon": "🏆",
+    "title": "בוס: שאלות מבחן אמיתיות",
+    "goal": "לפתור שאלות מבחן על זוגיות דו-ממדית, CRC, מרחק Hamming, כתובות במסגרת והבדל בין סוויץ' לנתב.",
+    "source": "ai-verified",
+    "boss": true,
+    "lesson": {
+     "html": "\n<p>שש שאלות אמיתיות מהמבחנים. לפני שמתחילים, הנה התמצית של מה שלמדתם:</p>\n<div class=\"lesson-rule\">🔑\n<ul>\n<li><b>זוגיות דו-ממדית:</b> שורה אי-זוגית וגם עמודה אי-זוגית (כולל שורת ועמודת הבדיקה): החיתוך הוא הביט שהתהפך.</li>\n<li><b>CRC:</b> מוסיפים <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>r</mi></mrow><annotation encoding=\"application/x-tex\">r</annotation></semantics></math></span> אפסים, מחלקים ב-<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>G</mi></mrow><annotation encoding=\"application/x-tex\">G</annotation></semantics></math></span> בחילוק XOR, והשארית היא <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>r</mi></mrow><annotation encoding=\"application/x-tex\">r</annotation></semantics></math></span> ביטים (עם אפסים מובילים).</li>\n<li><b>Hamming:</b> מרחק 1 בין שתי מילים חוקיות פירושו ששגיאה בביט אחד עלולה לא להתגלות. ביט זוגיות מעלה את המרחק ל-2.</li>\n<li><b>כתובות:</b> ה-IP נשאר מקצה לקצה; כתובת ה-MAC של היעד במסגרת היא של הצעד הבא (ה-Gateway כשהיעד מחוץ לרשת).</li>\n<li><b>סוויץ' מול נתב:</b> סוויץ' מעביר מסגרות לפי MAC וטבלת העברה נלמדת; נתב מעביר חבילות לפי IP.</li>\n</ul></div>\n<div class=\"lesson-trap\">⚠️ במבחן סופרים בזהירות: מסמנים שורות ועמודות, וכותבים את השארית ב-<span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>r</mi></mrow><annotation encoding=\"application/x-tex\">r</annotation></semantics></math></span> ביטים לפני שבוחרים תשובה.</div>\n"
+    },
+    "questions": [
+     {
+      "bankId": "25A-A-Q3",
+      "recap": "שורה אי-זוגית וגם עמודה אי-זוגית: החיתוך שלהן הוא הביט שהתהפך.",
+      "recapHtml": "שורה אי-זוגית וגם עמודה אי-זוגית: החיתוך שלהן הוא הביט שהתהפך."
+     },
+     {
+      "bankId": "25A-B-Q8",
+      "recap": "מוסיפים r אפסים, מחלקים ב-XOR, והשארית באורך r.",
+      "recapHtml": "מוסיפים r אפסים, מחלקים ב-XOR, והשארית באורך r."
+     },
+     {
+      "bankId": "22S-A-Q10",
+      "recap": "מרחק 1 בין מילים חוקיות: היפוך ביט אחד עלול ליצור מילה חוקית אחרת.",
+      "recapHtml": "מרחק 1 בין מילים חוקיות: היפוך ביט אחד עלול ליצור מילה חוקית אחרת."
+     },
+     {
+      "bankId": "22S-A-Q11",
+      "recap": "ביט זוגיות מעלה את מרחק Hamming ל-2.",
+      "recapHtml": "ביט זוגיות מעלה את מרחק Hamming ל-2."
+     },
+     {
+      "bankId": "26A-A-Q14",
+      "recap": "יעד מחוץ לרשת: ה-IP נשאר, וה-MAC של היעד במסגרת הוא של ה-Gateway.",
+      "recapHtml": "יעד מחוץ לרשת: ה-IP נשאר, וה-MAC של היעד במסגרת הוא של ה-Gateway."
+     },
+     {
+      "bankId": "26A-A-Q10",
+      "recap": "סוויץ' מעביר frames, נתב מעביר datagrams.",
+      "recapHtml": "סוויץ' מעביר frames, נתב מעביר datagrams."
      }
     ]
    }
