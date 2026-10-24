@@ -1,0 +1,1177 @@
+{
+ "courseId": "tcp",
+ "levels": [
+  {
+   "id": "C01",
+   "order": 1,
+   "boss": false,
+   "questions": [
+    {
+     "id": "C01-Q1",
+     "question": "מהי ההודעה הראשונה שנשלחת בהקמת חיבור TCP?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "ACK"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "FIN"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "SYN"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "RST"
+      }
+     ]
+    },
+    {
+     "id": "C01-Q2",
+     "question": "הלקוח שולח SYN עם $seq=1000$. מהו ערך ה-ack בהודעת ה-SYN+ACK של השרת?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "1000"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "999"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "1002"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "1001"
+      }
+     ]
+    },
+    {
+     "id": "C01-Q3",
+     "question": "הלקוח שלח SYN עם $seq=1000$, והשרת ענה SYN+ACK עם $seq=5000$. מהם seq ו-ack בהודעה השלישית של הלקוח?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "seq = 1001, ack = 5001"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "seq = 1000, ack = 5000"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "seq = 5001, ack = 1001"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "seq = 1001, ack = 5000"
+      }
+     ]
+    },
+    {
+     "id": "C01-Q4",
+     "question": "איזה דגלים מופיעים בהודעה השנייה של לחיצת היד (מהשרת ללקוח)?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "SYN בלבד"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "SYN ו-ACK יחד"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "ACK בלבד"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "FIN ו-ACK"
+      }
+     ]
+    },
+    {
+     "id": "C01-Q5",
+     "question": "בלחיצת יד הלקוח שולח SYN עם $seq=200$ והשרת בוחר $X=7000$. מה הערכים של ack בהודעה 2, seq בהודעה 3 ו-ack בהודעה 3, לפי הסדר?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "201, 200, 7000"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "200, 201, 7001"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "201, 201, 7001"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "201, 201, 7000"
+      }
+     ]
+    },
+    {
+     "id": "C01-Q6",
+     "question": "מה תפקיד הדגל FIN?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "לסגור חיבור בצורה מסודרת"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "לפתוח חיבור חדש"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "לאשר קבלת נתונים"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "לבקש מהצד השני לשלוח מהר יותר"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C02",
+   "order": 2,
+   "boss": false,
+   "questions": [
+    {
+     "id": "C02-Q1",
+     "question": "קטע TCP נושא 500 בתים ומתחיל ב-$seq=1000$. מהו ה-ack שהמקבל שולח?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "1001"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "1499"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "1500"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "1501"
+      }
+     ]
+    },
+    {
+     "id": "C02-Q2",
+     "question": "המקבל קיבל ברציפות את הבתים 1 עד 400. מהו ה-ack שהוא שולח?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "400"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "401"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "399"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "1"
+      }
+     ]
+    },
+    {
+     "id": "C02-Q3",
+     "question": "שלושה קטעים של 100 בתים כל אחד נשלחים ברצף: $seq=301$, $seq=401$, $seq=501$. כולם מגיעים בסדר. מהו ה-ack אחרי הקטע השלישי?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "600"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "501"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "700"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "601"
+      }
+     ]
+    },
+    {
+     "id": "C02-Q4",
+     "question": "המקבל שולח $ack=701$. מה זה אומר?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "רק בית 701 התקבל"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "כל הבתים עד 700 התקבלו, והוא מצפה ל-701"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "בית 701 אבד"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "התקבלו 701 קטעים"
+      }
+     ]
+    },
+    {
+     "id": "C02-Q5",
+     "question": "מה סופר מספר ה-seq ב-TCP?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "קטעים"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "חבילות IP"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "בתים"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "הודעות ACK"
+      }
+     ]
+    },
+    {
+     "id": "C02-Q6",
+     "question": "הלקוח פתח חיבור עם $x=4999$. הוא שולח 300 בתים של נתונים מיד אחרי לחיצת היד. מהו ה-ack של השרת עליהם?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "5299"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "5300"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "5000"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "5301"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C03",
+   "order": 3,
+   "boss": false,
+   "questions": [
+    {
+     "id": "C03-Q1",
+     "question": "הקטעים נשלחים בגודל 100 בתים ומתחילים ב-1: 1-100, 101-200, 201-300, 301-400, 401-500. הקטע 201-300 אובד, והשאר מגיעים. מהם ה-ACK של ארבעת הקטעים שהגיעו, לפי סדר ההגעה?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "101, 201, 301, 401"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "101, 201, 201, 201"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "101, 201, 401, 501"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "101, 201, 201, 501"
+      }
+     ]
+    },
+    {
+     "id": "C03-Q2",
+     "question": "שישה קטעים של 100 בתים מתחילים ב-1. הקטע השני (101-200) אובד, ושאר החמישה מגיעים בסדר. כמה ACK כפולים מקבל השולח (לא כולל ה-ACK הראשון, 101)?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "3"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "5"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "1"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "4"
+      }
+     ]
+    },
+    {
+     "id": "C03-Q3",
+     "question": "באותו תרחיש (שישה קטעים של 100 בתים שמתחילים ב-1, השני אובד), הקטע 101-200 נשלח שוב ומגיע. מהו ה-ack שהמקבל שולח עכשיו?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "201"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "601"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "101"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "701"
+      }
+     ]
+    },
+    {
+     "id": "C03-Q4",
+     "question": "מה מעיד קבלת שלושה ACK כפולים?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "שהקטע החסר אבד, אבל קטעים מאוחרים יותר עדיין מגיעים"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "שהרשת מנותקת לגמרי"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "שהמקבל מלא ואין לו מקום"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "שהחיבור נסגר"
+      }
+     ]
+    },
+    {
+     "id": "C03-Q5",
+     "question": "השולח שולח חמישה קטעים, והקטע האחרון אבד. אחריו אין קטעים נוספים. מה יגרום לשליחה חוזרת שלו?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "שלושה ACK כפולים"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "timeout"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "הודעת FIN"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "ACK מתקדם מהמקבל"
+      }
+     ]
+    },
+    {
+     "id": "C03-Q6",
+     "question": "הקטעים הם 1-100, 101-200 ו-201-300. הם מגיעים בסדר הזה: 1-100, אחר כך 201-300, ואחר כך 101-200. מהם שלושת ה-ACK לפי סדר ההגעה?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "101, 101, 301"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "101, 301, 301"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "101, 201, 301"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "101, 101, 201"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C04",
+   "order": 4,
+   "boss": false,
+   "questions": [
+    {
+     "id": "C04-Q1",
+     "question": "את מי מגנה בקרת הזרימה (flow control) של TCP?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "את הנתבים בדרך"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "את המקבל מפני הצפה"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "את המתגים ברשת"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "את השולח מפני אובדן"
+      }
+     ]
+    },
+    {
+     "id": "C04-Q2",
+     "question": "$rwnd=8$ סגמנטים ו-$cwnd=20$ סגמנטים. כמה סגמנטים השולח רשאי להחזיק באוויר?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "20"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "28"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "12"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "8"
+      }
+     ]
+    },
+    {
+     "id": "C04-Q3",
+     "question": "$rwnd=30$ סגמנטים ו-$cwnd=12$ סגמנטים. כמה סגמנטים השולח רשאי להחזיק באוויר?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "12"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "30"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "42"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "18"
+      }
+     ]
+    },
+    {
+     "id": "C04-Q4",
+     "question": "$cwnd=20$ סגמנטים, כל סגמנט 1460 בתים, ו-$RTT=100\\,ms$. מהו הקצב המשוער $\\dfrac{cwnd\\cdot MSS}{RTT}$ ?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "292 Kbps"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "29.2 Mbps"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "2.336 Mbps"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "233.6 Kbps"
+      }
+     ]
+    },
+    {
+     "id": "C04-Q5",
+     "question": "האם ל-UDP יש בקרת זרימה?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "כן, בדיוק כמו ב-TCP"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "כן, אבל רק בקרת עומס"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "לא, הוא שולח בלי לבדוק את המקבל"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "כן, אם הסגמנט גדול מ-MTU"
+      }
+     ]
+    },
+    {
+     "id": "C04-Q6",
+     "question": "מה מגינה עליו בקרת העומס (congestion control)?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "על מאגר המקבל בלבד"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "על הרשת, כלומר נתבים ומתגים"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "על הפורט של התהליך"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "על כתובת ה-IP"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C05",
+   "order": 5,
+   "boss": false,
+   "questions": [
+    {
+     "id": "C05-Q1",
+     "question": "החיבור מתחיל עם $cwnd=1$ בסבב 1 ו-$ssthresh$ גדול מאוד. מהו $cwnd$ בסבב 5?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "5"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "8"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "16"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "32"
+      }
+     ]
+    },
+    {
+     "id": "C05-Q2",
+     "question": "$ssthresh=16$ ו-$cwnd=1$ בסבב 1. מהו $cwnd$ בסבב 8?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "19"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "128"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "16"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "20"
+      }
+     ]
+    },
+    {
+     "id": "C05-Q3",
+     "question": "$ssthresh=12$ ו-$cwnd=1$ בסבב 1. מהו $cwnd$ בסבב 7?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "14"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "64"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "13"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "16"
+      }
+     ]
+    },
+    {
+     "id": "C05-Q4",
+     "question": "$ssthresh=16$ ו-$cwnd=20$ בסבב הנוכחי, בלי אובדן. באיזה שלב TCP נמצא, ומה יהיה $cwnd$ בסבב הבא?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "Slow Start, חלון 40"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "Congestion Avoidance, חלון 21"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "Slow Start, חלון 21"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "Congestion Avoidance, חלון 40"
+      }
+     ]
+    },
+    {
+     "id": "C05-Q5",
+     "question": "מהי מטרת מנגנון ה-Slow Start?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "להשאיר את החלון קבוע בכל החיבור"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "להגדיל את החלון בהדרגה, כדי לא להציף את הרשת בבת אחת, אך עדיין להגיע מהר לקצב סביר"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "להבטיח שאף חבילה לא תאבד"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "להקטין את החלון ל-1 בכל סבב"
+      }
+     ]
+    },
+    {
+     "id": "C05-Q6",
+     "question": "$ssthresh$ גדול מאוד, ו-$cwnd=1$ בסבב 1. מהו $cwnd$ בסבב 10?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "10"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "100"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "1024"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "512"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C06",
+   "order": 6,
+   "boss": false,
+   "questions": [
+    {
+     "id": "C06-Q1",
+     "question": "$cwnd=24$ ומתרחש timeout. מה הערכים אחרי האירוע?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "ssthresh = 12, cwnd = 12"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "ssthresh = 24, cwnd = 1"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "ssthresh = 12, cwnd = 1"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "ssthresh = 1, cwnd = 12"
+      }
+     ]
+    },
+    {
+     "id": "C06-Q2",
+     "question": "$cwnd=24$ ומתקבלים שלושה ACK כפולים ב-Reno. מה הערכים אחרי האירוע?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "ssthresh = 12, cwnd = 12"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "ssthresh = 12, cwnd = 1"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "ssthresh = 24, cwnd = 12"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "ssthresh = 6, cwnd = 6"
+      }
+     ]
+    },
+    {
+     "id": "C06-Q3",
+     "question": "$cwnd=24$ ומתקבלים שלושה ACK כפולים ב-Tahoe. מה הערכים אחרי האירוע?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "ssthresh = 12, cwnd = 12"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "ssthresh = 24, cwnd = 1"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "ssthresh = 12, cwnd = 25"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "ssthresh = 12, cwnd = 1"
+      }
+     ]
+    },
+    {
+     "id": "C06-Q4",
+     "question": "$ssthresh=8$ ו-$cwnd=1$ בסבב 1. בסבב 8 ($cwnd=12$) מתרחש timeout. מהו $cwnd$ בסבב 13?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "7"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "8"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "13"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "6"
+      }
+     ]
+    },
+    {
+     "id": "C06-Q5",
+     "question": "אותו חיבור ($ssthresh=8$, בסבב 8 החלון 12), אבל בסבב 8 מתקבלים שלושה ACK כפולים ב-Reno. מהו $cwnd$ בסבב 12?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "12"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "6"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "9"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "7"
+      }
+     ]
+    },
+    {
+     "id": "C06-Q6",
+     "question": "באילו תנאים TCP מקטין את חלון העומס?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "כשמגיע ACK מהר מהצפוי"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "כשהקו פנוי לחלוטין"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "כשיש אובדן: timeout או שלושה ACK כפולים"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "כשהחבילות נשלחות מהר"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C07",
+   "order": 7,
+   "boss": false,
+   "questions": [
+    {
+     "id": "C07-Q1",
+     "question": "ערכי $cwnd$ בסבבים 1 עד 19 הם: 1, 2, 4, 8, 16, 17, 18, 19, 20, 10, 11, 12, 13, 1, 2, 4, 6, 7, 8. באילו קטעי סבבים פועל Slow Start?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "[1, 5] ו-[14, 17]"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "[1, 9] בלבד"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "[5, 9] ו-[10, 13]"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "[1, 5], [10, 13] ו-[14, 17]"
+      }
+     ]
+    },
+    {
+     "id": "C07-Q2",
+     "question": "באותה סדרה (1, 2, 4, 8, 16, 17, 18, 19, 20, 10, 11, 12, 13, 1, 2, 4, 6, 7, 8), בין סבב 9 לסבב 10 החלון יורד מ-20 ל-10. איזה אירוע זה?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "timeout"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "שלושה ACK כפולים"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "סיום Slow Start"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "הגדלה של rwnd"
+      }
+     ]
+    },
+    {
+     "id": "C07-Q3",
+     "question": "באותה סדרה, בסבב 13 החלון הוא 13 ובסבב 14 הוא 1. מהו $ssthresh$ שנקבע בעקבות האירוע?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "1"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "13"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "6"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "7"
+      }
+     ]
+    },
+    {
+     "id": "C07-Q4",
+     "question": "באותה סדרה, באילו סבבים נכנסים ל-Congestion Avoidance מתוך Slow Start (שינוי שיפוע מהכפלה לעלייה ב-1)?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "1 ו-14"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "5 ו-17"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "9 ו-13"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "5, 10 ו-13"
+      }
+     ]
+    },
+    {
+     "id": "C07-Q5",
+     "question": "באותה סדרה, מהו $cwnd$ בסבב 18?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "7"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "8"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "6"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "14"
+      }
+     ]
+    },
+    {
+     "id": "C07-Q6",
+     "question": "באותה סדרה, אילו האירוע בין סבב 9 לסבב 10 היה שלושה ACK כפולים ב-Tahoe (במקום ב-Reno), מהו $cwnd$ בסבב 10?",
+     "options": [
+      {
+       "id": "a",
+       "type": "text",
+       "value": "10"
+      },
+      {
+       "id": "b",
+       "type": "text",
+       "value": "1"
+      },
+      {
+       "id": "c",
+       "type": "text",
+       "value": "20"
+      },
+      {
+       "id": "d",
+       "type": "text",
+       "value": "11"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C08",
+   "order": 8,
+   "boss": true,
+   "questions": [
+    {
+     "id": "bank:22S-A-Q14",
+     "bankId": "22S-A-Q14"
+    },
+    {
+     "id": "bank:25A-B-Q2",
+     "bankId": "25A-B-Q2"
+    },
+    {
+     "id": "bank:SAMP-1-Q14",
+     "bankId": "SAMP-1-Q14"
+    },
+    {
+     "id": "bank:26A-A-Q6",
+     "bankId": "26A-A-Q6"
+    },
+    {
+     "id": "bank:25A-C-Q7",
+     "bankId": "25A-C-Q7"
+    },
+    {
+     "id": "bank:23A-A-Q20",
+     "bankId": "23A-A-Q20"
+    }
+   ]
+  }
+ ]
+}
