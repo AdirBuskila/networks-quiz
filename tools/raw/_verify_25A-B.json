@@ -1,0 +1,82 @@
+{
+ "examCode": "25A-B",
+ "verifier": "refuter",
+ "items": {
+  "1": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "2": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "3": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "4": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "5": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "6": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "7": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "8": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "9": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": "explanation cites original letters (b,c,d)"
+  },
+  "10": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "11": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": "medium: only option stating the general definition; others are special-case metrics"
+  },
+  "12": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "13": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "14": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "15": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "explanation_letters": "Q9, Q11 cite original letters"
+ }
+}

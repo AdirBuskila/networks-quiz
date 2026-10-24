@@ -1,0 +1,82 @@
+{
+ "examCode": "25A-A",
+ "verifier": "refuter",
+ "items": {
+  "1": {
+   "verdict": "agree",
+   "myAnswer": "b",
+   "note": "medium: matches key b; option a (preferences) is a secondary cookie use"
+  },
+  "2": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "3": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": "row 2 col 4, even parity, unique"
+  },
+  "4": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "5": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": "X=4,Y=1 unique by brute force; \"from X\" header is a typo for v"
+  },
+  "6": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "7": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "8": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "9": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "10": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "11": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "12": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "13": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "14": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "15": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "explanation_letters": "Q1,4,7,8,11,12,13,14 cite original letters"
+ }
+}

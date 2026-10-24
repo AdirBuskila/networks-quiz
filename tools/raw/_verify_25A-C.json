@@ -1,0 +1,87 @@
+{
+ "examCode": "25A-C",
+ "verifier": "refuter",
+ "items": {
+  "1": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": "key agrees only as best-of-four: HTTP/2 needs 1 connection (others wrong); 17 is ceil(100/6) = rounds of 6 parallel connections, not a connection count (6 persistent, or 100 non-persistent); wording weak"
+  },
+  "2": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": "90ms = root+TLD+authoritative; 120ms if client->local counted; ambiguous, 90 intended"
+  },
+  "3": {
+   "verdict": "disagree",
+   "myAnswer": "c",
+   "note": "printed 5000 bits: tx 0.65ms + prop 3x5ms = 15.65 ms; no option exact, 15ms nearest. Official 10ms contradicts the data; keep held or accept c as nearest"
+  },
+  "4": {
+   "verdict": "unclear",
+   "myAnswer": "a or d",
+   "note": "key a (\"prevent flooding by keeping relatively fast growth\") is awkward; d (\"prevent immediate jump to max rate\") is also a correct description. Distractor-also-correct risk"
+  },
+  "5": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "6": {
+   "verdict": "agree",
+   "myAnswer": "b",
+   "note": ""
+  },
+  "7": {
+   "verdict": "agree",
+   "myAnswer": "b",
+   "note": ""
+  },
+  "8": {
+   "verdict": "agree",
+   "myAnswer": "b",
+   "note": ""
+  },
+  "9": {
+   "verdict": "agree",
+   "myAnswer": "b",
+   "note": ""
+  },
+  "10": {
+   "verdict": "agree",
+   "myAnswer": "c",
+   "note": ""
+  },
+  "11": {
+   "verdict": "agree",
+   "myAnswer": "c",
+   "note": ""
+  },
+  "12": {
+   "verdict": "agree",
+   "myAnswer": "b",
+   "note": ""
+  },
+  "13": {
+   "verdict": "agree",
+   "myAnswer": "b",
+   "note": ""
+  },
+  "14": {
+   "verdict": "agree",
+   "myAnswer": "b",
+   "note": ""
+  },
+  "15": {
+   "verdict": "agree",
+   "myAnswer": "c",
+   "note": ""
+  },
+  "16": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "explanations": "all 16 items have empty explanation fields (official-key sitting); Q3 has no key (hold)"
+ }
+}

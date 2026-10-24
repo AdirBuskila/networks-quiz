@@ -1,0 +1,82 @@
+{
+ "examCode": "26A-A",
+ "verifier": "refuter",
+ "items": {
+  "1": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "2": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "3": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "4": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "5": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "6": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": "key agrees; graph is schematic (Reno ssthresh after t=24 would be 14, graph shows 16) but slope-change reading gives 4,29,35"
+  },
+  "7": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": "key agrees; explanation inaccurate: says 200 would arise from 500-byte fragments, but 3*500/8=187.5"
+  },
+  "8": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "9": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "10": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "11": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "12": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "13": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "14": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "15": {
+   "verdict": "agree",
+   "myAnswer": "a",
+   "note": ""
+  },
+  "explanation_letters": "explanations cite original exam letters (a-d / alef-dalet); app.js:403 labels shuffled options with \"במקור\", so acceptable but flagged"
+ }
+}
