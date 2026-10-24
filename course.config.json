@@ -59,7 +59,22 @@
       "שכבה פיזית ומיתוג"
     ]
   ],
-  "briefs": [],
+  "briefs": [
+    ["01-intro-layers.md", "intro_layers", "intro_layers", "topic"],
+    ["02-delays.md", "delays", "delays", "topic"],
+    ["03-http.md", "http", "http", "topic"],
+    ["04-dns-dhcp.md", "dns_dhcp", "dns_dhcp", "topic"],
+    ["05-sockets-email.md", "sockets_email", "sockets_email", "topic"],
+    ["06-udp-checksum.md", "udp_checksum", "udp_checksum", "topic"],
+    ["07-reliable-transfer.md", "reliable_transfer", "reliable_transfer", "topic"],
+    ["08-tcp.md", "tcp", "tcp", "topic"],
+    ["09-ip-cidr.md", "ip_cidr", "ip_cidr", "topic"],
+    ["10-nat-ipv6-icmp.md", "nat_ipv6_icmp", "nat_ipv6_icmp", "topic"],
+    ["11-routing.md", "routing", "routing", "topic"],
+    ["12-link-layer.md", "link_layer", "link_layer", "topic"],
+    ["13-physical-misc.md", "physical_misc", "physical_misc", "topic"],
+    ["14-cheat-sheet.md", "cheat_sheet", "delays", "cheat"]
+  ],
   "needHelp": [
     {
       "id": "delays",
