@@ -108,16 +108,16 @@ const THEMES = ["dark", "light"];
       const total = await page.evaluate(c => window.CC_QUIZ.questions.filter(q => q.examCode === c).length, code);
       for (let i = 0; i < total; i++) {
         if (i < MAX_Q) await shot(`exam-q${i + 1}`);
-        await page.click('#optionsList .opt[data-disp="0"]');
-        if (i < total - 1) await page.click("#nextBtn");
+        await page.evaluate(() => document.querySelector('#optionsList .opt[data-disp="0"]').click());
+        if (i < total - 1) await page.evaluate(() => document.querySelector("#nextBtn").click());
       }
-      await page.click("#submitExamBtn");
+      await page.evaluate(() => document.querySelector("#submitExamBtn").click());
       await shot("results");
-      await page.click("#backHomeBtn");
+      await page.evaluate(() => document.querySelector("#backHomeBtn").click());
       // practice: answer the first question shown with display slot 0
       await page.click('input[name=mode][value="practice"]');
       await page.click("#startBtn");
-      await page.click('#optionsList .opt[data-disp="0"]');
+      await page.evaluate(() => document.querySelector('#optionsList .opt[data-disp="0"]').click());
       await shot("practice-answered");
     }
     await page.close();

@@ -4,6 +4,8 @@ Open questions for Adir. One entry per item; the orchestrator moves it to Resolv
 
 ## Open
 
+Summary: 9 open items below; none blocks the build. The top two (26A-A and SAMP-2 key conventions) only decide the official label.
+
 <!-- Entry format:
 ### <exam code> Q<number> - <short title>
 - Path: <absolute file path>
