@@ -1,0 +1,93 @@
+{
+ "examCode": "23A-A",
+ "refuter": "blind independent solve + scripts tools/verify/23A-A/refute_calc.py",
+ "items": {
+  "1": {
+   "verdict": "agree",
+   "mine": "b",
+   "note": "script: only offset 200 among options for any MTU giving 5 fragments"
+  },
+  "2": {
+   "verdict": "agree",
+   "mine": "b"
+  },
+  "3": {
+   "verdict": "agree",
+   "mine": "c"
+  },
+  "4": {
+   "verdict": "agree",
+   "mine": "b"
+  },
+  "7": {
+   "verdict": "agree",
+   "mine": "c",
+   "note": "med-conf: 2 sockets (DNS UDP + one persistent TCP) agrees; browsers opening parallel conns is outside intent"
+  },
+  "8": {
+   "verdict": "agree",
+   "mine": "c"
+  },
+  "9": {
+   "verdict": "agree",
+   "mine": "c"
+  },
+  "10": {
+   "verdict": "agree",
+   "mine": "b"
+  },
+  "11": {
+   "verdict": "agree",
+   "mine": "b"
+  },
+  "12": {
+   "verdict": "agree",
+   "mine": "a"
+  },
+  "13": {
+   "verdict": "agree",
+   "mine": "c"
+  },
+  "14": {
+   "verdict": "agree",
+   "mine": "a"
+  },
+  "15": {
+   "verdict": "agree",
+   "mine": "d"
+  },
+  "16": {
+   "verdict": "agree",
+   "mine": "b"
+  },
+  "19": {
+   "verdict": "agree",
+   "mine": "a",
+   "note": "med-conf: smart DNS agrees"
+  },
+  "20": {
+   "verdict": "agree",
+   "mine": "c"
+  },
+  "5": {
+   "verdict": "agree",
+   "mine": "c,d",
+   "note": "held multi"
+  },
+  "6": {
+   "verdict": "agree",
+   "mine": "a,b,c",
+   "note": "held multi"
+  },
+  "17": {
+   "verdict": "agree",
+   "mine": "b,c,d",
+   "note": "held multi"
+  },
+  "18": {
+   "verdict": "agree",
+   "mine": "a,b,c,d",
+   "note": "held multi; stem reads ambiguously (\"not required beyond network\" makes a also not-required; c wording odd) - agree with Adir-ask"
+  }
+ }
+}

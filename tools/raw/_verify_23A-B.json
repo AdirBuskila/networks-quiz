@@ -1,0 +1,104 @@
+{
+ "examCode": "23A-B",
+ "refuter": "blind independent solve + scripts tools/verify/23A-B/refute_calc.py",
+ "items": {
+  "1": {
+   "verdict": "agree",
+   "mine": "e"
+  },
+  "2": {
+   "verdict": "agree",
+   "mine": "d"
+  },
+  "3": {
+   "verdict": "agree",
+   "mine": "b"
+  },
+  "4": {
+   "verdict": "agree",
+   "mine": "c"
+  },
+  "6": {
+   "verdict": "agree",
+   "mine": "b"
+  },
+  "9": {
+   "verdict": "agree",
+   "mine": "c",
+   "note": "med-conf agree (2 sockets)"
+  },
+  "10": {
+   "verdict": "agree",
+   "mine": "c",
+   "note": "script: A and C match, longest prefix C; E (25.30/12) does not match. \"mark all\" reading would be {c} since only C is the route"
+  },
+  "11": {
+   "verdict": "agree",
+   "mine": "c"
+  },
+  "12": {
+   "verdict": "agree",
+   "mine": "b"
+  },
+  "13": {
+   "verdict": "agree",
+   "mine": "b"
+  },
+  "14": {
+   "verdict": "agree",
+   "mine": "a"
+  },
+  "15": {
+   "verdict": "agree",
+   "mine": "d"
+  },
+  "16": {
+   "verdict": "agree",
+   "mine": "b"
+  },
+  "18": {
+   "verdict": "agree",
+   "mine": "a",
+   "note": "med-conf agree (smart DNS)"
+  },
+  "19": {
+   "verdict": "agree",
+   "mine": "e"
+  },
+  "5": {
+   "verdict": "agree",
+   "mine": "a,c",
+   "note": "held multi"
+  },
+  "7": {
+   "verdict": "agree",
+   "mine": "c,d,e",
+   "note": "held multi"
+  },
+  "8": {
+   "verdict": "agree",
+   "mine": "a,b,c,e",
+   "note": "held multi"
+  },
+  "17": {
+   "verdict": "agree",
+   "mine": "a,b,c,d",
+   "note": "held multi"
+  },
+  "20": {
+   "verdict": "disagree",
+   "mine": "a,b (d doubtful)",
+   "first_divergence": "key a-only; explanation says switches are not a target of congestion control, but 23A-A Q20 explanation says overload of routers AND switches is a congestion-control matter. Option b (switches, fast retransmits) is plausibly also correct; item should be multi/held or unclear, not single-key a with confidence med"
+  },
+  "21": {
+   "verdict": "agree",
+   "mine": "a",
+   "note": "voided, not shipped"
+  },
+  "22": {
+   "verdict": "agree",
+   "mine": "c",
+   "note": "voided, not shipped"
+  }
+ }
+}

@@ -1,0 +1,84 @@
+{
+ "examCode": "22S-A",
+ "refuter": "blind independent solve + scripts tools/verify/22S-A/refute_calc.py",
+ "items": {
+  "2": {
+   "verdict": "agree",
+   "mine": "b"
+  },
+  "3": {
+   "verdict": "agree",
+   "mine": "b"
+  },
+  "4": {
+   "verdict": "agree",
+   "mine": "d"
+  },
+  "5": {
+   "verdict": "agree",
+   "mine": "a"
+  },
+  "6": {
+   "verdict": "agree",
+   "mine": "a"
+  },
+  "7": {
+   "verdict": "agree",
+   "mine": "d"
+  },
+  "8": {
+   "verdict": "agree",
+   "mine": "a",
+   "note": "script: frag sizes 1500 + 540 (2000 data +20 hdr per frag), offset 185"
+  },
+  "9": {
+   "verdict": "agree",
+   "mine": "b",
+   "note": "med-conf: 4 sockets (server listen + conn, client TCP + DNS UDP) agrees"
+  },
+  "10": {
+   "verdict": "agree",
+   "mine": "d",
+   "note": "med-conf: Hamming distance 1 => last-bit flip undetected; penultimate flip detected; d"
+  },
+  "11": {
+   "verdict": "agree",
+   "mine": "b/d",
+   "note": "options b and d identical text; acceptedIds [b,d] correct; even parity bits 1/0"
+  },
+  "12": {
+   "verdict": "agree",
+   "mine": "c"
+  },
+  "13": {
+   "verdict": "agree",
+   "mine": "a"
+  },
+  "14": {
+   "verdict": "agree",
+   "mine": "a"
+  },
+  "16": {
+   "verdict": "agree",
+   "mine": "c"
+  },
+  "17": {
+   "verdict": "agree",
+   "mine": "b"
+  },
+  "18": {
+   "verdict": "agree",
+   "mine": "a"
+  },
+  "1": {
+   "verdict": "disagree",
+   "mine": "c",
+   "first_divergence": "official highlighted key b (NAT + destination). Standard answer: reassembly only at destination host (c). Explanation argument (NAT may reassemble to read ports) is defensible but non-standard; route to arbiter. Official key, not changed"
+  },
+  "15": {
+   "verdict": "agree",
+   "mine": "b (d arguable)",
+   "note": "key b agrees but option b says Omer is wrong \"only\" for cached GET 304; HEAD/204 are also bodyless, and expl option c itself cites 204. Minor wording overclaim in explanation"
+  }
+ }
+}
