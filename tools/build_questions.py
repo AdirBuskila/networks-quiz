@@ -302,9 +302,15 @@ def valid_question(q):
             errs.append(f"blank-option:{o.get('id')}")
         if o.get("type") == "image" and not (OUT / str(o.get("value", ""))).is_file():
             errs.append(f"option-image-missing:{o.get('id')}:{o.get('value')}")
-    if q.get("correctId") not in ids:
+    if q.get("multi") is True:
+        aid = q.get("answerIds")
+        if not isinstance(aid, list) or len(set(aid)) < 2 or len(set(aid)) != len(aid) or any(a not in ids for a in aid):
+            errs.append("bad-answerIds")
+        if "correctId" in q or "acceptedIds" in q:
+            errs.append("multi-with-single-answer")
+    elif q.get("correctId") not in ids:
         errs.append("correctId-not-in-options")
-    acc = q.get("acceptedIds")
+    acc = q.get("acceptedIds") if q.get("multi") is not True else None
     if acc is not None:
         if not isinstance(acc, list) or not acc:
             errs.append("bad-acceptedIds")
@@ -413,6 +419,10 @@ def main():
                 problems.append(f"{tag}: {', '.join(errs)}")
                 continue
             q = dict(q)
+            if q.get("multi") is True:
+                # multi-select: answerIds passes through; correctId is derived (first answer) only so
+                # generic tooling that expects the field keeps working. The app grades by answerIds.
+                q["correctId"] = q["answerIds"][0]
             q["id"] = f"{code}-Q{q['num']}"
             q["examCode"], q["examLabel"], q["year"], q["source"] = code, label, year, source
             q["topicLabel"] = TOPIC_LABEL[q["topic"]]
@@ -506,6 +516,7 @@ def main():
     by_ans = collections.Counter(q.get("answerSource") or "-" for q in questions)
     locked = sum(1 for q in questions if q.get("lockOrder"))
     multi = sum(1 for q in questions if q.get("acceptedIds"))
+    nmulti = sum(1 for q in questions if q.get("multi"))
 
     L = ["# Build report — " + CFG["titleHe"] + " questions", "",
          f"- Raw exam files: **{len(raw_files)}**",
@@ -513,7 +524,7 @@ def main():
          f"- Excluded: **{sum(excl.values())}** {dict(excl) if excl else ''}",
          f"- Shared context blocks: **{len(contexts)}**",
          f"- Math spans rendered (distinct): **{len(bank.items)}**",
-         f"- lockOrder: {locked} · multiple accepted answers: {multi}", "",
+         f"- lockOrder: {locked} · multiple accepted answers: {multi} · multi-select: {nmulti}", "",
          f"- **On hold (not in bank, see docs/ASK_ADIR.md): {len(held)}**", ""] + [f"  - {h}" for h in held] + ["",
          "## By topic", "", "| topic | label | n |", "|---|---|---|"]
     for k, v in TOPIC_LABEL.items():

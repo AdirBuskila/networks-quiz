@@ -65,7 +65,8 @@ function optById(q,id){ return (q.options||[]).find(o=>o.id===id); }
 function hasHebrew(s){ return /[֐-׿]/.test(String(s)); }
 /* accepted answers: usually just [correctId]; some questions accept more than one
    (appeal / ambiguous key). Grade "chosen ∈ accepted". */
-function acceptedIdsOf(q){ return (Array.isArray(q.acceptedIds) && q.acceptedIds.length) ? q.acceptedIds : [q.correctId]; }
+function isMulti(q){ return CCGrade.isMulti(q); }
+function acceptedIdsOf(q){ if(isMulti(q)) return q.answerIds; return (Array.isArray(q.acceptedIds) && q.acceptedIds.length) ? q.acceptedIds : [q.correctId]; }
 function isAccepted(q,id){ return id!=null && acceptedIdsOf(q).includes(id); }
 
 /* Duplicates are kept in the bank (a whole past paper must replay in full); topic/random
@@ -247,7 +248,7 @@ function makeView(q){
   const ids = (q.options||[]).map(o=>o.id);
   const order = q.lockOrder ? ids : shuffle(ids);
   const correctSet = new Set(order.map((id,i)=>isAccepted(q,id)?i:-1).filter(i=>i>=0));
-  return { q, order, correctDisplay: order.indexOf(q.correctId), correctSet, answered:false, chosen:null };
+  return { q, order, correctDisplay: order.indexOf(q.correctId), correctSet, answered:false, chosen:null, picked:new Set() };
 }
 
 function renderQuestion(){
@@ -276,16 +277,33 @@ function renderQuestion(){
   $("#qExtras").innerHTML = extrasHtml(q);
   if(window.Feedback) window.Feedback.slot($("#qExtras"), "q", reportData(q));
 
+  if(isMulti(q)){
+    // multi-select: real checkboxes keyed by option id, graded as a set (see grade.js)
+    $("#optionsList").innerHTML = `<div class="multi-hint">${MULTI_HINT}</div>` + v.order.map((oid,disp)=>
+      `<label class="opt opt-multi" data-disp="${disp}" data-oid="${escapeHtml(oid)}">
+         <input type="checkbox" class="opt-cb" value="${escapeHtml(oid)}">
+         <span class="key">${HE_KEYS[disp]||disp+1}</span>
+         <span class="txt">${optionHtml(optById(q,oid))}</span>
+       </label>`).join("") +
+      (S.mode==="exam" ? "" : `<button type="button" id="multiCheck" class="btn primary multi-check">בדיקה</button>`);
+    document.querySelectorAll("#optionsList .opt-cb").forEach(cb=> cb.onchange=()=>toggleMulti(cb.value, cb.checked));
+    const chk=$("#multiCheck"); if(chk) chk.onclick=checkMulti;
+    const saved = S.mode==="exam" ? (S.exam.answers[q.id]||[]) : [...v.picked];
+    saved.forEach(id=>{ const cb=document.querySelector(`#optionsList .opt-cb[value="${id}"]`); if(cb) cb.checked=true; });
+    v.picked = new Set(saved);
+    syncMulti();
+  } else {
   $("#optionsList").innerHTML = v.order.map((oid,disp)=>
     `<button class="opt" data-disp="${disp}" data-oid="${escapeHtml(oid)}">
        <span class="key">${HE_KEYS[disp]||disp+1}</span>
        <span class="txt">${optionHtml(optById(q,oid))}</span>
      </button>`).join("");
   document.querySelectorAll("#optionsList .opt").forEach(b=> b.onclick=()=>choose(parseInt(b.dataset.disp,10)));
+  }
 
   const fb=$("#feedback"); fb.className="feedback hidden"; fb.innerHTML="";
 
-  if(S.mode==="exam" && q.id in S.exam.answers){
+  if(S.mode==="exam" && q.id in S.exam.answers && !isMulti(q)){
     markExamChoice(v.order.indexOf(S.exam.answers[q.id]));
   }
 
@@ -307,6 +325,50 @@ function renderQuestion(){
     const a=P.stats.answered,c=P.stats.correct;
     $("#streakBox").textContent = `רצף נכון: ${S.streak||0} · דיוק כולל ${a?Math.round(c/a*100):0}%`;
   }
+}
+
+/* ---------- answering: multi-select (checkboxes, set grading by option id) ---------- */
+const MULTI_HINT = "ייתכנו כמה תשובות נכונות — סמנו את כולן";
+function syncMulti(){
+  const v=S.current;
+  document.querySelectorAll("#optionsList .opt-multi").forEach(l=> l.classList.toggle("chosen-exam", S.mode==="exam" && v.picked.has(l.dataset.oid)));
+  const chk=$("#multiCheck"); if(chk) chk.disabled = v.answered || v.picked.size===0;
+}
+function toggleMulti(oid, on){
+  const v=S.current, q=v.q;
+  if(v.answered) return;
+  if(on) v.picked.add(oid); else v.picked.delete(oid);
+  if(S.mode==="exam"){
+    if(v.picked.size) S.exam.answers[q.id] = [...v.picked]; else delete S.exam.answers[q.id];   // option IDs, never positions
+    $("#streakBox").textContent = `נענו ${Object.keys(S.exam.answers).length}/${S.pool.length}`;
+  }
+  syncMulti();
+}
+function checkMulti(){
+  const v=S.current, q=v.q;
+  if(S.mode==="exam" || v.answered || !v.picked.size) return;
+  v.answered=true; v.chosenIds=[...v.picked]; v.correct = CCGrade.gradeMulti(v.chosenIds, q.answerIds);
+  paintAnswered(v);
+  recordAnswer(q, v.correct);                      // one question = one answered / one correct
+  S.streak = v.correct ? (S.streak||0)+1 : 0;
+  $("#nextBtn").focus();
+  renderTopStats();
+  const a=P.stats.answered,c=P.stats.correct;
+  $("#streakBox").textContent = `רצף נכון: ${S.streak} · דיוק כולל ${a?Math.round(c/a*100):0}%`;
+}
+const MULTI_STATE = { correct:"נבחרה נכון", missed:"הוחמצה", wrong:"נבחרה בטעות" };
+function paintMulti(v){
+  const st = CCGrade.optionStates(v.order, v.chosenIds, v.q.answerIds);
+  document.querySelectorAll("#optionsList .opt-multi").forEach(l=>{
+    const s = st[l.dataset.oid], cb=l.querySelector(".opt-cb");
+    cb.disabled=true; cb.checked = v.chosenIds.includes(l.dataset.oid);
+    l.classList.add("locked");
+    if(s==="correct") l.classList.add("correct");
+    else if(s==="missed") l.classList.add("missed");
+    else if(s==="wrong") l.classList.add("wrong");
+    if(s!=="none") l.insertAdjacentHTML("beforeend", `<span class="opt-state ${s}">${MULTI_STATE[s]}</span>`);
+  });
+  const chk=$("#multiCheck"); if(chk) chk.disabled=true;
 }
 
 /* ---------- answering ---------- */
@@ -332,7 +394,8 @@ function choose(disp){
    Runs when answering and again when navigating back to an already-answered question. */
 function paintAnswered(v){
   const q=v.q, correct=v.correct;
-  document.querySelectorAll("#optionsList .opt").forEach((b,i)=>{
+  if(isMulti(q)) paintMulti(v);
+  else document.querySelectorAll("#optionsList .opt").forEach((b,i)=>{
     b.disabled=true;
     if(v.correctSet.has(i)) b.classList.add("correct");
     else if(i===v.chosen) b.classList.add("wrong");
@@ -349,7 +412,7 @@ function paintAnswered(v){
   const fb=$("#feedback");
   fb.className = "feedback " + (correct?"good":"bad");
   const srcNote = SRC_NOTE[q.answerSource] || "";
-  const multi = acceptedIdsOf(q).length>1;
+  const multi = !isMulti(q) && acceptedIdsOf(q).length>1;
   fb.innerHTML = `<div class="verdict">${correct?"✓ נכון":"✗ לא נכון"}</div>`+
     (shuffled && q.explanationHtml ? `<span class="note">האותיות בהסבר מתייחסות לסדר המקורי במבחן (מסומן "במקור" ליד כל תשובה).</span>` : "")+
     (q.explanationHtml ? `<div class="expl">${iso(q.explanationHtml)}</div>` : `<div class="expl expl-none">אין הסבר במקור.</div>`)+
@@ -400,7 +463,7 @@ function submitExam(auto){
   let correct=0; const byTopic={}; const review=[];
   S.pool.forEach(q=>{
     const chosen = q.id in S.exam.answers ? S.exam.answers[q.id] : null;  // option id or null
-    const ok = isAccepted(q, chosen);
+    const ok = CCGrade.gradeAnswer(q, chosen, isMulti(q)?null:acceptedIdsOf(q));
     if(ok) correct++;
     recordAnswer(q, ok);
     (byTopic[q.topic] = byTopic[q.topic] || {n:0,c:0}); byTopic[q.topic].n++; if(ok) byTopic[q.topic].c++;
@@ -422,14 +485,17 @@ function renderResults(correct, byTopic, review){
   }).join("");
   $("#resultsReview").innerHTML = review.map(r=>{
     const v=r.q;
-    const chosenTxt = r.chosen!=null ? optionHtml(optById(v,r.chosen)) : "— לא נענתה —";
+    const mu = isMulti(v);
+    const sep = mu ? `<span class="or">,</span> ` : `<span class="or">או</span>`;
+    const chosenTxt = (mu ? (r.chosen&&r.chosen.length) : r.chosen!=null)
+      ? (mu ? r.chosen : [r.chosen]).map(id=>optionHtml(optById(v,id))).join(sep) : "— לא נענתה —";
     const acc = acceptedIdsOf(v);
-    const correctTxt = acc.map(id=>optionHtml(optById(v,id))).join(`<span class="or">או</span>`);
+    const correctTxt = acc.map(id=>optionHtml(optById(v,id))).join(sep);
     return `<div class="rev ${r.ok?"ok":"bad"}">
       <div class="rq">${questionHtml(v)}</div>
       ${v.contextId?contextHtml(CTX[v.contextId]):""}
       ${extrasHtml(v)}
-      <div class="ra"><span class="${r.ok?"good":"miss"}">תשובתך: ${chosenTxt}</span>`+
+      <div class="ra"><span class="${r.ok?"good":"miss"}">${mu?"תשובותיך":"תשובתך"}: ${chosenTxt}</span>`+
       (r.ok?"":` · <span class="good">${acc.length>1?"נכונות":"הנכונה"}: ${correctTxt}</span>`)+
       (v.explanationHtml?`<br>${iso(v.explanationHtml)}`:"")+(v.official?"":" (לא רשמי)")+`</div>${reportRowHtml(v)}</div>`;
   }).join("");
@@ -472,7 +538,7 @@ function bindGlobal(){
     if(lb && !lb.classList.contains("hidden")){ if(e.key==="Escape") closeLightbox(); return; }
     if($("#screen-quiz").classList.contains("hidden")) return;
     if(e.target && /^(SELECT|INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
-    if(/^[1-8]$/.test(e.key)){ const b=document.querySelector(`#optionsList .opt[data-disp="${+e.key-1}"]`); if(b && !b.disabled) b.click(); }
+    if(/^[1-8]$/.test(e.key)){ const b=document.querySelector(`#optionsList .opt[data-disp="${+e.key-1}"]`); if(b && !b.disabled && !b.classList.contains("locked")) b.click(); }
     else if(e.key==="Enter"){ if(!$("#nextBtn").classList.contains("hidden")) next(); else if(!$("#submitExamBtn").classList.contains("hidden")) submitExam(false); }
     else if(e.key==="ArrowLeft" && !$("#nextBtn").classList.contains("hidden")) next();
     else if(e.key==="ArrowRight") prev();
@@ -661,7 +727,7 @@ window.CC_APP = {
   prefix: PREFIX, HE_KEYS, show, quit, shuffle, escapeHtml,
   bank: id => QS.find(q=>q.id===id) || null,
   ctx: id => CTX[id] || null,
-  contextHtml, extrasHtml, questionHtml, optionHtml, examLabelOf, acceptedIdsOf, isAccepted,
+  isMulti, MULTI_HINT, contextHtml, extrasHtml, questionHtml, optionHtml, examLabelOf, acceptedIdsOf, isAccepted,
   topicCount: topic => countFor(topic, {officialOnly:false, mistakesOnly:false}),
   practiceTopic: startTopicPractice,
 };

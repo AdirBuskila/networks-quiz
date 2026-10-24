@@ -42,6 +42,11 @@ for (const q of QS) {
   const ids = opts.map(o => o.id);
   if (new Set(ids).size !== ids.length) fail("DUP option ids", q.id);
   if (!ids.includes(q.correctId)) fail("correctId not in options", q.id);
+  if (q.multi) {
+    if (!Array.isArray(q.answerIds) || q.answerIds.length < 2) fail("multi without >=2 answerIds", q.id);
+    else if (q.answerIds.some(a => !ids.includes(a))) fail("answerIds not subset of options", q.id);
+    if (q.acceptedIds) fail("multi item with acceptedIds", q.id);
+  } else if (q.answerIds) fail("answerIds without multi", q.id);
   if (Array.isArray(q.acceptedIds)) {
     if (!q.acceptedIds.length) fail("EMPTY acceptedIds", q.id);
     if (q.acceptedIds.some(a => !ids.includes(a))) fail("acceptedIds not subset of options", q.id);
@@ -82,7 +87,7 @@ try {
 // lockOrder), click the display slot holding each accepted id and each rejected id, grade
 // by id. Must be correct exactly for accepted ids, for every shuffle.
 function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
-const accepted = q => (Array.isArray(q.acceptedIds) && q.acceptedIds.length) ? q.acceptedIds : [q.correctId];
+const accepted = q => q.multi ? q.answerIds : (Array.isArray(q.acceptedIds) && q.acceptedIds.length) ? q.acceptedIds : [q.correctId];
 let mismatch = 0, trials = 0;
 for (let t = 0; t < 5000 && QS.length; t++) {
   const q = QS[t % QS.length];

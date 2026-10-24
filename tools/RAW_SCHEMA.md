@@ -37,6 +37,23 @@
 }
 ```
 
+## Multi-select questions ("סמנו את כל התשובות הנכונות")
+A question that asks for **every** correct option carries `"multi": true` and `"answerIds"` (two or more option
+ids) **instead of** `correctId` / `acceptedIds`:
+
+```jsonc
+{ "num": 5, "topic": "...", "question": "...", "options": [ {"id":"a",...}, {"id":"b",...}, {"id":"c",...}, {"id":"d",...} ],
+  "multi": true, "answerIds": ["a", "c"],
+  "answerSource": "solved", "official": false, "confidence": "high", "explanation": "..." }
+```
+- `validate.py` requires: `answerIds` is a list of >=2 distinct ids that all exist among the options, fewer than the
+  number of options, and the item has no `correctId` or `acceptedIds`. `answerIds` without `"multi": true` is an error.
+- Build copies `multi` / `answerIds` through to questions.json/js and derives `correctId = answerIds[0]` (so generic
+  tooling still finds the field; the app never grades by it).
+- The app shows checkboxes + a "בדיקה" button (practice) and grades correct only when the chosen set equals `answerIds`
+  exactly; in exam mode the selection is stored per option id and graded on submit. Order of `answerIds` is irrelevant.
+- Count it as one question everywhere. Grading lives in `grade.js` (`CCGrade.gradeMulti`).
+
 ## Held questions (`hold`)
 A question you cannot transcribe or key honestly (unreadable text, no trustworthy key) gets `"hold": "<reason>"`
 instead of an invented answer, plus an entry in `docs/ASK_ADIR.md`. A held question needs only `num`; `topic`,

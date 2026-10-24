@@ -56,7 +56,7 @@ function setMode(mode) {
   r.dispatchEvent(new window.Event("change", { bubbles: true }));
 }
 
-assert(scripts.join() === "questions.js,learn.js,courses.js,app.js,feedback.js,course-ui.js", `scripts loaded: ${scripts.join(", ")}`);
+assert(scripts.join() === "questions.js,learn.js,courses.js,grade.js,app.js,feedback.js,course-ui.js", `scripts loaded: ${scripts.join(", ")}`);
 const D = window.CC_QUIZ;
 assert(D && Array.isArray(D.questions), "window.CC_QUIZ defined");
 const QS = D.questions;
@@ -89,7 +89,14 @@ if (!QS.length) {
   const cur = () => QS.find(x => x.id === $("#questionText").dataset.qid);
   let q = cur();
   assert(!!q, `practice: rendered question identified (${q && q.id})`);
-  const acc = q.acceptedIds || [q.correctId];
+  const acc = q.multi ? q.answerIds : (q.acceptedIds || [q.correctId]);
+  if (q.multi) {
+    // a strict subset must be graded wrong; the other answers show as "missed"
+    opts.find(x => x.dataset.oid === acc[0]).querySelector("input").click();
+    $("#multiCheck").click();
+    assert(visible($("#feedback")) && /לא נכון/.test($("#feedback .verdict").textContent), "practice: multi subset graded wrong");
+    assert(opts.filter(x => x.classList.contains("missed")).length === acc.length - 1, "practice: multi missed answers marked");
+  } else {
   const wrongBtn = opts.find(b => !acc.includes(b.dataset.oid)) || opts[0];
   wrongBtn.click();
   assert(visible($("#feedback")), "practice: feedback shown after answering");
@@ -98,6 +105,7 @@ if (!QS.length) {
   assert(opts.filter(b => b.classList.contains("correct")).every(b => acc.includes(b.dataset.oid)),
     "practice: marked-correct options are exactly the accepted ids");
   assert(/לא נכון/.test($("#feedback .verdict").textContent) === !acc.includes(wrongBtn.dataset.oid), "practice: verdict matches id grading");
+  }
   mathAllLtr("practice feedback");
   // practice history: "back" replays the answered question as it was, "next" returns to where you were
   {
@@ -112,7 +120,7 @@ if (!QS.length) {
     $("#prevBtn").click();
     assert(snap() === first, "practice: back shows the previous question with the same option order");
     assert(!$("#feedback").classList.contains("hidden") && $("#feedback .verdict").textContent === firstVerdict, "practice: previous question is shown as answered, with its feedback");
-    assert(qq("#optionsList .opt").every(b => b.disabled) && !$("#nextBtn").classList.contains("hidden"), "practice: previous question is locked and next is available");
+    assert(qq("#optionsList .opt").every(b => b.disabled || b.classList.contains("locked")) && !$("#nextBtn").classList.contains("hidden"), "practice: previous question is locked and next is available");
     $("#nextBtn").click();
     assert(snap() === second, "practice: next returns to the question you were on, same option order");
     window.document.dispatchEvent(new window.KeyboardEvent("keydown", { key: "ArrowRight", bubbles: true }));
@@ -125,7 +133,8 @@ if (!QS.length) {
     opts = $$("#optionsList .opt"); q = cur();
     if (!q) { assert(false, "practice: could not identify question"); break; }
     seen.add(q.id);
-    opts.find(b => b.dataset.oid === q.correctId).click();
+    if (q.multi) { q.answerIds.forEach(id => opts.find(b => b.dataset.oid === id).querySelector("input").click()); $("#multiCheck").click(); }
+    else opts.find(b => b.dataset.oid === q.correctId).click();
     if (!/✓/.test($("#feedback .verdict").textContent)) { assert(false, `practice: correct id graded wrong on ${q.id}`); break; }
     mathAllLtr(`practice ${q.id}`);
   }
@@ -158,8 +167,13 @@ if (!QS.length) {
     if (pq.contextId) assert(!!$("#qContext .ctx"), `exam: context block shown for ${pq.id}`);
     if (pq.image) assert(!!$("#qExtras img.q-img"), `exam: figure shown for ${pq.id}`);
     mathAllLtr(`exam ${pq.id}`);
-    opts.find(b => b.dataset.oid === pq.correctId).click();
-    assert(opts.find(b => b.dataset.oid === pq.correctId).classList.contains("chosen-exam"), `exam: choice marked on ${pq.id}`);
+    if (pq.multi) {
+      pq.answerIds.forEach(id => opts.find(b => b.dataset.oid === id).querySelector("input").click());
+      assert(pq.answerIds.every(id => opts.find(b => b.dataset.oid === id).classList.contains("chosen-exam")), `exam: choices marked on ${pq.id}`);
+    } else {
+      opts.find(b => b.dataset.oid === pq.correctId).click();
+      assert(opts.find(b => b.dataset.oid === pq.correctId).classList.contains("chosen-exam"), `exam: choice marked on ${pq.id}`);
+    }
     if (i < paper.length - 1) $("#nextBtn").click();
   }
   // back-navigation keeps the same shuffle

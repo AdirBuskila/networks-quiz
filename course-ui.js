@@ -220,11 +220,22 @@
       html: q.questionHtml || esc(q.question || "")
     });
     const byId = id => q.options.find(o => o.id === id);
-    $("#crsQBody").innerHTML =
-      `<div class="options-list">` + it.order.map((oid, d) =>
+    const multi = APP.isMulti(q);
+    it.picked = new Set();
+    $("#crsQBody").innerHTML = (multi ? `<div class="multi-hint">${APP.MULTI_HINT}</div>` : "") +
+      `<div class="options-list">` + it.order.map((oid, d) => multi ?
+        `<label class="opt opt-multi" data-oid="${esc(oid)}"><input type="checkbox" class="opt-cb" value="${esc(oid)}"><span class="key">${APP.HE_KEYS[d] || d + 1}</span><span class="txt">${APP.optionHtml(byId(oid))}</span></label>` :
         `<button class="opt" type="button" data-oid="${esc(oid)}"><span class="key">${APP.HE_KEYS[d] || d + 1}</span><span class="txt">${APP.optionHtml(byId(oid))}</span></button>`).join("") +
-      `</div><div class="feedback hidden"></div>`;
-    $("#crsQBody").querySelectorAll(".opt").forEach(b => b.onclick = () => answer(b.dataset.oid));
+      `</div>` + (multi ? `<button type="button" class="btn primary multi-check" id="crsMultiCheck" disabled>בדיקה</button>` : "") +
+      `<div class="feedback hidden"></div>`;
+    if(multi){
+      const chk = $("#crsMultiCheck");
+      $("#crsQBody").querySelectorAll(".opt-cb").forEach(cb => cb.onchange = () => {
+        if(cb.checked) it.picked.add(cb.value); else it.picked.delete(cb.value);
+        chk.disabled = it.answered || !it.picked.size;
+      });
+      chk.onclick = () => answer([...it.picked]);
+    } else $("#crsQBody").querySelectorAll(".opt").forEach(b => b.onclick = () => answer(b.dataset.oid));
     $("#crsProgressFill").style.width = (S.i / n * 100) + "%";
     $("#crsQuizMeta").textContent = `שאלה ${S.i + 1} מתוך ${n}`;
     $("#crsNextBtn").classList.add("hidden");
@@ -234,19 +245,26 @@
     const it = S.items[S.i], q = it.q;
     if(it.answered) return;
     it.answered = true;
-    const acc = APP.acceptedIdsOf(q), ok = acc.includes(oid);
+    const multi = APP.isMulti(q);
+    if(multi && (!Array.isArray(oid) || !oid.length)){ it.answered = false; return; }
+    const acc = APP.acceptedIdsOf(q), ok = multi ? window.CCGrade.gradeMulti(oid, acc) : acc.includes(oid);
     if(!(it.key in S.run)) S.run[it.key] = ok;
     $("#crsQBody").querySelectorAll(".opt").forEach(b => {
       b.disabled = true;
-      if(acc.includes(b.dataset.oid)) b.classList.add("correct");
-      else if(b.dataset.oid === oid) b.classList.add("wrong");
+      const id = b.dataset.oid, mine = multi ? oid.includes(id) : id === oid;
+      if(multi){
+        const cb = b.querySelector(".opt-cb"); cb.disabled = true; cb.checked = mine; b.classList.add("locked");
+        const chk = $("#crsMultiCheck"); if(chk) chk.disabled = true;
+      }
+      if(acc.includes(id)){ if(mine || !multi) b.classList.add("correct"); else b.classList.add("missed"); }
+      else if(mine) b.classList.add("wrong");
     });
     const expl = html(q.explanationHtml || "");   // bank items too: same bidi isolates as in the bank
     const fb = $("#crsQBody .feedback");
     fb.className = "feedback " + (ok ? "good" : "bad");
     fb.innerHTML = `<div class="verdict">${ok ? "✓ נכון" : "✗ לא נכון"}</div>` +
       (expl ? `<div class="expl">${expl}</div>` : `<div class="expl expl-none">אין הסבר במקור.</div>`) +
-      (acc.length > 1 ? `<span class="accept-note">בשאלה זו התקבלה יותר מתשובה אחת כנכונה.</span>` : "") +
+      (!multi && acc.length > 1 ? `<span class="accept-note">בשאלה זו התקבלה יותר מתשובה אחת כנכונה.</span>` : "") +
       (it.bank ? `<span class="note">מקור: ${esc(APP.examLabelOf(q))}${Number.isInteger(q.num) ? ` · שאלה ${q.num}` : ""}</span>` : "");
     $("#crsNextBtn").classList.remove("hidden");
     $("#crsNextBtn").focus();
@@ -325,7 +343,7 @@
     if(screen.classList.contains("hidden") || $("#crsQuizView").classList.contains("hidden")) return;
     const lb = $("#lightbox"); if(lb && !lb.classList.contains("hidden")) return;
     if(e.target && /^(SELECT|INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
-    if(/^[1-8]$/.test(e.key)){ const b = document.querySelector(`#crsQBody .opt:nth-child(${+e.key})`); if(b && !b.disabled) b.click(); }
+    if(/^[1-8]$/.test(e.key)){ const b = document.querySelector(`#crsQBody .opt:nth-child(${+e.key})`); if(b && !b.disabled && !b.classList.contains("locked")) b.click(); }
     else if(e.key === "Enter" && !$("#crsNextBtn").classList.contains("hidden")){ e.preventDefault(); nextQuestion(); }
   });
 

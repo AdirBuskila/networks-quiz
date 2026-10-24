@@ -226,8 +226,9 @@ def check_file(fp):
         if "hold" in q and not (isinstance(hold, str) and hold.strip()):
             P(f"{tag}: hold must be a non-empty reason string")
         # a held question is left out of the bank: it needs no key/answer/source, only what identifies it
-        need = ("num",) if hold else ("num", "topic", "question", "options", "correctId", "answerSource",
-                                      "official", "confidence")
+        multi = q.get("multi") is True
+        need = ("num",) if hold else ("num", "topic", "question", "options", "answerSource",
+                                      "official", "confidence") + (() if multi else ("correctId",))
         for k in need:
             if k not in q:
                 P(f"{tag}: missing {k}")
@@ -275,7 +276,27 @@ def check_file(fp):
                     P(f"{w}: image file missing {v}")
             else:
                 problems += rich_problems(v, w)
-        if q.get("correctId") not in ids and not (hold and "correctId" not in q):
+        if "multi" in q and not isinstance(q["multi"], bool):
+            P(f"{tag}: multi must be true/false")
+        if "answerIds" in q and not multi:
+            P(f"{tag}: answerIds only with \"multi\": true")
+        if multi:
+            # multi-select ("mark every correct option"): answerIds replaces correctId/acceptedIds
+            for bad in ("correctId", "acceptedIds"):
+                if bad in q:
+                    P(f"{tag}: multi item must not carry {bad} (use answerIds)")
+            aid = q.get("answerIds")
+            if not isinstance(aid, list) or len(aid) < 2:
+                if not (hold and "answerIds" not in q):
+                    P(f"{tag}: multi item needs answerIds with >=2 option ids")
+            else:
+                if any(a not in ids for a in aid):
+                    P(f"{tag}: answerIds {aid} contains an unknown option id")
+                if len(set(aid)) != len(aid):
+                    P(f"{tag}: duplicate answerIds")
+                if len(set(aid)) >= len(ids):
+                    P(f"{tag}: answerIds covers every option (>=1 option must be wrong)")
+        elif q.get("correctId") not in ids and not (hold and "correctId" not in q):
             P(f"{tag}: correctId {q.get('correctId')} not among option ids")
         acc = q.get("acceptedIds")
         if acc is not None:
