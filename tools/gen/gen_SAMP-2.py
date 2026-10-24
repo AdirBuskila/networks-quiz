@@ -88,7 +88,7 @@ questions.append(Q(
     "שושי הכניסה בשורת הכתובת בדפדפן את ה-URL הבא: http://mywebsite.com/index.html.\nבדפדפן התקבל מסמך HTML עם הפניה לשתי תמונות בכתובות הבאות:\n"
     "`http://mywebsite.com/imageA.jpg`\n`http://mymirrorwebsite.com/imageB.jpg`\n"
     "לאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:\n`mywebsite.com: 203.0.113.10`\n`mymirrorwebsite.com: 203.0.113.10`\n"
-    "בהנחה שהדפדפן והשרתים תומכים בפרוטוקול HTTP/1.1 (persistent וללא pipelining), כמה חיבורי TCP נדרשים כדי לטעון את הדף כולל שתי התמונות?",
+    "בהנחה שהדפדפן והשרתים תומכים בפרוטוקול `HTTP/1.1` (`persistent` וללא `pipelining`), כמה חיבורי TCP נדרשים כדי לטעון את הדף כולל שתי התמונות?",
     opts("1", "2", "3", "לא ניתן לדעת"), "b",
     r"""ב-HTTP/1.1 חיבור מתמשך משויך לשרת לפי שם המארח (origin): index.html ו-imageA.jpg מ-`mywebsite.com` עוברים על חיבור אחד (persistent), ו-imageB.jpg מ-`mymirrorwebsite.com` דורש חיבור שני, למרות שכתובת ה-IP זהה (איחוד חיבורים לפי IP משותף קיים רק ב-HTTP/2).
 לכן 2 חיבורים. 3 היה נדרש ב-HTTP/1.0 ללא חיבור מתמשך, ו-1 מניח איחוד שאינו נהוג ב-HTTP/1.1.""",

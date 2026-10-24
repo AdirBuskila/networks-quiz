@@ -175,7 +175,7 @@
   {
    "num": 6,
    "topic": "http",
-   "question": "שושי הכניסה בשורת הכתובת בדפדפן את ה-URL הבא: `http://mywebsite.com/index.html`.\nבדפדפן התקבל מסמך HTML עם הפניות לשתי תמונות בכתובות הבאות:\n`http://mywebsite.com/imageA.jpg`\n`http://mymirrorwebsite.com/imageB.jpg`\nלאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:\n- `mywebsite.com: 203.0.113.10`\n- `mymirrorwebsite.com: 203.0.113.10`\nבהנחה שהדפדפן והשרתים תומכים בפרוטוקול HTTP/1.1 (persistent וללא pipelining), כמה חיבורי TCP נדרשים כדי לטעון את הדף כולל שתי התמונות?",
+   "question": "שושי הכניסה בשורת הכתובת בדפדפן את ה-URL הבא: `http://mywebsite.com/index.html`.\nבדפדפן התקבל מסמך HTML עם הפניות לשתי תמונות בכתובות הבאות:\n`http://mywebsite.com/imageA.jpg`\n`http://mymirrorwebsite.com/imageB.jpg`\nלאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:\n- `mywebsite.com: 203.0.113.10`\n- `mymirrorwebsite.com: 203.0.113.10`\nבהנחה שהדפדפן והשרתים תומכים בפרוטוקול `HTTP/1.1` (`persistent` וללא `pipelining`), כמה חיבורי TCP נדרשים כדי לטעון את הדף כולל שתי התמונות?",
    "options": [
     {
      "id": "a",

@@ -179,7 +179,7 @@ window.CC_QUIZ = {
    "total": 166,
    "unique": 159,
    "contexts": 0,
-   "math": 203
+   "math": 202
   }
  },
  "contexts": {},
@@ -417,7 +417,7 @@ window.CC_QUIZ = {
   {
    "num": 6,
    "topic": "http",
-   "question": "שושי הכניסה בשורת הכתובת בדפדפן את ה-URL הבא: `http://mywebsite.com/index.html`.\nבדפדפן התקבל מסמך HTML עם הפניות לשתי תמונות בכתובות הבאות:\n`http://mywebsite.com/imageA.jpg`\n`http://mymirrorwebsite.com/imageB.jpg`\nלאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:\n- `mywebsite.com: 203.0.113.10`\n- `mymirrorwebsite.com: 203.0.113.10`\nבהנחה שהדפדפן והשרתים תומכים בפרוטוקול HTTP/1.1 (persistent וללא pipelining), כמה חיבורי TCP נדרשים כדי לטעון את הדף כולל שתי התמונות?",
+   "question": "שושי הכניסה בשורת הכתובת בדפדפן את ה-URL הבא: `http://mywebsite.com/index.html`.\nבדפדפן התקבל מסמך HTML עם הפניות לשתי תמונות בכתובות הבאות:\n`http://mywebsite.com/imageA.jpg`\n`http://mymirrorwebsite.com/imageB.jpg`\nלאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:\n- `mywebsite.com: 203.0.113.10`\n- `mymirrorwebsite.com: 203.0.113.10`\nבהנחה שהדפדפן והשרתים תומכים בפרוטוקול `HTTP/1.1` (`persistent` וללא `pipelining`), כמה חיבורי TCP נדרשים כדי לטעון את הדף כולל שתי התמונות?",
    "options": [
     {
      "id": "a",
@@ -456,9 +456,9 @@ window.CC_QUIZ = {
    "year": 2024,
    "source": "sample",
    "topicLabel": "HTTP, עוגיות, מטמון ו-CDN",
-   "questionHtml": "שושי הכניסה בשורת הכתובת בדפדפן את ה-URL הבא: <code class=\"tok\" dir=\"ltr\">http://mywebsite.com/index.html</code>.<br>בדפדפן התקבל מסמך HTML עם הפניות לשתי תמונות בכתובות הבאות:<br><code class=\"tok\" dir=\"ltr\">http://mywebsite.com/imageA.jpg</code><br><code class=\"tok\" dir=\"ltr\">http://mymirrorwebsite.com/imageB.jpg</code><br>לאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:<br>- <code class=\"tok\" dir=\"ltr\">mywebsite.com: 203.0.113.10</code><br>- <code class=\"tok\" dir=\"ltr\">mymirrorwebsite.com: 203.0.113.10</code><br>בהנחה שהדפדפן והשרתים תומכים בפרוטוקול HTTP/1.1 (persistent וללא pipelining), כמה חיבורי TCP נדרשים כדי לטעון את הדף כולל שתי התמונות?",
+   "questionHtml": "שושי הכניסה בשורת הכתובת בדפדפן את ה-URL הבא: <code class=\"tok\" dir=\"ltr\">http://mywebsite.com/index.html</code>.<br>בדפדפן התקבל מסמך HTML עם הפניות לשתי תמונות בכתובות הבאות:<br><code class=\"tok\" dir=\"ltr\">http://mywebsite.com/imageA.jpg</code><br><code class=\"tok\" dir=\"ltr\">http://mymirrorwebsite.com/imageB.jpg</code><br>לאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:<br>- <code class=\"tok\" dir=\"ltr\">mywebsite.com: 203.0.113.10</code><br>- <code class=\"tok\" dir=\"ltr\">mymirrorwebsite.com: 203.0.113.10</code><br>בהנחה שהדפדפן והשרתים תומכים בפרוטוקול <code class=\"tok\" dir=\"ltr\">HTTP/1.1</code> (<code class=\"tok\" dir=\"ltr\">persistent</code> וללא <code class=\"tok\" dir=\"ltr\">pipelining</code>), כמה חיבורי TCP נדרשים כדי לטעון את הדף כולל שתי התמונות?",
    "explanationHtml": "חיבור persistent אחד משרת כמה אובייקטים ברצף (ללא pipelining) מאותו מארח. הדפדפן מנהל חיבורים לפי שם המארח: <code class=\"tok\" dir=\"ltr\">mywebsite.com</code> מספק את <code class=\"tok\" dir=\"ltr\">index.html</code> ואת <code class=\"tok\" dir=\"ltr\">imageA.jpg</code> בחיבור אחד, ו-<code class=\"tok\" dir=\"ltr\">mymirrorwebsite.com</code> דורש חיבור נפרד עבור <code class=\"tok\" dir=\"ltr\">imageB.jpg</code> - בסך הכול 2, גם אם שני השמות נפתרו לאותה כתובת IP.",
-   "dedupKey": "9d46f8587a255ae1"
+   "dedupKey": "77af7c342a81ad3b"
   },
   {
    "num": 7,
@@ -1068,7 +1068,7 @@ window.CC_QUIZ = {
   {
    "num": 6,
    "topic": "http",
-   "question": "שושי הכניסה בשורת הכתובת בדפדפן את ה-URL הבא: http://mywebsite.com/index.html.\nבדפדפן התקבל מסמך HTML עם הפניה לשתי תמונות בכתובות הבאות:\n`http://mywebsite.com/imageA.jpg`\n`http://mymirrorwebsite.com/imageB.jpg`\nלאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:\n`mywebsite.com: 203.0.113.10`\n`mymirrorwebsite.com: 203.0.113.10`\nבהנחה שהדפדפן והשרתים תומכים בפרוטוקול HTTP/1.1 (persistent וללא pipelining), כמה חיבורי TCP נדרשים כדי לטעון את הדף כולל שתי התמונות?",
+   "question": "שושי הכניסה בשורת הכתובת בדפדפן את ה-URL הבא: http://mywebsite.com/index.html.\nבדפדפן התקבל מסמך HTML עם הפניה לשתי תמונות בכתובות הבאות:\n`http://mywebsite.com/imageA.jpg`\n`http://mymirrorwebsite.com/imageB.jpg`\nלאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:\n`mywebsite.com: 203.0.113.10`\n`mymirrorwebsite.com: 203.0.113.10`\nבהנחה שהדפדפן והשרתים תומכים בפרוטוקול `HTTP/1.1` (`persistent` וללא `pipelining`), כמה חיבורי TCP נדרשים כדי לטעון את הדף כולל שתי התמונות?",
    "options": [
     {
      "id": "a",
@@ -1107,9 +1107,9 @@ window.CC_QUIZ = {
    "year": 2024,
    "source": "sample",
    "topicLabel": "HTTP, עוגיות, מטמון ו-CDN",
-   "questionHtml": "שושי הכניסה בשורת הכתובת בדפדפן את ה-URL הבא: http://mywebsite.com/index.html.<br>בדפדפן התקבל מסמך HTML עם הפניה לשתי תמונות בכתובות הבאות:<br><code class=\"tok\" dir=\"ltr\">http://mywebsite.com/imageA.jpg</code><br><code class=\"tok\" dir=\"ltr\">http://mymirrorwebsite.com/imageB.jpg</code><br>לאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:<br><code class=\"tok\" dir=\"ltr\">mywebsite.com: 203.0.113.10</code><br><code class=\"tok\" dir=\"ltr\">mymirrorwebsite.com: 203.0.113.10</code><br>בהנחה שהדפדפן והשרתים תומכים בפרוטוקול HTTP/1.1 (persistent וללא pipelining), כמה חיבורי TCP נדרשים כדי לטעון את הדף כולל שתי התמונות?",
+   "questionHtml": "שושי הכניסה בשורת הכתובת בדפדפן את ה-URL הבא: http://mywebsite.com/index.html.<br>בדפדפן התקבל מסמך HTML עם הפניה לשתי תמונות בכתובות הבאות:<br><code class=\"tok\" dir=\"ltr\">http://mywebsite.com/imageA.jpg</code><br><code class=\"tok\" dir=\"ltr\">http://mymirrorwebsite.com/imageB.jpg</code><br>לאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:<br><code class=\"tok\" dir=\"ltr\">mywebsite.com: 203.0.113.10</code><br><code class=\"tok\" dir=\"ltr\">mymirrorwebsite.com: 203.0.113.10</code><br>בהנחה שהדפדפן והשרתים תומכים בפרוטוקול <code class=\"tok\" dir=\"ltr\">HTTP/1.1</code> (<code class=\"tok\" dir=\"ltr\">persistent</code> וללא <code class=\"tok\" dir=\"ltr\">pipelining</code>), כמה חיבורי TCP נדרשים כדי לטעון את הדף כולל שתי התמונות?",
    "explanationHtml": "ב-HTTP/1.1 חיבור מתמשך משויך לשרת לפי שם המארח (origin): index.html ו-imageA.jpg מ-<code class=\"tok\" dir=\"ltr\">mywebsite.com</code> עוברים על חיבור אחד (persistent), ו-imageB.jpg מ-<code class=\"tok\" dir=\"ltr\">mymirrorwebsite.com</code> דורש חיבור שני, למרות שכתובת ה-IP זהה (איחוד חיבורים לפי IP משותף קיים רק ב-HTTP/2).<br>לכן 2 חיבורים. 3 היה נדרש ב-HTTP/1.0 ללא חיבור מתמשך, ו-1 מניח איחוד שאינו נהוג ב-HTTP/1.1.",
-   "dedupKey": "3e343c20a669786a"
+   "dedupKey": "14ef4d284ea0b488"
   },
   {
    "num": 7,
@@ -1837,7 +1837,7 @@ window.CC_QUIZ = {
    "answerSource": "highlighted-pdf",
    "official": true,
    "confidence": "high",
-   "explanation": "השאלה היא על המידע היוצא מ-A אל R1, כלומר לפני ה-NAT: כתובת המקור עדיין הפרטית `10.0.0.1` ופורט המקור 123 (התרגום ל-`20.0.0.1:130` נעשה רק ב-R1).\nהקו של A מוגבל ל-1500: 2000 בתים נתונים מתחלקים לפרגמנט ראשון של 1480 בתים נתונים + 20 header = 1500 (Offset 0, FRAG 1) ופרגמנט שני של 520 בתים נתונים + 20 = 540 (Offset $1480/8=185$, FRAG 0).\nב: כבר אחרי NAT. ג: ללא פרגמנטציה למרות MTU של 1500. ד: מערבב כתובת לפני NAT ואחריו. (ה-MTU של 500 בין R2 ל-R3 משפיע רק בהמשך הדרך.)",
+   "explanation": "השאלה היא על המידע היוצא מ-A אל R1, כלומר לפני ה-NAT: כתובת המקור עדיין הפרטית `10.0.0.1` ופורט המקור 123 (התרגום ל-`20.0.0.1:130` נעשה רק ב-R1).\nהקו של A מוגבל ל-1500: 2000 בתים נתונים מתחלקים לפרגמנט ראשון של 1480 בתים נתונים + 20 header = `1500` (`Offset 0, FRAG 1`) ופרגמנט שני של 520 בתים נתונים + 20 = `540` (`Offset 1480/8=185, FRAG 0`).\nב: כבר אחרי NAT. ג: ללא פרגמנטציה למרות MTU של 1500. ד: מערבב כתובת לפני NAT ואחריו. (ה-MTU של 500 בין R2 ל-R3 משפיע רק בהמשך הדרך.)",
    "image": "images/exams/22S-A-Q8.png",
    "note": "Official highlighted key: option A. The source prints the four packet tables and then a letter list; here the tables are the options. D is the fourth printed table (first packet un-NATed, second NATed).",
    "id": "22S-A-Q8",
@@ -1847,7 +1847,7 @@ window.CC_QUIZ = {
    "source": "exam",
    "topicLabel": "NAT, IPv6 ו-ICMP",
    "questionHtml": "שכבת התעבורה במחשב A (10.0.0.1) שולחת חבילה בגודל 2000Bytes למחשב C (20.0.3.1) אשר משמש כשרת web.<br>נקבע MTU בקווים ברשת ל-1500 bytes, פרט לקו המחבר בין R2 ל-R3 אשר בו נקבע MTU = 500Bytes. R1 משמש גם כשרת NAT. ניתן להניח כי גודל ה-header הוא 20 בתים. נתונים כתובת ה-IP של תחנות הקצה והנתבים וכן הרשומה הרלוונטית בטבלת ה-NAT.<br>מהי החלוקה לחבילות אשר מתארת בצורה המדויקת ביותר את המידע שיוצא מ-A אל R1?",
-   "explanationHtml": "השאלה היא על המידע היוצא מ-A אל R1, כלומר לפני ה-NAT: כתובת המקור עדיין הפרטית <code class=\"tok\" dir=\"ltr\">10.0.0.1</code> ופורט המקור 123 (התרגום ל-<code class=\"tok\" dir=\"ltr\">20.0.0.1:130</code> נעשה רק ב-R1).<br>הקו של A מוגבל ל-1500: 2000 בתים נתונים מתחלקים לפרגמנט ראשון של 1480 בתים נתונים + 20 header = 1500 (Offset 0, FRAG 1) ופרגמנט שני של 520 בתים נתונים + 20 = 540 (Offset <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>1480</mn><mi mathvariant=\"normal\">/</mi><mn>8</mn><mo>=</mo><mn>185</mn></mrow><annotation encoding=\"application/x-tex\">1480/8=185</annotation></semantics></math></span>, FRAG 0).<br>ב: כבר אחרי NAT. ג: ללא פרגמנטציה למרות MTU של 1500. ד: מערבב כתובת לפני NAT ואחריו. (ה-MTU של 500 בין R2 ל-R3 משפיע רק בהמשך הדרך.)",
+   "explanationHtml": "השאלה היא על המידע היוצא מ-A אל R1, כלומר לפני ה-NAT: כתובת המקור עדיין הפרטית <code class=\"tok\" dir=\"ltr\">10.0.0.1</code> ופורט המקור 123 (התרגום ל-<code class=\"tok\" dir=\"ltr\">20.0.0.1:130</code> נעשה רק ב-R1).<br>הקו של A מוגבל ל-1500: 2000 בתים נתונים מתחלקים לפרגמנט ראשון של 1480 בתים נתונים + 20 header = <code class=\"tok\" dir=\"ltr\">1500</code> (<code class=\"tok\" dir=\"ltr\">Offset 0, FRAG 1</code>) ופרגמנט שני של 520 בתים נתונים + 20 = <code class=\"tok\" dir=\"ltr\">540</code> (<code class=\"tok\" dir=\"ltr\">Offset 1480/8=185, FRAG 0</code>).<br>ב: כבר אחרי NAT. ג: ללא פרגמנטציה למרות MTU של 1500. ד: מערבב כתובת לפני NAT ואחריו. (ה-MTU של 500 בין R2 ל-R3 משפיע רק בהמשך הדרך.)",
    "dedupKey": "88fd8103c11e27cc"
   },
   {
@@ -1976,7 +1976,7 @@ window.CC_QUIZ = {
    "answerSource": "solved",
    "official": false,
    "confidence": "high",
-   "explanation": "שתי המחרוזות נבדלות בביט אחד, ולכן שגיאה בודדת עלולה להפוך אחת לשנייה. הוספת ביט זוגיות (even parity) מגדילה את המרחק בין המילים החוקיות ל-2, וכך כל שגיאה בודדת מזוהה.\nבמחרוזת 1 יש חמישה אחדות, ולכן ביט הזוגיות הוא 1; במחרוזת 2 יש ארבעה אחדות ולכן ביט הזוגיות הוא 0. רק הטבלה שבה ביטי הזוגיות הם (1, 0) והנתונים המוארכים מתאימים להם נכונה.\nא: ביטי הזוגיות (0, 0) שגויים ומרחק המילים נשאר 1. ג: ביט הזוגיות של מחרוזת 2 שגוי (1 במקום 0).\nבשאלון האפשרויות ב ו-ד מודפסות בטבלה זהה, ולכן שתיהן מתקבלות.",
+   "explanation": "שתי המחרוזות נבדלות בביט אחד, ולכן שגיאה בודדת עלולה להפוך אחת לשנייה. הוספת ביט זוגיות (even parity) מגדילה את המרחק בין המילים החוקיות ל-2, וכך כל שגיאה בודדת מזוהה.\nבמחרוזת 1 יש חמישה אחדות, ולכן ביט הזוגיות הוא 1; במחרוזת 2 יש ארבעה אחדות ולכן ביט הזוגיות הוא 0. רק הטבלה שבה ביטי הזוגיות הם `(1, 0)` והנתונים המוארכים מתאימים להם נכונה.\nא: ביטי הזוגיות (0, 0) שגויים ומרחק המילים נשאר 1. ג: ביט הזוגיות של מחרוזת 2 שגוי (1 במקום 0).\nבשאלון האפשרויות ב ו-ד מודפסות בטבלה זהה, ולכן שתיהן מתקבלות.",
    "acceptedIds": [
     "b",
     "d"
@@ -1989,7 +1989,7 @@ window.CC_QUIZ = {
    "source": "exam",
    "topicLabel": "שכבת הקו: CRC, זוגיות ו-Ethernet",
    "questionHtml": "בטבלה מופיעות שתי מחרוזות שמייצגות מידע בעל-משמעות.<br><code class=\"tok\" dir=\"ltr\">ID 1: 1 0 1 1 1 0 1</code><br><code class=\"tok\" dir=\"ltr\">ID 2: 1 0 0 1 1 0 1</code><br>על-פי Hamming Code, שימוש ב-1's complement באופן הבא יאפשר זיהוי של שגיאה בודדת בין המחרוזות:",
-   "explanationHtml": "שתי המחרוזות נבדלות בביט אחד, ולכן שגיאה בודדת עלולה להפוך אחת לשנייה. הוספת ביט זוגיות (even parity) מגדילה את המרחק בין המילים החוקיות ל-2, וכך כל שגיאה בודדת מזוהה.<br>במחרוזת 1 יש חמישה אחדות, ולכן ביט הזוגיות הוא 1; במחרוזת 2 יש ארבעה אחדות ולכן ביט הזוגיות הוא 0. רק הטבלה שבה ביטי הזוגיות הם (1, 0) והנתונים המוארכים מתאימים להם נכונה.<br>א: ביטי הזוגיות (0, 0) שגויים ומרחק המילים נשאר 1. ג: ביט הזוגיות של מחרוזת 2 שגוי (1 במקום 0).<br>בשאלון האפשרויות ב ו-ד מודפסות בטבלה זהה, ולכן שתיהן מתקבלות.",
+   "explanationHtml": "שתי המחרוזות נבדלות בביט אחד, ולכן שגיאה בודדת עלולה להפוך אחת לשנייה. הוספת ביט זוגיות (even parity) מגדילה את המרחק בין המילים החוקיות ל-2, וכך כל שגיאה בודדת מזוהה.<br>במחרוזת 1 יש חמישה אחדות, ולכן ביט הזוגיות הוא 1; במחרוזת 2 יש ארבעה אחדות ולכן ביט הזוגיות הוא 0. רק הטבלה שבה ביטי הזוגיות הם <code class=\"tok\" dir=\"ltr\">(1, 0)</code> והנתונים המוארכים מתאימים להם נכונה.<br>א: ביטי הזוגיות (0, 0) שגויים ומרחק המילים נשאר 1. ג: ביט הזוגיות של מחרוזת 2 שגוי (1 במקום 0).<br>בשאלון האפשרויות ב ו-ד מודפסות בטבלה זהה, ולכן שתיהן מתקבלות.",
    "dedupKey": "375f083a57c54ff2"
   },
   {
@@ -4624,7 +4624,7 @@ window.CC_QUIZ = {
   {
    "num": 6,
    "topic": "http",
-   "question": "שושי הכניסה בשורת הכתובת בדפדפן את ה-URL הבא: `http://mywebsite.com/index.html`.\nבדפדפן התקבל מסמך HTML עם הפניות לשתי תמונות בכתובות הבאות:\n`http://mywebsite.com/imageA.jpg`\n`http://mymirrorwebsite.com/imageB.jpg`\nלאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:\n- `mywebsite.com: 203.0.113.10`\n- `mymirrorwebsite.com: 203.0.113.10`\nבהנחה שהדפדפן והשרתים תומכים בפרוטוקול HTTP/1.1 (persistent וללא pipelining), כמה חיבורי TCP נדרשים כדי לטעון את הדף כולל שתי התמונות?",
+   "question": "שושי הכניסה בשורת הכתובת בדפדפן את ה-URL הבא: `http://mywebsite.com/index.html`.\nבדפדפן התקבל מסמך HTML עם הפניות לשתי תמונות בכתובות הבאות:\n`http://mywebsite.com/imageA.jpg`\n`http://mymirrorwebsite.com/imageB.jpg`\nלאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:\n- `mywebsite.com: 203.0.113.10`\n- `mymirrorwebsite.com: 203.0.113.10`\nבהנחה שהדפדפן והשרתים תומכים בפרוטוקול `HTTP/1.1` (`persistent` וללא `pipelining`), כמה חיבורי TCP נדרשים כדי לטעון את הדף כולל שתי התמונות?",
    "options": [
     {
      "id": "a",
@@ -4663,9 +4663,9 @@ window.CC_QUIZ = {
    "year": 2024,
    "source": "exam",
    "topicLabel": "HTTP, עוגיות, מטמון ו-CDN",
-   "questionHtml": "שושי הכניסה בשורת הכתובת בדפדפן את ה-URL הבא: <code class=\"tok\" dir=\"ltr\">http://mywebsite.com/index.html</code>.<br>בדפדפן התקבל מסמך HTML עם הפניות לשתי תמונות בכתובות הבאות:<br><code class=\"tok\" dir=\"ltr\">http://mywebsite.com/imageA.jpg</code><br><code class=\"tok\" dir=\"ltr\">http://mymirrorwebsite.com/imageB.jpg</code><br>לאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:<br>- <code class=\"tok\" dir=\"ltr\">mywebsite.com: 203.0.113.10</code><br>- <code class=\"tok\" dir=\"ltr\">mymirrorwebsite.com: 203.0.113.10</code><br>בהנחה שהדפדפן והשרתים תומכים בפרוטוקול HTTP/1.1 (persistent וללא pipelining), כמה חיבורי TCP נדרשים כדי לטעון את הדף כולל שתי התמונות?",
+   "questionHtml": "שושי הכניסה בשורת הכתובת בדפדפן את ה-URL הבא: <code class=\"tok\" dir=\"ltr\">http://mywebsite.com/index.html</code>.<br>בדפדפן התקבל מסמך HTML עם הפניות לשתי תמונות בכתובות הבאות:<br><code class=\"tok\" dir=\"ltr\">http://mywebsite.com/imageA.jpg</code><br><code class=\"tok\" dir=\"ltr\">http://mymirrorwebsite.com/imageB.jpg</code><br>לאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:<br>- <code class=\"tok\" dir=\"ltr\">mywebsite.com: 203.0.113.10</code><br>- <code class=\"tok\" dir=\"ltr\">mymirrorwebsite.com: 203.0.113.10</code><br>בהנחה שהדפדפן והשרתים תומכים בפרוטוקול <code class=\"tok\" dir=\"ltr\">HTTP/1.1</code> (<code class=\"tok\" dir=\"ltr\">persistent</code> וללא <code class=\"tok\" dir=\"ltr\">pipelining</code>), כמה חיבורי TCP נדרשים כדי לטעון את הדף כולל שתי התמונות?",
    "explanationHtml": "ב-HTTP/1.1 persistent חיבור אחד משרת כמה אובייקטים ברצף (ללא pipelining - בקשה אחת בכל פעם) מאותו שרת. הדפדפן מנהל את החיבורים לפי שם המארח (origin): <code class=\"tok\" dir=\"ltr\">mywebsite.com</code> משרת גם את <code class=\"tok\" dir=\"ltr\">index.html</code> וגם את <code class=\"tok\" dir=\"ltr\">imageA.jpg</code> בחיבור אחד, ו-<code class=\"tok\" dir=\"ltr\">mymirrorwebsite.com</code> דורש חיבור נפרד עבור <code class=\"tok\" dir=\"ltr\">imageB.jpg</code> - בסך הכול 2.<br>העובדה ששני השמות נפתרו לאותה כתובת IP אינה גורמת לדפדפן לאחד את החיבורים. 3 היה נכון בלי שימוש חוזר בחיבור (persistent).",
-   "dedupKey": "9d46f8587a255ae1"
+   "dedupKey": "77af7c342a81ad3b"
   },
   {
    "num": 7,
@@ -5038,7 +5038,7 @@ window.CC_QUIZ = {
   {
    "num": 5,
    "topic": "http",
-   "question": "שושי הכניסה בשורת הכתובת בדפדפן את ה-URL הבא: `http://mywebsite.com/index.html`.\nבדפדפן התקבל מסמך HTML עם הפניות לשתי תמונות בכתובות הבאות:\n`http://mywebsite.com/imageA.jpg`\n`http://mymirrorwebsite.com/imageB.jpg`\nלאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:\n- `mywebsite.com: 203.1.113.10`\n- `mymirrorwebsite.com: 203.0.113.10`\nבהנחה שהדפדפן והשרתים תומכים בפרוטוקול HTTP/1.1 (persistent ללא pipelining), כמה חיבורי TCP נדרשים בצד הלקוח כדי לטעון את הדף כולל שתי התמונות?",
+   "question": "שושי הכניסה בשורת הכתובת בדפדפן את ה-URL הבא: `http://mywebsite.com/index.html`.\nבדפדפן התקבל מסמך HTML עם הפניות לשתי תמונות בכתובות הבאות:\n`http://mywebsite.com/imageA.jpg`\n`http://mymirrorwebsite.com/imageB.jpg`\nלאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:\n- `mywebsite.com: 203.1.113.10`\n- `mymirrorwebsite.com: 203.0.113.10`\nבהנחה שהדפדפן והשרתים תומכים בפרוטוקול `HTTP/1.1` (`persistent` ללא `pipelining`), כמה חיבורי TCP נדרשים בצד הלקוח כדי לטעון את הדף כולל שתי התמונות?",
    "options": [
     {
      "id": "a",
@@ -5077,9 +5077,9 @@ window.CC_QUIZ = {
    "year": 2024,
    "source": "exam",
    "topicLabel": "HTTP, עוגיות, מטמון ו-CDN",
-   "questionHtml": "שושי הכניסה בשורת הכתובת בדפדפן את ה-URL הבא: <code class=\"tok\" dir=\"ltr\">http://mywebsite.com/index.html</code>.<br>בדפדפן התקבל מסמך HTML עם הפניות לשתי תמונות בכתובות הבאות:<br><code class=\"tok\" dir=\"ltr\">http://mywebsite.com/imageA.jpg</code><br><code class=\"tok\" dir=\"ltr\">http://mymirrorwebsite.com/imageB.jpg</code><br>לאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:<br>- <code class=\"tok\" dir=\"ltr\">mywebsite.com: 203.1.113.10</code><br>- <code class=\"tok\" dir=\"ltr\">mymirrorwebsite.com: 203.0.113.10</code><br>בהנחה שהדפדפן והשרתים תומכים בפרוטוקול HTTP/1.1 (persistent ללא pipelining), כמה חיבורי TCP נדרשים בצד הלקוח כדי לטעון את הדף כולל שתי התמונות?",
+   "questionHtml": "שושי הכניסה בשורת הכתובת בדפדפן את ה-URL הבא: <code class=\"tok\" dir=\"ltr\">http://mywebsite.com/index.html</code>.<br>בדפדפן התקבל מסמך HTML עם הפניות לשתי תמונות בכתובות הבאות:<br><code class=\"tok\" dir=\"ltr\">http://mywebsite.com/imageA.jpg</code><br><code class=\"tok\" dir=\"ltr\">http://mymirrorwebsite.com/imageB.jpg</code><br>לאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:<br>- <code class=\"tok\" dir=\"ltr\">mywebsite.com: 203.1.113.10</code><br>- <code class=\"tok\" dir=\"ltr\">mymirrorwebsite.com: 203.0.113.10</code><br>בהנחה שהדפדפן והשרתים תומכים בפרוטוקול <code class=\"tok\" dir=\"ltr\">HTTP/1.1</code> (<code class=\"tok\" dir=\"ltr\">persistent</code> ללא <code class=\"tok\" dir=\"ltr\">pipelining</code>), כמה חיבורי TCP נדרשים בצד הלקוח כדי לטעון את הדף כולל שתי התמונות?",
    "explanationHtml": "שני שמות מארח ושתי כתובות IP שונות (203.1.113.10 לעומת 203.0.113.10), ולכן שני שרתים נפרדים. חיבור persistent אחד לכל שרת משרת את כל האובייקטים ממנו ברצף: <code class=\"tok\" dir=\"ltr\">index.html</code> ו-<code class=\"tok\" dir=\"ltr\">imageA.jpg</code> על החיבור הראשון, <code class=\"tok\" dir=\"ltr\">imageB.jpg</code> על השני - בסך הכול 2.<br>3 או 4 היו נכונים רק בלי שימוש חוזר בחיבור (חיבור לכל אובייקט).",
-   "dedupKey": "4dd57a1bf5349530"
+   "dedupKey": "ab307998a7def075"
   },
   {
    "num": 6,
@@ -6039,7 +6039,7 @@ window.CC_QUIZ = {
    "answerSource": "solved",
    "official": false,
    "confidence": "high",
-   "explanation": "בציור הלקוח שואל את שרת ה-DNS המקומי (1), המקומי פונה ל-root (2), ה-root פונה בעצמו ל-TLD (3), ה-TLD ל-authoritative (4), והתשובה חוזרת באותו מסלול (5, 6, 7, 8): כל שרת מטפל בשאילתה \"בשם\" השואל, וזו שאילתה רקורסיבית.\nבשאילתה איטרטיבית ה-Resolver המקומי היה פונה בעצמו לכל שרת ומקבל הפניה. ARP ו-DHCP אינם קשורים לציור.",
+   "explanation": "בציור הלקוח שואל את שרת ה-DNS המקומי (1), המקומי פונה ל-root (2), ה-root פונה בעצמו ל-TLD (3), ה-TLD ל-authoritative (4), והתשובה חוזרת באותו מסלול `(5, 6, 7, 8)`: כל שרת מטפל בשאילתה \"בשם\" השואל, וזו שאילתה רקורסיבית.\nבשאילתה איטרטיבית ה-Resolver המקומי היה פונה בעצמו לכל שרת ומקבל הפניה. ARP ו-DHCP אינם קשורים לציור.",
    "note": "No key printed in the source; solved independently (see tools/verify/25A-B/check.py for calculations).",
    "image": "images/exams/25A-B-Q1.png",
    "id": "25A-B-Q1",
@@ -6049,7 +6049,7 @@ window.CC_QUIZ = {
    "source": "exam",
    "topicLabel": "DNS, DHCP ו-ARP",
    "questionHtml": "ביום ראשון בבוקר דני מגיע ראשון לעבודה לפני כולם, מדליק את המחשב שלו ופונה פעם ראשונה במחשבו לגלוש לאתר של www.amazon.com. דני הוא הראשון במקום העבודה שלו, באותו בוקר, שפונה לגלוש באינטרנט ואין פעילויות גלישה אחרות אפילו לא מצד שרתי עדכונים אוטומטיים.<br>המחשב של דני נעזר בשרת DNS מקומי בתוך הרשת של mywork.com.<br>המחשב של דני ששמו pcdany ומסומן בתור \"requesting host\" בפינה השמאלית התחתונה של הציור.<br>מה מתאר הציור?",
-   "explanationHtml": "בציור הלקוח שואל את שרת ה-DNS המקומי (1), המקומי פונה ל-root (2), ה-root פונה בעצמו ל-TLD (3), ה-TLD ל-authoritative (4), והתשובה חוזרת באותו מסלול (5, 6, 7, 8): כל שרת מטפל בשאילתה \"בשם\" השואל, וזו שאילתה רקורסיבית.<br>בשאילתה איטרטיבית ה-Resolver המקומי היה פונה בעצמו לכל שרת ומקבל הפניה. ARP ו-DHCP אינם קשורים לציור.",
+   "explanationHtml": "בציור הלקוח שואל את שרת ה-DNS המקומי (1), המקומי פונה ל-root (2), ה-root פונה בעצמו ל-TLD (3), ה-TLD ל-authoritative (4), והתשובה חוזרת באותו מסלול <code class=\"tok\" dir=\"ltr\">(5, 6, 7, 8)</code>: כל שרת מטפל בשאילתה \"בשם\" השואל, וזו שאילתה רקורסיבית.<br>בשאילתה איטרטיבית ה-Resolver המקומי היה פונה בעצמו לכל שרת ומקבל הפניה. ARP ו-DHCP אינם קשורים לציור.",
    "dedupKey": "591ad4ce89bef1d3"
   },
   {
@@ -7693,7 +7693,7 @@ window.CC_QUIZ = {
    "answerSource": "solved",
    "official": false,
    "confidence": "high",
-   "explanation": "ב-Slow Start החלון מוכפל בכל RTT, ובכניסה ל-Congestion Avoidance הוא עובר לגדול ב-1 בלבד בכל RTT. לכן נקודת הכניסה היא הנקודה שבה השיפוע משתנה מהכפלה לעלייה קבועה.\nבגרף: נקודות 1-4 הן $1,2,4,8$ ואחריהן $9,10,\\ldots$ (קו ישר) - כניסה ל-CA ב-4. אחרי ההפסד ב-24 (החלון חוזר ל-1): $1,2,4,8,16$ ואז $17$ - כניסה ב-29. אחרי ההפסד ב-30: $1,2,4,8,16$ ואז $17,18,\\ldots$ - כניסה ב-35.\n24 ו-30 הן נקודות ההפסד (שיא ואז צניחה), ו-1, 25, 31 הן תחילת Slow Start - לא CA.\nהערה: הגרף סכמטי ואינו עוקב במדויק אחרי ssthresh של TCP Reno. לפי Reno, אחרי ההפסד בזמן 24 (חלון 28) ה-ssthresh הוא $28/2=14$ והמעבר ל-CA היה כבר ב-14, ואחרי ההפסד בזמן 30 (חלון 17) ה-ssthresh היה כ-8; בגרף החלון ממשיך להכפיל עד 16 בשני המקרים. לכן קוראים את נקודות הכניסה לפי שינוי השיפוע בגרף (4, 29, 35), כפי שהשאלה מתכוונת.",
+   "explanation": "ב-Slow Start החלון מוכפל בכל RTT, ובכניסה ל-Congestion Avoidance הוא עובר לגדול ב-1 בלבד בכל RTT. לכן נקודת הכניסה היא הנקודה שבה השיפוע משתנה מהכפלה לעלייה קבועה.\nבגרף: נקודות 1-4 הן $1,2,4,8$ ואחריהן $9,10,\\ldots$ (קו ישר) - כניסה ל-CA ב-4. אחרי ההפסד ב-24 (החלון חוזר ל-1): $1,2,4,8,16$ ואז $17$ - כניסה ב-29. אחרי ההפסד ב-30: $1,2,4,8,16$ ואז $17,18,\\ldots$ - כניסה ב-35.\n24 ו-30 הן נקודות ההפסד (שיא ואז צניחה), ו-1, 25, 31 הן תחילת Slow Start - לא CA.\nהערה: הגרף סכמטי ואינו עוקב במדויק אחרי ssthresh של TCP Reno. לפי Reno, אחרי ההפסד בזמן 24 (חלון 28) ה-ssthresh הוא $28/2=14$ והמעבר ל-CA היה כבר ב-14, ואחרי ההפסד בזמן 30 (חלון 17) ה-ssthresh היה כ-8; בגרף החלון ממשיך להכפיל עד 16 בשני המקרים. לכן קוראים את נקודות הכניסה לפי שינוי השיפוע בגרף `(4, 29, 35)`, כפי שהשאלה מתכוונת.",
    "note": "Source document lists the correct option first (convention); independently solved - agrees.",
    "image": "images/exams/26A-A-Q6.png",
    "id": "26A-A-Q6",
@@ -7703,7 +7703,7 @@ window.CC_QUIZ = {
    "source": "exam",
    "topicLabel": "TCP: לחיצת יד, ACK, בקרת זרימה ועומס",
    "questionHtml": "הגרף מייצג התפתחות תהליך בקרת עומסים של TCP לאורך הזמן. באילו נקודות זמן הפרוטוקול נכנס ל-Congestion Avoidance?",
-   "explanationHtml": "ב-Slow Start החלון מוכפל בכל RTT, ובכניסה ל-Congestion Avoidance הוא עובר לגדול ב-1 בלבד בכל RTT. לכן נקודת הכניסה היא הנקודה שבה השיפוע משתנה מהכפלה לעלייה קבועה.<br>בגרף: נקודות 1-4 הן <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>1</mn><mo separator=\"true\">,</mo><mn>2</mn><mo separator=\"true\">,</mo><mn>4</mn><mo separator=\"true\">,</mo><mn>8</mn></mrow><annotation encoding=\"application/x-tex\">1,2,4,8</annotation></semantics></math></span> ואחריהן <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>9</mn><mo separator=\"true\">,</mo><mn>10</mn><mo separator=\"true\">,</mo><mo>…</mo></mrow><annotation encoding=\"application/x-tex\">9,10,\\ldots</annotation></semantics></math></span> (קו ישר) - כניסה ל-CA ב-4. אחרי ההפסד ב-24 (החלון חוזר ל-1): <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>1</mn><mo separator=\"true\">,</mo><mn>2</mn><mo separator=\"true\">,</mo><mn>4</mn><mo separator=\"true\">,</mo><mn>8</mn><mo separator=\"true\">,</mo><mn>16</mn></mrow><annotation encoding=\"application/x-tex\">1,2,4,8,16</annotation></semantics></math></span> ואז <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>17</mn></mrow><annotation encoding=\"application/x-tex\">17</annotation></semantics></math></span> - כניסה ב-29. אחרי ההפסד ב-30: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>1</mn><mo separator=\"true\">,</mo><mn>2</mn><mo separator=\"true\">,</mo><mn>4</mn><mo separator=\"true\">,</mo><mn>8</mn><mo separator=\"true\">,</mo><mn>16</mn></mrow><annotation encoding=\"application/x-tex\">1,2,4,8,16</annotation></semantics></math></span> ואז <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>17</mn><mo separator=\"true\">,</mo><mn>18</mn><mo separator=\"true\">,</mo><mo>…</mo></mrow><annotation encoding=\"application/x-tex\">17,18,\\ldots</annotation></semantics></math></span> - כניסה ב-35.<br>24 ו-30 הן נקודות ההפסד (שיא ואז צניחה), ו-1, 25, 31 הן תחילת Slow Start - לא CA.<br>הערה: הגרף סכמטי ואינו עוקב במדויק אחרי ssthresh של TCP Reno. לפי Reno, אחרי ההפסד בזמן 24 (חלון 28) ה-ssthresh הוא <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>28</mn><mi mathvariant=\"normal\">/</mi><mn>2</mn><mo>=</mo><mn>14</mn></mrow><annotation encoding=\"application/x-tex\">28/2=14</annotation></semantics></math></span> והמעבר ל-CA היה כבר ב-14, ואחרי ההפסד בזמן 30 (חלון 17) ה-ssthresh היה כ-8; בגרף החלון ממשיך להכפיל עד 16 בשני המקרים. לכן קוראים את נקודות הכניסה לפי שינוי השיפוע בגרף (4, 29, 35), כפי שהשאלה מתכוונת.",
+   "explanationHtml": "ב-Slow Start החלון מוכפל בכל RTT, ובכניסה ל-Congestion Avoidance הוא עובר לגדול ב-1 בלבד בכל RTT. לכן נקודת הכניסה היא הנקודה שבה השיפוע משתנה מהכפלה לעלייה קבועה.<br>בגרף: נקודות 1-4 הן <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>1</mn><mo separator=\"true\">,</mo><mn>2</mn><mo separator=\"true\">,</mo><mn>4</mn><mo separator=\"true\">,</mo><mn>8</mn></mrow><annotation encoding=\"application/x-tex\">1,2,4,8</annotation></semantics></math></span> ואחריהן <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>9</mn><mo separator=\"true\">,</mo><mn>10</mn><mo separator=\"true\">,</mo><mo>…</mo></mrow><annotation encoding=\"application/x-tex\">9,10,\\ldots</annotation></semantics></math></span> (קו ישר) - כניסה ל-CA ב-4. אחרי ההפסד ב-24 (החלון חוזר ל-1): <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>1</mn><mo separator=\"true\">,</mo><mn>2</mn><mo separator=\"true\">,</mo><mn>4</mn><mo separator=\"true\">,</mo><mn>8</mn><mo separator=\"true\">,</mo><mn>16</mn></mrow><annotation encoding=\"application/x-tex\">1,2,4,8,16</annotation></semantics></math></span> ואז <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>17</mn></mrow><annotation encoding=\"application/x-tex\">17</annotation></semantics></math></span> - כניסה ב-29. אחרי ההפסד ב-30: <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>1</mn><mo separator=\"true\">,</mo><mn>2</mn><mo separator=\"true\">,</mo><mn>4</mn><mo separator=\"true\">,</mo><mn>8</mn><mo separator=\"true\">,</mo><mn>16</mn></mrow><annotation encoding=\"application/x-tex\">1,2,4,8,16</annotation></semantics></math></span> ואז <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>17</mn><mo separator=\"true\">,</mo><mn>18</mn><mo separator=\"true\">,</mo><mo>…</mo></mrow><annotation encoding=\"application/x-tex\">17,18,\\ldots</annotation></semantics></math></span> - כניסה ב-35.<br>24 ו-30 הן נקודות ההפסד (שיא ואז צניחה), ו-1, 25, 31 הן תחילת Slow Start - לא CA.<br>הערה: הגרף סכמטי ואינו עוקב במדויק אחרי ssthresh של TCP Reno. לפי Reno, אחרי ההפסד בזמן 24 (חלון 28) ה-ssthresh הוא <span class=\"math-inline\"><math dir=\"ltr\" xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mn>28</mn><mi mathvariant=\"normal\">/</mi><mn>2</mn><mo>=</mo><mn>14</mn></mrow><annotation encoding=\"application/x-tex\">28/2=14</annotation></semantics></math></span> והמעבר ל-CA היה כבר ב-14, ואחרי ההפסד בזמן 30 (חלון 17) ה-ssthresh היה כ-8; בגרף החלון ממשיך להכפיל עד 16 בשני המקרים. לכן קוראים את נקודות הכניסה לפי שינוי השיפוע בגרף <code class=\"tok\" dir=\"ltr\">(4, 29, 35)</code>, כפי שהשאלה מתכוונת.",
    "dedupKey": "732481dcdc07c60e"
   },
   {

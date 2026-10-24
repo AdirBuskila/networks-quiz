@@ -37,7 +37,7 @@
    "answerSource": "solved",
    "official": false,
    "confidence": "high",
-   "explanation": "בציור הלקוח שואל את שרת ה-DNS המקומי (1), המקומי פונה ל-root (2), ה-root פונה בעצמו ל-TLD (3), ה-TLD ל-authoritative (4), והתשובה חוזרת באותו מסלול (5, 6, 7, 8): כל שרת מטפל בשאילתה \"בשם\" השואל, וזו שאילתה רקורסיבית.\nבשאילתה איטרטיבית ה-Resolver המקומי היה פונה בעצמו לכל שרת ומקבל הפניה. ARP ו-DHCP אינם קשורים לציור.",
+   "explanation": "בציור הלקוח שואל את שרת ה-DNS המקומי (1), המקומי פונה ל-root (2), ה-root פונה בעצמו ל-TLD (3), ה-TLD ל-authoritative (4), והתשובה חוזרת באותו מסלול `(5, 6, 7, 8)`: כל שרת מטפל בשאילתה \"בשם\" השואל, וזו שאילתה רקורסיבית.\nבשאילתה איטרטיבית ה-Resolver המקומי היה פונה בעצמו לכל שרת ומקבל הפניה. ARP ו-DHCP אינם קשורים לציור.",
    "note": "No key printed in the source; solved independently (see tools/verify/25A-B/check.py for calculations).",
    "image": "images/exams/25A-B-Q1.png"
   },

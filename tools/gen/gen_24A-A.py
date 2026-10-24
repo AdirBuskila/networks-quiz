@@ -110,7 +110,7 @@ questions.append(Q(
     "לאחר ביצוע DNS Lookup, התקבלו כתובות ה-IP הבאות:\n"
     "- `mywebsite.com: 203.0.113.10`\n"
     "- `mymirrorwebsite.com: 203.0.113.10`\n"
-    "בהנחה שהדפדפן והשרתים תומכים בפרוטוקול HTTP/1.1 (persistent וללא pipelining), כמה חיבורי TCP נדרשים כדי לטעון את הדף כולל שתי התמונות?",
+    "בהנחה שהדפדפן והשרתים תומכים בפרוטוקול `HTTP/1.1` (`persistent` וללא `pipelining`), כמה חיבורי TCP נדרשים כדי לטעון את הדף כולל שתי התמונות?",
     opts("1", "2", "3", "לא ניתן לדעת"),
     "b",
     r"""ב-HTTP/1.1 persistent חיבור אחד משרת כמה אובייקטים ברצף (ללא pipelining - בקשה אחת בכל פעם) מאותו שרת. הדפדפן מנהל את החיבורים לפי שם המארח (origin): `mywebsite.com` משרת גם את `index.html` וגם את `imageA.jpg` בחיבור אחד, ו-`mymirrorwebsite.com` דורש חיבור נפרד עבור `imageB.jpg` - בסך הכול 2.
