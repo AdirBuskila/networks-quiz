@@ -1,0 +1,105 @@
+/* app-course widgets (w_app.py: HTTP, caching, DNS, CDN); every class starts with ap- */
+.ap-stack{display:flex;flex-direction:column;align-items:center;width:100%}
+.ap-big{font-size:46px;direction:ltr;text-align:center}
+.ap-big.sm{font-size:38px}
+.ap-big.xs{font-size:32px}
+.ap-ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.ap-row{font-size:34px;direction:rtl;text-align:center;line-height:1.4}
+.ap-row.ltr{direction:ltr;font-family:Consolas,monospace}
+.ap-mono{font-family:Consolas,monospace;direction:ltr;unicode-bidi:isolate}
+.ap-ok{color:var(--ok);font-weight:700}
+.ap-bad{color:var(--bad);font-weight:700}
+.ap-c-conn{color:#c084fc;font-weight:700}
+.ap-c-req{color:#38bdf8;font-weight:700}
+.ap-c-tx{color:#fbbf24;font-weight:700}
+table.ap-tab{border-collapse:separate;border-spacing:0;font-size:30px;direction:rtl;background:var(--card2);
+  border:1px solid var(--line);border-radius:14px;overflow:hidden}
+table.ap-tab th,table.ap-tab td{padding:8px 20px;text-align:center;border-bottom:1px solid var(--line)}
+table.ap-tab thead th{color:var(--muted);font-weight:600}
+table.ap-tab tbody tr:last-child>*{border-bottom:none}
+table.ap-tab.sm{font-size:27px}
+
+/* an HTTP message */
+.ap-msg{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:12px 24px;min-width:560px}
+.ap-mt{font-size:26px;color:var(--muted);direction:rtl;text-align:right;margin-bottom:6px}
+.ap-mb{direction:ltr;text-align:left;font-family:Consolas,monospace;font-size:30px;line-height:1.45}
+.ap-ml{white-space:pre}
+
+/* client/server arrows */
+svg.ap-lad{overflow:visible}
+svg.ap-lad .ap-host{font-family:"Segoe UI",sans-serif;font-size:32px;font-weight:700;fill:var(--ink);text-anchor:middle}
+svg.ap-lad .ap-life{stroke:#c9cdf0;stroke-width:4}
+svg.ap-lad .ap-arr{stroke-width:4}
+svg.ap-lad .ap-syn .ap-arr{stroke:#c084fc}
+svg.ap-lad .ap-req .ap-arr{stroke:#38bdf8}
+svg.ap-lad .ap-resp .ap-arr{stroke:#2dd4bf}
+svg.ap-lad .ap-dns .ap-arr{stroke:#fbbf24}
+svg.ap-lad .ap-lbg{fill:#10122a;stroke:var(--line);stroke-width:1.5}
+svg.ap-lad .ap-lab{font-family:Consolas,monospace;font-size:26px;fill:var(--ink);text-anchor:middle}
+svg.ap-lad .ap-brk{stroke:#fbbf24;stroke-width:5;stroke-linecap:round}
+svg.ap-lad .ap-brkt{font-family:"Segoe UI",sans-serif;font-size:27px;font-weight:700;fill:#fbbf24}
+
+/* page-load bars */
+svg.ap-bars{overflow:visible}
+svg.ap-bars .ap-btitle{font-family:"Segoe UI",sans-serif;font-size:28px;font-weight:700;fill:var(--ink)}
+svg.ap-bars .ap-seg.conn{fill:rgba(192,132,252,.75)}
+svg.ap-bars .ap-seg.req{fill:rgba(56,189,248,.75)}
+svg.ap-bars .ap-seg.tx{fill:rgba(251,191,36,.85)}
+svg.ap-bars .ap-seg.tls{fill:rgba(251,113,133,.75)}
+svg.ap-bars .ap-seg.quic{fill:rgba(52,211,153,.8)}
+svg.ap-bars .ap-segt{font-family:Consolas,monospace;font-size:22px;font-weight:700;fill:#0a0c18;text-anchor:middle}
+svg.ap-bars .ap-btot{font-family:"Segoe UI",sans-serif;font-size:30px;font-weight:700;fill:var(--brand)}
+
+/* DNS */
+svg.ap-dns{overflow:visible}
+svg.ap-dns .ap-node{fill:var(--card);stroke:#c9cdf0;stroke-width:3}
+svg.ap-dns .ap-node.client,svg.ap-dns .ap-node.res{stroke:#38bdf8}
+svg.ap-dns .ap-nname{font-family:"Segoe UI",sans-serif;font-size:30px;font-weight:700;fill:var(--ink);text-anchor:middle}
+svg.ap-dns .ap-nhi{fill:none;stroke:var(--brand);stroke-width:6}
+svg.ap-dns .ap-darr{stroke-width:4.5}
+svg.ap-dns .ap-darr.q{stroke:#38bdf8}
+svg.ap-dns .ap-darr.ref{stroke:#fbbf24}
+svg.ap-dns .ap-darr.ans{stroke:#2dd4bf}
+svg.ap-dns .ap-num{stroke-width:3;fill:#10122a}
+svg.ap-dns .ap-num.q{stroke:#38bdf8}
+svg.ap-dns .ap-num.ref{stroke:#fbbf24}
+svg.ap-dns .ap-num.ans{stroke:#2dd4bf}
+svg.ap-dns .ap-numt{font-family:"Segoe UI",sans-serif;font-size:25px;font-weight:700;fill:var(--ink);text-anchor:middle}
+
+/* TTL axis */
+svg.ap-ttl{overflow:visible}
+svg.ap-ttl .ap-axis{stroke:#c9cdf0;stroke-width:3}
+svg.ap-ttl .ap-axl{font-family:Consolas,monospace;font-size:24px;fill:var(--muted)}
+svg.ap-ttl .ap-band{fill:rgba(45,212,191,.20);stroke:var(--brand);stroke-width:2}
+svg.ap-ttl .ap-bandt{font-family:Consolas,monospace;font-size:24px;font-weight:700;fill:var(--brand);text-anchor:middle}
+svg.ap-ttl .ap-exp{stroke:#fb7185;stroke-width:3;stroke-dasharray:8 6}
+svg.ap-ttl .ap-expt{font-family:"Segoe UI",sans-serif;font-size:24px;font-weight:700;fill:#fb7185;text-anchor:middle}
+svg.ap-ttl .ap-real{fill:#fbbf24}
+svg.ap-ttl .ap-hit{fill:#10122a;stroke:var(--brand);stroke-width:5}
+svg.ap-ttl .ap-tt{font-family:"Segoe UI",sans-serif;font-size:28px;font-weight:700;text-anchor:middle}
+svg.ap-ttl .ap-tt.real{fill:#fbbf24}
+svg.ap-ttl .ap-tt.hit{fill:var(--brand)}
+
+/* rounds of parallel connections */
+svg.ap-rnd{overflow:visible}
+svg.ap-rnd .ap-host{font-family:Consolas,monospace;font-size:30px;font-weight:700;fill:var(--ink);text-anchor:middle}
+svg.ap-rnd .ap-obj.r0{fill:rgba(56,189,248,.65)}
+svg.ap-rnd .ap-obj.r1{fill:rgba(45,212,191,.65)}
+svg.ap-rnd .ap-rlab{font-family:"Segoe UI",sans-serif;font-size:28px;font-weight:700;fill:var(--warn);text-anchor:middle}
+
+/* head-of-line blocking */
+svg.ap-hol{overflow:visible}
+svg.ap-hol .ap-sname{font-family:Consolas,monospace;font-size:32px;font-weight:700;fill:var(--ink)}
+svg.ap-hol .ap-lane{stroke:rgba(255,255,255,.14);stroke-width:2}
+svg.ap-hol .ap-pkt.s0{fill:rgba(56,189,248,.6)}
+svg.ap-hol .ap-pkt.s1{fill:rgba(45,212,191,.6)}
+svg.ap-hol .ap-pkt.s2{fill:rgba(192,132,252,.6)}
+svg.ap-hol .ap-pktt{font-family:Consolas,monospace;font-size:26px;font-weight:700;fill:var(--ink);text-anchor:middle}
+svg.ap-hol .ap-pktlost{fill:rgba(251,113,133,.35);stroke:#fb7185;stroke-width:3}
+svg.ap-hol .ap-x{font-family:"Segoe UI",sans-serif;font-size:44px;font-weight:700;fill:#fb7185;text-anchor:middle}
+svg.ap-hol .ap-wait{fill:rgba(10,12,24,.62);stroke:#fbbf24;stroke-width:3;stroke-dasharray:9 6}
+
+/* a long option list: smaller rows */
+.ap-osm .opt{font-size:28px;padding:7px 18px;line-height:1.35}
+.ap-osm .onote{font-size:23px}
+.ap-qsm{font-size:29px;line-height:1.42}

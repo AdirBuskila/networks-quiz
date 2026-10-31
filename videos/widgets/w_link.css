@@ -1,0 +1,108 @@
+/* link-course widgets (w_link.py); every class starts with lk- */
+.lk-stack{display:flex;flex-direction:column;align-items:center;width:100%}
+.lk-big{font-size:46px;direction:ltr;text-align:center}
+.lk-big.sm{font-size:38px}
+.lk-big.xs{font-size:32px}
+.lk-ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.lk-mono{font-family:Consolas,monospace;direction:ltr;unicode-bidi:isolate}
+.lk-row{font-size:34px;direction:rtl;text-align:center;line-height:1.4}
+.lk-row.ltr{direction:ltr;font-family:Consolas,monospace}
+.lk-ok{color:var(--ok);font-weight:700}
+.lk-bad{color:var(--bad);font-weight:700}
+table.lk-tab{border-collapse:separate;border-spacing:0;font-size:31px;direction:rtl;background:var(--card2);
+  border:1px solid var(--line);border-radius:14px;overflow:hidden}
+table.lk-tab th,table.lk-tab td{padding:8px 22px;text-align:center;border-bottom:1px solid var(--line)}
+table.lk-tab thead th{color:var(--muted);font-weight:600}
+table.lk-tab tbody tr:last-child>*{border-bottom:none}
+table.lk-fwd td{font-family:Consolas,monospace;font-size:34px}
+
+/* bit rows */
+.lk-bits{display:flex;align-items:center;gap:8px;direction:ltr}
+.lk-c{position:relative;width:58px;height:70px;border:2px solid var(--line);border-radius:10px;display:flex;
+  align-items:center;justify-content:center;background:var(--card);font-family:Consolas,monospace;font-size:40px}
+.lk-bits.sm .lk-c{width:46px;height:58px;font-size:33px}
+.lk-c b{position:relative;font-weight:400;color:var(--ink)}
+.lk-c.lk-gap{margin-left:22px;border-color:var(--warn)}
+.lk-pos{position:absolute;top:-30px;left:0;right:0;text-align:center;font-style:normal;font-size:20px;color:var(--muted)}
+.lk-hi{position:absolute;inset:2px;border-radius:8px;background:rgba(45,212,191,.28);box-shadow:0 0 0 3px var(--brand) inset}
+.lk-badhi{position:absolute;inset:2px;border-radius:8px;background:rgba(251,113,133,.30);box-shadow:0 0 0 3px var(--bad) inset}
+.lk-lab{font-family:"Segoe UI",sans-serif;font-size:28px;color:var(--muted);margin-right:14px;direction:rtl;width:170px;flex:none;text-align:right}
+.lk-cnt{font-family:"Segoe UI",sans-serif;font-size:28px;font-weight:700;color:var(--warn);margin-left:16px;direction:rtl;white-space:nowrap;width:210px;flex:none;text-align:left}
+
+/* CRC long division */
+.lk-div{position:relative;--cw:46px;--rh:50px;font-family:Consolas,monospace;font-size:36px;direction:ltr}
+.lk-drow{display:flex;height:var(--rh);align-items:center}
+.lk-d{width:var(--cw);text-align:center;color:var(--ink)}
+.lk-d.lk-pad{color:var(--warn)}
+.lk-d.lk-gb{color:var(--brand2)}
+.lk-grow{border-bottom:2px solid rgba(201,205,240,.5);width:fit-content}
+.lk-d.lk-dim{color:rgba(154,160,207,.45)}
+.lk-d.lk-rem{color:var(--ok);font-weight:700}
+.lk-dtag{font-family:"Segoe UI",sans-serif;font-size:26px;color:var(--warn);margin-left:14px;white-space:nowrap}
+.lk-grow .lk-dtag{color:var(--brand2);font-size:30px}
+.lk-remring{position:absolute;bottom:2px;height:calc(var(--rh) - 4px);left:calc((var(--n) - var(--k)) * var(--cw) - 4px);
+  width:calc(var(--k) * var(--cw) + 8px);border:4px solid var(--ok);border-radius:12px;box-sizing:border-box}
+
+/* 2D parity */
+table.lk-grid{border-collapse:separate;border-spacing:6px;font-family:Consolas,monospace;font-size:38px}
+table.lk-grid td{position:relative;width:58px;height:58px;text-align:center;background:var(--card);border:2px solid var(--line);border-radius:9px}
+table.lk-grid td b{position:relative;font-weight:400}
+table.lk-grid td.lk-chk{background:rgba(251,191,36,.10);border-color:rgba(251,191,36,.45)}
+table.lk-grid td.lk-cntc{background:none;border:none}
+table.lk-grid td.lk-sepc{border-left:4px solid var(--warn)}
+table.lk-grid tr.lk-sepr td:not(.lk-cntc){border-top:4px solid var(--warn)}
+.lk-badge{display:inline-block;min-width:44px;font-family:"Segoe UI",sans-serif;font-size:28px;font-weight:700;border-radius:999px;padding:0 8px}
+.lk-badge.even{color:var(--ok);background:rgba(52,211,153,.13)}
+.lk-badge.odd{color:var(--bad);background:rgba(251,113,133,.20)}
+.lk-ring{position:absolute;inset:-7px;border:5px solid var(--bad);border-radius:12px;box-shadow:0 0 18px rgba(251,113,133,.6)}
+.lk-fix{position:absolute;inset:3px;border-radius:7px;background:var(--ok);color:#0a0c18;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+/* Hamming distance table */
+table.lk-dist{border-collapse:separate;border-spacing:0;font-size:30px;background:var(--card2);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+table.lk-dist th,table.lk-dist td{position:relative;padding:8px 18px;text-align:center;border-bottom:1px solid var(--line)}
+table.lk-dist thead th{color:var(--muted);font-weight:600}
+table.lk-dist tbody th{color:var(--muted);font-weight:600}
+table.lk-dist td b{position:relative;font-size:36px}
+table.lk-dist tbody tr:last-child>*{border-bottom:none}
+
+/* switch */
+svg.lk-sw{overflow:visible}
+svg.lk-sw .lk-link,svg.lk-path .lk-link{stroke:#c9cdf0;stroke-width:4}
+svg.lk-sw .lk-swbox{fill:var(--card);stroke:var(--brand);stroke-width:4}
+svg.lk-sw .lk-swt{font-family:Consolas,monospace;font-size:36px;fill:var(--ink);text-anchor:middle}
+svg.lk-sw .lk-port{fill:var(--brand)}
+svg.lk-sw .lk-pn{font-family:"Segoe UI",sans-serif;font-size:26px;font-weight:700;fill:var(--muted);text-anchor:middle}
+svg.lk-sw .lk-host,svg.lk-path .lk-host{fill:var(--card);stroke:#c9cdf0;stroke-width:3}
+svg.lk-sw .lk-hn,svg.lk-path .lk-hn{font-family:"Segoe UI",sans-serif;font-size:40px;font-weight:700;fill:var(--ink);text-anchor:middle}
+svg.lk-sw .lk-ain{stroke:#2dd4bf;stroke-width:9}
+svg.lk-sw .lk-aout{stroke:#38bdf8;stroke-width:9}
+svg.lk-sw .lk-drop{font-family:"Segoe UI",sans-serif;font-size:48px;font-weight:700;fill:#fb7185}
+
+/* path of hosts and routers */
+svg.lk-path{overflow:visible}
+svg.lk-path .lk-router{fill:var(--card);stroke:var(--warn);stroke-width:4}
+svg.lk-path .lk-if{font-family:Consolas,monospace;font-size:26px;fill:var(--warn)}
+svg.lk-path .lk-frame{fill:#10122a;stroke:var(--brand);stroke-width:3}
+svg.lk-path .lk-fh{font-family:"Segoe UI",sans-serif;font-size:24px;font-weight:700;fill:var(--muted);text-anchor:middle}
+svg.lk-path .lk-fv{font-family:Consolas,monospace;font-size:34px;fill:var(--ink);text-anchor:middle}
+svg.lk-path .lk-fv.mac{fill:#2dd4bf}
+svg.lk-path .lk-fv.ip{fill:#38bdf8}
+
+/* a long exam question on the stage (smaller type) */
+.lk-q{width:100%;direction:rtl}
+.lk-q .qstem{font-size:29px;line-height:1.4;margin-bottom:12px}
+.lk-q .opts{gap:9px}
+.lk-q .opt{font-size:25px;line-height:1.32;padding:8px 18px}
+.lk-q .onote{font-size:22px;white-space:nowrap}
+
+/* sender/receiver arrows (Stop and Wait) */
+svg.lk-lad{overflow:visible}
+svg.lk-lad .lk-lh{font-family:"Segoe UI",sans-serif;font-size:32px;font-weight:700;fill:var(--ink);text-anchor:middle}
+svg.lk-lad .lk-life{stroke:#c9cdf0;stroke-width:4}
+svg.lk-lad .lk-arr{stroke-width:4}
+svg.lk-lad .lk-lbg{fill:#10122a;stroke:var(--line);stroke-width:1.5}
+svg.lk-lad .lk-lab2{font-family:Consolas,monospace;font-size:27px;fill:var(--ink);text-anchor:middle}
+svg.lk-lad .lk-note{font-family:"Segoe UI",sans-serif;font-size:26px;font-weight:700;fill:var(--ok)}
+svg.lk-lad .lk-note.bad{fill:#fb7185}
+svg.lk-lad .lk-brk{stroke:#fbbf24;stroke-width:6;stroke-linecap:round}
+svg.lk-lad .lk-brkt{font-family:"Segoe UI",sans-serif;font-size:26px;font-weight:700;fill:#fbbf24}

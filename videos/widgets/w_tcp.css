@@ -1,0 +1,65 @@
+/* tcp-course widgets (w_tcp.py); every class starts with tc- */
+.tc-stack{display:flex;flex-direction:column;align-items:center;width:100%}
+.tc-big{font-size:48px;direction:ltr;text-align:center}
+.tc-big.sm{font-size:38px}
+.tc-big.xs{font-size:32px}
+.tc-ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.tc-row{font-size:34px;direction:rtl;text-align:center;line-height:1.4}
+.tc-row.ltr{direction:ltr;font-family:Consolas,monospace}
+.tc-ok{color:var(--ok);font-weight:700}
+.tc-bad{color:var(--bad);font-weight:700}
+.tc-mono{font-family:Consolas,monospace;direction:ltr;unicode-bidi:isolate}
+table.tc-tab{border-collapse:separate;border-spacing:0;font-size:31px;direction:rtl;background:var(--card2);
+  border:1px solid var(--line);border-radius:14px;overflow:hidden}
+table.tc-tab th,table.tc-tab td{padding:8px 22px;text-align:center;border-bottom:1px solid var(--line)}
+table.tc-tab thead th{color:var(--muted);font-weight:600}
+table.tc-tab tbody tr:last-child>*{border-bottom:none}
+
+/* sender/receiver arrows */
+svg.tc-lad{overflow:visible}
+svg.tc-lad .tc-host{font-family:"Segoe UI",sans-serif;font-size:34px;font-weight:700;fill:var(--ink);text-anchor:middle}
+svg.tc-lad .tc-life{stroke:#c9cdf0;stroke-width:4}
+svg.tc-lad .tc-arr{stroke-width:4}
+svg.tc-lad .tc-data .tc-arr{stroke:#2dd4bf}
+svg.tc-lad .tc-ack .tc-arr{stroke:#38bdf8}
+svg.tc-lad .tc-syn .tc-arr{stroke:#c084fc}
+svg.tc-lad .tc-retx .tc-arr{stroke:#fbbf24}
+svg.tc-lad .tc-arr.lost{stroke:#fb7185;stroke-dasharray:12 8}
+svg.tc-lad .tc-x{font-family:"Segoe UI",sans-serif;font-size:44px;font-weight:700;fill:#fb7185;text-anchor:middle}
+svg.tc-lad .tc-lbg{fill:#10122a;stroke:var(--line);stroke-width:1.5}
+svg.tc-lad .tc-lab{font-family:Consolas,monospace;font-size:28px;fill:var(--ink);text-anchor:middle}
+svg.tc-lad .tc-note{font-family:"Segoe UI",sans-serif;font-size:27px;font-weight:700;fill:var(--warn)}
+svg.tc-lad .tc-brk{stroke:#fbbf24;stroke-width:6;stroke-linecap:round}
+svg.tc-lad .tc-brkt{font-family:"Segoe UI",sans-serif;font-size:27px;font-weight:700;fill:#fbbf24}
+
+/* cwnd chart */
+svg.tc-ch{overflow:visible}
+svg.tc-ch .tc-grid{stroke:rgba(255,255,255,.10);stroke-width:1.5}
+svg.tc-ch .tc-axis{stroke:#c9cdf0;stroke-width:3}
+svg.tc-ch .tc-yt{font-family:"Segoe UI",sans-serif;font-size:24px;fill:var(--muted);text-anchor:end}
+svg.tc-ch .tc-xt{font-family:"Segoe UI",sans-serif;font-size:24px;fill:var(--muted);text-anchor:middle}
+svg.tc-ch .tc-axl{font-family:Consolas,monospace;font-size:26px;fill:var(--muted)}
+svg.tc-ch .tc-seg{stroke:#c9cdf0;stroke-width:3}
+svg.tc-ch .tc-pt.ss{fill:#2dd4bf}
+svg.tc-ch .tc-pt.ca{fill:#38bdf8}
+svg.tc-ch .tc-val{font-family:"Segoe UI",sans-serif;font-size:23px;font-weight:700;text-anchor:middle}
+svg.tc-ch .tc-val.ss{fill:#2dd4bf}
+svg.tc-ch .tc-val.ca{fill:#38bdf8}
+svg.tc-ch .tc-th{stroke:#fbbf24;stroke-width:3;stroke-dasharray:10 8}
+svg.tc-ch .tc-tht{font-family:Consolas,monospace;font-size:24px;font-weight:700;fill:#fbbf24}
+svg.tc-ch .tc-band{fill:rgba(45,212,191,.16)}
+svg.tc-ch .tc-ev{font-family:"Segoe UI",sans-serif;font-size:25px;font-weight:700;fill:#fb7185;text-anchor:middle}
+
+/* cwnd / rwnd bars, receive buffer */
+svg.tc-bars{overflow:visible}
+svg.tc-bars .tc-bl{font-family:Consolas,monospace;font-size:32px;fill:var(--ink)}
+svg.tc-bars .tc-bv{font-family:"Segoe UI",sans-serif;font-size:32px;font-weight:700;fill:var(--ink)}
+svg.tc-bars .tc-bar{fill:rgba(56,189,248,.55)}
+svg.tc-bars .tc-bar.rwnd{fill:rgba(192,132,252,.55)}
+svg.tc-bars .tc-barhi{fill:none;stroke:var(--ok);stroke-width:6}
+svg.tc-buf .tc-cell{fill:none;stroke:#c9cdf0;stroke-width:2.5}
+svg.tc-buf .tc-cell.used{fill:rgba(192,132,252,.5)}
+svg.tc-buf .tc-cellhi{fill:rgba(52,211,153,.35);stroke:var(--ok);stroke-width:3}
+/* a long option list (5+ options or two-line options): smaller rows */
+.tc-osm .opt{font-size:29px;padding:7px 18px}
+.tc-osm .onote{font-size:24px}

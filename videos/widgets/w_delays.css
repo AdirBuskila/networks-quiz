@@ -1,0 +1,75 @@
+/* delays-course widgets (w_delays.py); every class starts with dl- */
+.dl-stack{display:flex;flex-direction:column;align-items:center;width:100%}
+.dl-big{font-size:50px;direction:ltr;text-align:center}
+.dl-ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.dl-inl{display:flex;align-items:center;gap:14px;direction:ltr}
+.dl-big.sm{font-size:40px}
+.dl-big.xs{font-size:34px}
+.dl-row{font-size:34px;direction:rtl;text-align:center;line-height:1.4}
+.dl-row.ltr{direction:ltr}
+.dl-badges{display:flex;gap:22px;direction:rtl}
+.dl-badge{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:190px;padding:18px 20px;border-radius:18px;
+  background:var(--card2);border:1px solid var(--line)}
+.dl-badge b{font-size:46px;color:var(--brand);direction:ltr}
+.dl-badge span{font-size:28px;color:var(--muted)}
+.dl-grid{display:grid;grid-template-columns:auto auto auto;gap:10px 26px;align-items:center;font-size:34px;direction:ltr}
+.dl-grid .hd{color:var(--muted);font-size:28px;text-align:center}
+.dl-grid .c{text-align:center}
+.dl-ok{color:var(--ok);font-weight:700}
+.dl-bad{color:var(--bad);font-weight:700}
+.dl-tr{color:#38bdf8}
+.dl-pr{color:#fbbf24}
+
+/* space-time diagram */
+svg.dl-st{overflow:visible}
+svg.dl-st .dl-node{stroke:#c9cdf0;stroke-width:3}
+svg.dl-st .dl-nname{font-family:"Segoe UI",sans-serif;font-size:34px;font-weight:700;fill:var(--ink);text-anchor:middle}
+svg.dl-st .dl-axis{font-family:"Segoe UI",sans-serif;font-size:28px;fill:var(--muted)}
+svg.dl-st .dl-pk{fill:rgba(45,212,191,.28);stroke:var(--brand);stroke-width:2}
+svg.dl-st .dl-pk.thin{stroke-width:4}
+svg.dl-st .dl-bit{stroke:var(--brand);stroke-width:3}
+svg.dl-st .dl-br{stroke-width:7;stroke-linecap:round}
+svg.dl-st .dl-br.tr{stroke:#38bdf8}
+svg.dl-st .dl-br.pr{stroke:#fbbf24}
+svg.dl-st .dl-blab{font-family:"Segoe UI",sans-serif;font-size:28px;font-weight:700}
+svg.dl-st .dl-blab.tr{fill:#38bdf8}
+svg.dl-st .dl-blab.pr{fill:#fbbf24}
+svg.dl-st .dl-endl{stroke:var(--ok);stroke-width:3;stroke-dasharray:10 8}
+svg.dl-st .dl-endt{font-family:"Segoe UI",sans-serif;font-size:32px;font-weight:700;fill:var(--ok)}
+
+/* one link with bits in flight */
+svg.dl-link{overflow:visible}
+svg.dl-link .dl-host{fill:var(--card);stroke:#c9cdf0;stroke-width:3}
+svg.dl-link .dl-hname{font-family:"Segoe UI",sans-serif;font-size:40px;font-weight:700;fill:var(--ink);text-anchor:middle;opacity:.35}
+svg.dl-link .dl-wire{stroke:#c9cdf0;stroke-width:6;stroke-linecap:round}
+svg.dl-link .dl-bits{fill:var(--brand);opacity:.9}
+svg.dl-link .dl-bits.got{fill:var(--ok)}
+.dl-clock{font-family:"Segoe UI",sans-serif;font-size:34px;font-weight:700;fill:var(--brand2);text-anchor:middle}
+
+/* buffer */
+svg.dl-buf{overflow:visible}
+svg.dl-buf .dl-bufbox{fill:none;stroke:#c9cdf0;stroke-width:4}
+svg.dl-buf .dl-arrow{stroke:#c9cdf0;stroke-width:5}
+svg.dl-buf .dl-fill{fill:var(--brand2);opacity:.8}
+svg.dl-buf .dl-fill.full{fill:var(--bad)}
+svg.dl-buf .dl-drop{font-family:"Segoe UI",sans-serif;font-size:40px;font-weight:700;fill:var(--bad);text-anchor:middle}
+
+/* rho gauge */
+svg.dl-gauge{overflow:visible}
+svg.dl-gauge .z-low{fill:rgba(52,211,153,.3)}
+svg.dl-gauge .z-mid{fill:rgba(251,191,36,.3)}
+svg.dl-gauge .z-high{fill:rgba(251,113,133,.32)}
+svg.dl-gauge .dl-axisl{stroke:#c9cdf0;stroke-width:4}
+svg.dl-gauge .dl-tick{stroke:#c9cdf0;stroke-width:3}
+svg.dl-gauge .dl-tick.one{stroke:var(--bad);stroke-width:6}
+svg.dl-gauge .dl-tickt{font-family:"Segoe UI",sans-serif;font-size:32px;fill:var(--ink);text-anchor:middle}
+svg.dl-gauge .dl-mark{fill:var(--brand)}
+svg.dl-gauge .dl-markt{font-family:"Segoe UI",sans-serif;font-size:30px;font-weight:700;fill:var(--brand);text-anchor:middle}
+
+/* rate path */
+svg.dl-path{overflow:visible}
+svg.dl-path .dl-pipe{fill:rgba(56,189,248,.35);stroke:#38bdf8;stroke-width:3}
+svg.dl-path .dl-pipehi{fill:none;stroke:var(--warn);stroke-width:6}
+svg.dl-path .dl-pipet{font-family:"Segoe UI",sans-serif;font-size:32px;font-weight:700;fill:var(--ink);text-anchor:middle}
+svg.dl-path .dl-pipel{font-family:"Segoe UI",sans-serif;font-size:28px;fill:var(--muted);text-anchor:middle}
+svg.dl-path .dl-bn{font-family:"Segoe UI",sans-serif;font-size:30px;font-weight:700;fill:var(--warn);text-anchor:middle}

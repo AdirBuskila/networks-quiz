@@ -1,0 +1,81 @@
+/* ip-course widgets (w_ip.py); every class starts with ip- */
+.ip-stack{display:flex;flex-direction:column;align-items:center;width:100%}
+.ip-big{font-size:46px;direction:ltr;text-align:center}
+.ip-big.sm{font-size:38px}
+.ip-big.xs{font-size:32px}
+.ip-ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.ip-mono{font-family:Consolas,monospace;direction:ltr;unicode-bidi:isolate}
+.ip-row{font-size:34px;direction:rtl;text-align:center;line-height:1.4}
+.ip-row.ltr{direction:ltr;font-family:Consolas,monospace}
+.ip-row.sm{font-size:29px}
+.ip-ok{color:var(--ok);font-weight:700}
+.ip-bad{color:var(--bad);font-weight:700}
+.ip-pre-t{color:#2dd4bf;font-weight:700}
+.ip-host-t{color:#fbbf24;font-weight:700}
+.ip-bor-t{color:#c084fc;font-weight:700}
+table.ip-tab{border-collapse:separate;border-spacing:0;font-size:30px;direction:rtl;background:var(--card2);
+  border:1px solid var(--line);border-radius:14px;overflow:hidden}
+table.ip-tab th,table.ip-tab td{padding:7px 20px;text-align:center;border-bottom:1px solid var(--line)}
+table.ip-tab thead th{color:var(--muted);font-weight:600}
+table.ip-tab tbody tr:last-child>*{border-bottom:none}
+table.ip-tab td .ip-mono{font-size:28px}
+
+/* 32-bit strip */
+svg.ip-strip{overflow:visible}
+svg.ip-strip .ip-cell{fill:var(--card);stroke:rgba(201,205,240,.45);stroke-width:1.5}
+svg.ip-strip .ip-bit{font-family:Consolas,monospace;font-size:26px;fill:var(--ink);text-anchor:middle}
+svg.ip-strip .ip-dec{font-family:Consolas,monospace;font-size:32px;font-weight:700;fill:var(--ink);text-anchor:middle}
+svg.ip-strip .ip-dot{font-family:Consolas,monospace;font-size:40px;font-weight:700;fill:var(--muted);text-anchor:middle}
+svg.ip-strip .ip-pre{fill:rgba(45,212,191,.40);stroke:#2dd4bf;stroke-width:2.5}
+svg.ip-strip .ip-host{fill:rgba(251,191,36,.30);stroke:#fbbf24;stroke-width:2.5}
+svg.ip-strip .ip-bor{fill:rgba(192,132,252,.45);stroke:#c084fc;stroke-width:2.5}
+svg.ip-strip .ip-cutl{stroke:#fb7185;stroke-width:5;stroke-linecap:round}
+svg.ip-strip .ip-cutt{font-family:Consolas,monospace;font-size:30px;font-weight:700;fill:#fb7185;text-anchor:middle}
+svg.ip-strip .ip-bb{fill:none;stroke:#fbbf24;stroke-width:4;stroke-dasharray:10 6}
+svg.ip-strip .ip-cap{font-family:"Segoe UI",sans-serif;font-size:26px;fill:var(--muted);text-anchor:end}
+
+/* one byte */
+svg.ip-byte .ip-pl{font-family:Consolas,monospace;font-size:30px;fill:var(--muted);text-anchor:middle}
+svg.ip-byte .ip-bcell{fill:var(--card);stroke:#c9cdf0;stroke-width:2.5}
+svg.ip-byte .ip-bon{fill:rgba(45,212,191,.32);stroke:#2dd4bf;stroke-width:4}
+svg.ip-byte .ip-bdig{font-family:Consolas,monospace;font-size:52px;font-weight:700;fill:var(--ink);text-anchor:middle}
+
+/* number line of a byte */
+svg.ip-line{overflow:visible}
+svg.ip-line .ip-axis{stroke:#c9cdf0;stroke-width:3}
+svg.ip-line .ip-tick{stroke:#c9cdf0;stroke-width:3}
+svg.ip-line .ip-tl{font-family:Consolas,monospace;font-size:26px;fill:var(--muted);text-anchor:middle}
+svg.ip-line .ip-blk{fill:rgba(45,212,191,.38);stroke:#2dd4bf;stroke-width:3}
+svg.ip-line .ip-rng{font-family:Consolas,monospace;font-size:27px;font-weight:700;fill:#2dd4bf;text-anchor:middle}
+svg.ip-line .ip-mk{fill:#fbbf24}
+svg.ip-line .ip-mkl{stroke:#fbbf24;stroke-width:4;stroke-dasharray:6 4}
+svg.ip-line .ip-mkt{font-family:Consolas,monospace;font-size:30px;font-weight:700;fill:#fbbf24;text-anchor:middle}
+
+/* forwarding table */
+.ip-ft{display:flex;flex-direction:column;gap:8px;direction:ltr}
+.ip-fh,.ip-fr{display:grid;align-items:center;column-gap:12px;font-size:29px}
+.ip-fh{color:var(--muted);font-size:26px;padding:0 12px}
+.ip-fh>span{text-align:center}
+.ip-fr{position:relative;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:8px 12px}
+.ip-fr>span{text-align:center;position:relative}
+.ip-fn{font-weight:700;color:var(--brand2)}
+.ip-frg{font-size:26px}
+.ip-fv{font-size:34px}
+.ip-fhi{position:absolute;left:-3px;right:-3px;top:-3px;bottom:-3px;border-radius:13px;background:rgba(45,212,191,.20);
+  box-shadow:0 0 0 4px var(--brand) inset}
+
+/* fragments */
+svg.ip-fb{overflow:visible}
+svg.ip-fb .ip-fbase{fill:none;stroke:rgba(201,205,240,.5);stroke-width:2;stroke-dasharray:8 6}
+svg.ip-fb .ip-fd{font-family:Consolas,monospace;font-size:28px;font-weight:700;fill:var(--ink);text-anchor:middle}
+svg.ip-fb .ip-fp{font-family:Consolas,monospace;font-size:24px;fill:var(--muted)}
+svg.ip-fb .ip-fo{font-family:Consolas,monospace;font-size:30px;font-weight:700;fill:#fbbf24;text-anchor:middle}
+svg.ip-fb .ip-fmf{font-family:Consolas,monospace;font-size:28px;font-weight:700;fill:#c084fc;text-anchor:middle}
+svg.ip-fb .ip-fend{font-family:Consolas,monospace;font-size:26px;fill:var(--muted)}
+svg.ip-fb .ip-flab{font-family:"Segoe UI",sans-serif;font-size:26px;fill:var(--muted)}
+
+/* a long option list (5+ options or two-line options): smaller rows */
+.ip-osm .opt{font-size:28px;padding:7px 18px}
+.ip-osm .onote{font-size:23px}
+.ip-oxs .opt{font-size:17px;padding:5px 12px;font-family:Consolas,monospace;direction:ltr;text-align:left}
+.ip-oxs .onote{font-size:21px;font-family:"Segoe UI",sans-serif;direction:rtl}
