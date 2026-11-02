@@ -56,7 +56,7 @@ function setMode(mode) {
   r.dispatchEvent(new window.Event("change", { bubbles: true }));
 }
 
-assert(scripts.join() === "questions.js,learn.js,courses.js,grade.js,calc.js,app.js,feedback.js,course-ui.js", `scripts loaded: ${scripts.join(", ")}`);
+assert(scripts.join() === "questions.js,learn.js,courses.js,grade.js,calc.js,app.js,feedback.js,videos.js,video-ui.js,course-ui.js", `scripts loaded: ${scripts.join(", ")}`);
 const D = window.CC_QUIZ;
 assert(D && Array.isArray(D.questions), "window.CC_QUIZ defined");
 const QS = D.questions;
@@ -394,6 +394,73 @@ if (learnCh.length) {
       assert(visible($("#screen-start")), "course: home button returns to the start screen");
     }
   }
+}
+
+// ---------------- video course ("🎬 קורס וידאו": videos.js from tools/video/build_manifest.py + video-ui.js) ----------------
+{
+  const VC = window.VIDEO_COURSE, all = (window.VIDEO_UI && window.VIDEO_UI.all) || [];
+  const VKEY = `${CFG.storePrefix}_video_v1`;
+  assert(scripts.includes("videos.js") && scripts.includes("video-ui.js"), "index.html loads videos.js and video-ui.js");
+  if (!all.length) {
+    assert($$(".vid-entry").every(el => el.style.display === "none"), "no videos: the video entries are hidden");
+  } else {
+    $("#brandHome").click();
+    const lv = c => (((window.COURSES || {})[c] || {}).levels || []);
+    assert(VC.courses.every(c => c.videos.every(v => lv(c.id).some(L => L.id === v.level))), `video: every one of ${all.length} videos maps to a guided level of its course`);
+    $("#vidEntry").click();
+    assert(visible($("#screen-video")) && visible($("#vidListView")), "video: header entry opens the list");
+    assert($$("#vidCourses .vid-row").length === all.length, `video: list shows ${all.length} videos`);
+    const noYt = all.find(v => !v.youtube);
+    if (noYt) {
+      $(`.vid-row[data-vid="${noYt.id}"]`).click();
+      const vel = $("#vidFrame video");
+      assert(visible($("#vidPlayView")) && !!vel && vel.getAttribute("src") === `videos/out/${noYt.id}/${noYt.id}.mp4`, `video: ${noYt.id} without a youtube id -> local <video>`);
+      vel.dispatchEvent(new window.Event("error"));
+      assert(!!$("#vidFrame .vid-missing"), "video: load error -> 'not uploaded yet' note");
+    }
+    const first = all[0], had = first.youtube; first.youtube = "AbCdEfGhIjK";
+    window.VIDEO_UI.openVideo(first.id);
+    const ifr = $("#vidFrame iframe");
+    assert(!!ifr && ifr.getAttribute("src").startsWith("https://www.youtube-nocookie.com/embed/AbCdEfGhIjK"), "video: youtube id -> youtube-nocookie embed");
+    if (had) first.youtube = had; else delete first.youtube;
+    assert($("#vidPrev").disabled && !$("#vidNext").disabled, "video: first video has prev disabled, next enabled");
+    // every course reuses the level ids C01..: the jump must land in the video's own course (take the 2nd course's first video)
+    const v2 = all.find(v => v.course !== first.course) || all[1];
+    window.VIDEO_UI.openVideo(all[all.indexOf(v2) - 1].id);
+    $("#vidNext").click();
+    assert($("#vidHead").textContent.includes(v2.id), `video: next -> ${v2.id}`);
+    $("#vidWatchBtn").click();
+    const st = JSON.parse(window.localStorage.getItem(VKEY) || "{}");
+    assert(st.watched && st.watched[v2.id], `video: watched mark saved in ${VKEY}`);
+    $("#vidLevel").click();
+    const L2 = lv(v2.course.id).find(L => L.id === v2.level);
+    assert(visible($("#screen-course")) && visible($("#crsLessonView")) && $("#crsLesson").textContent.includes(L2.title), `video: ${v2.id} -> practice opens its guided lesson (${v2.course.id}/${v2.level})`);
+    const lb = $$("#crsLesson .vid-open").map(b => b.dataset.vid);
+    assert(lb.length === 1 && lb[0] === v2.id, `video: lesson shows its own video button (${lb.join()})`);
+    $(`#crsLesson .vid-open[data-vid="${v2.id}"]`).click();
+    assert(visible($("#vidPlayView")) && $("#vidBack").textContent.includes("לשיעור"), "video: lesson button opens the player");
+    $("#vidBack").click();
+    assert(visible($("#crsLessonView")), "video: back from the player returns to the lesson");
+    window.VIDEO_UI.openVideo(first.id); $("#brandHome").click();
+    assert(!visible($("#screen-video")) && visible($("#screen-start")), "video: brand click from the player goes home");
+    assert(/צפית ב-1 /.test($("#vidPromoSub").textContent), "video: home promo shows the watched count");
+    // ?video=<ID> deep link (fresh page)
+    const errs = [], vcV = new VirtualConsole();
+    vcV.on("jsdomError", e => errs.push("jsdomError: " + (e.message || e)));
+    vcV.on("error", (...a) => errs.push("console.error: " + a.join(" ")));
+    const last = all[all.length - 1];
+    const W = new JSDOM(html, { pretendToBeVisual: true, runScripts: "outside-only", url: `http://localhost/index.html?video=${last.id}`, virtualConsole: vcV }).window;
+    W.scrollTo = () => {}; W.HTMLElement.prototype.scrollIntoView = () => {}; W.confirm = () => true;
+    W.matchMedia = W.matchMedia || (q => ({ matches: false, media: q, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} }));
+    for (const f of scripts) { try { W.eval(fs.readFileSync(path.join(ROOT, f), "utf8")); } catch (e) { errs.push(`eval ${f}: ${e.message}`); } }
+    // video-ui.js runs the deep link on DOMContentLoaded (after course-ui.js); jsdom fires it asynchronously, so fire it here
+    if (W.document.readyState === "loading") W.document.dispatchEvent(new W.Event("DOMContentLoaded"));
+    const vd = s => W.document.querySelector(s);
+    assert(!vd("#screen-video").classList.contains("hidden") && visible(vd("#vidPlayView")) && vd("#vidHead").textContent.includes(last.id), `video: ?video=${last.id} deep link opens the player`);
+    assert(vd("#vidLevel").style.display !== "none", "video: deep link finds the guided level (practice button shown)");
+    assert(errs.length === 0, "video deep link: no errors" + (errs.length ? ": " + errs.join(" | ") : ""));
+  }
+  assert(errors.length === 0, `video: no JS errors so far${errors.length ? ": " + errors.join(" | ") : ""}`);
 }
 
 // fenced code blocks in the built bank must all be dir=ltr
